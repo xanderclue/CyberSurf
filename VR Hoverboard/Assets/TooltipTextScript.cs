@@ -2,25 +2,30 @@
 
 public class TooltipTextScript : MonoBehaviour
 {
-    // SCRAPPED
-
-    //private static TooltipTextScript inst = null;
-    //private TMPro.TextMeshProUGUI theText = null;
-    //static public string Text
-    //{
-    //    get
-    //    {
-    //        if (null != inst)
-    //            return inst.theText.text;
-    //        return "";
-    //    }
-    //    set
-    //    {
-    //        inst.theText.SetText(value);
-    //    }
-    //}
-    //private void Awake()
-    //{
-    //    inst = this;
-    //}
+    private delegate void UpdateTooltipEvent(string str);
+    private static UpdateTooltipEvent OnUpdateTooltip;
+    TMPro.TextMeshProUGUI textMesh = null;
+    public static void SetText(string str)
+    {
+        if (null != OnUpdateTooltip)
+            OnUpdateTooltip(str);
+    }
+    private void Awake()
+    {
+        textMesh = GetComponent<TMPro.TextMeshProUGUI>();
+        UpdateTooltip("");
+    }
+    private void OnEnable()
+    {
+        OnUpdateTooltip += UpdateTooltip;
+    }
+    private void OnDisable()
+    {
+        OnUpdateTooltip -= UpdateTooltip;
+    }
+    void UpdateTooltip(string str)
+    {
+        if (null != textMesh)
+            textMesh.SetText(str);
+    }
 }

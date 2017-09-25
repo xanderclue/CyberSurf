@@ -2,6 +2,7 @@
 
 public abstract class SelectedObject : MonoBehaviour
 {
+    public string tooltipText = "";
     [SerializeField, Tooltip("\"Time To Wait\": How long it takes for the reticle to fill up (measured in FixedUpdate ticks)")]
     private int timeToWait = 50;
     private int timeWaited = 0;
@@ -19,7 +20,6 @@ public abstract class SelectedObject : MonoBehaviour
     private bool CanSelect { get { return waitTimer <= 0.0f; } set { waitTimer = value ? 0.0f : waitTime; } }
     private bool isDisabled = false;
     public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.updateReticle(0.0f); } }
-
     private void Awake()
     {
         if (delay < 0)
@@ -54,7 +54,7 @@ public abstract class SelectedObject : MonoBehaviour
     }
 
     //What the class actually does with the object while selected(if applicable)
-    public virtual void selectedFuntion() { }
+    public virtual void selectedFuntion() { TooltipTextScript.SetText(tooltipText); }
 
     //deals with leftovers from selecting the object when you look away
     public void deSelected()
@@ -69,7 +69,7 @@ public abstract class SelectedObject : MonoBehaviour
     }
 
     //Cleans up what the class actually does(if applicable)
-    public virtual void deSelectedFunction() { }
+    public virtual void deSelectedFunction() { TooltipTextScript.SetText(""); }
 
     //what the class actually does when select is successful, inherited class must fill this out
     public abstract void selectSuccessFunction();
