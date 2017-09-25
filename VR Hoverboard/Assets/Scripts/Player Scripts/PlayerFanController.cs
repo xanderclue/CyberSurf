@@ -14,7 +14,7 @@ public class PlayerFanController : MonoBehaviour
     float sampledVelocity = 0f;
 
     float invertedDenominator = 0f;
-    float tenPercentIncrease = 0f;
+    float twoPercentIncrease = 0f;
 
     [SerializeField] [Range(0f, 1.0f)] float interpolateAmount = 0.05f;
 
@@ -33,7 +33,7 @@ public class PlayerFanController : MonoBehaviour
     //called by our BoardManager
     public void UpdateFanPercentage()
     {
-        tenPercentIncrease = (pmv.maxSpeed - pmv.minSpeed) * -0.1f;
+        twoPercentIncrease = (pmv.maxSpeed - pmv.minSpeed) * -0.02f;
         invertedDenominator = 1f / (pmv.maxSpeed - pmv.minSpeed);
     }
 
@@ -60,7 +60,8 @@ public class PlayerFanController : MonoBehaviour
         //get our velocity based on if we are going forward/backwards
         sampledVelocity = playerTransform.InverseTransformDirection(playerRB.velocity).z;
         
-        sampledVelocity = (sampledVelocity - pmv.minSpeed + tenPercentIncrease) * 100f * invertedDenominator;
+        //multiplying by -1 to try and reverse the motor
+        sampledVelocity = (sampledVelocity - pmv.minSpeed + twoPercentIncrease) * 100f * invertedDenominator *-1f;
         Mathf.Clamp(sampledVelocity, 0f, 100f);
 
         updatedVelocity = Mathf.Lerp(updatedVelocity, sampledVelocity, interpolateAmount);
