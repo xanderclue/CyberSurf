@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefab);
         DontDestroyOnLoad(player);
 
+        //set the game to run in the background
+        Application.runInBackground = true;
+
         InitGame();
 
         levelScript.RingPathIsOn = (0 != PlayerPrefs.GetInt("RingPath", levelScript.RingPathIsOn ? 1 : 0));
