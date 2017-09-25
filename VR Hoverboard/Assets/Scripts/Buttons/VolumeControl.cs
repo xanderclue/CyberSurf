@@ -3,7 +3,7 @@ public class VolumeControl : SelectedObject
 {
     enum AudioType
     {
-        BackgroundMusic, SoundEffects, AmbientSounds
+        BackgroundMusic, SoundEffects, Environment
     }
     [SerializeField]
     private float volumeIncrement = 0.0625f;
@@ -19,8 +19,8 @@ public class VolumeControl : SelectedObject
             case AudioType.SoundEffects:
                 AudioLevels.Instance.SfxVolume += volumeIncrement;
                 break;
-            case AudioType.AmbientSounds:
-                AudioLevels.Instance.AmbVolume += volumeIncrement;
+            case AudioType.Environment:
+                AudioLevels.Instance.EnvVolume += volumeIncrement;
                 break;
             default:
                 break;

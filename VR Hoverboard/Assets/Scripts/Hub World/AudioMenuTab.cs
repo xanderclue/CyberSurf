@@ -3,7 +3,7 @@ using TMPro;
 public class AudioMenuTab : MenuTab
 {
     [SerializeField]
-    private TextMeshPro bgmVolume = null, sfxVolume = null, ambVolume = null;
+    private TextMeshPro bgmVolume = null, sfxVolume = null, envVolume = null;
     private void SetBgmText()
     {
         if (null != bgmVolume)
@@ -14,19 +14,19 @@ public class AudioMenuTab : MenuTab
         if (null != sfxVolume)
             sfxVolume.SetText(Mathf.RoundToInt(AudioLevels.Instance.SfxVolume * 16.0f).ToString());
     }
-    private void SetAmbText()
+    private void SetEnvText()
     {
-        if (null != ambVolume)
-            ambVolume.SetText(Mathf.RoundToInt(AudioLevels.Instance.AmbVolume * 16.0f).ToString());
+        if (null != envVolume)
+            envVolume.SetText(Mathf.RoundToInt(AudioLevels.Instance.EnvVolume * 16.0f).ToString());
     }
     private void OnEnable()
     {
         AudioLevels.Instance.OnBgmVolumeChange += SetBgmText;
         AudioLevels.Instance.OnSfxVolumeChange += SetSfxText;
-        AudioLevels.Instance.OnAmbVolumeChange += SetAmbText;
+        AudioLevels.Instance.OnEnvVolumeChange += SetEnvText;
         SetBgmText();
         SetSfxText();
-        SetAmbText();
+        SetEnvText();
     }
     private void OnDisable()
     {
@@ -34,7 +34,7 @@ public class AudioMenuTab : MenuTab
         {
             AudioLevels.Instance.OnBgmVolumeChange -= SetBgmText;
             AudioLevels.Instance.OnSfxVolumeChange -= SetSfxText;
-            AudioLevels.Instance.OnAmbVolumeChange -= SetAmbText;
+            AudioLevels.Instance.OnEnvVolumeChange -= SetEnvText;
         }
         catch { }
     }
