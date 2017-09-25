@@ -121,9 +121,6 @@ public class PlayerGameplayController : MonoBehaviour
         //make sure only half of the resting threshold is being checked for the upper and lower angles
         movementVariables.restingThreshold *= 0.5f;
 
-        //invert our momentum for easier use in the lerp in ApplyForce()
-        movementVariables.momentum = 1f / movementVariables.momentum;
-
         if (!gamepadEnabled)
         {
             //since the information we are getting from the gyro is in radians, include Mathf.Rad2Deg in our sensitivities

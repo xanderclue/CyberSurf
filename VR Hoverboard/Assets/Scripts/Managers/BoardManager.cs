@@ -142,7 +142,7 @@ public class BoardManager : MonoBehaviour
             case BoardType.Original:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
-                    30f, 17f, 15f, 100f,
+                    30f, 17f, 15f, 0.1f,
                     25f, 15f, 12f,
                     3.45f, 3.45f,
                     30f, 15f, 30f,
@@ -152,7 +152,7 @@ public class BoardManager : MonoBehaviour
             case BoardType.MachI:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
-                    45f, 25f, 22f, 100f,
+                    45f, 25f, 22f, 0.1f,
                     35f, 23f, 20f,
                     3.3f, 3.3f,
                     30f, 18f, 30f,
@@ -162,7 +162,7 @@ public class BoardManager : MonoBehaviour
             case BoardType.MachII:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
-                    55f, 30f, 25f, 100f,
+                    55f, 30f, 25f, 0.1f,
                     40f, 25f, 21f,
                     3.15f, 3.15f,
                     32f, 15f, 32f,
@@ -172,7 +172,7 @@ public class BoardManager : MonoBehaviour
             case BoardType.MachIII:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
-                    70f, 42f, 37f, 100f,
+                    70f, 42f, 37f, 0.1f,
                     50f, 35f, 31f,
                     3f, 3f,
                     35f, 10f, 35f,
@@ -193,7 +193,7 @@ public class BoardManager : MonoBehaviour
             case BoardType.Original:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
-                    30f, 17f, 15f, 100f,
+                    30f, 17f, 15f, 0.1f,
                     25f, 15f, 12f,
                     2.5f, 2.5f,
                     30f, 15f, 30f,
@@ -203,7 +203,7 @@ public class BoardManager : MonoBehaviour
             case BoardType.MachI:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
-                    45f, 25f, 22f, 100f,
+                    45f, 25f, 22f, 0.1f,
                     35f, 23f, 20f,
                     2.5f, 2.5f,
                     30f, 18f, 30f,
@@ -213,7 +213,7 @@ public class BoardManager : MonoBehaviour
             case BoardType.MachII:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
-                    55f, 30f, 25f, 100f,
+                    55f, 30f, 25f, 0.1f,
                     40f, 25f, 21f,
                     2.5f, 2.5f,
                     32f, 15f, 32f,
@@ -223,7 +223,7 @@ public class BoardManager : MonoBehaviour
             case BoardType.MachIII:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
-                    70f, 42f, 37f, 100f,
+                    70f, 42f, 37f, 0.1f,
                     50f, 35f, 31f,
                     2.5f, 2.5f,
                     35f, 10f, 35f,

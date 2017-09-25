@@ -73,7 +73,7 @@ public class ManagerClasses : MonoBehaviour
         public float downwardAcceleration = 30f;
         public float restingAcceleration = 30f;
         public float upwardAcceleration = 30f;
-        [Range(1f, 500f)] public float momentum = 20f;
+        [Range(0.001f, 1f)] public float momentum = 0.1f;
 
         [Header("Sensativities")]
         [Tooltip("Pitch has no effect on gyro sensativities.")]
