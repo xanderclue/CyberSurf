@@ -49,7 +49,5 @@ public class ExitPortalScript : MonoBehaviour
         pmc.ToggleMenuMovement(false);
         SaveLoader.save();
         Application.Quit();
-        //TODO:: once we fix the fade cover alpha constantly being set in our scene fade scripts, remove the next line
-        theFadeObj.color = new Color(0f, 0f, 0f, alpha);
     }
 }

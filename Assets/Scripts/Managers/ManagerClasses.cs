@@ -73,6 +73,7 @@ public class ManagerClasses : MonoBehaviour
         public float downwardAcceleration = 30f;
         public float restingAcceleration = 30f;
         public float upwardAcceleration = 30f;
+        [Tooltip("The amount to interpolate on every fixed update.")]
         [Range(0.001f, 1f)] public float momentum = 0.1f;
 
         [Header("Sensativities")]

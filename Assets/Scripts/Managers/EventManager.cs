@@ -10,7 +10,7 @@ public class EventManager : MonoBehaviour
     //events can only be subscribed to or unsubscribed to (more secure)
     public static event ToggleMovementLock OnToggleMovement;
 
-    static public void OnSetMovementLock(bool locked)
+    static public void OnSetGameplayMovementLock(bool locked)
     {
         //if the event is subscribed to
         if (OnToggleMovement != null)
@@ -24,15 +24,6 @@ public class EventManager : MonoBehaviour
     {
         if (OnTransition != null)
             OnTransition(sceneIndex);
-    }
-
-    public delegate void fade();
-    public static event fade OnFade;
-
-    static public void OnTriggerFade()
-    {
-        if (OnFade != null)
-            OnFade();
     }
 
     public delegate void ToggleSelectionLock(bool locked);

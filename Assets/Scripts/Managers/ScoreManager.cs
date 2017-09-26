@@ -329,7 +329,7 @@ public class ScoreManager : MonoBehaviour
                 //if the player has reached the maxRespawnCount, then send him/her back to the hub world
                 if (respawnCount < maxRespawnCount )
                     playerRespawnScript.RespawnPlayer(prevRingTransform, 5f + prevRingBonusTime);
-                else 
+                else
                     EventManager.OnTriggerTransition(1);
 
                 ++respawnCount;

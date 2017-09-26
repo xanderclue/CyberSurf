@@ -39,7 +39,6 @@ public class WorldPortalScript : MonoBehaviour
             gameManager.lastLevel = level;
             gameManager.lastMode = gameManager.gameMode.currentMode;
 
-
             EventManager.OnTriggerTransition(level);
             pmc.ToggleMenuMovement(true);
         }

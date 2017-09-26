@@ -6,88 +6,104 @@ using UnityEngine.UI;
 
 public class ScreenFade : MonoBehaviour
 {
-    public Image theFadeObj;
-    public float fadeSpeed = 0.8f;
-    public float fadeTime = 10.0f;
+    [SerializeField] Image theFadeObj;
 
-    //private int drawDepth = -1000;
-    private float alpha = 1.0f;
-    private int fadeDir = -1;
+    float alpha = 1.0f;
+    float fadeTime = 0.5f;
+    float timeIntoFade = 0f;
+
+    AsyncOperation asyncOp;
 
     //used for scene transitions
-    public AsyncOperation loadOpertion;
+    ManagerClasses.GameState gameState;
 
-    //private bool isFading = false;
-
-    // Starts the fade in
-    void OnEnable()
+    private void LateUpdate()
     {
-        SceneManager.sceneLoaded += OnLevelFinished;
-        EventManager.OnFade += startFadeOutCoroutine;
-        StartCoroutine(FadeIn());
+        //print(theFadeObj.color);
     }
 
-    void OnDisable()
+    private void Start()
     {
-        SceneManager.sceneLoaded -= OnLevelFinished;
-        EventManager.OnFade -= startFadeOutCoroutine;
+        gameState = GameManager.instance.gameState;
     }
 
-    // Starts a fade in when a new level is loaded
-    void OnLevelFinished(Scene scene, LoadSceneMode mode)
-    {
-        StartCoroutine(FadeIn());
-    }
-
-    void startFadeOutCoroutine()
-    {
-        StartCoroutine(FadeOut());
-    }
     // Fades alpha from 1.0 to 0.0, use at beginning of scene
     IEnumerator FadeIn()
     {
-        fadeTime = BeginFade(-1);
-        yield return new WaitForSeconds(fadeTime);
-        //isFading = false;
-    }
+        timeIntoFade = 0f;
 
-    bool checkIfDoneLoading(AsyncOperation operation)
-    {
-        return operation.isDone;
+        //don't start the fade in until loading is done
+        while (asyncOp != null && !asyncOp.isDone)
+            yield return null;
+
+        while(timeIntoFade < fadeTime)
+        {
+            timeIntoFade += Time.deltaTime;
+            UpdateAlpha(false);
+
+            yield return null;
+        }
+
+        //only unlock player movement when we are in a gameplay scene
+        if (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1)
+            EventManager.OnSetGameplayMovementLock(false);
     }
 
     // Fades from 0.0 to 1.0, use at end of scene
     IEnumerator FadeOut()
     {
-        fadeTime = BeginFade(1);
+        timeIntoFade = 0f;
 
+        //lock player gameplay movement
+        EventManager.OnSetGameplayMovementLock(true);
 
-        yield return new WaitForSeconds(fadeTime);
-        loadOpertion = SceneManager.LoadSceneAsync(GameManager.instance.levelScript.nextScene, LoadSceneMode.Single);
-        //says wait for operation to finish
-        loadOpertion.allowSceneActivation = true;
-        while (!loadOpertion.isDone)
+        //make sure our state updates
+        gameState.currentState = GameStates.SceneTransition;
+
+        while (timeIntoFade < fadeTime)
         {
+            timeIntoFade += Time.deltaTime;
+            UpdateAlpha(true);
+
             yield return null;
         }
 
-        //loadOpertion.allowSceneActivation = true;
-        //isFading = false;
-        GameManager.instance.levelScript.fadeing = false;
+        asyncOp = SceneManager.LoadSceneAsync(GameManager.instance.levelScript.nextScene, LoadSceneMode.Single);
+        asyncOp.allowSceneActivation = true;
     }
 
-    private void OnGUI()
+    void UpdateAlpha(bool fadingOut)
     {
-        alpha += fadeDir * fadeSpeed * Time.deltaTime;
+        //we want to update our alpha based off of how far into the fade time we are in
+        alpha = timeIntoFade / fadeTime;
+
+        if (fadingOut == false)
+            alpha = 1f - alpha;
 
         alpha = Mathf.Clamp01(alpha);
-
-        theFadeObj.color = new Color(0, 0, 0, alpha);
+        theFadeObj.material.color = new Color(0f, 0f, 0f, alpha);
     }
 
-    float BeginFade (int direction)
+    // Starts a fade in when a new level is loaded
+    void OnLevelFinished(Scene scene, LoadSceneMode mode)
     {
-        fadeDir = direction;
-        return (fadeSpeed);
+        StopAllCoroutines();
+        StartCoroutine(FadeIn());
+    }
+
+    public void startFadeOutCoroutine()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeOut());
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelFinished;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelFinished;
     }
 }

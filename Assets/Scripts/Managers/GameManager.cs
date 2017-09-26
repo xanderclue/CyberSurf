@@ -119,22 +119,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
-        if (gameState.currentState == GameStates.SceneTransition)
-        {
-            //keep going until fade finishes
-            if (!levelScript.fadeing && levelScript.doLoadOnce)
-            {
-                //if (levelScript.nextScene != SceneManager.GetActiveScene().buildIndex)
-                //{
-                //    //AsyncOperation opertion = SceneManager.LoadSceneAsync(levelScript.nextScene, LoadSceneMode.Single);
-                //
-                //    //levelScript.loadOpertion.allowSceneActivation = true;
-                //}
-
-                levelScript.doLoadOnce = false;
-            }
-        }
-    }
 }

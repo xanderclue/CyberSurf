@@ -2249,8 +2249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theFadeObj: {fileID: 114757866654277876}
-  fadeSpeed: 0.8
-  fadeTime: 10
 --- !u!114 &114523122265007086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2725,7 +2723,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 41e068ace7003104e8f95c0a9a068741, type: 2}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:

@@ -54,9 +54,7 @@ public class PlayerRespawn : MonoBehaviour
             roundTimerStartTime = startTime;
             countDownTime = countDownFrom;
 
-            alpha = theFadeObj.color.a;
-            timeIntoFade = 0f;
-            isRespawning = true;
+            alpha = theFadeObj.color.a;           
             StartCoroutine(FadeOut());
         }     
     }
@@ -72,7 +70,9 @@ public class PlayerRespawn : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        bool lockSet = false;
+        timeIntoFade = 0f;
+        isRespawning = true;
+        bool movementLockSet = false;
 
         //keep going until our fade time as elapsed
         while (timeIntoFade < fadeTime)
@@ -81,10 +81,10 @@ public class PlayerRespawn : MonoBehaviour
             UpdateAlpha(1);
 
             //once alpha is == 1, lock movement
-            if (!lockSet && alpha == 1f)
+            if (!movementLockSet && alpha == 1f)
             {
-                EventManager.OnSetMovementLock(true);
-                lockSet = true;
+                EventManager.OnSetGameplayMovementLock(true);
+                movementLockSet = true;
             }
 
             timeIntoFade += Time.deltaTime;
@@ -98,13 +98,14 @@ public class PlayerRespawn : MonoBehaviour
             playerRB.MoveRotation(Quaternion.Euler(respawnPoint.eulerAngles.x, respawnPoint.eulerAngles.y, 0f));
         }
 
-        //then start to fade in
-        timeIntoFade = 0f;
+        //then start to fade in   
         StartCoroutine(FadeIn());
     }
 
     IEnumerator FadeIn()
     {
+        timeIntoFade = 0f;
+
         //start the timer
         roundTimer.TimeLeft = roundTimerStartTime;
 
@@ -133,7 +134,7 @@ public class PlayerRespawn : MonoBehaviour
             yield return new WaitForSeconds(countDownTime - timeIntoFade);
 
         //unlock movement
-        EventManager.OnSetMovementLock(false);
+        EventManager.OnSetGameplayMovementLock(false);
 
         //unpause the timer
         roundTimer.PauseTimer(false);

@@ -9,23 +9,19 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public ManagerClasses.GameState gameState;
 
     GameManager gameManager;
+    ScreenFade screenFade;
 
     GameObject player;
     Transform playerTransform;
     PlayerMenuController menuController;
 
     //for transitions
-    [HideInInspector] public bool fadeing = false;
-    [HideInInspector] public bool doLoadOnce = true;
     [HideInInspector] public int nextScene;
     [HideInInspector] public bool HudOnOff = true;
     [HideInInspector] public bool RingPathIsOn = true;
 
-    [HideInInspector] public bool makeSureMovementStaysLocked;
-
     //stores each player spawn point at each different level
     public Transform[] spawnPoints;
-
 
     public void SetupLevelManager(ManagerClasses.GameState s, GameObject p, GameManager g)
     {
@@ -34,6 +30,7 @@ public class LevelManager : MonoBehaviour
         gameState = s;
         gameManager = g;
         menuController = p.GetComponent<PlayerMenuController>();
+        screenFade = p.GetComponentInChildren<ScreenFade>();
     } 
 
     //for debugging
@@ -45,13 +42,9 @@ public class LevelManager : MonoBehaviour
     public void DoSceneTransition(int sceneIndex)
     {
         nextScene = sceneIndex;
-        gameState.currentState = GameStates.SceneTransition;
         EventManager.OnTriggerSelectionLock(true);
-        EventManager.OnSetMovementLock(true);
         player.GetComponentInChildren<effectController>().disableAllEffects();
-        doLoadOnce = true;
-        fadeing = true;
-        EventManager.OnTriggerFade();
+        screenFade.startFadeOutCoroutine();  
     }
 
     public void UndoSceneTransitionLocks(Scene scene, LoadSceneMode mode)
@@ -60,25 +53,17 @@ public class LevelManager : MonoBehaviour
         switch (scene.buildIndex)
         {
             case 0: //Starting area
-                EventManager.OnSetMovementLock(true);
                 menuController.ToggleMenuMovement(true);
                 EventManager.OnSetHudOnOff(false);
-                makeSureMovementStaysLocked = true;
                 gameState.currentState = GameStates.MainMenu;
                 break;
             case 1: // HubWorld
-                    //do things like lock player movement here....
-
-
-                EventManager.OnSetMovementLock(true);
                 //moved to a button switch after first startup
                 if (gameManager.lastLevel == -1)
                 {
                     menuController.ToggleMenuMovement(false);
                 }
-                
-
-                makeSureMovementStaysLocked = true;
+                           
                 EventManager.OnSetHudOnOff(false);
                 gameState.currentState = GameStates.MainMenu;
                 gameManager.scoreScript.score = 0;
@@ -86,7 +71,6 @@ public class LevelManager : MonoBehaviour
                 gameManager.scoreScript.firstPortal = true;
                 break;             
             default:
-                makeSureMovementStaysLocked = false;
                 EventManager.OnSetHudOnOff(HudOnOff);
                 EventManager.OnSetArrowOnOff(HudOnOff);
                 applyGamemodeChanges();
@@ -97,11 +81,6 @@ public class LevelManager : MonoBehaviour
         playerTransform.SetPositionAndRotation(spawnPoints[scene.buildIndex].position, spawnPoints[scene.buildIndex].rotation);
 
         EventManager.OnTriggerSelectionLock(false);
-
-        if (!makeSureMovementStaysLocked)
-        {
-            EventManager.OnSetMovementLock(false);
-        }
     }
 
     void applyGamemodeChanges()
