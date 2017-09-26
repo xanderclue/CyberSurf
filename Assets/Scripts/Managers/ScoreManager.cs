@@ -16,7 +16,7 @@ public class ScoreManager : MonoBehaviour
 
         public bool isLastScoreInput;
     }
-    
+
     public struct levelCurseScores
     {
         public scoreStruct[] curseScores;
@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour
         public bool isLastScoreInput;
         public string name;
     }
-    
+
     public levelCurseScores[] topCurseScores;
     int currentAmoutFilled = 0;
 
@@ -71,15 +71,18 @@ public class ScoreManager : MonoBehaviour
     int respawnCount, maxRespawnCount;
 
     //used by our HUD and updated through RingScoreScript
-    [HideInInspector] public int ringHitCount = 0;
+    [HideInInspector]
+    public int ringHitCount = 0;
 
     //values updated by our RingScoreScript
-    [HideInInspector] public int score;
-    [HideInInspector] public float prevRingBonusTime;
-    [HideInInspector] public Transform prevRingTransform;
+    [HideInInspector]
+    public int score;
+    [HideInInspector]
+    public float prevRingBonusTime;
+    [HideInInspector]
+    public Transform prevRingTransform;
 
-    public bool respawnEnabledInEditor = true;
-    bool respawnEnabled = true;
+    [HideInInspector] public bool respawnEnabled = true;
 
     //this will get called by our game manager
     public void SetupScoreManager()
@@ -140,7 +143,7 @@ public class ScoreManager : MonoBehaviour
 
                 sortContinuousScores();
                 break;
-                
+
             case GameModes.Cursed:
 
                 //setup new score object
@@ -154,7 +157,7 @@ public class ScoreManager : MonoBehaviour
                 newCurseScore.isLastScoreInput = true;
 
 
-               level = SceneManager.GetActiveScene().buildIndex;
+                level = SceneManager.GetActiveScene().buildIndex;
 
 
                 if (currentAmoutFilled < 10)
@@ -175,9 +178,9 @@ public class ScoreManager : MonoBehaviour
             default:
                 break;
         }
-        
+
     }
-    
+
     void sortCurseScores(scoreStruct[] scores, int arrayLength)
     {
         int curr = 1;
@@ -300,22 +303,19 @@ public class ScoreManager : MonoBehaviour
         prevRingBonusTime = 0f;
         respawnCount = 0;
 
-        if (respawnEnabledInEditor)
+        switch (GameManager.instance.gameMode.currentMode)
         {
-            switch (GameManager.instance.gameMode.currentMode)
-            {
-                case GameModes.Continuous:
-                    respawnEnabled = false;
-                    break;
-                case GameModes.Cursed:
-                    respawnEnabled = true;
-                    break;
-                case GameModes.Free:
-                    respawnEnabled = false;
-                    break;
-                default:
-                    break;
-            }
+            case GameModes.Continuous:
+                respawnEnabled = false;
+                break;
+            case GameModes.Cursed:
+                respawnEnabled = true;
+                break;
+            case GameModes.Free:
+                respawnEnabled = false;
+                break;
+            default:
+                break;
         }
     }
 
@@ -328,7 +328,7 @@ public class ScoreManager : MonoBehaviour
             if (respawnEnabled && roundTimer.TimeLeft <= 0 && !playerRespawnScript.IsRespawning)
             {
                 //if the player has reached the maxRespawnCount, then send him/her back to the hub world
-                if (respawnCount < maxRespawnCount )
+                if (respawnCount < maxRespawnCount)
                     playerRespawnScript.RespawnPlayer(prevRingTransform, 5f + prevRingBonusTime);
                 else
                     EventManager.OnTriggerTransition(1);
