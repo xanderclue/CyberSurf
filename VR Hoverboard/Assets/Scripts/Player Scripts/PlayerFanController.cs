@@ -62,7 +62,6 @@ public class PlayerFanController : MonoBehaviour
         
         //multiplying by -1 to try and reverse the motor
         sampledVelocity = (sampledVelocity - pmv.minSpeed + twoPercentIncrease) * 100f * invertedDenominator *-1f;
-        Mathf.Clamp(sampledVelocity, 0f, 100f);
 
         updatedVelocity = Mathf.Lerp(updatedVelocity, sampledVelocity, interpolateAmount);
 
