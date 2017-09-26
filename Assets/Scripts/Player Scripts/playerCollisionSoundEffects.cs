@@ -31,15 +31,17 @@ public class playerCollisionSoundEffects : MonoBehaviour
     {
         if (source.isPlaying && source.clip.name != "HitThud")
         {
-            source.volume = const_vol - Mathf.Abs((source.clip.length / 2) - source.time);
+            source.volume = const_vol - (Mathf.Abs((source.clip.length / 2) - source.time) * const_vol);
         }
         else
         {
+            const_vol = AudioLevels.Instance.SfxVolume;
             source.volume = const_vol;
         }
     }
     private void OnDestroy() { try { AudioLevels.Instance.OnSfxVolumeChange -= UpdateVolume; } catch { } }
     private void UpdateVolume() { source.volume = AudioLevels.Instance.SfxVolume; }
+    
     private void OnCollisionEnter(Collision collision)
     {
         source.clip = wallCollision;

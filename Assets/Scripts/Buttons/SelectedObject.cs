@@ -42,13 +42,6 @@ public abstract class SelectedObject : MonoBehaviour
             return;
         if (firstSelection)
         {
-            /*if (null == audioSource)
-            {
-                audioSource = gameObject.AddComponent<AudioSource>();
-            }
-            audioSource.clip = selectedSound;
-            audioSource.volume = AudioLevels.Instance.SfxVolume;
-            audioSource.Play();*/
             firstSelection = false;
         }
         selectedFuntion();

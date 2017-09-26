@@ -713,7 +713,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d9fe271ecae16cf4fa4622a1e369cc6d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fcf44c1bd71913945ba9577d51220181, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -11203,6 +11203,11 @@ Prefab:
       propertyPath: selectedEffect
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114404796586018616, guid: 7422ae05e086e0340957bb5574202a4e,
+        type: 2}
+      propertyPath: selectedEffect
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 198537358768048958, guid: 7422ae05e086e0340957bb5574202a4e,
         type: 2}
       propertyPath: playOnAwake
@@ -12277,6 +12282,11 @@ Prefab:
     - target: {fileID: 1203207009036248, guid: 7422ae05e086e0340957bb5574202a4e, type: 2}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114404796586018616, guid: 7422ae05e086e0340957bb5574202a4e,
+        type: 2}
+      propertyPath: selectedEffect
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114404796586018616, guid: 7422ae05e086e0340957bb5574202a4e,
         type: 2}
