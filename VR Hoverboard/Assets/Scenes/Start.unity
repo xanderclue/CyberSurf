@@ -503,6 +503,16 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114673465992009642, guid: cd6996909900ff44cac341d9483ba297,
+        type: 2}
+      propertyPath: portalEnter
+      value: 
+      objectReference: {fileID: 8300000, guid: 26e29264acb8e9e4e959e5c8d050e411, type: 3}
+    - target: {fileID: 114673465992009642, guid: cd6996909900ff44cac341d9483ba297,
+        type: 2}
+      propertyPath: wallCollision
+      value: 
+      objectReference: {fileID: 8300000, guid: e8cfd67f206ea704fae2a7afed4871df, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd6996909900ff44cac341d9483ba297, type: 2}
   m_IsPrefabParent: 0
@@ -855,11 +865,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 947726801}
@@ -1049,11 +1059,11 @@ MonoBehaviour:
     lineCount: 5
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1017583145}
@@ -1396,6 +1406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d197485ef29d00841b2d1a7bc72d06a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 50
   delay: -1
   waitTime: 1.5
@@ -1891,20 +1902,6 @@ Light:
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -2086,6 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d197485ef29d00841b2d1a7bc72d06a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 50
   delay: -1
   waitTime: 1.5
