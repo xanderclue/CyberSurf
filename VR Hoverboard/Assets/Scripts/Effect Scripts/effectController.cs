@@ -1,18 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum particleEffectTypesEnum { rain, snow, crash, other }
 
 public class effectController : MonoBehaviour
 {
-    public ParticleSystem[] particleEffects;
+    public ParticleSystem[] triggerParticleEffects;
+
+    public ParticleSystem dustField;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += dustFieldActivation;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= dustFieldActivation;
+    }
 
 
     // Use this for initialization
     void Start()
     {
         disableAllEffects();
+    }
+
+    void dustFieldActivation(Scene scene, LoadSceneMode loadMode)
+    {
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 0:
+                dustField.Stop();
+                break;
+            case 1:
+                dustField.Stop();
+                break;
+            default:
+                dustField.Play();
+                break;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,15 +51,15 @@ public class effectController : MonoBehaviour
             switch (theEffect)
             {
                 case particleEffectTypesEnum.rain:
-                    particleEffects[0].Play();
+                    triggerParticleEffects[0].Play();
                     break;
                 case particleEffectTypesEnum.snow:
-                    particleEffects[1].Play();
+                    triggerParticleEffects[1].Play();
                     break;
                 case particleEffectTypesEnum.other:
-                    for (int i = 0; i < particleEffects.Length; i++)
+                    for (int i = 0; i < triggerParticleEffects.Length; i++)
                     {
-                        particleEffects[i].Play();
+                        triggerParticleEffects[i].Play();
                     }
                     break;
                 default:
@@ -42,9 +70,9 @@ public class effectController : MonoBehaviour
 
     public void disableAllEffects()
     {
-        for (int i = 0; i < particleEffects.Length; i++)
+        for (int i = 0; i < triggerParticleEffects.Length; i++)
         {
-            particleEffects[i].Stop();
+            triggerParticleEffects[i].Stop();
         }
     }
 
@@ -56,15 +84,15 @@ public class effectController : MonoBehaviour
             switch (theEffect)
             {
                 case particleEffectTypesEnum.rain:
-                    particleEffects[0].Stop();
+                    triggerParticleEffects[0].Stop();
                     break;
                 case particleEffectTypesEnum.snow:
-                    particleEffects[1].Stop();
+                    triggerParticleEffects[1].Stop();
                     break;
                 case particleEffectTypesEnum.other:
-                    for (int i = 0; i < particleEffects.Length; i++)
+                    for (int i = 0; i < triggerParticleEffects.Length; i++)
                     {
-                        particleEffects[i].Stop();
+                        triggerParticleEffects[i].Stop();
                     }
                     break;
                 default:

@@ -12,7 +12,7 @@ public class crashEffectPlayer : MonoBehaviour
         {
             Material texture = theMesh.material;
             effectController effects = gameObject.GetComponentInChildren<effectController>();
-            ParticleSystem particleEffect = effects.particleEffects[(int)particleEffectTypesEnum.crash];
+            ParticleSystem particleEffect = effects.triggerParticleEffects[(int)particleEffectTypesEnum.crash];
             particleEffect.GetComponent<Renderer>().material = texture;
             particleEffect.GetComponent<Renderer>().materials[1] = texture;
             particleEffect.Play();
