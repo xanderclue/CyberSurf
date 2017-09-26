@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     //store our game mode
     public ManagerClasses.GameMode gameMode = new ManagerClasses.GameMode();
 
+    //store our round timer
+    public ManagerClasses.RoundTimer roundTimer;
+
     //last level and mode we were in
     public GameModes lastMode;
     public int lastLevel = -1;
@@ -51,6 +54,9 @@ public class GameManager : MonoBehaviour
         levelScript = GetComponent<LevelManager>();
         boardScript = GetComponent<BoardManager>();
         keyInputScript = GetComponent<KeyInputManager>();
+
+        //setup our round timer
+        roundTimer = new ManagerClasses.RoundTimer();
 
         //Instantiate our player, store the clone, then make sure it persists between scenes
         player = Instantiate(playerPrefab);

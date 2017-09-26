@@ -11,42 +11,67 @@ public class ScreenFade : MonoBehaviour
     float alpha = 1.0f;
     float fadeTime = 0.5f;
     float timeIntoFade = 0f;
+    float quaterFadeTime;
+    float countDownTime = 3.25f;
 
     AsyncOperation asyncOp;
+    CameraSplashScreen countdown;
+    ManagerClasses.RoundTimer roundTimer;
 
     //used for scene transitions
     ManagerClasses.GameState gameState;
 
-    private void LateUpdate()
-    {
-        //print(theFadeObj.color);
-    }
-
-    private void Start()
+    private void Awake()
     {
         gameState = GameManager.instance.gameState;
+        roundTimer = GameManager.instance.roundTimer;
+        countdown = GetComponentInChildren<CameraSplashScreen>();
+        quaterFadeTime = fadeTime * 0.25f;
     }
 
     // Fades alpha from 1.0 to 0.0, use at beginning of scene
     IEnumerator FadeIn()
     {
-        timeIntoFade = 0f;
+        roundTimer.PauseTimer(true);
 
         //don't start the fade in until loading is done
         while (asyncOp != null && !asyncOp.isDone)
             yield return null;
 
-        while(timeIntoFade < fadeTime)
+        bool usingCountdown, countdownStarted = false;
+        timeIntoFade = 0f;
+
+        //only use our countdown if we are going to a gameplay scene
+        if (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1)
+            usingCountdown = true;
+        else
+            usingCountdown = false;
+        
+        
+
+        while (timeIntoFade < fadeTime)
         {
             timeIntoFade += Time.deltaTime;
             UpdateAlpha(false);
 
+            if (usingCountdown && !countdownStarted && timeIntoFade > quaterFadeTime)
+            {
+                countdown.StartCountdown(countDownTime);
+                countdownStarted = true;
+            }
+
             yield return null;
         }
+
+        //wait for the countdown to finish if we need to
+        if (countDownTime - timeIntoFade > 0f)
+            yield return new WaitForSeconds(countDownTime - timeIntoFade);
 
         //only unlock player movement when we are in a gameplay scene
         if (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1)
             EventManager.OnSetGameplayMovementLock(false);
+
+        roundTimer.PauseTimer(false);
     }
 
     // Fades from 0.0 to 1.0, use at end of scene

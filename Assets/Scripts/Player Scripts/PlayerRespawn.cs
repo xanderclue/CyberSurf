@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 public class PlayerRespawn : MonoBehaviour
 {
     public Image theFadeObj;
-    public float fadeTime = 4.0f;
+    float fadeTime = 1.0f;
 
     Rigidbody playerRB;
     Transform respawnPoint;
     float countDownTime;
     float alpha;
     float timeIntoFade;
+    float timeInPitchBlack = 0.1f;
 
     CameraSplashScreen countdown;
     ManagerClasses.RoundTimer roundTimer;
@@ -27,7 +28,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         countdown = GetComponentInChildren<CameraSplashScreen>();
         playerRB = GameManager.player.GetComponent<Rigidbody>();
-        roundTimer = GameManager.instance.scoreScript.roundTimer;
+        roundTimer = GameManager.instance.roundTimer;
     }
 
     void OnLevelLoaded(Scene scene, LoadSceneMode mode)
@@ -59,37 +60,35 @@ public class PlayerRespawn : MonoBehaviour
         }     
     }
 
-    void UpdateAlpha(float direction)
+    void UpdateAlpha(bool fadingOut)
     {
         //we want to update our alpha based off of how far into the fade time we are in
-        alpha += direction * timeIntoFade / fadeTime;
-        alpha = Mathf.Clamp01(alpha);
+        alpha = timeIntoFade / fadeTime;
 
-        theFadeObj.color = new Color(0f, 0f, 0f, alpha);
+        if (fadingOut == false)
+            alpha = 1f - alpha;
+
+        alpha = Mathf.Clamp01(alpha);
+        theFadeObj.material.color = new Color(0f, 0f, 0f, alpha);
     }
 
     IEnumerator FadeOut()
     {
         timeIntoFade = 0f;
         isRespawning = true;
-        bool movementLockSet = false;
 
         //keep going until our fade time as elapsed
-        while (timeIntoFade < fadeTime)
+        while (timeIntoFade < fadeTime + timeInPitchBlack)
         {
             //only update our alpha if it isn't 0
-            UpdateAlpha(1);
-
-            //once alpha is == 1, lock movement
-            if (!movementLockSet && alpha == 1f)
-            {
-                EventManager.OnSetGameplayMovementLock(true);
-                movementLockSet = true;
-            }
+            UpdateAlpha(true);
 
             timeIntoFade += Time.deltaTime;
             yield return null;
         }
+
+        //lock gameplay movement once we fade out
+        EventManager.OnSetGameplayMovementLock(true);
 
         //once we fade out, move the player
         if (respawnPoint != null)
@@ -117,7 +116,7 @@ public class PlayerRespawn : MonoBehaviour
 
         while (timeIntoFade < fadeTime)
         {
-            UpdateAlpha(-1);
+            UpdateAlpha(false);
 
             if (!countdownStarted && timeIntoFade > quarterFadeTime)
             {

@@ -17,7 +17,7 @@ public class TimerTextUpdateScript : MonoBehaviour
 	void Start ()
     {
         gameManager = GameManager.instance;
-        roundTimer = gameManager.scoreScript.roundTimer;
+        roundTimer = gameManager.roundTimer;
         element = gameObject.GetComponent<TextMeshProUGUI>();
 
         textIsRed = false;

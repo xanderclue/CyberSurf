@@ -62,10 +62,9 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-
     public float baseScorePerRing = 100;
-    public ManagerClasses.RoundTimer roundTimer = new ManagerClasses.RoundTimer();
 
+    ManagerClasses.RoundTimer roundTimer;
     ManagerClasses.GameState gameState;
     PlayerRespawn playerRespawnScript;
     Transform[] spawnPoints;
@@ -88,6 +87,7 @@ public class ScoreManager : MonoBehaviour
         gameState = GameManager.instance.gameState;
         spawnPoints = GameManager.instance.levelScript.spawnPoints;
         playerRespawnScript = GameManager.player.GetComponent<PlayerRespawn>();
+        roundTimer = GameManager.instance.roundTimer;
 
         score = respawnCount = 0;
         maxRespawnCount = 3;

@@ -117,7 +117,7 @@ public class RingScoreScript : MonoBehaviour
                 //update our scoreManager values
                 scoreManager.prevRingBonusTime = rp.bonusTime;
                 scoreManager.prevRingTransform = rp.transform;
-                scoreManager.roundTimer.IncreaseTimeLeft(rp.bonusTime);
+                GameManager.instance.roundTimer.IncreaseTimeLeft(rp.bonusTime);
                 scoreManager.ringHitCount++;
 
                 if (GameManager.instance.gameMode.currentMode == GameModes.Cursed)
