@@ -2,6 +2,7 @@
 
 public abstract class SelectedObject : MonoBehaviour
 {
+    [Multiline]
     public string tooltipText = "";
     [SerializeField, Tooltip("\"Time To Wait\": How long it takes for the reticle to fill up (measured in FixedUpdate ticks)")]
     private int timeToWait = 50;

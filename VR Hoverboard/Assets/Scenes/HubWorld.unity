@@ -4204,6 +4204,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 270
       objectReference: {fileID: 0}
+    - target: {fileID: 114404796586018616, guid: 7422ae05e086e0340957bb5574202a4e,
+        type: 2}
+      propertyPath: tooltipText
+      value: Surf with the original board
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7422ae05e086e0340957bb5574202a4e, type: 2}
   m_IsPrefabParent: 0
@@ -8271,6 +8276,13 @@ Prefab:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114404796586018616, guid: 7422ae05e086e0340957bb5574202a4e,
+        type: 2}
+      propertyPath: tooltipText
+      value: 'This board is pretty slow, but faster than the original
+
+        Good for just starting out'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7422ae05e086e0340957bb5574202a4e, type: 2}
   m_IsPrefabParent: 0
@@ -10986,6 +10998,11 @@ Prefab:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114404796586018616, guid: 7422ae05e086e0340957bb5574202a4e,
+        type: 2}
+      propertyPath: tooltipText
+      value: This is a board
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7422ae05e086e0340957bb5574202a4e, type: 2}
   m_IsPrefabParent: 0
@@ -11987,6 +12004,13 @@ Prefab:
     - target: {fileID: 1203207009036248, guid: 7422ae05e086e0340957bb5574202a4e, type: 2}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114404796586018616, guid: 7422ae05e086e0340957bb5574202a4e,
+        type: 2}
+      propertyPath: tooltipText
+      value: 'This is the fastest board out there
+
+        Be sure to stay safe'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7422ae05e086e0340957bb5574202a4e, type: 2}
