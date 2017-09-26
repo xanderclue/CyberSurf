@@ -18,10 +18,7 @@ public class SpatialData
             device = new Spatial();
             Open();
         }
-        catch (System.Exception ex)
-        {
-            Debug.Log(ex.Message);
-        }
+        catch { }
     }
 
     // Spatial (accel,gyro,compass phidget) Members

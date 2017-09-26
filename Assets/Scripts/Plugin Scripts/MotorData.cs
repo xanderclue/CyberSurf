@@ -21,10 +21,7 @@ public class MotorData
             motorControl = new MotorControl();
             Open();
         }
-        catch (System.Exception ex)
-        {
-            Debug.Log(ex.Message);
-        }
+        catch { }
     }
 
     public void Open()

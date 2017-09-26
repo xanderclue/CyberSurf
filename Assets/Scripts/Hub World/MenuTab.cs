@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class MenuTab : MonoBehaviour
 {
-    private List<SelectedObject> buttons;
+    private SelectedObject[] buttons;
     private void Awake()
     {
-        buttons = new List<SelectedObject>();
-        SelectedObject[] arr = GetComponentsInChildren<SelectedObject>();
-        for (int i = 0; i < arr.Length; ++i)
-            buttons.Add(arr[i]);
+        buttons = GetComponentsInChildren<SelectedObject>();
         if (this != GetComponentInParent<MainMenu>().mainTab)
             DisableButtons();
     }

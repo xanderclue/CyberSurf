@@ -9,25 +9,24 @@ public class BoardStandSelectBoard : SelectedObject
     //our material and board types are stored in the BoardStandScript
     BoardStandProperties selectionVariables;
 
-    Material renderer = null;
-    bool isPlaying = false;
+    Material renderMat = null;
 
     private void Start()
     {
         boardManager = GameManager.instance.boardScript;
 
         selectionVariables = GetComponentInParent<BoardStandProperties>();
-        renderer = gameObject.GetComponent<Renderer>().material;
-        renderer.DisableKeyword("_EMISSION");
+        renderMat = gameObject.GetComponent<Renderer>().material;
+        renderMat.DisableKeyword("_EMISSION");
     }
 
     public override void selectedFuntion()
     {
-        renderer.EnableKeyword("_EMISSION");
+        renderMat.EnableKeyword("_EMISSION");
     }
     public override void deSelectedFunction()
     {
-        renderer.DisableKeyword("_EMISSION");
+        renderMat.DisableKeyword("_EMISSION");
     }
     override public void selectSuccessFunction()
     {
