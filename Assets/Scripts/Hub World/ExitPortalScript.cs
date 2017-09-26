@@ -30,24 +30,27 @@ public class ExitPortalScript : MonoBehaviour
     IEnumerator ExitGameCoroutine()
     {
         float timeIntoFade = 0f;
-        float fadeTime = 3f;
+        float fadeTime = 0.8f;
         float alpha = theFadeObj.color.a;
 
         while (timeIntoFade < fadeTime)
         {
             timeIntoFade += Time.deltaTime;
 
-            alpha += timeIntoFade / fadeTime;
+            alpha = timeIntoFade / fadeTime;
             alpha = Mathf.Clamp01(alpha);
 
-            theFadeObj.color = new Color(0f, 0f, 0f, alpha);
+            theFadeObj.material.color = new Color(0f, 0f, 0f, alpha);
 
             yield return null;
         }
 
-        //unlock movement in case we're in the editor
-        pmc.ToggleMenuMovement(false);
         SaveLoader.save();
         Application.Quit();
+
+        //in case we're in the editor
+        yield return new WaitForSeconds(1f);
+        pmc.ToggleMenuMovement(false);
+        theFadeObj.material.color = new Color(0f, 0f, 0f, 0f);
     }
 }

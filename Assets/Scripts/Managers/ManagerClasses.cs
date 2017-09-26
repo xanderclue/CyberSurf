@@ -16,7 +16,7 @@ public class ManagerClasses : MonoBehaviour
         public RoundTimer(float sTime = 5.0f) { timeLeft = sTime; }
         public void PauseTimer(bool paused) { timersPaused = paused; }
         public void IncreaseTimeLeft(float iTime) { if (!timersPaused) timeLeft += iTime; }
-        public float TimeLeft { get { return timeLeft; } set { if (!timersPaused) timeLeft = value; } }
+        public float TimeLeft { get { return timeLeft; } set { timeLeft = value; } }
         public float TimeInLevel { get { return timeInLevel; } set { if (!timersPaused) timeInLevel = value; } }
         public void UpdateTimers()
         {
