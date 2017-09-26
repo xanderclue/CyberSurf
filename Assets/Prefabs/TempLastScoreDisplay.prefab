@@ -1726,8 +1726,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1803,6 +1803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e1a985f27e8c84ea72b60995cd3bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 15
   delay: 10
   waitTime: 0.7
@@ -1930,6 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e1a985f27e8c84ea72b60995cd3bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 15
   delay: 10
   waitTime: 0.7
@@ -1980,8 +1982,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2113,8 +2115,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2337,8 +2339,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2414,6 +2416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e1a985f27e8c84ea72b60995cd3bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 15
   delay: 10
   waitTime: 0.7
@@ -2541,6 +2544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3496ddef37caaf4cb1ca6aaba97ec9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 50
   delay: -1
   waitTime: 1.5
@@ -2594,8 +2598,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2895,6 +2899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db762808f96e57045b9b468164834741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 15
   delay: 10
   waitTime: 0.7
@@ -2910,6 +2915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db762808f96e57045b9b468164834741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 15
   delay: 10
   waitTime: 0.7
@@ -2925,6 +2931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db762808f96e57045b9b468164834741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipText: 
   timeToWait: 15
   delay: 10
   waitTime: 0.7
@@ -3214,8 +3221,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

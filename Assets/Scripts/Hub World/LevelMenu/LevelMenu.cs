@@ -59,7 +59,7 @@ public class LevelMenu : MonoBehaviour
         else
             ++currentLevel;
 
-        portal.sceneIndex = (int)currentLevel;
+        portal.SceneIndex = (int)currentLevel;
         StartCoroutine(TransitionCoroutine(DisplayToUpdate.PortalSelect));
         StartCoroutine(TransitionCoroutine(DisplayToUpdate.TopScores));
     }
@@ -71,7 +71,7 @@ public class LevelMenu : MonoBehaviour
         else
             --currentLevel;
 
-        portal.sceneIndex = (int)currentLevel;
+        portal.SceneIndex = (int)currentLevel;
         StartCoroutine(TransitionCoroutine(DisplayToUpdate.PortalSelect));
         StartCoroutine(TransitionCoroutine(DisplayToUpdate.TopScores));
     }

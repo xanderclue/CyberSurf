@@ -34,7 +34,7 @@ public class WorldPortalScript : MonoBehaviour
                     levelMenuScript.NextGameMode();
             }
 
-            int level = GetComponentInParent<WorldPortalProperties>().sceneIndex;
+            int level = GetComponentInParent<WorldPortalProperties>().SceneIndex;
             GameManager gameManager = GameManager.instance;
             gameManager.lastLevel = level;
             gameManager.lastMode = gameManager.gameMode.currentMode;
