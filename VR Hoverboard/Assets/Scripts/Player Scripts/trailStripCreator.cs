@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class trailStripCreator : MonoBehaviour
 {
     [SerializeField] bool predictiveTrailEnabled = true;
+    public bool PredictivePathEnabled { get { return predictiveTrailEnabled; } set { TogglePredictiveTrail(value); } }
     int currentSceneIndex = 0;
 
     Transform playerTransform;
@@ -142,15 +143,21 @@ public class trailStripCreator : MonoBehaviour
 
         StartCoroutine(PredictiveCoroutine());
     }
+    public static trailStripCreator inst;
 
     private void OnEnable()
     {
+        inst = this;
+        predictiveTrailEnabled = 0 != PlayerPrefs.GetInt("PredictiveTrail", predictiveTrailEnabled ? 1 : 0);
+        PlayerPrefs.SetInt("PredictiveTrail", predictiveTrailEnabled ? 1 : 0);
         SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnLevelLoaded;
+        if (this == inst)
+            inst = null;
     }
 
 }
