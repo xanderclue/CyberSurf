@@ -116,7 +116,7 @@ public class ScreenFade : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
-    public void startFadeOutCoroutine()
+    public void StartTransitionFade()
     {
         StopAllCoroutines();
         StartCoroutine(FadeOut());

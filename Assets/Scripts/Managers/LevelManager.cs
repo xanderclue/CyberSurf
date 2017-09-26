@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
         nextScene = sceneIndex;
         EventManager.OnTriggerSelectionLock(true);
         player.GetComponentInChildren<effectController>().disableAllEffects();
-        screenFade.startFadeOutCoroutine();  
+        screenFade.StartTransitionFade();  
     }
 
     public void UndoSceneTransitionLocks(Scene scene, LoadSceneMode mode)
