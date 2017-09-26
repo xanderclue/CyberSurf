@@ -17,7 +17,7 @@ public class ManagerClasses : MonoBehaviour
         public void PauseTimer(bool paused) { timersPaused = paused; }
         public void IncreaseTimeLeft(float iTime) { if (!timersPaused) timeLeft += iTime; }
         public float TimeLeft { get { return timeLeft; } set { timeLeft = value; } }
-        public float TimeInLevel { get { return timeInLevel; } set { if (!timersPaused) timeInLevel = value; } }
+        public float TimeInLevel { get { return timeInLevel; } set { timeInLevel = value; } }
         public void UpdateTimers()
         {
             if (!timersPaused)
