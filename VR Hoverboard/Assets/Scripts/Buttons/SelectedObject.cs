@@ -20,6 +20,7 @@ public abstract class SelectedObject : MonoBehaviour
     private float waitTime = 1.5f;
     private bool CanSelect { get { return waitTimer <= 0.0f; } set { waitTimer = value ? 0.0f : waitTime; } }
     private bool isDisabled = false;
+    private bool selectsoundplayed = false;
     public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.updateReticle(0.0f); } }
     private void Awake()
     {
@@ -41,13 +42,13 @@ public abstract class SelectedObject : MonoBehaviour
             return;
         if (firstSelection)
         {
-            if (null == audioSource)
+            /*if (null == audioSource)
             {
                 audioSource = gameObject.AddComponent<AudioSource>();
             }
             audioSource.clip = selectedSound;
             audioSource.volume = AudioLevels.Instance.SfxVolume;
-            audioSource.Play();
+            audioSource.Play();*/
             firstSelection = false;
         }
         selectedFuntion();
@@ -101,6 +102,21 @@ public abstract class SelectedObject : MonoBehaviour
             }
             float ratio = (float)timeWaited / timeToWait;
             theReticle.updateReticle(ratio);
+            if (selectsoundplayed == false && timeWaited >= 2)
+            {
+                if (null == audioSource)
+                {
+                    audioSource = gameObject.AddComponent<AudioSource>();
+                }
+                audioSource.clip = selectedSound;
+                audioSource.volume = AudioLevels.Instance.SfxVolume;
+                audioSource.PlayOneShot(selectedSound);
+                selectsoundplayed = true;
+            }
+        }
+        else
+        {
+            selectsoundplayed = false;
         }
     }
 

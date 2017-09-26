@@ -29,7 +29,6 @@ public class playerCollisionSoundEffects : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         source.clip = wallCollision;
-        Debug.Log("wall sound played");
         source.Play();
     }
 
