@@ -10,6 +10,7 @@ public class playerCollisionSoundEffects : MonoBehaviour
     [SerializeField] AudioClip wallCollision = null;
     [SerializeField] AudioClip ringCollision = null;
     [SerializeField] AudioClip portalEnter = null;
+    private float const_vol;
 
     GameObject prevRingObject;
 
@@ -23,6 +24,19 @@ public class playerCollisionSoundEffects : MonoBehaviour
 
         AudioLevels.Instance.OnSfxVolumeChange += UpdateVolume;
         UpdateVolume();
+        const_vol = source.volume;
+    }
+
+    void Update()
+    {
+        if (source.isPlaying && source.clip.name != "HitThud")
+        {
+            source.volume = const_vol - Mathf.Abs((source.clip.length / 2) - source.time);
+        }
+        else
+        {
+            source.volume = const_vol;
+        }
     }
     private void OnDestroy() { try { AudioLevels.Instance.OnSfxVolumeChange -= UpdateVolume; } catch { } }
     private void UpdateVolume() { source.volume = AudioLevels.Instance.SfxVolume; }
