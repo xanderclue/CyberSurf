@@ -23,10 +23,11 @@ public class closeScoreSplashScreen : SelectedObject
     {
         gameManager = GameManager.instance;
         scoreScript = gameManager.scoreScript;
-        if (gameManager.lastLevel == -1)
+        if (gameManager.lastLevel < 2)
         {
             gameObject.SetActive(false);
             panel.SetActive(false);
+            GameManager.player.GetComponent<PlayerMenuController>().ToggleMenuMovement(false);
         }
     }
 

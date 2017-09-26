@@ -30,7 +30,7 @@ public class DisplayTopTenScores : MonoBehaviour
                     for (int j = 0; j < scoreScript.topContinuousScores[i].levels.Length; j++)
                     {
                         cumulativeScore += scoreScript.topContinuousScores[i].levels[j].score;
-                        totalTime += scoreScript.topContinuousScores[i].levels[j].score;
+                        totalTime += scoreScript.topContinuousScores[i].levels[j].time;
                     }
                     scores[i] = cumulativeScore;
                     times[i] = totalTime;

@@ -43,14 +43,14 @@ public class lastScoreDisplay : MonoBehaviour
                 }
                 
                 lastLevel = gameManager.lastLevel;
-                if (lastLevel != -1)
+                if (lastLevel > 1)
                 {
                     for (int i = 0; i < scoreScript.topContinuousScores.Length; i++)
                     {
                         for (int j = 0; j < scoreScript.topContinuousScores[i].levels.Length; j++)
                         {
                             lastScore += scoreScript.topContinuousScores[i].levels[j].score;
-                            lastTime  += scoreScript.topContinuousScores[i].levels[j].score;
+                            lastTime  += scoreScript.topContinuousScores[i].levels[j].time;
                         }
                     }
  }
@@ -85,7 +85,7 @@ public class lastScoreDisplay : MonoBehaviour
                 }
 
                 lastLevel = gameManager.lastLevel;
-                if (lastLevel != -1)
+                if (lastLevel > 1)
                 {
                     lastScore = scoreScript.topCurseScores[lastLevel].curseScores[lastScoreLocation].score;
                     lastTime = scoreScript.topCurseScores[lastLevel].curseScores[lastScoreLocation].time;

@@ -46,16 +46,19 @@ public class PlayerRespawn : MonoBehaviour
 
     public void RespawnPlayer(Transform rsPoint, float startTime, float countDownFrom = 3.25f)
     {
-        roundTimer.TimeLeft = 0f;
+        if (!isRespawning)
+        {
+            roundTimer.TimeLeft = 0f;
 
-        respawnPoint = rsPoint;
-        roundTimerStartTime = startTime;
-        countDownTime = countDownFrom;
+            respawnPoint = rsPoint;
+            roundTimerStartTime = startTime;
+            countDownTime = countDownFrom;
 
-        alpha = theFadeObj.color.a;
-        timeIntoFade = 0f;
-        isRespawning = true;
-        StartCoroutine(FadeOut());
+            alpha = theFadeObj.color.a;
+            timeIntoFade = 0f;
+            isRespawning = true;
+            StartCoroutine(FadeOut());
+        }     
     }
 
     void UpdateAlpha(float direction)

@@ -7,7 +7,7 @@ public class TextElementControllerScript : MonoBehaviour {
     GameObject timerText;
     GameObject bonusTimeText;
     GameObject scoreText;
-    GameObject arrow;
+    [SerializeField] GameObject[] arrow;
     GameObject ringCountText;
     GameObject speedText;
     GameObject speedBar;
@@ -58,7 +58,10 @@ public class TextElementControllerScript : MonoBehaviour {
         timerText.SetActive(hudElementsControl.timerBool);
         scoreText.SetActive(hudElementsControl.scoreBool);
         fpsText.SetActive(hudElementsControl.fpsBool);
-        arrow.SetActive(hudElementsControl.arrowBool);
+        for (int i = 0; i < arrow.Length; i++)
+        {
+            arrow[i].SetActive(hudElementsControl.arrowBool);
+        }
         ringCountText.SetActive(hudElementsControl.ringCountBool);
         speedText.SetActive(hudElementsControl.speedBool);
         speedBar.SetActive(hudElementsControl.speedBarBool);
@@ -100,9 +103,12 @@ public class TextElementControllerScript : MonoBehaviour {
         {
             scoreText.SetActive(false);
         }
-        if (arrow.activeSelf)
+        for (int i = 0; i < arrow.Length; i++)
         {
-            arrow.SetActive(false);
+            if (arrow[i].activeSelf)
+            {
+                arrow[i].SetActive(false);
+            }
         }
         if (ringCountText.activeSelf)
         {
@@ -141,7 +147,7 @@ public class TextElementControllerScript : MonoBehaviour {
         timerText = GetComponentInChildren<TimerTextUpdateScript>().gameObject;
         bonusTimeText = GetComponentInChildren<bonusTimeTextUpdater>().gameObject;
         scoreText = GetComponentInChildren<ScoreTextUpdateScript>().gameObject;
-        arrow = GetComponentInChildren<arrowPointAtUpdater>().gameObject;
+        //arrow = GetComponentInChildren<arrowPointAtUpdater>().get;
         ringCountText = GetComponentInChildren<RingCountTextUpdate>().gameObject;
         speedText = GetComponentInChildren<SpeedUpdate>().gameObject;
         speedBar = GetComponentInChildren<speedBarUpdater>().gameObject;

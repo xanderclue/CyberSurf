@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorldPortalScript : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class WorldPortalScript : MonoBehaviour
         pmc = GameManager.player.GetComponent<PlayerMenuController>();
         gameMode = GameManager.instance.gameMode;
 
-        levelMenuScript = GameObject.Find("LevelMenu").GetComponent<LevelMenu>();
+        //if we are in the hub world
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+            levelMenuScript = GameObject.Find("LevelMenu").GetComponent<LevelMenu>();
     }
 
     private void OnTriggerEnter(Collider other)

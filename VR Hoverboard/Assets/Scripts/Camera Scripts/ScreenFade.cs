@@ -57,7 +57,7 @@ public class ScreenFade : MonoBehaviour
     }
 
     // Fades from 0.0 to 1.0, use at end of scene
-    public IEnumerator FadeOut()
+    IEnumerator FadeOut()
     {
         fadeTime = BeginFade(1);
 
@@ -85,7 +85,7 @@ public class ScreenFade : MonoBehaviour
         theFadeObj.color = new Color(0, 0, 0, alpha);
     }
 
-    public float BeginFade (int direction)
+    float BeginFade (int direction)
     {
         fadeDir = direction;
         return (fadeSpeed);
