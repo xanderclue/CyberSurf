@@ -62,14 +62,14 @@ public class GameManager : MonoBehaviour
         InitGame();
 
         levelScript.RingPathIsOn = (0 != PlayerPrefs.GetInt("RingPath", levelScript.RingPathIsOn ? 1 : 0));
-        scoreScript.respawnEnabled = (0 != PlayerPrefs.GetInt("Respawn", scoreScript.respawnEnabled ? 1 : 0));
+        scoreScript.respawnEnabledInEditor = (0 != PlayerPrefs.GetInt("Respawn", scoreScript.respawnEnabledInEditor ? 1 : 0));
         boardScript.debugSpeedEnabled = (0 != PlayerPrefs.GetInt("DebugSpeed", boardScript.debugSpeedEnabled ? 1 : 0));
     }
 
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetInt("RingPath", levelScript.RingPathIsOn ? 1 : 0);
-        PlayerPrefs.SetInt("Respawn", scoreScript.respawnEnabled ? 1 : 0);
+        PlayerPrefs.SetInt("Respawn", scoreScript.respawnEnabledInEditor ? 1 : 0);
         PlayerPrefs.SetInt("DebugSpeed", boardScript.debugSpeedEnabled ? 1 : 0);
         PlayerPrefs.Save();
     }

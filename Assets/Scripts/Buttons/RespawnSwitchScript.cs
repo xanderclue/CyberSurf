@@ -8,7 +8,7 @@ public class RespawnSwitchScript : SelectedObject
     TextMeshPro respawnOnOffText;
 
     GameManager theManager;
-    bool IsOn { get { return theManager.scoreScript.respawnEnabled; } set { theManager.scoreScript.respawnEnabled = value; } }
+    bool IsOn { get { return theManager.scoreScript.respawnEnabledInEditor; } set { theManager.scoreScript.respawnEnabledInEditor = value; } }
 
     private void Start()
     {

@@ -79,7 +79,8 @@ public class ScoreManager : MonoBehaviour
     [HideInInspector] public float prevRingBonusTime;
     [HideInInspector] public Transform prevRingTransform;
 
-    public bool respawnEnabled = true;
+    public bool respawnEnabledInEditor = true;
+    bool respawnEnabled = true;
 
     //this will get called by our game manager
     public void SetupScoreManager()
@@ -299,7 +300,7 @@ public class ScoreManager : MonoBehaviour
         prevRingBonusTime = 0f;
         respawnCount = 0;
 
-        if (respawnEnabled)
+        if (respawnEnabledInEditor)
         {
             switch (GameManager.instance.gameMode.currentMode)
             {
