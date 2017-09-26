@@ -70,4 +70,14 @@ public class EventManager : MonoBehaviour
         if (OnSetRingPath != null)
             OnSetRingPath(isOn);
     }
+
+
+    public delegate void updateBoardMenuEffects();
+    public static event updateBoardMenuEffects OnUpdateBoardMenuEffects;
+
+    static public void OnCallBoardMenuEffects()
+    {
+        if (OnUpdateBoardMenuEffects != null)
+            OnUpdateBoardMenuEffects();
+    }
 }

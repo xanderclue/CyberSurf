@@ -19,8 +19,7 @@ public class LevelMenu : MonoBehaviour
     [SerializeField] Transform[] backs;
 
     ManagerClasses.GameMode gameMode;
-    float sittingZPosition = -0.15f, sinkDistance = 0.2f;
-    float halfTransitionTime = 0f;
+    float sinkDistance = 0.2f;
 
     [Header("Level Options")]
     [SerializeField]
@@ -32,16 +31,14 @@ public class LevelMenu : MonoBehaviour
     [SerializeField] Sprite[] previewSprites;
 
     [Header("Top Scores")]
-    ScoreManager scoreManager;
+    //ScoreManager scoreManager;
     [SerializeField] TextMeshPro[] highScoreTMPS;
 
     void Start()
     {
         gameMode = GameManager.instance.gameMode;
-        scoreManager = GameManager.instance.scoreScript;
+        //scoreManager = GameManager.instance.scoreScript;
         gameModeTMP.text = gameMode.currentMode.ToString();
-
-        halfTransitionTime = transitionTime / 2f;
     }
 
     //void UpdateScoresDisplay()
