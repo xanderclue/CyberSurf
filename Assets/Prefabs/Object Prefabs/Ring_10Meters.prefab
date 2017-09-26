@@ -54,7 +54,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4797978003202886}
   - component: {fileID: 33729321891737668}
-  - component: {fileID: 65550660980191402}
   - component: {fileID: 23378125056684008}
   m_Layer: 0
   m_Name: ring center
@@ -244,18 +243,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65550660980191402
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1965411462982676}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95268751062553772
 Animator:

@@ -33,6 +33,8 @@ public class RingScoreScript : MonoBehaviour
 
     bonusTimeTextUpdater bonusTimeText;
 
+    ParticleSystem hitEffect;
+
     private void Start()
     {
         scoreManager = GameManager.instance.scoreScript;
@@ -41,6 +43,7 @@ public class RingScoreScript : MonoBehaviour
         rp = GetComponent<RingProperties>();
         capsuleType = typeof(CapsuleCollider);
         bonusTimeText = GameManager.player.GetComponentInChildren<bonusTimeTextUpdater>();
+        hitEffect = GetComponentInChildren<ParticleSystem>();
 
         //set our prevRingInOrder to -1, so we don't apply a consecutive score multiplier for the very first ring we go through in a scene
         prevPositionInOrder = -1;
@@ -128,6 +131,7 @@ public class RingScoreScript : MonoBehaviour
                 IncreaseScore();
                 UpdateRingEffects();
                 pColSoundEffects.PlayRingClip(gameObject);
+                hitEffect.Play();
 
                 prevPositionInOrder = rp.positionInOrder;
             }
