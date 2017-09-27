@@ -34,7 +34,10 @@ public class BuildDebugger : MonoBehaviour
             console = textmesh.gameObject;
             console.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.BackQuote))
+        if (Input.GetKeyDown(KeyCode.BackQuote) || // Hit ~/` key
+            (Input.GetKey(KeyCode.JoystickButton2) &&
+            Input.GetKey(KeyCode.JoystickButton3) &&
+            Input.GetKeyDown(KeyCode.JoystickButton4))) // Hold down X&Y, and press LB
         {
             console.SetActive(!console.activeSelf);
             WriteLine("Build Debugger " + (console.activeSelf ? "ENABLED" : "DISABLED"));
