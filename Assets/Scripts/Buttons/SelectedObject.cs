@@ -44,16 +44,18 @@ public abstract class SelectedObject : MonoBehaviour
         {
             firstSelection = false;
         }
+        TooltipTextScript.SetText(tooltipText);
         selectedFuntion();
         isSelected = true;
     }
 
     //What the class actually does with the object while selected(if applicable)
-    public virtual void selectedFuntion() { TooltipTextScript.SetText(tooltipText); }
+    public virtual void selectedFuntion() { }
 
     //deals with leftovers from selecting the object when you look away
     public void deSelected()
     {
+        TooltipTextScript.SetText("");
         deSelectedFunction();
         theReticle.updateReticle(0);
         isSelected = false;
@@ -64,7 +66,7 @@ public abstract class SelectedObject : MonoBehaviour
     }
 
     //Cleans up what the class actually does(if applicable)
-    public virtual void deSelectedFunction() { TooltipTextScript.SetText(""); }
+    public virtual void deSelectedFunction() { }
 
     //what the class actually does when select is successful, inherited class must fill this out
     public abstract void selectSuccessFunction();

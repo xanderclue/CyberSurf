@@ -12,16 +12,6 @@ public class upLetterScript : SelectedObject
 
     }
 
-    public override void deSelectedFunction()
-    {
-
-    }
-
-    public override void selectedFuntion()
-    {
-
-    }
-
     public override void selectSuccessFunction()
     {
         char letter = myLetter.text[0];

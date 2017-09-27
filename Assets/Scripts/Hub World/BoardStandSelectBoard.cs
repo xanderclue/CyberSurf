@@ -22,10 +22,12 @@ public class BoardStandSelectBoard : SelectedObject
 
     public override void selectedFuntion()
     {
+        base.selectedFuntion();
         renderMat.EnableKeyword("_EMISSION");
     }
     public override void deSelectedFunction()
     {
+        base.deSelectedFunction();
         renderMat.DisableKeyword("_EMISSION");
     }
     override public void selectSuccessFunction()
