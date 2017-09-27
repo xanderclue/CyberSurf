@@ -90,13 +90,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1176057582971286}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.017186223, y: -0.61011827, z: -0.17887683, w: 0.77166283}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4797978003202886}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -11.055, y: -74.94501, z: -17.617}
 --- !u!4 &4409510115833086
 Transform:
   m_ObjectHideFlags: 1
@@ -394,7 +394,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -727553014
+  randomSeed: 1680314320
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -442,7 +442,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 29.657608
+      scalar: 102.656075
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -837,12 +837,12 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 4
+    type: 17
     angle: 25.495228
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
-    donutRadius: 0.2
+    donutRadius: 1.233339
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
@@ -1036,13 +1036,13 @@ ParticleSystem:
     m_BurstCount: 2
     m_Bursts:
     - time: 0
-      minCount: 100
-      maxCount: 100
+      minCount: 200
+      maxCount: 200
       cycleCount: 1
       repeatInterval: 0.01
     - time: 0.1
-      minCount: 75
-      maxCount: 75
+      minCount: 150
+      maxCount: 150
       cycleCount: 1
       repeatInterval: 0.01
   SizeModule:
