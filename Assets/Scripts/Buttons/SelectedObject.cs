@@ -37,7 +37,7 @@ public abstract class SelectedObject : MonoBehaviour
     //grabs the reticle object to show timer status
     public void selected(reticle grabbedReticle)
     {
-        BuildDebugger.WriteLine("Looking at " + gameObject.GetInstanceID().ToString() + " (" + tooltipText + ")");
+        //BuildDebugger.WriteLine("Looking at " + gameObject.GetInstanceID().ToString() + " (" + tooltipText + ")");
         theReticle = grabbedReticle;
         if (!CanSelect || isDisabled)
             return;
@@ -56,7 +56,7 @@ public abstract class SelectedObject : MonoBehaviour
     //deals with leftovers from selecting the object when you look away
     public void deSelected()
     {
-        BuildDebugger.WriteLine(gameObject.GetInstanceID().ToString() + " was deselected (" + tooltipText + ")");
+        //BuildDebugger.WriteLine(gameObject.GetInstanceID().ToString() + " was deselected (" + tooltipText + ")");
         TooltipTextScript.SetText("");
         deSelectedFunction();
         theReticle.updateReticle(0);

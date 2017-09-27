@@ -5,16 +5,17 @@ public class TooltipTextScript : MonoBehaviour
     private delegate void UpdateTooltipEvent(string str);
     private static UpdateTooltipEvent OnUpdateTooltip;
     TMPro.TextMeshProUGUI textMesh = null;
-    public static void SetText(string str)
+    public static void SetText(string str = null)
     {
-        BuildDebugger.WriteLine("Setting Tooltip Text: \"" + str + "\"");
+        BuildDebugger.WriteLine("Setting Tooltip Text: \"" + (str ?? "") + "\"");
         if (null != OnUpdateTooltip)
             OnUpdateTooltip(str);
     }
     private void Awake()
     {
         textMesh = GetComponent<TMPro.TextMeshProUGUI>();
-        UpdateTooltip("");
+        textMesh.SetText("");
+        textMesh.enabled = false;
     }
     private void OnEnable()
     {
@@ -27,6 +28,17 @@ public class TooltipTextScript : MonoBehaviour
     void UpdateTooltip(string str)
     {
         if (null != textMesh)
-            textMesh.SetText(str);
+        {
+            if (null == str || "" == str)
+            {
+                textMesh.SetText("");
+                textMesh.enabled = false;
+            }
+            else
+            {
+                textMesh.enabled = true;
+                textMesh.SetText(str);
+            }
+        }
     }
 }
