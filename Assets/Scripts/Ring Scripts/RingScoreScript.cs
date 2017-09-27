@@ -133,7 +133,11 @@ public class RingScoreScript : MonoBehaviour
                 pColSoundEffects.PlayRingClip(gameObject);
 
                 if (hitEffect != null)
+                {
                     hitEffect.Play();
+                    MeshRenderer tmp = hitEffect.GetComponentInParent<MeshRenderer>();
+                    hitEffect.GetComponentInParent<MeshRenderer>().gameObject.GetComponent<Renderer>().enabled = false ;
+                }
                 else
                     print("HIT EFFECT NULL");
 
