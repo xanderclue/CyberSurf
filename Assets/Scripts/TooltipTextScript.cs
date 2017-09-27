@@ -7,7 +7,6 @@ public class TooltipTextScript : MonoBehaviour
     TMPro.TextMeshProUGUI textMesh = null;
     public static void SetText(string str = null)
     {
-        BuildDebugger.WriteLine("Setting Tooltip Text: \"" + (str ?? "") + "\"");
         if (null != OnUpdateTooltip)
             OnUpdateTooltip(str);
     }
