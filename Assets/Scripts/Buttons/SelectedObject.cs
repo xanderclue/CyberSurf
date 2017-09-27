@@ -10,7 +10,6 @@ public abstract class SelectedObject : MonoBehaviour
     private bool isSelected = false;
     protected AudioClip successSound;
     protected AudioClip selectedSound;
-    private bool firstSelection = true;
     private const int DEFAULT_DELAY = 20;
     [SerializeField, Tooltip("\"Delay\": How long to stare at the button before it registers that you want to select it (measured in FixedUpdate ticks) [-1 sets it to default 20]")]
     private int delay = DEFAULT_DELAY;
@@ -37,15 +36,10 @@ public abstract class SelectedObject : MonoBehaviour
     //grabs the reticle object to show timer status
     public void selected(reticle grabbedReticle)
     {
-        //BuildDebugger.WriteLine("Looking at " + gameObject.GetInstanceID().ToString() + " (" + tooltipText + ")");
         theReticle = grabbedReticle;
         if (!CanSelect || isDisabled)
             return;
-        if (firstSelection)
-        {
-            firstSelection = false;
-            TooltipTextScript.SetText(tooltipText);
-        }
+        TooltipTextScript.SetText(tooltipText);
         selectedFuntion();
         isSelected = true;
     }
@@ -56,14 +50,12 @@ public abstract class SelectedObject : MonoBehaviour
     //deals with leftovers from selecting the object when you look away
     public void deSelected()
     {
-        //BuildDebugger.WriteLine(gameObject.GetInstanceID().ToString() + " was deselected (" + tooltipText + ")");
         TooltipTextScript.SetText("");
         deSelectedFunction();
         theReticle.updateReticle(0);
         isSelected = false;
         timeWaited = 0;
         delayTime = 0;
-        firstSelection = true;
         CanSelect = true;
     }
 

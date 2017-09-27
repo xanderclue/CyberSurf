@@ -20913,6 +20913,66 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114742370126252552, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: timeToWait
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114771507369306982, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: timeToWait
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114735892412441760, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: timeToWait
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114742370126252552, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114771507369306982, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114735892412441760, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114215939771535582, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: timeToWait
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114189829691970462, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: timeToWait
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114399494606650986, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: timeToWait
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114215939771535582, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114189829691970462, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114399494606650986, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c95600b38fa99444b43f0f4bc23a9c6, type: 2}
   m_IsPrefabParent: 0

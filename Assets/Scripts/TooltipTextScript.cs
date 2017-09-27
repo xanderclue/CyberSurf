@@ -33,12 +33,22 @@ public class TooltipTextScript : MonoBehaviour
             {
                 textMesh.SetText("");
                 textMesh.enabled = false;
+                bugfixwait = true;
             }
-            else
+            else if (!bugfixwait)
             {
                 textMesh.enabled = true;
                 textMesh.SetText(str);
+                bugfixwait = true;
             }
         }
+    }
+    float bugfixtimer = 0.0f;
+    const float bugfixtime = 0.1f;
+    bool bugfixwait { get { return bugfixtimer > 0.0f; } set { bugfixtimer = value ? bugfixtime : 0.0f; } }
+    private void Update()
+    {
+        if (bugfixwait)
+            bugfixtimer -= Time.deltaTime;
     }
 }
