@@ -131,7 +131,11 @@ public class RingScoreScript : MonoBehaviour
                 IncreaseScore();
                 UpdateRingEffects();
                 pColSoundEffects.PlayRingClip(gameObject);
-                hitEffect.Play();
+
+                if (hitEffect != null)
+                    hitEffect.Play();
+                else
+                    print("HIT EFFECT NULL");
 
                 prevPositionInOrder = rp.positionInOrder;
             }
