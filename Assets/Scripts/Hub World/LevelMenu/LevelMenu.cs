@@ -22,8 +22,7 @@ public class LevelMenu : MonoBehaviour
     float sinkDistance = 0.2f;
 
     [Header("Level Options")]
-    [SerializeField]
-    TextMeshPro gameModeTMP;
+    [SerializeField] TextMeshPro gameModeTMP;
 
     [Header("Portal Select")]
     [SerializeField] WorldPortalProperties portal;
@@ -39,6 +38,19 @@ public class LevelMenu : MonoBehaviour
         gameMode = GameManager.instance.gameMode;
         //scoreManager = GameManager.instance.scoreScript;
         gameModeTMP.text = gameMode.currentMode.ToString();
+
+        //set our preview to the last level we were in
+        if (GameManager.instance.lastLevel > 1)
+        {
+            currentLevel = (Levels)GameManager.instance.lastLevel;
+            portal.SceneIndex = (int)currentLevel;
+
+            preview.sprite = previewSprites[GameManager.instance.lastLevel - 2];
+        }
+
+        //update the scores if we are loading into the hub world
+        //if (scene.buildIndex == 1)
+        //    UpdateScoresDisplay();
     }
 
     //void UpdateScoresDisplay()
@@ -79,7 +91,6 @@ public class LevelMenu : MonoBehaviour
         StartCoroutine(TransitionCoroutine(DisplayToUpdate.GameMode));
         StartCoroutine(TransitionCoroutine(DisplayToUpdate.TopScores));
     }
-
 
     public void PreviousGameMode()
     {
@@ -151,23 +162,6 @@ public class LevelMenu : MonoBehaviour
                 preview.sprite = previewSprites[(int)currentLevel - 2];
                 break;
         }
-    }
-
-    void OnLevelLoaded(Scene scene, LoadSceneMode mode)
-    {
-        //update the scores if we are loading into the hub world
-        //if (scene.buildIndex == 1)
-        //    UpdateScoresDisplay();
-    }
-
-    private void OnEnable()
-    {
-        //SceneManager.sceneLoaded += OnLevelLoaded;
-    }
-
-    private void OnDisable()
-    {
-        //SceneManager.sceneLoaded -= OnLevelLoaded;
     }
 
 }

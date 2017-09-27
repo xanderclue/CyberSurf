@@ -36,7 +36,7 @@ public class ScoreManager : MonoBehaviour
     //top 10 scores for continuous mode
     public continuousScores[] topContinuousScores;
     int curFilledCont = -1;
-    public bool firstPortal = true;
+    [HideInInspector] public bool firstPortal = true;
 
     void initScores()
     {
@@ -71,16 +71,12 @@ public class ScoreManager : MonoBehaviour
     int respawnCount, maxRespawnCount;
 
     //used by our HUD and updated through RingScoreScript
-    [HideInInspector]
-    public int ringHitCount = 0;
+    [HideInInspector] public int ringHitCount = 0;
 
     //values updated by our RingScoreScript
-    [HideInInspector]
-    public int score;
-    [HideInInspector]
-    public float prevRingBonusTime;
-    [HideInInspector]
-    public Transform prevRingTransform;
+    [HideInInspector] public int score;
+    [HideInInspector] public float prevRingBonusTime;
+    [HideInInspector] public Transform prevRingTransform;
 
     [HideInInspector] public bool respawnEnabled = true;
 
@@ -292,7 +288,6 @@ public class ScoreManager : MonoBehaviour
             return two;
         }
     }
-
 
     //set the prevRingTransform to the spawn point whenever we load in a new scene, and restart our roundTimer
     void OnLevelLoaded(Scene scene, LoadSceneMode mode)
