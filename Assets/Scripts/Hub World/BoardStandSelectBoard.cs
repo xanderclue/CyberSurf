@@ -17,18 +17,22 @@ public class BoardStandSelectBoard : SelectedObject
 
         selectionVariables = GetComponentInParent<BoardStandProperties>();
         renderMat = gameObject.GetComponent<Renderer>().material;
-        renderMat.DisableKeyword("_EMISSION");
+        //Color boardColor = renderMat.color;
+        renderMat.SetColor("_EmissionColor", Color.black);
+        //renderMat.DisableKeyword("_EMISSION");
     }
 
     public override void selectedFuntion()
     {
         base.selectedFuntion();
-        renderMat.EnableKeyword("_EMISSION");
+        //renderMat.EnableKeyword("_EMISSION");
+        renderMat.SetColor("_EmissionColor", Color.white);
     }
     public override void deSelectedFunction()
     {
         base.deSelectedFunction();
-        renderMat.DisableKeyword("_EMISSION");
+        //renderMat.DisableKeyword("_EMISSION");
+        renderMat.SetColor("_EmissionColor", Color.black);
     }
     override public void selectSuccessFunction()
     {
