@@ -6005,6 +6005,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 470074498}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &477461258 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114351781557221600, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1437763482}
+  m_Script: {fileID: -806885394, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
 --- !u!1 &482701339
 GameObject:
   m_ObjectHideFlags: 0
@@ -9102,6 +9108,12 @@ Transform:
   m_Father: {fileID: 674731424}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -42.757004, z: 0}
+--- !u!114 &676180814 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114430579755284682, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1437763482}
+  m_Script: {fileID: -806885394, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
 --- !u!1 &679170178
 GameObject:
   m_ObjectHideFlags: 0
@@ -20913,66 +20925,36 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114742370126252552, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
-        type: 2}
-      propertyPath: timeToWait
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114771507369306982, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
-        type: 2}
-      propertyPath: timeToWait
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 114735892412441760, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
         type: 2}
-      propertyPath: timeToWait
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114742370126252552, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+      propertyPath: textMesh
+      value: 
+      objectReference: {fileID: 477461258}
+    - target: {fileID: 114215939771535582, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
         type: 2}
-      propertyPath: waitTime
-      value: 0.5
-      objectReference: {fileID: 0}
+      propertyPath: textMesh
+      value: 
+      objectReference: {fileID: 477461258}
     - target: {fileID: 114771507369306982, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
         type: 2}
-      propertyPath: waitTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114735892412441760, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
-        type: 2}
-      propertyPath: waitTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114215939771535582, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
-        type: 2}
-      propertyPath: timeToWait
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114189829691970462, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
-        type: 2}
-      propertyPath: timeToWait
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: textMesh
+      value: 
+      objectReference: {fileID: 2080466681}
     - target: {fileID: 114399494606650986, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
         type: 2}
-      propertyPath: timeToWait
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114215939771535582, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+      propertyPath: textMesh
+      value: 
+      objectReference: {fileID: 2080466681}
+    - target: {fileID: 114742370126252552, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
         type: 2}
-      propertyPath: waitTime
-      value: 0.5
-      objectReference: {fileID: 0}
+      propertyPath: textMesh
+      value: 
+      objectReference: {fileID: 676180814}
     - target: {fileID: 114189829691970462, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
         type: 2}
-      propertyPath: waitTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114399494606650986, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
-        type: 2}
-      propertyPath: waitTime
-      value: 0.5
-      objectReference: {fileID: 0}
+      propertyPath: textMesh
+      value: 
+      objectReference: {fileID: 676180814}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c95600b38fa99444b43f0f4bc23a9c6, type: 2}
   m_IsPrefabParent: 0
@@ -28728,6 +28710,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2076339268}
   m_Mesh: {fileID: 0}
+--- !u!114 &2080466681 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114728742818694724, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1437763482}
+  m_Script: {fileID: -806885394, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
 --- !u!1 &2108982469
 GameObject:
   m_ObjectHideFlags: 0

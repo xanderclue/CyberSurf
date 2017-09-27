@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -1807,7 +1807,7 @@ MonoBehaviour:
   timeToWait: 10
   delay: 10
   waitTime: 0.5
-  myLetter: {fileID: 114430579755284682}
+  textMesh: {fileID: 114430579755284682}
 --- !u!114 &114199791521854980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1935,7 +1935,7 @@ MonoBehaviour:
   timeToWait: 10
   delay: 10
   waitTime: 0.5
-  myLetter: {fileID: 114351781557221600}
+  textMesh: {fileID: 114351781557221600}
 --- !u!114 &114224741746671484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2000,7 +2000,7 @@ MonoBehaviour:
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -2133,7 +2133,7 @@ MonoBehaviour:
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -2357,7 +2357,7 @@ MonoBehaviour:
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -2420,7 +2420,7 @@ MonoBehaviour:
   timeToWait: 10
   delay: 10
   waitTime: 0.5
-  myLetter: {fileID: 114728742818694724}
+  textMesh: {fileID: 114728742818694724}
 --- !u!114 &114430579755284682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2616,7 +2616,7 @@ MonoBehaviour:
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -2903,7 +2903,7 @@ MonoBehaviour:
   timeToWait: 10
   delay: 10
   waitTime: 0.5
-  myLetter: {fileID: 114351781557221600}
+  textMesh: {fileID: 114351781557221600}
 --- !u!114 &114742370126252552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2919,7 +2919,7 @@ MonoBehaviour:
   timeToWait: 10
   delay: 10
   waitTime: 0.5
-  myLetter: {fileID: 114430579755284682}
+  textMesh: {fileID: 114430579755284682}
 --- !u!114 &114771507369306982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2935,7 +2935,7 @@ MonoBehaviour:
   timeToWait: 10
   delay: 10
   waitTime: 0.5
-  myLetter: {fileID: 114728742818694724}
+  textMesh: {fileID: 114728742818694724}
 --- !u!114 &114870798103232904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3239,7 +3239,7 @@ MonoBehaviour:
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
