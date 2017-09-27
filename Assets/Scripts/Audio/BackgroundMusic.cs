@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class BackgroundMusic : MonoBehaviour
 {
-    private AudioSource audioSource = null;
+    public AudioSource audioSource = null;
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
