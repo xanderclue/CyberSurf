@@ -11,9 +11,10 @@ public class BuildDebugger : MonoBehaviour
     static TextMeshProUGUI textmesh;
     public static void WriteLine(string line)
     {
+        line += "\n";
         while (writingLine) if (!writingLine) break;
         writingLine = true;
-        lines.Add(counter.ToString() + ": " + line + "\n");
+        lines.Add(counter.ToString() + ": " + line.Substring(0, line.IndexOf('\n') + 1));
         ++counter;
         if (lines.Count > maxlines)
             lines.RemoveAt(0);

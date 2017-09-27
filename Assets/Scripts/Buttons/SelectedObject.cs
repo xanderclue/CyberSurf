@@ -37,15 +37,15 @@ public abstract class SelectedObject : MonoBehaviour
     //grabs the reticle object to show timer status
     public void selected(reticle grabbedReticle)
     {
-        BuildDebugger.WriteLine( "Looking at " + gameObject.GetInstanceID().ToString() + " (" + tooltipText + ")");
+        BuildDebugger.WriteLine("Looking at " + gameObject.GetInstanceID().ToString() + " (" + tooltipText + ")");
         theReticle = grabbedReticle;
         if (!CanSelect || isDisabled)
             return;
         if (firstSelection)
         {
             firstSelection = false;
+            TooltipTextScript.SetText(tooltipText);
         }
-        TooltipTextScript.SetText(tooltipText);
         selectedFuntion();
         isSelected = true;
     }
