@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class SelectedObject : MonoBehaviour
 {
     [Multiline]
     public string tooltipText = "";
+    [SerializeField, Tooltip("Number of AudioSources for button sound effects"), Range(1, 5)]
+    private int numVoices = 1;
     [SerializeField, Tooltip("\"Time To Wait\": How long it takes for the reticle to fill up (measured in FixedUpdate ticks)")]
     private int timeToWait = 50;
     private int timeWaited = 0;
@@ -31,7 +34,8 @@ public abstract class SelectedObject : MonoBehaviour
     private reticle theReticle;
 
     //to play sound effect attached to object
-    private AudioSource audioSource = null;
+    private List<AudioSource> audioSources;
+    int currVoice = 0;
 
     //grabs the reticle object to show timer status
     public void selected(reticle grabbedReticle)
@@ -80,26 +84,32 @@ public abstract class SelectedObject : MonoBehaviour
                 timeWaited = 0;
                 if (isActiveAndEnabled)
                 {
-                    if (null == audioSource)
+                    if (null == audioSources)
                     {
-                        audioSource = gameObject.AddComponent<AudioSource>();
+                        audioSources = new List<AudioSource>();
+                        for (int i = 0; i < numVoices; ++i)
+                            audioSources.Add(gameObject.AddComponent<AudioSource>());
                     }
-                    audioSource.clip = successSound;
-                    audioSource.volume = AudioLevels.Instance.SfxVolume;
-                    audioSource.Play();
+                    audioSources[currVoice].clip = successSound;
+                    audioSources[currVoice].volume = AudioLevels.Instance.SfxVolume;
+                    audioSources[currVoice].Play();
+                    ++currVoice; if (currVoice >= numVoices) currVoice = 0;
                 }
             }
             float ratio = (float)timeWaited / timeToWait;
             theReticle.updateReticle(ratio);
             if (selectsoundplayed == false && timeWaited >= 2)
             {
-                if (null == audioSource)
+                if (null == audioSources)
                 {
-                    audioSource = gameObject.AddComponent<AudioSource>();
+                    audioSources = new List<AudioSource>();
+                    for (int i = 0; i < numVoices; ++i)
+                        audioSources.Add(gameObject.AddComponent<AudioSource>());
                 }
-                audioSource.clip = selectedSound;
-                audioSource.volume = AudioLevels.Instance.SfxVolume;
-                audioSource.PlayOneShot(selectedSound);
+                audioSources[currVoice].clip = selectedSound;
+                audioSources[currVoice].volume = AudioLevels.Instance.SfxVolume;
+                audioSources[currVoice].Play();
+                ++currVoice; if (currVoice >= numVoices) currVoice = 0;
                 selectsoundplayed = true;
             }
         }
