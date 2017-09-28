@@ -51,5 +51,26 @@
         linesSync = false;
         textmesh.SetText(tmstr);
         textmesh.ForceMeshUpdate();
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T))
+            TestFunc();
+    }
+    private void TestFunc()
+    {
+        WriteLine("Mirroring");
+        UnityEngine.GameObject[] objs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+        System.Collections.Generic.List<UnityEngine.GameObject> objsList = new System.Collections.Generic.List<UnityEngine.GameObject>();
+        foreach (UnityEngine.GameObject gObj in objs)
+            objsList.Add(gObj);
+        UnityEngine.GameObject go = new UnityEngine.GameObject("MIRRORROOT");
+        go.transform.position = GameManager.player.transform.position;
+        go.transform.rotation = GameManager.player.transform.rotation;
+        foreach (UnityEngine.GameObject gObj in objsList)
+            gObj.transform.parent = go.transform;
+        UnityEngine.Vector3 rScale = go.transform.localScale;
+        rScale.x = -rScale.x;
+        go.transform.localScale = rScale;
+        foreach (UnityEngine.GameObject gObj in objsList)
+            gObj.transform.parent = null;
+        Destroy(go);
     }
 }
