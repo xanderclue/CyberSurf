@@ -53,7 +53,10 @@ public class LevelMenu : MonoBehaviour
             preview.sprite = previewSprites[GameManager.instance.lastLevel - 2];
 
         }
-        
+        else
+        {
+            updateScoreDisplay();
+        }
     }
 
     //void UpdateScoresDisplay()
@@ -200,6 +203,12 @@ public class LevelMenu : MonoBehaviour
                 break;
 
             case GameModes.Free:
+                for (int i = 0; i < 10; i++)
+                {
+                    scores[i] = 0;
+                    times[i] = 0;
+                    names[i] = "NOBODY";
+                }
                 break;
             case GameModes.GameModesSize:
                 break;
