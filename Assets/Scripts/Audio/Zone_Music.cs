@@ -51,7 +51,7 @@ public class Zone_Music : MonoBehaviour {
         if (other.gameObject.layer == 9 && reference.audioSource.clip.name != zone_music.name)
         {
             this.enabled = true;
-            Debug.Log("changing to: " + zone_music.name);
+            Debug.Log("changing music to: " + zone_music.name);
             is_changing = true;
         }
     }

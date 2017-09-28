@@ -45,15 +45,12 @@ public class lastScoreDisplay : MonoBehaviour
                 lastLevel = gameManager.lastLevel;
                 if (lastLevel > 1)
                 {
-                    for (int i = 0; i < scoreScript.topContinuousScores.Length; i++)
-                    {
-                        for (int j = 0; j < scoreScript.topContinuousScores[i].levels.Length; j++)
+                        for (int j = 0; j < scoreScript.topContinuousScores[lastScoreLocation].levels.Length; j++)
                         {
-                            lastScore += scoreScript.topContinuousScores[i].levels[j].score;
-                            lastTime  += scoreScript.topContinuousScores[i].levels[j].time;
+                            lastScore += scoreScript.topContinuousScores[lastScoreLocation].levels[j].score;
+                            lastTime += scoreScript.topContinuousScores[lastScoreLocation].levels[j].time;
                         }
-                    }
- }
+                }
                 else
                 {
                     lastScore = 0;
