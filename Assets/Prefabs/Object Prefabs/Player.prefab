@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4481020445883306}
   - component: {fileID: 33572013501726092}
   - component: {fileID: 23470540120446684}
-  - component: {fileID: 65076441729613162}
+  - component: {fileID: 136366622476252536}
   - component: {fileID: 114199471327017274}
   - component: {fileID: 114677342756445482}
   m_Layer: 0
@@ -1091,18 +1091,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
---- !u!65 &65076441729613162
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1148820022606216}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!81 &81238327194917240
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1991,10 +1979,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionRadial: {fileID: 114447452719579822}
-  defaultDistance: 12
-  theReticle: {fileID: 224106666795486736}
-  useNormal: 0
-  scaleMultiplier: 0.2
 --- !u!114 &114378473728033218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3255,6 +3239,19 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: -0.2}
+--- !u!136 &136366622476252536
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1148820022606216}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198078148193562596
 ParticleSystem:
   m_ObjectHideFlags: 1
