@@ -1,53 +1,55 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-public class BuildDebugger : MonoBehaviour
+﻿public class BuildDebugger : UnityEngine.MonoBehaviour
 {
-    public static List<string> lines;
-    public static GameObject console;
-    static uint counter = 0;
-    const int maxlines = 20;
-    static bool writingLine = false;
-    static TextMeshProUGUI textmesh;
+    private static System.Collections.Generic.List<string> lines = null;
+    private static UnityEngine.GameObject textObject = null;
+    private static uint lineCounter = 0u;
+    private const int maxLines = 20;
+    private static bool linesSync = false;
+    private static TMPro.TextMeshProUGUI textmesh = null;
     public static void WriteLine(string line)
     {
+        if (null == lines)
+            return;
         line += "\n";
-        while (writingLine) if (!writingLine) break;
-        writingLine = true;
-        lines.Add(counter.ToString() + ": " + line.Substring(0, line.IndexOf('\n') + 1));
-        ++counter;
-        if (lines.Count > maxlines)
+        line = lineCounter.ToString() + ": " + line.Substring(0, line.IndexOf('\n'));
+        ++lineCounter;
+        while (linesSync) if (!linesSync) break;
+        linesSync = true;
+        lines.Add(line);
+        if (lines.Count > maxLines)
             lines.RemoveAt(0);
-        writingLine = false;
+        linesSync = false;
+        UnityEngine.Debug.Log("BuildDebugger: Line added: \"" + line + "\"");
     }
     private void Awake()
     {
-        lines = new List<string>();
+        lines = new System.Collections.Generic.List<string>();
     }
     private void Update()
     {
-        if (null == console)
+        if (null == textObject)
         {
-            textmesh = GetComponentInChildren<TextMeshProUGUI>();
+            textmesh = GetComponentInChildren<TMPro.TextMeshProUGUI>();
             if (null == textmesh)
                 return;
-            console = textmesh.gameObject;
-            console.SetActive(false);
+            textObject = textmesh.gameObject;
+            textObject.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.BackQuote) || // Hit ~/` key
-            (Input.GetKey(KeyCode.JoystickButton2) &&
-            Input.GetKey(KeyCode.JoystickButton3) &&
-            Input.GetKeyDown(KeyCode.JoystickButton4))) // Hold down X&Y, and press LB
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.BackQuote) ||
+            (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
+            UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton3) &&
+            UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton4)))
         {
-            console.SetActive(!console.activeSelf);
-            WriteLine("Build Debugger " + (console.activeSelf ? "ENABLED" : "DISABLED"));
+            textObject.SetActive(!textObject.activeSelf);
+            WriteLine("Build Debugger " + (textObject.activeSelf ? "SHOWN" : "HIDDEN"));
         }
-        while (writingLine) if (!writingLine) break;
-        writingLine = true;
         string tmstr = "";
+        while (linesSync) if (!linesSync) break;
+        linesSync = true;
         foreach (string str in lines)
-            tmstr += str;
+            tmstr += str + "\n";
+        linesSync = false;
         textmesh.SetText(tmstr);
-        writingLine = false;
+        textmesh.ForceMeshUpdate();
     }
 }

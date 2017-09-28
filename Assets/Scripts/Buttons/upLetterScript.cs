@@ -3,11 +3,10 @@ using TMPro;
 public class upLetterScript : SelectedObject
 {
     [SerializeField]
-    TextMeshPro textMesh;
+    private TextMeshPro textMesh;
+    private char letter = 'A';
     public override void selectSuccessFunction()
     {
-        textMesh.ForceMeshUpdate();
-        char letter = textMesh.GetParsedText()[0];
         ++letter;
         if (letter > 'Z')
             letter = 'A';

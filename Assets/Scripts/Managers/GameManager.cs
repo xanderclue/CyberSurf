@@ -86,5 +86,4 @@ public class GameManager : MonoBehaviour
         scoreScript.SetupScoreManager();
         keyInputScript.setupKeyInputManager(gameState);
     }
-
 }

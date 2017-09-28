@@ -1227,6 +1227,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 720598715}
+  - {fileID: 816442666}
   m_Father: {fileID: 367797412}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3329,9 +3330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: Background Music
-  numVoices: 1
-  timeToWait: 40
-  delay: -1
+  numVoices: 3
+  timeToWait: 15
+  delay: 10
   waitTime: 0
   volumeIncrement: -0.0625
   audioType: 0
@@ -4498,7 +4499,6 @@ Transform:
   - {fileID: 936605972}
   - {fileID: 117900647}
   - {fileID: 664392066}
-  - {fileID: 816442666}
   m_Father: {fileID: 657390689}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5975,9 +5975,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: Background Music
-  numVoices: 1
-  timeToWait: 40
-  delay: -1
+  numVoices: 3
+  timeToWait: 15
+  delay: 10
   waitTime: 0
   volumeIncrement: 0.0625
   audioType: 0
@@ -10909,7 +10909,7 @@ Prefab:
     - target: {fileID: 114273764386005612, guid: 1077365eb4976ba4a913c4e0980e4abb,
         type: 2}
       propertyPath: destroyOnLoad.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4716782068194904, guid: 1077365eb4976ba4a913c4e0980e4abb, type: 2}
       propertyPath: m_LocalPosition.x
@@ -10948,6 +10948,26 @@ Prefab:
       propertyPath: destroyOnLoad.Array.data[0]
       value: 
       objectReference: {fileID: 2142101859}
+    - target: {fileID: 114273764386005612, guid: 1077365eb4976ba4a913c4e0980e4abb,
+        type: 2}
+      propertyPath: destroyOnLoad.Array.data[1]
+      value: 
+      objectReference: {fileID: 742752448}
+    - target: {fileID: 114273764386005612, guid: 1077365eb4976ba4a913c4e0980e4abb,
+        type: 2}
+      propertyPath: destroyOnLoad.Array.data[2]
+      value: 
+      objectReference: {fileID: 1735856277}
+    - target: {fileID: 114273764386005612, guid: 1077365eb4976ba4a913c4e0980e4abb,
+        type: 2}
+      propertyPath: destroyOnLoad.Array.data[3]
+      value: 
+      objectReference: {fileID: 2036329074}
+    - target: {fileID: 114273764386005612, guid: 1077365eb4976ba4a913c4e0980e4abb,
+        type: 2}
+      propertyPath: destroyOnLoad.Array.data[4]
+      value: 
+      objectReference: {fileID: 1349146016}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1077365eb4976ba4a913c4e0980e4abb, type: 2}
   m_IsPrefabParent: 0
@@ -10977,15 +10997,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 816442665}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.39999953}
-  m_LocalScale: {x: 0.08474581, y: 0.125, z: 2.0950341}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 0.08474585, y: 0.125, z: 2.095035}
   m_Children: []
-  m_Father: {fileID: 367797412}
-  m_RootOrder: 9
+  m_Father: {fileID: 117900647}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444092, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816442667
@@ -12186,7 +12206,7 @@ MonoBehaviour:
   tooltipText: Credits
   numVoices: 1
   timeToWait: 50
-  delay: -1
+  delay: 30
   waitTime: 1.5
   menuTab: {fileID: 117900648}
 --- !u!23 &868142190
@@ -13749,7 +13769,7 @@ MonoBehaviour:
   tooltipText: Edit what you see on the HUD
   numVoices: 1
   timeToWait: 50
-  delay: -1
+  delay: 30
   waitTime: 1.5
   menuTab: {fileID: 936605973}
 --- !u!23 &961236880
@@ -14240,7 +14260,7 @@ MonoBehaviour:
   tooltipText: How to Play
   numVoices: 1
   timeToWait: 50
-  delay: -1
+  delay: 30
   waitTime: 1.5
   menuTab: {fileID: 287635636}
 --- !u!23 &995827606
@@ -14870,9 +14890,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: Environment and Ambient sounds
-  numVoices: 1
-  timeToWait: 40
-  delay: -1
+  numVoices: 3
+  timeToWait: 15
+  delay: 10
   waitTime: 0
   volumeIncrement: 0.0625
   audioType: 2
@@ -16586,9 +16606,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: Sound Effects
-  numVoices: 1
-  timeToWait: 40
-  delay: -1
+  numVoices: 3
+  timeToWait: 15
+  delay: 10
   waitTime: 0
   volumeIncrement: 0.0625
   audioType: 1
@@ -19446,7 +19466,7 @@ MonoBehaviour:
   tooltipText: Graphics or something
   numVoices: 1
   timeToWait: 50
-  delay: -1
+  delay: 30
   waitTime: 1.5
   menuTab: {fileID: 803294382}
 --- !u!23 &1364604461
@@ -23563,9 +23583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: Environment and Ambient sounds
-  numVoices: 1
-  timeToWait: 40
-  delay: -1
+  numVoices: 3
+  timeToWait: 15
+  delay: 10
   waitTime: 0
   volumeIncrement: -0.0625
   audioType: 2
@@ -25821,6 +25841,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1734137294}
   m_Mesh: {fileID: 0}
+--- !u!1 &1735856277 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: c7d2d4590b3842d4cab8470611d4ef19, type: 3}
+  m_PrefabInternal: {fileID: 314357842}
 --- !u!1 &1750294327
 GameObject:
   m_ObjectHideFlags: 0
@@ -26961,9 +26985,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: Sound Effects
-  numVoices: 1
-  timeToWait: 40
-  delay: -1
+  numVoices: 3
+  timeToWait: 15
+  delay: 10
   waitTime: 0
   volumeIncrement: -0.0625
   audioType: 1
@@ -28436,7 +28460,7 @@ MonoBehaviour:
   tooltipText: Controller settings and stuff
   numVoices: 1
   timeToWait: 50
-  delay: -1
+  delay: 30
   waitTime: 1.5
   menuTab: {fileID: 885965065}
 --- !u!23 &2018858959
@@ -28558,6 +28582,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2023273228}
+--- !u!1 &2036329074 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: e4f2f21c70bf544ddb4461ebc221b4d8, type: 3}
+  m_PrefabInternal: {fileID: 1009911147}
 --- !u!1 &2074046881 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1706404526421566, guid: 6113efba086412d4fa9a49185d5d1da4,
@@ -29716,7 +29744,7 @@ MonoBehaviour:
   tooltipText: Change volume levels
   numVoices: 1
   timeToWait: 50
-  delay: -1
+  delay: 30
   waitTime: 1.5
   menuTab: {fileID: 561503478}
 --- !u!23 &2140234540

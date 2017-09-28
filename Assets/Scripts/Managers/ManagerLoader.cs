@@ -13,10 +13,11 @@ public class ManagerLoader : MonoBehaviour
     //      prevent attached scripts from calling Awake() more than once.
     void Awake()
     {
-        if (GameManager.instance == null)
+        if (null == GameManager.instance)
             Instantiate(gameManager);
         if (null != destroyOnLoad)
-            foreach (GameObject go in destroyOnLoad)
-                Destroy(go);
+            foreach (GameObject gObj in destroyOnLoad)
+                try { Destroy(gObj); } catch { }
+        try { Destroy(gameObject); } catch { }
     }
 }
