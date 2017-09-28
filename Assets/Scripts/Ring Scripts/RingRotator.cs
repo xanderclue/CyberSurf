@@ -12,9 +12,6 @@ public class RingRotator : MonoBehaviour
     void Start()
     {
         anchor = GetComponent<Transform>();
-
-        if (GetComponent<MeshRenderer>().enabled == true)
-            GetComponent<MeshRenderer>().enabled = false;
     }
 
     void Update()

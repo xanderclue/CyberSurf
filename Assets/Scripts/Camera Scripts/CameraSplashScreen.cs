@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CameraSplashScreen : MonoBehaviour
 {
@@ -38,6 +39,25 @@ public class CameraSplashScreen : MonoBehaviour
 
         maxSeconds = 0f;
         countdownTextElement.SetActive(false);
+    }
+
+    //Don't keep counting down between scenes
+    void OnLevelLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StopAllCoroutines();
+
+        maxSeconds = 0f;
+        countdownTextElement.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelLoaded;
     }
 
 }

@@ -26,9 +26,6 @@ public class RingBouncer : MonoBehaviour
             originalPosition = anchor.localPosition.y;
         else
             originalPosition = anchor.localPosition.x;
-
-        if (GetComponent<MeshRenderer>().enabled == true)
-            GetComponent<MeshRenderer>().enabled = false;
     }
 
     void BounceVertically()

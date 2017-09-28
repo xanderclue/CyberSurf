@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4223804784761788}
   - component: {fileID: 33496392229123532}
   - component: {fileID: 23479278676779738}
+  - component: {fileID: 114169920286530910}
   - component: {fileID: 114736041690766026}
   - component: {fileID: 114232277437817238}
   - component: {fileID: 114929052377632056}
@@ -83,6 +84,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1763495500416902}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114169920286530910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1763495500416902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3229da8d1c04d7439950e5c0dc10e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114232277437817238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,5 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63da716eaf82be849932881fa6c284a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startDirection: 0
+  bounceVertically: 1
   bounceDistance: 1
   bounceRate: 5
