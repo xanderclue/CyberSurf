@@ -15,7 +15,7 @@ public class WorldPortalScript : MonoBehaviour
 
     private void Start()
     {
-        boxCollider = typeof(UnityEngine.BoxCollider);
+        boxCollider = typeof(UnityEngine.CapsuleCollider);
         pmc = GameManager.player.GetComponent<PlayerMenuController>();
         gameMode = GameManager.instance.gameMode;
 

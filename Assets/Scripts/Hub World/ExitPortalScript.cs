@@ -12,7 +12,7 @@ public class ExitPortalScript : MonoBehaviour
 
     private void Start()
     {
-        boxCollider = typeof(UnityEngine.BoxCollider);
+        boxCollider = typeof(UnityEngine.CapsuleCollider);
         pmc = GameManager.player.GetComponent<PlayerMenuController>();
     }
 
