@@ -19,6 +19,8 @@ public class closeScoreSplashScreen : SelectedObject
 
     int lastScoreLocation;
 
+    [SerializeField] LevelMenu lMenu;
+
     private void Start()
     {
         gameManager = GameManager.instance;
@@ -93,5 +95,6 @@ public class closeScoreSplashScreen : SelectedObject
             default:
                 break;
         }
+        lMenu.updateScoreDisplay();
     }
 }

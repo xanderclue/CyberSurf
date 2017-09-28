@@ -30,13 +30,18 @@ public class LevelMenu : MonoBehaviour
     [SerializeField] Sprite[] previewSprites;
 
     [Header("Top Scores")]
-    //ScoreManager scoreManager;
+    ScoreManager scoreScript;
     [SerializeField] TextMeshPro[] highScoreTMPS;
+    int[] scores = new int[10];
+    float[] times = new float[10];
+    string[] names = new string[10];
+
+
 
     void Start()
     {
         gameMode = GameManager.instance.gameMode;
-        //scoreManager = GameManager.instance.scoreScript;
+        scoreScript = GameManager.instance.scoreScript;
         gameModeTMP.text = gameMode.currentMode.ToString();
 
         //set our preview to the last level we were in
@@ -46,11 +51,9 @@ public class LevelMenu : MonoBehaviour
             portal.SceneIndex = (int)currentLevel;
 
             preview.sprite = previewSprites[GameManager.instance.lastLevel - 2];
-        }
 
-        //update the scores if we are loading into the hub world
-        //if (scene.buildIndex == 1)
-        //    UpdateScoresDisplay();
+        }
+        
     }
 
     //void UpdateScoresDisplay()
@@ -150,6 +153,7 @@ public class LevelMenu : MonoBehaviour
         switch(display)
         {
             case DisplayToUpdate.TopScores:
+                updateScoreDisplay();
                 break;
             case DisplayToUpdate.GameMode:
                 gameModeTMP.text = gameMode.currentMode.ToString();
@@ -162,6 +166,52 @@ public class LevelMenu : MonoBehaviour
                 preview.sprite = previewSprites[(int)currentLevel - 2];
                 break;
         }
+    }
+
+    public void updateScoreDisplay()
+    {
+        switch (gameMode.currentMode)
+        {
+            case GameModes.Continuous:
+                for (int i = 0; i < scoreScript.topContinuousScores.Length; i++)
+                {
+                    int cumulativeScore = 0;
+                    float totalTime = 0;
+                    for (int j = 0; j < scoreScript.topContinuousScores[i].levels.Length; j++)
+                    {
+                        cumulativeScore += scoreScript.topContinuousScores[i].levels[j].score;
+                        totalTime += scoreScript.topContinuousScores[i].levels[j].time;
+                    }
+                    scores[i] = cumulativeScore;
+                    times[i] = totalTime;
+                    names[i] = scoreScript.topContinuousScores[i].name;
+                }
+
+                break;
+
+            case GameModes.Cursed:
+                for (int i = 0; i < scoreScript.topCurseScores[(int)currentLevel].curseScores.Length; i++)
+                {
+                    scores[i] = scoreScript.topCurseScores[(int)currentLevel].curseScores[i].score;
+                    times[i] = scoreScript.topCurseScores[(int)currentLevel].curseScores[i].time;
+                    names[i] = scoreScript.topCurseScores[(int)currentLevel].curseScores[i].name;
+                }
+
+                break;
+
+            case GameModes.Free:
+                break;
+            case GameModes.GameModesSize:
+                break;
+            default:
+                break;
+        }
+
+        for (int i = 0; i < highScoreTMPS.Length; i++)
+        {
+            highScoreTMPS[i].SetText(i + ": " + names[i] + " | " + scores[i] + " | " + times[i].ToString("n2") + " ");
+        }
+
     }
 
 }

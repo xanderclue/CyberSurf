@@ -8969,16 +8969,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 97576ed39a4b05d4388644f76bc1f8ec, type: 3}
   - {fileID: 21300000, guid: e99b8e24d826297409af4af627ae78c5, type: 3}
   highScoreTMPS:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1129182530}
+  - {fileID: 736099205}
+  - {fileID: 171832063}
+  - {fileID: 465406895}
+  - {fileID: 1773152603}
+  - {fileID: 1201458148}
+  - {fileID: 1229654862}
+  - {fileID: 679170180}
+  - {fileID: 365394098}
+  - {fileID: 1729968265}
 --- !u!1 &674731423
 GameObject:
   m_ObjectHideFlags: 0
@@ -21021,6 +21021,11 @@ Prefab:
       propertyPath: textMesh
       value: 
       objectReference: {fileID: 676180814}
+    - target: {fileID: 114642683948514660, guid: 2c95600b38fa99444b43f0f4bc23a9c6,
+        type: 2}
+      propertyPath: lMenu
+      value: 
+      objectReference: {fileID: 667332785}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c95600b38fa99444b43f0f4bc23a9c6, type: 2}
   m_IsPrefabParent: 0

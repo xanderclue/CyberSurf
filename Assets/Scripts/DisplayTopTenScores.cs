@@ -13,13 +13,15 @@ public class DisplayTopTenScores : MonoBehaviour
     ScoreManager scoreScript;
     GameManager gameManager;
 
-    int levelDisplayed = 3;
-
 	void Start ()
     {
         gameManager = GameManager.instance;
         scoreScript = gameManager.scoreScript;
+    }
+	
 
+    public void updateScores(int level)
+    {
         switch (gameManager.gameMode.currentMode)
         {
             case GameModes.Continuous:
@@ -40,12 +42,12 @@ public class DisplayTopTenScores : MonoBehaviour
                 break;
 
             case GameModes.Cursed:
-                for (int i = 0; i < scoreScript.topCurseScores[levelDisplayed].curseScores.Length; i++)
+                for (int i = 0; i < scoreScript.topCurseScores[level].curseScores.Length; i++)
                 {
-                    scores[i] = scoreScript.topCurseScores[levelDisplayed].curseScores[i].score;
-                    times[i] = scoreScript.topCurseScores[levelDisplayed].curseScores[i].time;
+                    scores[i] = scoreScript.topCurseScores[level].curseScores[i].score;
+                    times[i] = scoreScript.topCurseScores[level].curseScores[i].time;
                 }
-                
+
                 break;
 
             case GameModes.Free:
@@ -58,12 +60,8 @@ public class DisplayTopTenScores : MonoBehaviour
 
         for (int i = 0; i < scoreDisplays.Length; i++)
         {
-            scoreDisplays[i].SetText(names[i] + " | " + scores[i] + " | " + times[i].ToString("n2") + " ");
+            scoreDisplays[i].SetText(i + ": " + names[i] + " | " + scores[i] + " | " + times[i].ToString("n2") + " ");
         }
 
     }
-	
-	void Update () {
-		
-	}
 }
