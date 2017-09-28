@@ -135,7 +135,7 @@ public class RingScoreScript : MonoBehaviour
                 if (hitEffect != null)
                 {
                     hitEffect.Play();
-                    MeshRenderer tmp = hitEffect.GetComponentInParent<MeshRenderer>();
+                    //MeshRenderer tmp = hitEffect.GetComponentInParent<MeshRenderer>();
                     hitEffect.GetComponentInParent<MeshRenderer>().gameObject.GetComponent<Renderer>().enabled = false ;
                 }
                 else
