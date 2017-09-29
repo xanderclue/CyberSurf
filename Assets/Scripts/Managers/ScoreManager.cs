@@ -101,20 +101,20 @@ public class ScoreManager : MonoBehaviour
         switch (GameManager.instance.gameMode.currentMode)
         {
             case GameModes.Continuous:
-
-
+                
                 if (firstPortal)
                 {
                     curFilledCont++;
                     firstPortal = false;
                 }
-                scoreStruct newContScore = new scoreStruct();
-                newContScore.score = score;
-                newContScore.time = roundTimer.TimeInLevel;
-                newContScore.board = (int)GameManager.instance.boardScript.currentBoardSelection;
+                scoreStruct newLevelScore = new scoreStruct();
+                newLevelScore.score = score;
+                newLevelScore.time = roundTimer.TimeInLevel;
+                newLevelScore.board = (int)GameManager.instance.boardScript.currentBoardSelection;
                 recorder = GameManager.player.GetComponent<positionRecorder>();
-                newContScore.positions = recorder.positions.ToArray();
-                newContScore.rotations = recorder.rotations.ToArray();
+                newLevelScore.positions = recorder.positions.ToArray();
+                newLevelScore.rotations = recorder.rotations.ToArray();
+                //newContScore.isLastScoreInput = true;
 
                 level = SceneManager.GetActiveScene().buildIndex;
 
@@ -122,22 +122,21 @@ public class ScoreManager : MonoBehaviour
                 {
                     if (topContinuousScores[curFilledCont].levels[level].positions == null)
                     {
-                        topContinuousScores[curFilledCont].levels[level] = newContScore;
-                        topContinuousScores[curFilledCont].isLastScoreInput = true;
+                        topContinuousScores[curFilledCont].levels[level] = newLevelScore;
                     }
                     else
                     {
-                        topContinuousScores[curFilledCont].levels[level] = compareContinuousScores(level, topContinuousScores[curFilledCont].levels[level], newContScore);
-                        topContinuousScores[curFilledCont].isLastScoreInput = true;
+                        topContinuousScores[curFilledCont].levels[level] = compareContinuousScores(level, topContinuousScores[curFilledCont].levels[level], newLevelScore);
                     }
+                    topContinuousScores[curFilledCont].isLastScoreInput = true;
                 }
                 else
                 {
-                    topContinuousScores[9].levels[level] = compareContinuousScores(level, topContinuousScores[9].levels[level], newContScore);
+                    topContinuousScores[9].levels[level] = compareContinuousScores(level, topContinuousScores[9].levels[level], newLevelScore);
                     topContinuousScores[9].isLastScoreInput = true;
                 }
 
-                sortContinuousScores();
+                sortContinuousScores(topContinuousScores, topContinuousScores.Length);
                 break;
 
             case GameModes.Cursed:
@@ -180,9 +179,10 @@ public class ScoreManager : MonoBehaviour
     void sortCurseScores(scoreStruct[] scores, int arrayLength)
     {
         int curr = 1;
+        scoreStruct storedScore;
         while (curr < arrayLength)
         {
-            scoreStruct storedScore = scores[curr];
+            storedScore = scores[curr];
 
             int comparer = curr - 1;
             while (comparer >= 0)
@@ -190,12 +190,12 @@ public class ScoreManager : MonoBehaviour
                 if (scores[comparer].score < storedScore.score)
                 {
                     scores[comparer + 1] = scores[comparer];
-                    --comparer;
+                    comparer--;
                 }
-                else if (scores[comparer].score == storedScore.score && scores[comparer].time < storedScore.time)
+                else if (scores[comparer].score == storedScore.score && scores[comparer].time > storedScore.time)
                 {
                     scores[comparer + 1] = scores[comparer];
-                    --comparer;
+                    comparer--;
                 }
                 else
                 {
@@ -208,43 +208,45 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void sortContinuousScores()
+    void sortContinuousScores(continuousScores[] array, int length)
     {
-        int cur = 1;
-        while (cur < topContinuousScores.Length)
+        int i, j ;
+        continuousScores key;
+        for (i = 1; i < length; i++)
         {
-            continuousScores storedScoreSet = topContinuousScores[cur];
+            key = array[i];
 
             //cumulative numbers for this play of continuous mode
-            int curCumulativeScore = 0;
-            float curTotalTime = 0;
-            for (int j = 0; j < topContinuousScores[cur].levels.Length; j++)
+            int keyScore = 0;
+            float keyTime = 0;
+            for (int k = 0; k < array[i].levels.Length; k++)
             {
-                curCumulativeScore += topContinuousScores[cur].levels[j].score;
-                curTotalTime += topContinuousScores[cur].levels[j].score;
+                keyScore += array[i].levels[k].score;
+                keyTime += array[i].levels[k].score;
             }
 
 
-            int comparer = cur - 1;
-            while (comparer >= 0)
+            j = i - 1;
+            while (j >= 0)
             {
-                int comCumulativeScore = 0;
-                float comTotalTime = 0;
-                for (int j = 0; j < topContinuousScores[cur].levels.Length; j++)
+                int cumulativeScore2 = 0;
+                float totalTime2 = 0;
+                for (int k = 0; k < array[j].levels.Length; k++)
                 {
-                    comCumulativeScore += topContinuousScores[cur].levels[j].score;
-                    comTotalTime += topContinuousScores[cur].levels[j].score;
+                    cumulativeScore2 += array[j].levels[k].score;
+                    totalTime2 += array[j].levels[k].score;
                 }
-
-                if (comCumulativeScore > curCumulativeScore)
+                
+                //actual checking
+                if (cumulativeScore2 < keyScore)
                 {
-                    topContinuousScores[comparer + 1] = topContinuousScores[comparer];
-                    --comparer;
+                    array[j + 1] = array[j];
+                    j--;
                 }
-                else if (comCumulativeScore == curCumulativeScore && comTotalTime > curTotalTime)
+                else if (cumulativeScore2 == keyScore && totalTime2 < keyTime)
                 {
-                    topContinuousScores[comparer + 1] = topContinuousScores[comparer];
-                    --comparer;
+                    array[j + 1] = array[j];
+                    j--;
                 }
                 else
                 {
@@ -252,8 +254,7 @@ public class ScoreManager : MonoBehaviour
                 }
             }
 
-            topContinuousScores[comparer + 1] = storedScoreSet;
-            ++cur;
+            array[j + 1] = key;
         }
     }
 

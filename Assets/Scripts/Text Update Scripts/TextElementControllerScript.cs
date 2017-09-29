@@ -46,7 +46,7 @@ public class TextElementControllerScript : MonoBehaviour {
         setArrow(isOn);
         setRingCount(isOn);
         setSpeed(isOn);
-        setSpeedBar(isOn);
+        //setSpeedBar(isOn);
         setAltimeter(isOn);
         setDebugGUI(isOn);
         hudElementsControl.overAllBool = isOn;
@@ -64,7 +64,7 @@ public class TextElementControllerScript : MonoBehaviour {
         }
         ringCountText.SetActive(hudElementsControl.ringCountBool);
         speedText.SetActive(hudElementsControl.speedBool);
-        speedBar.SetActive(hudElementsControl.speedBarBool);
+        //speedBar.SetActive(hudElementsControl.speedBarBool);
         altimeterText.SetActive(hudElementsControl.altimeterBool);
         debugGUI.SetActive(hudElementsControl.debugGUIBool);
 
@@ -118,10 +118,10 @@ public class TextElementControllerScript : MonoBehaviour {
         {
             speedText.SetActive(false);
         }
-        if (speedBar.activeSelf)
-        {
-            speedBar.SetActive(false);
-        }
+        //if (speedBar.activeSelf)
+        //{
+       //     speedBar.SetActive(false);
+       // }
         if (altimeterText.activeSelf)
         {
             altimeterText.SetActive(false);
@@ -150,7 +150,7 @@ public class TextElementControllerScript : MonoBehaviour {
         //arrow = GetComponentInChildren<arrowPointAtUpdater>().get;
         ringCountText = GetComponentInChildren<RingCountTextUpdate>().gameObject;
         speedText = GetComponentInChildren<SpeedUpdate>().gameObject;
-        speedBar = GetComponentInChildren<speedBarUpdater>().gameObject;
+        //speedBar = GetComponentInChildren<speedBarUpdater>().gameObject;
         altimeterText = GetComponentInChildren<altimeterTextUpdater>().gameObject;
         debugGUI = GameObject.Find("GUI");
 

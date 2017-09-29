@@ -47,11 +47,12 @@ public class closeScoreSplashScreen : SelectedObject
                     if (scoreScript.topContinuousScores[i].isLastScoreInput)
                     {
                         lastScoreLocation = i;
+                        scoreScript.topContinuousScores[i].isLastScoreInput = false;
                         break;
                     }
                 }
                 lastLevel = gameManager.lastLevel;
-                if (lastLevel != -1)
+                if (lastLevel > 1)
                 {
                     scoreScript.topContinuousScores[lastScoreLocation].name 
                         = lOne.text + lTwo.text + lThree.text;
@@ -68,6 +69,7 @@ public class closeScoreSplashScreen : SelectedObject
                         if (scoreScript.topCurseScores[i].curseScores[j].isLastScoreInput)
                         {
                             lastScoreLocation = j;
+                            scoreScript.topCurseScores[i].curseScores[j].isLastScoreInput = false;
                             break;
                         }
                     }
@@ -78,7 +80,7 @@ public class closeScoreSplashScreen : SelectedObject
                 }
                 
                 lastLevel = gameManager.lastLevel;
-                if (lastLevel != -1)
+                if (lastLevel > 1)
                 {
                     scoreScript.topCurseScores[lastLevel].curseScores[lastScoreLocation].name
                         = lOne.text + lTwo.text + lThree.text;

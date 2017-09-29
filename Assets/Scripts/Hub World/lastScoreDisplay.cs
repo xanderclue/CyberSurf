@@ -37,7 +37,7 @@ public class lastScoreDisplay : MonoBehaviour
                     if (scoreScript.topContinuousScores[i].isLastScoreInput)
                     {
                         lastScoreLocation = i;
-                        scoreScript.topContinuousScores[i].isLastScoreInput = false;
+                        //scoreScript.topContinuousScores[i].isLastScoreInput = false;
                         break;
                     }
                 }
@@ -71,7 +71,7 @@ public class lastScoreDisplay : MonoBehaviour
                         if (scoreScript.topCurseScores[i].curseScores[j].isLastScoreInput)
                         {
                             lastScoreLocation = j;
-                            scoreScript.topCurseScores[i].curseScores[j].isLastScoreInput = false;
+                            //scoreScript.topCurseScores[i].curseScores[j].isLastScoreInput = false;
                             break;
                         }
                     }
