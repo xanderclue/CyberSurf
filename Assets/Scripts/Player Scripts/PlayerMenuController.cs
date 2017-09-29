@@ -7,15 +7,19 @@ using UnityEngine.VR;
 public class PlayerMenuController : MonoBehaviour
 {
     [Range(2f, 60f)] [SerializeField] float hoverForce = 15f;
-    [Range(0.1f, 10.0f)] [SerializeField] float hoverHeight = 2f;    
+    [Range(0.1f, 10.0f)] [SerializeField] float hoverHeight = 2f;
 
     [Header("Controller Specific Variables")]
-    [Range(5f, 60f)] [SerializeField] float controllerForwardSpeed = 25f;
+    [Range(5f, 60f)]
+    [SerializeField]
+    float controllerForwardSpeed = 25f;
     [Range(5f, 60f)] [SerializeField] float controllerTurnSpeed = 12f;
     [Range(0.1f, 5f)] [SerializeField] float debugCameraSpeed = 1f;
 
     [Header("Gyro Specific Variables")]
-    [Range(1f, 3f)] [SerializeField] float gyroForwardSpeed = 1.3f;
+    [Range(1f, 3f)]
+    [SerializeField]
+    float gyroForwardSpeed = 1.3f;
     [Range(0.1f, 3f)] [SerializeField] float gyroTurnSpeed = 0.3f;
     [Range(0.0f, 30.0f)] [SerializeField] float gyroPitchDeadZone = 4f;
     [Range(0.0f, 30.0f)] [SerializeField] float gyroYawDeadZone = 5f;
@@ -135,7 +139,7 @@ public class PlayerMenuController : MonoBehaviour
 
     //let our right thumbstick control the camera if there is no HMD present
     void DebugCameraRotation()
-    {       
+    {
         if (!VRDevice.isPresent)
         {
             float cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * debugCameraSpeed;
@@ -158,19 +162,26 @@ public class PlayerMenuController : MonoBehaviour
         }
     }
 
+    private void ReturnToSpawnPoint()
+    {
+        playerRB.transform.position = GameManager.instance.levelScript.spawnPoints[1].position;
+    }
+
     IEnumerator ControllerCoroutine()
     {
         yield return new WaitForFixedUpdate();
 
         ClampRotation();
         DebugCameraRotation();
-        ApplyHoverForce();       
+        ApplyHoverForce();
 
         if (!menuMovementIsLocked)
         {
+            if (Input.GetButtonDown("XBox Start") || Input.GetKeyDown(KeyCode.R))
+                ReturnToSpawnPoint();
             playerRB.AddRelativeForce(0f, 0f, Input.GetAxis("LVertical") * controllerForwardSpeed);
             playerRB.AddRelativeTorque(0f, Input.GetAxis("LHorizontal") * controllerTurnSpeed, 0f);
-        }      
+        }
 
         StartCoroutine(ControllerCoroutine());
     }
