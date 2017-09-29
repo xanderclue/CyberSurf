@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour
     private float transitionTimer = 0.0f;
     private void Start()
     {
+        try { menuBox.SetActive(false); }
+        catch { BuildDebugger.WriteLine("MenuBox missing"); }
         currTab = prevTab = mainTab;
         OnBackButtonPressed += GoBack;
         OnMenuExit += OnExit;
