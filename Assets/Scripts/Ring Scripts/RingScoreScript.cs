@@ -111,7 +111,7 @@ public class RingScoreScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetType() == capsuleType)
+        if (other.GetType() == capsuleType && other.tag == "Player")
         {
             pArrowHandler.UpdatePlayerHUDPointer(rp);
 
