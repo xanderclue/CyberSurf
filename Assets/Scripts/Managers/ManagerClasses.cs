@@ -95,7 +95,11 @@ public class ManagerClasses : MonoBehaviour
         public float angularDrag = 5f;
 
         public PlayerMovementVariables() { }
-        public PlayerMovementVariables(float dAccel, float rAccel, float uAccel, float mmntm, float maxSpd, float restSpd, float minSpd, float pitchSens, float yawSens, float maxDAng, float RAng, float maxAAngle, float bMod, float ms, float drg, float angDrg)
+        public PlayerMovementVariables
+		(float dAccel, float rAccel, float uAccel, float mmntm, 
+			float maxSpd, float restSpd, float minSpd, 
+			float pitchSens, float yawSens, float maxDAng, float RAng, float maxAAngle, 
+			float bMod, float ms, float drg, float angDrg)
         {
             downwardAcceleration = dAccel;
             restingAcceleration = rAccel;

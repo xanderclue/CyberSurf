@@ -10,13 +10,10 @@ public class PlayerFanController : MonoBehaviour
     ManagerClasses.PlayerMovementVariables pmv;
 
     int motorCount = 0;
-    float updatedVelocity = 0f;
+	float motorPercentage = 0f;
     float sampledVelocity = 0f;
 
-    float invertedDenominator = 0f;
-    float twoPercentIncrease = 0f;
-
-    [SerializeField] [Range(0f, 1.0f)] float interpolateAmount = 0.05f;
+	float invertedMaxSpeed = 0f;
 
     //called by our BoardManager
     public void SetupFanControllerScript()
@@ -33,8 +30,8 @@ public class PlayerFanController : MonoBehaviour
     //called by our BoardManager
     public void UpdateFanPercentage()
     {
-        twoPercentIncrease = (pmv.maxSpeed - pmv.minSpeed) * -0.02f;
-        invertedDenominator = 1f / (pmv.maxSpeed - pmv.minSpeed);
+		pmv = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
+        invertedMaxSpeed = 1f / pmv.maxSpeed;
     }
 
     IEnumerator DetectFanCoroutine()
@@ -60,14 +57,17 @@ public class PlayerFanController : MonoBehaviour
         //get our velocity based on if we are going forward/backwards
         sampledVelocity = playerTransform.InverseTransformDirection(playerRB.velocity).z;
         
-        //multiplying by -1 to try and reverse the motor
-        sampledVelocity = (sampledVelocity - pmv.minSpeed + twoPercentIncrease) * 100f * invertedDenominator *-1f;
+		//print ("Sampled Velocity: " + sampledVelocity);
+		//print ("Min Val: " + pmv.minSpeed + " Max Val: " + pmv.maxSpeed);
 
-        updatedVelocity = Mathf.Lerp(updatedVelocity, sampledVelocity, interpolateAmount);
+		motorPercentage = sampledVelocity * 100f * invertedMaxSpeed;
+		motorPercentage = Mathf.Clamp (motorPercentage, 15f, 100f);
 
-        for (int i = 0; i < motorCount; i++)
-            motor.device.motors[i].Velocity = updatedVelocity;
-
+		//print ("Motor Percentage: " + motorPercentage);
+		//print ("Applying motor percentage.");
+		for (int i = 0; i < motorCount; i++)
+			motor.device.motors[i].Velocity = motorPercentage;
+		
         StartCoroutine(FanCoroutine());
     }
 

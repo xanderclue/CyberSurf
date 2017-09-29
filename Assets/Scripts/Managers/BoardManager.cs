@@ -86,26 +86,6 @@ public class BoardManager : MonoBehaviour
     {
         gamepadEnabled = gPadEnabled;
 
-        if (!gamepadEnabled)
-        {
-            if (gyro != null)
-            {
-                gyro.Close();
-                gyro = null;
-            }
-
-            gyro = new SpatialData();
-        }
-
-        else if (gamepadEnabled)
-        {
-            if (gyro != null)
-            {
-                gyro.Close();
-                gyro = null;
-            }
-        }
-
         pgc.UpdateGameplayControlsType(gPadEnabled, gyro);
         pmc.UpdateMenuControlsType(gPadEnabled, gyro);
     }

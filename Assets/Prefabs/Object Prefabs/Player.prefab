@@ -2818,7 +2818,7 @@ MonoBehaviour:
   cookiePrefab: {fileID: 1121459821698190, guid: b78210e5543a48e459b724af0b0495e7,
     type: 2}
   timeIncrement: 0.05
-  numberOfPoints: 4
+  numberOfPoints: 5
   startingDistance: 4
   rotationLerpAmount: 0.1
 --- !u!114 &114699823735932458
@@ -2892,7 +2892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26cb9e5daa4c5e48a65d632b72a6e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interpolateAmount: 0.05
 --- !u!114 &114790645132078714
 MonoBehaviour:
   m_ObjectHideFlags: 1
