@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4383118792982752}
   - component: {fileID: 33623285321867834}
   - component: {fileID: 23367441010932314}
+  - component: {fileID: 114722491629066064}
   m_Layer: 0
   m_Name: pTorus1
   m_TagString: Untagged
@@ -192,20 +193,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -237,6 +224,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9afb91fcb52950489f433bb4501df36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114722491629066064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900599108488264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6231c84729b2d4897aab01dcc5a256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
+  invis: {r: 0, g: 0, b: 0, a: 0}
+  obj: {fileID: 0}
 --- !u!114 &114725247758828904
 MonoBehaviour:
   m_ObjectHideFlags: 1

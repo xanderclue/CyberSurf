@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerGameplayController : MonoBehaviour
 {
@@ -244,8 +245,9 @@ public class PlayerGameplayController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //scale our impulse by our bounce amount
-        playerRigidbody.AddForce(collision.impulse * movementVariables.bounceModifier, ForceMode.Impulse);
+        //scale our impulse by our bounce amount if we aren't in the hub world
+        if (SceneManager.GetActiveScene().buildIndex != 2)
+            playerRigidbody.AddForce(collision.impulse * movementVariables.bounceModifier, ForceMode.Impulse);
     }
 
     void OnEnable()

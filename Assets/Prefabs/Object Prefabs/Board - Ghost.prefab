@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4206647242497962}
   - component: {fileID: 33004892102943318}
   - component: {fileID: 23509362711446654}
+  - component: {fileID: 114107194184015586}
   m_Layer: 0
   m_Name: ACE Mesh
   m_TagString: Untagged
@@ -40,6 +41,7 @@ GameObject:
   - component: {fileID: 23376254897328754}
   - component: {fileID: 114397237257099608}
   - component: {fileID: 114123549081984090}
+  - component: {fileID: 114156620526761488}
   m_Layer: 0
   m_Name: Board - Ghost
   m_TagString: Board
@@ -152,6 +154,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1773166957470040}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114107194184015586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468089951103358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6231c84729b2d4897aab01dcc5a256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
+  invis: {r: 0, g: 0, b: 0, a: 0}
+  obj: {fileID: 0}
+  howFarToFade: 0
 --- !u!114 &114123549081984090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,6 +187,21 @@ MonoBehaviour:
     pitchIncreaseRate: 1
     pitchDecreaseRate: 0.5
     maxPitchDegree: 20
+--- !u!114 &114156620526761488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773166957470040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6231c84729b2d4897aab01dcc5a256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
+  invis: {r: 0, g: 0, b: 0, a: 0}
+  obj: {fileID: 0}
+  howFarToFade: 0
 --- !u!114 &114397237257099608
 MonoBehaviour:
   m_ObjectHideFlags: 1
