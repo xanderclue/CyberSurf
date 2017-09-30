@@ -738,8 +738,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1380688607536916}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 67.1, z: -18.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4481020445883306}
@@ -3217,10 +3217,10 @@ MonoBehaviour:
   hoverForce: 15
   hoverHeight: 2
   controllerForwardSpeed: 25
-  controllerTurnSpeed: 12
+  controllerTurnSpeed: 32
   debugCameraSpeed: 1
   gyroForwardSpeed: 1.75
-  gyroTurnSpeed: 0.3
+  gyroTurnSpeed: 0.32
   gyroPitchDeadZone: 3
   gyroYawDeadZone: 5
 --- !u!124 &124232200437558356

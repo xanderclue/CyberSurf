@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1995531589141898
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,8 +131,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995531589141898}
-  m_LocalRotation: {x: 0.47895506, y: 0.5201943, z: -0.4789551, w: 0.52019423}
-  m_LocalPosition: {x: 454.50592, y: 296.9033, z: -70}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4409510115833086}
@@ -268,7 +268,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1995531589141898}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -350,6 +350,7 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 0}
   invis: {r: 0, g: 0, b: 0, a: 0}
   obj: {fileID: 0}
+  howFarToFade: 0
 --- !u!198 &198506628514163884
 ParticleSystem:
   m_ObjectHideFlags: 1
