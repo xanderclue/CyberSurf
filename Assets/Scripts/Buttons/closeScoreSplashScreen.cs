@@ -15,7 +15,7 @@ public class closeScoreSplashScreen : SelectedObject
 
     ScoreManager scoreScript;
     GameManager gameManager;
-    int lastLevel;
+    int lastPortalBuildIndex;
 
     int lastScoreLocation;
 
@@ -25,7 +25,7 @@ public class closeScoreSplashScreen : SelectedObject
     {
         gameManager = GameManager.instance;
         scoreScript = gameManager.scoreScript;
-        if (gameManager.lastLevel < 2)
+        if (gameManager.lastPortalBuildIndex < 2)
         {
             gameObject.SetActive(false);
             panel.SetActive(false);
@@ -51,8 +51,8 @@ public class closeScoreSplashScreen : SelectedObject
                         break;
                     }
                 }
-                lastLevel = gameManager.lastLevel;
-                if (lastLevel > 1)
+                lastPortalBuildIndex = gameManager.lastPortalBuildIndex;
+                if (lastPortalBuildIndex > 1)
                 {
                     scoreScript.topContinuousScores[lastScoreLocation].name 
                         = lOne.text + lTwo.text + lThree.text;
@@ -79,10 +79,10 @@ public class closeScoreSplashScreen : SelectedObject
                     }
                 }
                 
-                lastLevel = gameManager.lastLevel;
-                if (lastLevel > 1)
+                lastPortalBuildIndex = gameManager.lastPortalBuildIndex;
+                if (lastPortalBuildIndex > 1)
                 {
-                    scoreScript.topCurseScores[lastLevel].curseScores[lastScoreLocation].name
+                    scoreScript.topCurseScores[lastPortalBuildIndex].curseScores[lastScoreLocation].name
                         = lOne.text + lTwo.text + lThree.text;
                 }
                 break;

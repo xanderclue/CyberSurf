@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour
                 break;
             case 1: // HubWorld
                 //moved to a button switch after first startup
-                if (gameManager.lastLevel == -1)
+                if (gameManager.lastPortalBuildIndex == -1)
                 {
                     menuController.ToggleMenuMovement(false);
                 }

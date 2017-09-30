@@ -36,7 +36,7 @@ public class WorldPortalScript : MonoBehaviour
 
             int level = GetComponentInParent<WorldPortalProperties>().SceneIndex;
             GameManager gameManager = GameManager.instance;
-            gameManager.lastLevel = level;
+            gameManager.lastPortalBuildIndex = level;
             gameManager.lastMode = gameManager.gameMode.currentMode;
 
             EventManager.OnTriggerTransition(level);

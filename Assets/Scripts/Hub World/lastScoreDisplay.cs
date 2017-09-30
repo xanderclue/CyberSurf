@@ -14,7 +14,7 @@ public class lastScoreDisplay : MonoBehaviour
     int lastScore = 0;
     float lastTime = 0;
 
-    int lastLevel;
+    int lastPortalBuildIndex;
 
     int lastScoreLocation;
 
@@ -42,8 +42,8 @@ public class lastScoreDisplay : MonoBehaviour
                     }
                 }
                 
-                lastLevel = gameManager.lastLevel;
-                if (lastLevel > 1)
+                lastPortalBuildIndex = gameManager.lastPortalBuildIndex;
+                if (lastPortalBuildIndex > 1)
                 {
                         for (int j = 0; j < scoreScript.topContinuousScores[lastScoreLocation].levels.Length; j++)
                         {
@@ -81,11 +81,11 @@ public class lastScoreDisplay : MonoBehaviour
                     }
                 }
 
-                lastLevel = gameManager.lastLevel;
-                if (lastLevel > 1)
+                lastPortalBuildIndex = gameManager.lastPortalBuildIndex;
+                if (lastPortalBuildIndex > 1)
                 {
-                    lastScore = scoreScript.topCurseScores[lastLevel].curseScores[lastScoreLocation].score;
-                    lastTime = scoreScript.topCurseScores[lastLevel].curseScores[lastScoreLocation].time;
+                    lastScore = scoreScript.topCurseScores[lastPortalBuildIndex].curseScores[lastScoreLocation].score;
+                    lastTime = scoreScript.topCurseScores[lastPortalBuildIndex].curseScores[lastScoreLocation].time;
                 }
                 else
                 {

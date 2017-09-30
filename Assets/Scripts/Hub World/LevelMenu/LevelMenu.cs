@@ -42,12 +42,12 @@ public class LevelMenu : MonoBehaviour
         displayUpdateFlags = new bool[(int)DisplayToUpdate.displayCount];
 
         //set our preview to the last level we were in
-        if (GameManager.instance.lastLevel > 1)
+        if (GameManager.instance.lastPortalBuildIndex > 1)
         {
-            currentLevel = (Levels)GameManager.instance.lastLevel;
+            currentLevel = (Levels)GameManager.instance.lastPortalBuildIndex;
             portal.SceneIndex = (int)currentLevel;
 
-            preview.sprite = previewSprites[GameManager.instance.lastLevel - 2];
+            preview.sprite = previewSprites[GameManager.instance.lastPortalBuildIndex - 2];
 
         }
         else

@@ -43,11 +43,15 @@ public class ScreenFade : MonoBehaviour
 
         //only use our countdown if we are going to a gameplay scene
         if (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1)
-            usingCountdown = true;
+        {
+            //if we are transitioning from one gameplay level to another, just start player movement without a countdown
+            if (GameManager.instance.lastBuildIndex != 1)
+                usingCountdown = false;
+            else
+                usingCountdown = true;
+        }
         else
-            usingCountdown = false;
-        
-        
+            usingCountdown = false;       
 
         while (timeIntoFade < fadeTime)
         {
@@ -64,7 +68,7 @@ public class ScreenFade : MonoBehaviour
         }
 
         //wait for the countdown to finish if we need to
-        if (countDownTime - timeIntoFade > 0f)
+        if (usingCountdown && countDownTime - timeIntoFade > 0f)
             yield return new WaitForSeconds(countDownTime - timeIntoFade);
 
         //only unlock player movement when we are in a gameplay scene
@@ -92,6 +96,9 @@ public class ScreenFade : MonoBehaviour
 
             yield return null;
         }
+
+        //update our last level before changing scenes
+        GameManager.instance.lastBuildIndex = SceneManager.GetActiveScene().buildIndex;
 
         asyncOp = SceneManager.LoadSceneAsync(GameManager.instance.levelScript.nextScene, LoadSceneMode.Single);
         asyncOp.allowSceneActivation = true;
