@@ -55,25 +55,39 @@
         textmesh.SetText(tmstr);
         textmesh.ForceMeshUpdate();
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T))
-            TestFunc();
+            TestFunc(1);
     }
-    private void TestFunc()
+    private void TestFunc(int id)
     {
-        WriteLine("Mirroring");
-        UnityEngine.GameObject[] objs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-        System.Collections.Generic.List<UnityEngine.GameObject> objsList = new System.Collections.Generic.List<UnityEngine.GameObject>();
-        foreach (UnityEngine.GameObject gObj in objs)
-            objsList.Add(gObj);
-        UnityEngine.GameObject go = new UnityEngine.GameObject("MIRRORROOT");
-        go.transform.position = GameManager.player.transform.position;
-        go.transform.rotation = GameManager.player.transform.rotation;
-        foreach (UnityEngine.GameObject gObj in objsList)
-            gObj.transform.parent = go.transform;
-        UnityEngine.Vector3 rScale = go.transform.localScale;
-        rScale.x = -rScale.x;
-        go.transform.localScale = rScale;
-        foreach (UnityEngine.GameObject gObj in objsList)
-            gObj.transform.parent = null;
-        Destroy(go);
+        switch (id)
+        {
+            case 0: // Dynamic mirroring
+                {
+                    WriteLine("Mirroring");
+                    UnityEngine.GameObject[] objs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+                    System.Collections.Generic.List<UnityEngine.GameObject> objsList = new System.Collections.Generic.List<UnityEngine.GameObject>();
+                    foreach (UnityEngine.GameObject gObj in objs)
+                        objsList.Add(gObj);
+                    UnityEngine.GameObject go = new UnityEngine.GameObject("MIRRORROOT");
+                    go.transform.position = GameManager.player.transform.position;
+                    go.transform.rotation = GameManager.player.transform.rotation;
+                    foreach (UnityEngine.GameObject gObj in objsList)
+                        gObj.transform.parent = go.transform;
+                    UnityEngine.Vector3 rScale = go.transform.localScale;
+                    rScale.x = -rScale.x;
+                    go.transform.localScale = rScale;
+                    foreach (UnityEngine.GameObject gObj in objsList)
+                        gObj.transform.parent = null;
+                    Destroy(go);
+                }
+                break;
+            case 1: // Player model
+                {
+                    GameManager.player.GetComponent<PlayerGameplayController>().TogglePlayerModel();
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
