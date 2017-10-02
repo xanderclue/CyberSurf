@@ -52,7 +52,7 @@ public class EnterMainMenuButton : SelectedObject
             if (null != lockTransform)
                 GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(lockTransform.position, lockTransform.rotation);
             else
-                GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(GameManager.player.transform.position);
+                GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(GameManager.player.transform.position, GameManager.player.transform.rotation);
             menuSystem.mainTab.EnableButtons();
             gameObject.SetActive(false);
         }

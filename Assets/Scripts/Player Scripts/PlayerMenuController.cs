@@ -48,25 +48,31 @@ public class PlayerMenuController : MonoBehaviour
         menuMovementIsLocked = false;
     }
 
+    private bool lockingMotion = false;
+    private float tVal;
+    private Vector3 startMotionPos, endMotionPos;
+    private Quaternion startMotionRot, endMotionRot;
+    [SerializeField]
+    private float lockMotionTime = 0.75f;
+
     public delegate void MovementLockEvent();
     public MovementLockEvent OnPlayerLock, OnPlayerUnlock;
-    public void LockPlayerToPosition(Vector3 worldPosition)
-    {
-        ToggleMenuMovement(true);
-        GameManager.player.transform.position = worldPosition;
-        if (null != OnPlayerLock)
-            OnPlayerLock();
-    }
     public void LockPlayerToPosition(Vector3 worldPosition, Quaternion worldRotation)
     {
+        lockingMotion = false;
         ToggleMenuMovement(true);
-        GameManager.player.transform.position = worldPosition;
-        GameManager.player.transform.rotation = worldRotation;
+        startMotionPos = GameManager.player.transform.position;
+        startMotionRot = GameManager.player.transform.rotation;
+        endMotionPos = worldPosition;
+        endMotionRot = worldRotation;
+        tVal = 0.0f;
+        lockingMotion = true;
         if (null != OnPlayerLock)
             OnPlayerLock();
     }
     public void UnlockPlayerPosition()
     {
+        lockingMotion = false;
         ToggleMenuMovement(false);
         if (null != OnPlayerUnlock)
             OnPlayerUnlock();
@@ -250,4 +256,22 @@ public class PlayerMenuController : MonoBehaviour
         SceneManager.sceneLoaded -= OnLevelLoaded;
     }
 
+    private void Update()
+    {
+        if (lockingMotion)
+        {
+            tVal += Time.deltaTime / lockMotionTime;
+            if (tVal >= 1.0f)
+            {
+                GameManager.player.transform.position = endMotionPos;
+                GameManager.player.transform.rotation = endMotionRot;
+                lockingMotion = false;
+            }
+            else
+            {
+                GameManager.player.transform.position = Vector3.Slerp(startMotionPos, endMotionPos, tVal);
+                GameManager.player.transform.rotation = Quaternion.Slerp(startMotionRot, endMotionRot, tVal);
+            }
+        }
+    }
 }
