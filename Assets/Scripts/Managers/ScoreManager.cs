@@ -114,7 +114,6 @@ public class ScoreManager : MonoBehaviour
                 recorder = GameManager.player.GetComponent<positionRecorder>();
                 newLevelScore.positions = recorder.positions.ToArray();
                 newLevelScore.rotations = recorder.rotations.ToArray();
-                //newContScore.isLastScoreInput = true;
 
                 level = SceneManager.GetActiveScene().buildIndex;
 

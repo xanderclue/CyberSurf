@@ -56,7 +56,7 @@ public class closeScoreSplashScreen : SelectedObject
                 if (lastPortalBuildIndex > 1)
                 {
                     scoreScript.topContinuousScores[lastScoreLocation].name 
-                        = lOne.text + lTwo.text + lThree.text;
+                        = lOne.GetParsedText() + lTwo.GetParsedText() + lThree.GetParsedText();
                 }
                 break;
 
@@ -84,7 +84,7 @@ public class closeScoreSplashScreen : SelectedObject
                 if (lastPortalBuildIndex > 1)
                 {
                     scoreScript.topCurseScores[lastPortalBuildIndex].curseScores[lastScoreLocation].name
-                        = lOne.text + lTwo.text + lThree.text;
+                        = lOne.GetParsedText() + lTwo.GetParsedText() + lThree.GetParsedText();
                 }
                 break;
 
