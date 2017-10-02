@@ -10,8 +10,9 @@ public class DebugSpeedSwitchScript : SelectedObject
     GameManager theManager;
     bool IsOn { get { return theManager.boardScript.debugSpeedEnabled; } set { theManager.boardScript.UpdateDebugSpeedControls(value); } }
 
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         theManager = GameManager.instance;
         controllerIsOnUpdate();
     }

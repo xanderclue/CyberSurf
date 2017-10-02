@@ -10,8 +10,9 @@ public class RespawnSwitchScript : SelectedObject
     GameManager theManager;
     bool IsOn { get { return theManager.scoreScript.respawnEnabled; } set { theManager.scoreScript.respawnEnabled = value; } }
 
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         theManager = GameManager.instance;
         controllerIsOnUpdate();
     }

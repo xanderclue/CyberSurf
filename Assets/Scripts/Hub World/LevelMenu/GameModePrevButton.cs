@@ -7,8 +7,9 @@ public class GameModePrevButton : SelectedObject
 {
     LevelMenu levelMenu;
 
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         levelMenu = GetComponentInParent<LevelMenu>();
     }
 

@@ -21,8 +21,9 @@ public class closeScoreSplashScreen : SelectedObject
 
     [SerializeField] LevelMenu lMenu;
 
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         gameManager = GameManager.instance;
         scoreScript = gameManager.scoreScript;
         if (gameManager.lastPortalBuildIndex < 2)

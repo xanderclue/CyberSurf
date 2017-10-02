@@ -14,8 +14,9 @@ public class EnterMainMenuButton : SelectedObject
     [SerializeField]
     private Material noHoverMat = null;
     private MeshRenderer meshRenderer = null;
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         meshRenderer = GetComponent<MeshRenderer>();
         if (null == menuSystem)
             menuSystem = GetComponentInParent<MainMenu>();
@@ -27,8 +28,9 @@ public class EnterMainMenuButton : SelectedObject
     }
     [SerializeField, Tooltip("degrees per second")]
     private float rotationSpeed = 111.0f;
-    private void Update()
+    new private void Update()
     {
+        base.Update();
         gameObject.transform.Rotate(0.0f, Time.deltaTime * rotationSpeed, 0.0f);
     }
 

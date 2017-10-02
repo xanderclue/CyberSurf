@@ -4,8 +4,9 @@ public class ExitMainMenuButton : SelectedObject
 {
     [SerializeField]
     EnterMainMenuButton enterMenuObject = null;
-    void Start()
+    new private void Start()
     {
+        base.Start();
         if (null == enterMenuObject)
             enterMenuObject = FindObjectOfType<EnterMainMenuButton>();
     }

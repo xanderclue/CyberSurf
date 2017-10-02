@@ -10,8 +10,9 @@ public class ControllerSwitchScript : SelectedObject
     GameManager theManager;
     bool IsOn { get { return theManager.boardScript.gamepadEnabled; } set { theManager.boardScript.UpdateControlsType(value); } }
 
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         theManager = GameManager.instance;
         StartCoroutine(DelayedTextUpdate());
     }

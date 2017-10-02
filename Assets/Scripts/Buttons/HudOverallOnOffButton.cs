@@ -11,8 +11,9 @@ public class HudOverallOnOffButton : SelectedObject
 
     TextMeshPro onOffText;
     bool IsOn { get { return textElementController.hudElementsControl.overAllBool; } set { textElementController.setAll(value); } }
-    void Start ()
+    new private void Start ()
     {
+        base.Start();
         textElementController = GameManager.player.GetComponentInChildren<TextElementControllerScript>();
         if (textElementController != null)
         {

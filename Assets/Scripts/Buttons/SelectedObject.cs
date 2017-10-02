@@ -22,7 +22,7 @@ public abstract class SelectedObject : MonoBehaviour
     private bool isDisabled = false;
     private bool selectsoundplayed = false;
     public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.updateReticle(0.0f); } }
-    private void Awake()
+    protected void Awake()
     {
         if (delay < 0)
             delay = DEFAULT_DELAY;
@@ -99,35 +99,13 @@ public abstract class SelectedObject : MonoBehaviour
         }
     }
 
-    private void Start()
+    protected void Start()
     {
-        //try
-        //{
-        //    BuildDebugger.WriteLine("ENTER: Entering Start function for SelectedObject: " + gameObject.name);
-        //    BuildDebugger.WriteLine("..Getting successSound for SelectedObject: " + gameObject.name);
-        //    successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
-        //    if (null == successSound)
-        //        BuildDebugger.WriteLine("WARN: successSound is null for " + gameObject.name);
-        //    else
-        //        BuildDebugger.WriteLine("..successSound is not null for " + gameObject.name);
-        //    BuildDebugger.WriteLine("..Getting selectedSound for SelectedObject: " + gameObject.name);
-        //    selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
-        //    if (null == selectedSound)
-        //        BuildDebugger.WriteLine("WARN: selectedSound is null for " + gameObject.name);
-        //    else
-        //        BuildDebugger.WriteLine("..selectedSound is not null for " + gameObject.name);
-        //    BuildDebugger.WriteLine("SUCCESS: Completed Start function for SelectedObject: " + gameObject.name);
-        //}
-        //catch (System.Exception e)
-        //{
-        //    BuildDebugger.WriteLine("FAILURE: Start function failed for SelectedObject: " + gameObject.name + " (" + e.Message + ")");
-        //}
-        BuildDebugger.WriteLine("Entering Start function for SelectedObject: " + gameObject.name);
         successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
         selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
     }
 
-    private void Update()
+    protected void Update()
     {
         waitTimer -= Time.deltaTime;
     }

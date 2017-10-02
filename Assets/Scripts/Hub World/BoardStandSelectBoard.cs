@@ -11,8 +11,9 @@ public class BoardStandSelectBoard : SelectedObject
 
     Material renderMat = null;
 
-    private void Start()
+    new private void Start()
     {
+        base.Start();
         boardManager = GameManager.instance.boardScript;
 
         selectionVariables = GetComponentInParent<BoardStandProperties>();
