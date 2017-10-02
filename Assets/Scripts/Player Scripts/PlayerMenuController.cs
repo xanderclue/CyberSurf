@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.VR;
@@ -56,19 +55,19 @@ public class PlayerMenuController : MonoBehaviour
     private float lockMotionTime = 0.75f;
 
     public delegate void MovementLockEvent();
-    public MovementLockEvent OnPlayerLock, OnPlayerUnlock;
+    public MovementLockEvent OnPlayerLocking, OnPlayerLock, OnPlayerUnlock;
     public void LockPlayerToPosition(Vector3 worldPosition, Quaternion worldRotation)
     {
         lockingMotion = false;
         ToggleMenuMovement(true);
-        startMotionPos = GameManager.player.transform.position;
-        startMotionRot = GameManager.player.transform.rotation;
+        startMotionPos = playerRB.transform.position;
+        startMotionRot = playerRB.transform.rotation;
         endMotionPos = worldPosition;
         endMotionRot = worldRotation;
         tVal = 0.0f;
         lockingMotion = true;
-        if (null != OnPlayerLock)
-            OnPlayerLock();
+        if (null != OnPlayerLocking)
+            OnPlayerLocking();
     }
     public void UnlockPlayerPosition()
     {
@@ -167,10 +166,17 @@ public class PlayerMenuController : MonoBehaviour
             playerRB.AddForce(appliedHoverForce, ForceMode.Acceleration);
         }
     }
-
-    private void ReturnToSpawnPoint()
+    private bool spawnLock = false;
+    public void ReturnToSpawnPoint()
     {
-        playerRB.transform.position = GameManager.instance.levelScript.spawnPoints[1].position;
+        lockingMotion = false;
+        startMotionPos = playerRB.transform.position;
+        startMotionRot = endMotionRot = playerRB.transform.rotation;
+        endMotionPos = GameManager.instance.levelScript.spawnPoints[1].position;
+        tVal = 0.0f;
+        spawnLock = true;
+        playerRB.GetComponent<CapsuleCollider>().enabled = false;
+        lockingMotion = true;
     }
 
     IEnumerator ControllerCoroutine()
@@ -263,14 +269,21 @@ public class PlayerMenuController : MonoBehaviour
             tVal += Time.deltaTime / lockMotionTime;
             if (tVal >= 1.0f)
             {
-                GameManager.player.transform.position = endMotionPos;
-                GameManager.player.transform.rotation = endMotionRot;
+                playerRB.transform.position = endMotionPos;
+                playerRB.transform.rotation = endMotionRot;
                 lockingMotion = false;
+                if (spawnLock)
+                {
+                    playerRB.GetComponent<CapsuleCollider>().enabled = true;
+                    spawnLock = false;
+                }
+                else if (null != OnPlayerLock)
+                    OnPlayerLock();
             }
             else
             {
-                GameManager.player.transform.position = Vector3.Slerp(startMotionPos, endMotionPos, tVal);
-                GameManager.player.transform.rotation = Quaternion.Slerp(startMotionRot, endMotionRot, tVal);
+                playerRB.transform.position = Vector3.Lerp(startMotionPos, endMotionPos, tVal);
+                playerRB.transform.rotation = Quaternion.Slerp(startMotionRot, endMotionRot, tVal);
             }
         }
     }
