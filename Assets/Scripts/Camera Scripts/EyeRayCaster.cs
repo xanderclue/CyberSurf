@@ -41,7 +41,7 @@ public class EyeRayCaster : MonoBehaviour
             if (canSelect)
             {
                 curObj = hit.collider.gameObject;
-                curObj.GetComponent<SelectedObject>().selected(reticleScript);
+                curObj.GetComponent<SelectedObject>().Selected(reticleScript);
             }
         }
         //if ray doesnt collide with anything
@@ -52,7 +52,7 @@ public class EyeRayCaster : MonoBehaviour
         }
         if (preObj != null && preObj != curObj)
         {
-            preObj.GetComponent<SelectedObject>().deSelected();
+            preObj.GetComponent<SelectedObject>().Deselected();
         }
     }
 
@@ -61,7 +61,7 @@ public class EyeRayCaster : MonoBehaviour
         canSelect = !locked;
         if (curObj != null)
         {
-            curObj.GetComponent<SelectedObject>().deSelected();
+            curObj.GetComponent<SelectedObject>().Deselected();
         }
     }
 

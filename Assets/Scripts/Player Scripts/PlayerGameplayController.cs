@@ -246,7 +246,7 @@ public class PlayerGameplayController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //scale our impulse by our bounce amount if we aren't in the hub world
-        if (SceneManager.GetActiveScene().buildIndex != 2)
+        if (SceneManager.GetActiveScene().buildIndex != 1)
             playerRigidbody.AddForce(collision.impulse * movementVariables.bounceModifier, ForceMode.Impulse);
     }
 

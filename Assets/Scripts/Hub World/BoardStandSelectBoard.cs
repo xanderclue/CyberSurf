@@ -23,15 +23,15 @@ public class BoardStandSelectBoard : SelectedObject
         //renderMat.DisableKeyword("_EMISSION");
     }
 
-    protected override void selectedFuntion()
+    protected override void SelectedFunction()
     {
-        base.selectedFuntion();
+        base.SelectedFunction();
         //renderMat.EnableKeyword("_EMISSION");
         renderMat.SetColor("_EmissionColor", Color.white);
     }
-    protected override void deSelectedFunction()
+    protected override void DeselectedFunction()
     {
-        base.deSelectedFunction();
+        base.DeselectedFunction();
         //renderMat.DisableKeyword("_EMISSION");
         renderMat.SetColor("_EmissionColor", Color.black);
     }
