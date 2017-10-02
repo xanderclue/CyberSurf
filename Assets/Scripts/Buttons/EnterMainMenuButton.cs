@@ -34,12 +34,12 @@ public class EnterMainMenuButton : SelectedObject
         gameObject.transform.Rotate(0.0f, Time.deltaTime * rotationSpeed, 0.0f);
     }
 
-    public override void selectedFuntion()
+    protected override void selectedFuntion()
     {
         base.selectedFuntion();
         meshRenderer.material = hoverMat;
     }
-    public override void deSelectedFunction()
+    protected override void deSelectedFunction()
     {
         base.deSelectedFunction();
         meshRenderer.material = noHoverMat;

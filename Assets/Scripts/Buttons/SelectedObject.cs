@@ -43,7 +43,7 @@ public abstract class SelectedObject : MonoBehaviour
     }
 
     //What the class actually does with the object while selected(if applicable)
-    public virtual void selectedFuntion() { }
+    protected virtual void selectedFuntion() { }
 
     //deals with leftovers from selecting the object when you look away
     public void deSelected()
@@ -58,12 +58,12 @@ public abstract class SelectedObject : MonoBehaviour
     }
 
     //Cleans up what the class actually does(if applicable)
-    public virtual void deSelectedFunction() { }
+    protected virtual void deSelectedFunction() { }
 
     //what the class actually does when select is successful, inherited class must fill this out
     public abstract void selectSuccessFunction();
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (isSelected && CanSelect && !isDisabled)
         {
