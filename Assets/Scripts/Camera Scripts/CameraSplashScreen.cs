@@ -11,16 +11,24 @@ public class CameraSplashScreen : MonoBehaviour
     TextMeshPro tmp;
     float maxSeconds;
 
+    effectController dustEffectController;
+
     private void Start()
     {
         tmp = countdownTextElement.GetComponent<TextMeshPro>();
         maxSeconds = 0f;
+
+
+        dustEffectController = gameObject.GetComponentInParent<PlayerGameplayController>().gameObject.GetComponentInChildren<effectController>();
     }
 
     public void StartCountdown(float countdownSeconds)
     {
         countdownTextElement.SetActive(true);
         maxSeconds = countdownSeconds;
+
+        //pause dust field effect
+        dustEffectController.dustField.Pause();
 
         StopAllCoroutines();
         StartCoroutine(CountdownCoroutine());
@@ -38,6 +46,11 @@ public class CameraSplashScreen : MonoBehaviour
         }
 
         maxSeconds = 0f;
+
+
+        //unpause the dustfieldEffect
+        dustEffectController.dustField.Play();
+
         countdownTextElement.SetActive(false);
     }
 

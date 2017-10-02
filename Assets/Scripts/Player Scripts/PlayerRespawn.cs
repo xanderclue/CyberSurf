@@ -22,6 +22,7 @@ public class PlayerRespawn : MonoBehaviour
 
     bool isRespawning = false;
 
+
     public bool IsRespawning { get { return isRespawning; } }
 
     private void Start()
@@ -97,6 +98,7 @@ public class PlayerRespawn : MonoBehaviour
             playerRB.MoveRotation(Quaternion.Euler(respawnPoint.eulerAngles.x, respawnPoint.eulerAngles.y, 0f));
         }
 
+
         //then start to fade in   
         StartCoroutine(FadeIn());
     }
@@ -137,6 +139,7 @@ public class PlayerRespawn : MonoBehaviour
 
         //unpause the timer
         roundTimer.PauseTimer(false);
+
 
         isRespawning = false;
         respawnPoint = null;
