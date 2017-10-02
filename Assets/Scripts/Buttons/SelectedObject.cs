@@ -5,8 +5,6 @@ public abstract class SelectedObject : MonoBehaviour
 {
     [Multiline]
     public string tooltipText = "";
-    [SerializeField, Tooltip("Number of AudioSources for button sound effects"), Range(1, 5)]
-    private int numVoices = 1;
     [SerializeField, Tooltip("\"Time To Wait\": How long it takes for the reticle to fill up (measured in FixedUpdate ticks)")]
     private int timeToWait = 50;
     private int timeWaited = 0;
@@ -32,10 +30,6 @@ public abstract class SelectedObject : MonoBehaviour
 
     //object to update for reticle
     private reticle theReticle;
-
-    //to play sound effect attached to object
-    private List<AudioSource> audioSources;
-    int currVoice = 0;
 
     //grabs the reticle object to show timer status
     public void selected(reticle grabbedReticle)
@@ -84,32 +78,18 @@ public abstract class SelectedObject : MonoBehaviour
                 timeWaited = 0;
                 if (isActiveAndEnabled)
                 {
-                    if (null == audioSources)
-                    {
-                        audioSources = new List<AudioSource>();
-                        for (int i = 0; i < numVoices; ++i)
-                            audioSources.Add(gameObject.AddComponent<AudioSource>());
-                    }
-                    audioSources[currVoice].clip = successSound;
-                    audioSources[currVoice].volume = AudioLevels.Instance.SfxVolume;
-                    audioSources[currVoice].Play();
-                    ++currVoice; if (currVoice >= numVoices) currVoice = 0;
+                    if (null == successSound)
+                        BuildDebugger.WriteLine("successSound is null");
+                    AudioSource.PlayClipAtPoint(successSound, transform.position, AudioLevels.Instance.SfxVolume);
                 }
             }
             float ratio = (float)timeWaited / timeToWait;
             theReticle.updateReticle(ratio);
             if (selectsoundplayed == false && timeWaited >= 2)
             {
-                if (null == audioSources)
-                {
-                    audioSources = new List<AudioSource>();
-                    for (int i = 0; i < numVoices; ++i)
-                        audioSources.Add(gameObject.AddComponent<AudioSource>());
-                }
-                audioSources[currVoice].clip = selectedSound;
-                audioSources[currVoice].volume = AudioLevels.Instance.SfxVolume;
-                audioSources[currVoice].Play();
-                ++currVoice; if (currVoice >= numVoices) currVoice = 0;
+                if (null == selectedSound)
+                    BuildDebugger.WriteLine("selectedSound is null");
+                AudioSource.PlayClipAtPoint(selectedSound, transform.position, AudioLevels.Instance.SfxVolume);
                 selectsoundplayed = true;
             }
         }
@@ -121,6 +101,28 @@ public abstract class SelectedObject : MonoBehaviour
 
     private void Start()
     {
+        //try
+        //{
+        //    BuildDebugger.WriteLine("ENTER: Entering Start function for SelectedObject: " + gameObject.name);
+        //    BuildDebugger.WriteLine("..Getting successSound for SelectedObject: " + gameObject.name);
+        //    successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
+        //    if (null == successSound)
+        //        BuildDebugger.WriteLine("WARN: successSound is null for " + gameObject.name);
+        //    else
+        //        BuildDebugger.WriteLine("..successSound is not null for " + gameObject.name);
+        //    BuildDebugger.WriteLine("..Getting selectedSound for SelectedObject: " + gameObject.name);
+        //    selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
+        //    if (null == selectedSound)
+        //        BuildDebugger.WriteLine("WARN: selectedSound is null for " + gameObject.name);
+        //    else
+        //        BuildDebugger.WriteLine("..selectedSound is not null for " + gameObject.name);
+        //    BuildDebugger.WriteLine("SUCCESS: Completed Start function for SelectedObject: " + gameObject.name);
+        //}
+        //catch (System.Exception e)
+        //{
+        //    BuildDebugger.WriteLine("FAILURE: Start function failed for SelectedObject: " + gameObject.name + " (" + e.Message + ")");
+        //}
+        BuildDebugger.WriteLine("Entering Start function for SelectedObject: " + gameObject.name);
         successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
         selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
     }

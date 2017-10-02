@@ -4,12 +4,16 @@
     private static UnityEngine.GameObject textObject = null;
     private static uint lineCounter = 0u;
     private const int maxLines = 20;
+    private const int maxLength = 45;
     private static bool linesSync = false;
     private static TMPro.TextMeshProUGUI textmesh = null;
     public static void WriteLine(string line)
     {
+        UnityEngine.Debug.Log("BuildDebugger: \"" + line + "\"");
         if (null == lines)
             return;
+        if (line.Length > maxLength)
+            line = line.Substring(0, maxLength);
         line += "\n";
         line = lineCounter.ToString() + ": " + line.Substring(0, line.IndexOf('\n'));
         ++lineCounter;
@@ -19,7 +23,6 @@
         if (lines.Count > maxLines)
             lines.RemoveAt(0);
         linesSync = false;
-        UnityEngine.Debug.Log("BuildDebugger: Line added: \"" + line + "\"");
     }
     private void Awake()
     {
