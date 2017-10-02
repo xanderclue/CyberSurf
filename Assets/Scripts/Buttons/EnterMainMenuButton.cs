@@ -9,10 +9,21 @@ public class EnterMainMenuButton : SelectedObject
     private Transform lockTransform = null;
     [SerializeField]
     private MainMenu menuSystem = null;
+    [SerializeField]
+    private Material hoverMat = null;
+    [SerializeField]
+    private Material noHoverMat = null;
+    private MeshRenderer meshRenderer = null;
     private void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         if (null == menuSystem)
             menuSystem = GetComponentInParent<MainMenu>();
+        if (null == noHoverMat)
+            noHoverMat = meshRenderer.material;
+        if (null == hoverMat)
+            hoverMat = noHoverMat;
+        meshRenderer.material = noHoverMat;
     }
     [SerializeField, Tooltip("degrees per second")]
     private float rotationSpeed = 111.0f;
@@ -21,6 +32,16 @@ public class EnterMainMenuButton : SelectedObject
         gameObject.transform.Rotate(0.0f, Time.deltaTime * rotationSpeed, 0.0f);
     }
 
+    public override void selectedFuntion()
+    {
+        base.selectedFuntion();
+        meshRenderer.material = hoverMat;
+    }
+    public override void deSelectedFunction()
+    {
+        base.deSelectedFunction();
+        meshRenderer.material = noHoverMat;
+    }
     public override void selectSuccessFunction()
     {
         if (null != menuBox && null != menuSystem)
