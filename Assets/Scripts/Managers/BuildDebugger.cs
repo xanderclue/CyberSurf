@@ -102,10 +102,10 @@
     }
     private void OnEnable()
     {
-        UnityEngine.Application.logMessageReceived += GetLog;
+        UnityEngine.Application.logMessageReceivedThreaded += GetLog;
     }
     private void OnDisable()
     {
-        UnityEngine.Application.logMessageReceived -= GetLog;
+        UnityEngine.Application.logMessageReceivedThreaded -= GetLog;
     }
 }
