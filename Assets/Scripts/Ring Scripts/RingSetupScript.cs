@@ -4,17 +4,41 @@ using UnityEngine;
 
 public class RingSetupScript : MonoBehaviour
 {
+    [SerializeField] GameObject[] ringDifficultyParents;
     Transform[] ringTransforms;
     arrowPointAtUpdater arrowScript;
 
     //state of what the rings should be setup as determined by gamemode
-    public GameModes mode;
-
+    [HideInInspector] public GameModes mode;
+    GameDifficulties difficulty;
 
     void Start()
     {
         arrowScript = GameManager.player.GetComponentInChildren<arrowPointAtUpdater>();
         mode = GameManager.instance.gameMode.currentMode;
+        difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+
+        switch(difficulty)
+        {
+            case GameDifficulties.Easy:
+                if (ringDifficultyParents[0] != null)
+                    ringDifficultyParents[0].SetActive(true);
+                else
+                    print("EASY RINGS PARENT NOT SET IN THE RINGS PARENT OBJECT!");
+                break;
+            case GameDifficulties.Normal:
+                if (ringDifficultyParents[1] != null)
+                    ringDifficultyParents[1].SetActive(true);
+                else
+                    print("NORMAL RINGS PARENT NOT SET IN THE RINGS PARENT OBJECT!");
+                break;
+            case GameDifficulties.Hard:
+                if (ringDifficultyParents[2] != null)
+                    ringDifficultyParents[2].SetActive(true);
+                else
+                    print("HARD RINGS PARENT NOT SET IN THE RINGS PARENT OBJECT!");
+                break;
+        }
 
         if (arrowScript != null)
         {

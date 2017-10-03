@@ -597,7 +597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &214855717
 Transform:
   m_ObjectHideFlags: 0
@@ -4869,6 +4869,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114781385403891290, guid: ea64fe59565fd864c8573b41adc2089a,
+        type: 2}
+      propertyPath: ringDifficultyParents.Array.data[2]
+      value: 
+      objectReference: {fileID: 214855716}
+    - target: {fileID: 114781385403891290, guid: ea64fe59565fd864c8573b41adc2089a,
+        type: 2}
+      propertyPath: ringDifficultyParents.Array.data[1]
+      value: 
+      objectReference: {fileID: 214855716}
+    - target: {fileID: 114781385403891290, guid: ea64fe59565fd864c8573b41adc2089a,
+        type: 2}
+      propertyPath: ringDifficultyParents.Array.data[0]
+      value: 
+      objectReference: {fileID: 214855716}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ea64fe59565fd864c8573b41adc2089a, type: 2}
@@ -6666,6 +6681,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4734934327229854, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114165219284145858, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: nextScene
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

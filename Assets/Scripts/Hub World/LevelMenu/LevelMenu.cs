@@ -43,6 +43,7 @@ public class LevelMenu : MonoBehaviour
         gameDifficulty = GameManager.instance.gameDifficulty;
         scoreScript = GameManager.instance.scoreScript;
         gameModeTMP.text = gameMode.currentMode.ToString();
+        difficultyTMP.text = gameDifficulty.currentDifficulty.ToString();
 
         displayUpdateFlags = new bool[(int)DisplayToUpdate.displayCount];
 

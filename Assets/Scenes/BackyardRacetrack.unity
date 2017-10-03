@@ -690,6 +690,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -3.5750003
       objectReference: {fileID: 0}
+    - target: {fileID: 114165219284145858, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: nextScene
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
@@ -2685,6 +2690,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -3.5750003
       objectReference: {fileID: 0}
+    - target: {fileID: 114165219284145858, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: nextScene
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
@@ -3885,11 +3895,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 721922222}
@@ -4111,7 +4121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &770775337
 Transform:
   m_ObjectHideFlags: 0
@@ -5281,11 +5291,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1057762175}
@@ -8417,6 +8427,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -3.5750003
       objectReference: {fileID: 0}
+    - target: {fileID: 114165219284145858, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: nextScene
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
@@ -9132,6 +9147,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114781385403891290, guid: ea64fe59565fd864c8573b41adc2089a,
+        type: 2}
+      propertyPath: ringDifficultyParents.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4419709810190830, guid: ea64fe59565fd864c8573b41adc2089a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9188,6 +9208,21 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114781385403891290, guid: ea64fe59565fd864c8573b41adc2089a,
+        type: 2}
+      propertyPath: ringDifficultyParents.Array.data[0]
+      value: 
+      objectReference: {fileID: 915526182}
+    - target: {fileID: 114781385403891290, guid: ea64fe59565fd864c8573b41adc2089a,
+        type: 2}
+      propertyPath: ringDifficultyParents.Array.data[1]
+      value: 
+      objectReference: {fileID: 1236809746}
+    - target: {fileID: 114781385403891290, guid: ea64fe59565fd864c8573b41adc2089a,
+        type: 2}
+      propertyPath: ringDifficultyParents.Array.data[2]
+      value: 
+      objectReference: {fileID: 770775336}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea64fe59565fd864c8573b41adc2089a, type: 2}
   m_IsPrefabParent: 0

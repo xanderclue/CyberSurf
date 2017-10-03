@@ -53,6 +53,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d5df0a008fbfe43a069091cb717853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ringDifficultyParents:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  mode: 0
 --- !u!114 &114905033323769552
 MonoBehaviour:
   m_ObjectHideFlags: 1
