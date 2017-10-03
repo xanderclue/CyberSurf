@@ -33,7 +33,7 @@ public class Zone_Music : MonoBehaviour
         {
             reference.audioSource.volume += const_vol * 0.1f;
         }
-        if (reference.audioSource.volume >= const_vol)
+        else
         {
             reference.audioSource.volume = const_vol;
             enabled = false;
