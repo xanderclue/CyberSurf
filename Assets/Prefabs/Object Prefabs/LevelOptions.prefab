@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 33042773212526086}
   - component: {fileID: 65953453645053252}
   - component: {fileID: 23350301642570506}
+  - component: {fileID: 114086950175939276}
   m_Layer: 0
   m_Name: ExitButton
   m_TagString: Untagged
@@ -893,7 +894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1439847404348772
 GameObject:
   m_ObjectHideFlags: 1
@@ -7244,6 +7245,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &114086950175939276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1166755542442612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da54bfdbb3cbd7f4faa829be4ae018e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipText: Exit
+  timeToWait: 50
+  delay: 20
+  waitTime: 1.5
+  levelMenuScript: {fileID: 114110647125654334}
 --- !u!114 &114095079261719062
 MonoBehaviour:
   m_ObjectHideFlags: 1

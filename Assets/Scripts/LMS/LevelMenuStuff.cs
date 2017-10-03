@@ -21,8 +21,7 @@ public class LevelMenuStuff : MonoBehaviour
     }
     public void EnterMenu()
     {
-        BuildDebugger.WriteLine("This is when the menu would show up");
-        //menuBox.SetActive(false);
+        menuBox.SetActive(true);
         enterLevelOptions.gameObject.SetActive(false);
     }
     public void ExitMenu()
