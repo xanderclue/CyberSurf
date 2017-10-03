@@ -1,4 +1,33 @@
 ﻿using UnityEngine;
 public class LevelMenuStuff : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject menuBox = null;
+    [SerializeField]
+    private EnterLevelOptionsButton enterLevelOptions = null;
+    private void Start()
+    {
+        if (null == menuBox)
+            for (int i = 0; i < transform.childCount; ++i)
+                if ("MenuBox" == transform.GetChild(i).name)
+                {
+                    menuBox = transform.GetChild(i).gameObject;
+                    break;
+                }
+        if (null == enterLevelOptions)
+            enterLevelOptions = GetComponentInChildren<EnterLevelOptionsButton>();
+        menuBox.SetActive(false);
+        enterLevelOptions.gameObject.SetActive(true);
+    }
+    public void EnterMenu()
+    {
+        BuildDebugger.WriteLine("This is when the menu would show up");
+        //menuBox.SetActive(false);
+        enterLevelOptions.gameObject.SetActive(false);
+    }
+    public void ExitMenu()
+    {
+        menuBox.SetActive(false);
+        enterLevelOptions.gameObject.SetActive(true);
+    }
 }
