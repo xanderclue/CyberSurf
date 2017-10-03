@@ -9,7 +9,7 @@ public class RingProcessorWizard : ScriptableWizard
 {
     [Header("Bonus Time and Queue Order Settings")]
     [Range(10f, 50f)]
-    public float targetVelocity = 20f;
+    public float targetVelocity = 30f;
     [Range(-1f, 1f)]
     [Tooltip("Increase or decrease the target bonus time based off of this percentage of the calculated bonus time.")]
     public float timePercentModifier = 0f;
@@ -93,8 +93,6 @@ public class RingProcessorWizard : ScriptableWizard
 
                 UnityEditorInternal.ComponentUtility.CopyComponent(rp);
                 UnityEditorInternal.ComponentUtility.PasteComponentValues(rp);
-
-
             }
 
             //update our info for the next iteration

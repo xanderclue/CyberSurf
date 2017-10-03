@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum GameStates { MainMenu, GamePlay, GameOver, SceneTransition };
-public enum GameModes { Continuous, Cursed, Free, GameModesSize }
+public enum GameModes { Continuous, Cursed, Free, GameModesSize };
+public enum GameDifficulties { Easy, Normal, Hard, GameDifficultiesSize};
 
 public class ManagerClasses : MonoBehaviour
 {
@@ -58,6 +59,29 @@ public class ManagerClasses : MonoBehaviour
                 currentMode = GameModes.GameModesSize - 1;
             else
                 --currentMode;
+        }
+    }
+
+    public class GameDifficulty
+    {
+        public GameDifficulties currentDifficulty;
+
+        public GameDifficulty() { currentDifficulty = GameDifficulties.Normal; }
+
+        public void NextDifficulty()
+        {
+            if (currentDifficulty + 1 >= GameDifficulties.GameDifficultiesSize)
+                currentDifficulty = 0;
+            else
+                ++currentDifficulty;
+        }
+
+        public void PreviousDifficulty()
+        {
+            if (currentDifficulty - 1 < 0)
+                currentDifficulty = GameDifficulties.GameDifficultiesSize - 1;
+            else
+                --currentDifficulty;
         }
     }
 
