@@ -81,6 +81,7 @@ public class RingScoreScript : MonoBehaviour
         }
 
         scoreManager.score += (int)(scoreManager.baseScorePerRing * totalMultiplier);
+        scoreManager.score_multiplier = totalMultiplier;
         //print("Score is now: " + scoreManager.score);
     }
 

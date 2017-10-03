@@ -77,6 +77,7 @@ public class ScoreManager : MonoBehaviour
     [HideInInspector] public int score;
     [HideInInspector] public float prevRingBonusTime;
     [HideInInspector] public Transform prevRingTransform;
+    [HideInInspector] public float score_multiplier;
 
     [HideInInspector] public bool respawnEnabled = true;
 

@@ -9,7 +9,7 @@ public class HudScoreOnOffScript : SelectedObject
     bool safeCheck = false;
 
     TextMeshPro onOffText;
-    bool IsOn { get { return textElementController.hudElementsControl.scoreBool; } set { textElementController.setScore(value); } }
+    bool IsOn { get { return textElementController.hudElementsControl.scoreBool; } set { textElementController.setScore(value); textElementController.setScoreMulti(value); } }
 
     public void isOnUpdate()
     {

@@ -10,7 +10,7 @@ public class HudRingCountOnOffScript : SelectedObject
     
 
     TextMeshPro onOffText;
-    bool IsOn { get { return textElementController.hudElementsControl.ringCountBool; } set { textElementController.setRingCount(value); } }
+   bool IsOn { get { return textElementController.hudElementsControl.ringCountBool; } set { textElementController.setRingCount(value); } }
     public void isOnUpdate()
     {
         if (IsOn)
