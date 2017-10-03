@@ -7,9 +7,11 @@
     private const int maxLength = 45;
     private static bool linesSync = false;
     private static TMPro.TextMeshProUGUI textmesh = null;
-    public static void WriteLine(string line)
+    private const string LOG_START = "BuildDebugger: \"";
+    public static void WriteLine(string line, bool writeToUnity = true)
     {
-        UnityEngine.Debug.Log("BuildDebugger: \"" + line + "\"");
+        if (writeToUnity)
+            UnityEngine.Debug.Log(LOG_START + line + "\"");
         if (null == lines)
             return;
         if (line.Length > maxLength)
@@ -54,7 +56,10 @@
         linesSync = false;
         textmesh.SetText(tmstr);
         textmesh.ForceMeshUpdate();
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T))
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T) ||
+            (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
+            UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton3) &&
+            UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton5)))
             TestFunc(1);
     }
     private void TestFunc(int id)
@@ -89,5 +94,18 @@
             default:
                 break;
         }
+    }
+    private void GetLog(string condition, string stackTrace, UnityEngine.LogType type)
+    {
+        if (!condition.StartsWith(LOG_START))
+            WriteLine(type.ToString() + " << " + condition, false);
+    }
+    private void OnEnable()
+    {
+        UnityEngine.Application.logMessageReceived += GetLog;
+    }
+    private void OnDisable()
+    {
+        UnityEngine.Application.logMessageReceived -= GetLog;
     }
 }
