@@ -5,6 +5,17 @@ public class LevelMenuStuff : MonoBehaviour
     private GameObject menuBox = null;
     [SerializeField]
     private EnterLevelOptionsButton enterLevelOptions = null;
+    [SerializeField]
+    private LevelMenuObjectGroup menuButtons = null,
+        raceModeOptions = null,
+        lapsOptions = null,
+        aiOptions = null,
+        difficultyOptions = null,
+        weatherOptions = null,
+        timeOfDayOptions = null,
+        mirrorTrackOptions = null,
+        reverseTrackOptions = null;
+
     private void Start()
     {
         if (null == menuBox)
