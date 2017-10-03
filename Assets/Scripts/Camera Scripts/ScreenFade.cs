@@ -32,6 +32,9 @@ public class ScreenFade : MonoBehaviour
     // Fades alpha from 1.0 to 0.0, use at beginning of scene
     IEnumerator FadeIn()
     {
+        //set our player's velocity to 0
+        GameManager.player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
         roundTimer.PauseTimer(true);
 
         //don't start the fade in until loading is done
