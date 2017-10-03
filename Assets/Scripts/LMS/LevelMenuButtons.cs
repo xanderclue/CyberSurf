@@ -6,6 +6,12 @@ public class LevelMenuButtons : LevelMenuObjectGroup
     new private void Start()
     {
         base.Start();
+        if (null == confirmButton)
+            Debug.LogWarning("Missing LevelMenuButtons.confirmButton");
+        if (null == defaultButton)
+            Debug.LogWarning("Missing LevelMenuButtons.defaultButton");
+        if (null == exitButton)
+            Debug.LogWarning("Missing LevelMenuButtons.exitButton");
     }
     private void OnEnable()
     {
