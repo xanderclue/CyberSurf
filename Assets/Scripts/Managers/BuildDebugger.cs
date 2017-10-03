@@ -108,4 +108,11 @@
     {
         UnityEngine.Application.logMessageReceivedThreaded -= GetLog;
     }
+    public static string GetHierarchyName(UnityEngine.GameObject gObj)
+    {
+        string outStr = "";
+        for (UnityEngine.Transform tr = gObj.transform; null != tr; tr = tr.parent)
+            outStr = tr.gameObject.name + "." + outStr;
+        return outStr.Substring(0, outStr.Length - 1);
+    }
 }

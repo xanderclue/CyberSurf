@@ -93,9 +93,15 @@ public abstract class SelectedObject : MonoBehaviour
             selectsoundplayed = false;
         }
     }
-
+    private const string LAYERNAME = "Selectable";
     protected void Start()
     {
+        if (gameObject.layer != LayerMask.NameToLayer(LAYERNAME))
+        {
+            Debug.LogWarning("SelectableObject is not in " + LAYERNAME + " layer. (\"" + BuildDebugger.GetHierarchyName(gameObject) + "\") Changing layer from " +
+                LayerMask.LayerToName(gameObject.layer) + " (" + gameObject.layer + ") to " + LAYERNAME + " (" + LayerMask.NameToLayer(LAYERNAME) + ")");
+            gameObject.layer = LayerMask.NameToLayer(LAYERNAME);
+        }
         successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
         selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
     }
