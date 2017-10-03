@@ -200,19 +200,23 @@ public static class SaveLoader
             serializableCurseLevelScores[] unConvertedScores = temp.curseScores;
             //unserialized version of the scores
             ScoreManager.levelCurseScores[] convertedScores = new ScoreManager.levelCurseScores[unConvertedScores.Length];
+            
             //loop through all the unconverted scores making a new version in a unserialized form(because the vector3 and quaternion data needs to be in correct type) to save into
             for (int i = 0; i < unConvertedScores.Length; i++)
             {
+                convertedScores[i].currentAmoutFilled = 0;
                 convertedScores[i].curseScores = new ScoreManager.scoreStruct[unConvertedScores[i].curseScores.Length];
                 for (int j = 0; j < unConvertedScores[i].curseScores.Length; j++)
                 {
-                    GameManager.instance.scoreScript.currentAmoutFilled += 1;
-
                     convertedScores[i].curseScores[j].board = unConvertedScores[i].curseScores[j].board;
                     convertedScores[i].curseScores[j].name = unConvertedScores[i].curseScores[j].name;
                     convertedScores[i].curseScores[j].score = unConvertedScores[i].curseScores[j].score;
                     convertedScores[i].curseScores[j].time = unConvertedScores[i].curseScores[j].time;
 
+                    if (convertedScores[i].curseScores[j].score != 0)
+                    {
+                        convertedScores[i].currentAmoutFilled++;
+                    }
 
                     if (unConvertedScores[i].curseScores[j].positions != null)
                     {
@@ -263,7 +267,10 @@ public static class SaveLoader
             {
                 convertedScores[i].levels = new ScoreManager.scoreStruct[unConvertedScores[i].levels.Length];
                 convertedScores[i].name = unConvertedScores[i].name;
-                GameManager.instance.scoreScript.curFilledCont += 1;
+                if (convertedScores[i].name != "")
+                {
+                    GameManager.instance.scoreScript.curFilledCont += 1;
+                }
                 for (int j = 0; j < unConvertedScores[i].levels.Length; j++)
                 {
                     convertedScores[i].levels[j].board = unConvertedScores[i].levels[j].board;

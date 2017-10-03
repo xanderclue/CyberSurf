@@ -35,6 +35,7 @@ public class RingScoreScript : MonoBehaviour
 
     ParticleSystem hitEffect;
 
+
     private void Start()
     {
         scoreManager = GameManager.instance.scoreScript;
@@ -121,11 +122,30 @@ public class RingScoreScript : MonoBehaviour
                 //update our scoreManager values
                 scoreManager.prevRingBonusTime = rp.bonusTime;
                 scoreManager.prevRingTransform = rp.transform;
-                GameManager.instance.roundTimer.IncreaseTimeLeft(rp.bonusTime);
                 scoreManager.ringHitCount++;
 
                 if (GameManager.instance.gameMode.currentMode == GameModes.Cursed)
                 {
+                    switch (GameManager.instance.boardScript.currentBoardSelection)
+                    {
+                        case BoardType.Original:
+                            rp.bonusTime += rp.timeBonusOriginal;
+                            break;
+                        case BoardType.MachI:
+                            rp.bonusTime += rp.timeBonusMachI;
+                            break;
+                        case BoardType.MachII:
+                            rp.bonusTime += rp.timeBonusMachII;
+                            break;
+                        case BoardType.MachIII:
+                            rp.bonusTime += rp.timeBonusMachIII;
+                            break;
+                        case BoardType.Custom:
+                            break;
+                        default:
+                            break;
+                    }
+                    GameManager.instance.roundTimer.IncreaseTimeLeft(rp.bonusTime);
                     bonusTimeText.play((rp.bonusTime).ToString("n2"));
                 }
 
@@ -135,6 +155,7 @@ public class RingScoreScript : MonoBehaviour
 
                 if (hitEffect != null)
                 {
+                    //Debug.Log("Hit a Ring");
                     hitEffect.Play();
                     //MeshRenderer tmp = hitEffect.GetComponentInParent<MeshRenderer>();
                     hitEffect.GetComponentInParent<MeshRenderer>().gameObject.GetComponent<Renderer>().enabled = false ;

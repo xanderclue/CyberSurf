@@ -28,6 +28,7 @@ public class KeyInputManager : MonoBehaviour
         {
             if (state.currentState != GameStates.MainMenu)
             {
+                GameManager.instance.lastPortalBuildIndex = -1;
                 EventManager.OnTriggerTransition(1);
             }
             else
@@ -44,6 +45,7 @@ public class KeyInputManager : MonoBehaviour
 
         if (state.currentState != GameStates.MainMenu && Input.GetButtonDown("XBox Start"))
         {
+            GameManager.instance.lastPortalBuildIndex = -1;
             EventManager.OnTriggerTransition(1);
         }
 

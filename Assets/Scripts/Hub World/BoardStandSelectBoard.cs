@@ -39,6 +39,7 @@ public class BoardStandSelectBoard : SelectedObject
     {
         //set the player board to one of our pre-defined boards
         boardManager.BoardSelect(selectionVariables.boardType);
+
         EventManager.OnCallBoardMenuEffects();
     }
 

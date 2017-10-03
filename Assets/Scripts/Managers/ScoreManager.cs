@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     public struct levelCurseScores
     {
         public scoreStruct[] curseScores;
+        public int currentAmoutFilled;
     }
 
     public struct continuousScores
@@ -31,7 +32,6 @@ public class ScoreManager : MonoBehaviour
     }
 
     public levelCurseScores[] topCurseScores;
-    public int currentAmoutFilled = 0;
 
     //top 10 scores for continuous mode
     public continuousScores[] topContinuousScores;
@@ -47,6 +47,7 @@ public class ScoreManager : MonoBehaviour
             for (int i = 0; i < topCurseScores.Length; i++)
             {
                 topCurseScores[i].curseScores = new scoreStruct[10];
+                topCurseScores[i].currentAmoutFilled = 0;
             }
         }
 
@@ -155,17 +156,17 @@ public class ScoreManager : MonoBehaviour
                 level = SceneManager.GetActiveScene().buildIndex;
 
 
-                if (currentAmoutFilled < 10)
+                if (topCurseScores[level].currentAmoutFilled < 10)
                 {
-                    topCurseScores[level].curseScores[currentAmoutFilled] = newCurseScore;
-                    currentAmoutFilled++;
+                    topCurseScores[level].curseScores[topCurseScores[level].currentAmoutFilled] = newCurseScore;
+                    topCurseScores[level].currentAmoutFilled++;
                 }
                 else
                 {
                     topCurseScores[level].curseScores[9] = newCurseScore;
                 }
 
-                sortCurseScores(topCurseScores[level].curseScores, currentAmoutFilled);
+                sortCurseScores(topCurseScores[level].curseScores, topCurseScores[level].currentAmoutFilled);
                 break;
 
             case GameModes.Free:
@@ -298,6 +299,42 @@ public class ScoreManager : MonoBehaviour
         roundTimer.TimeInLevel = 0;
         prevRingBonusTime = 0f;
         respawnCount = 0;
+
+
+        float max;
+        float min;
+        float average;
+        if (GameManager.instance.boardScript.gamepadEnabled)
+        {
+            max = GameManager.instance.boardScript.customGamepadMovementVariables.maxSpeed;
+            min = GameManager.instance.boardScript.customGamepadMovementVariables.minSpeed;
+            average = (min) + ((max - min) * 0.5f);
+        }
+        else
+        {
+            max = GameManager.instance.boardScript.customGyroMovementVariables.maxSpeed;
+            min = GameManager.instance.boardScript.customGyroMovementVariables.minSpeed;
+            average = (min) + ((max - min) * 0.5f);
+        }
+        switch (GameManager.instance.boardScript.currentBoardSelection)
+        {
+            case BoardType.Original:
+                GameManager.instance.roundTimer.TimeLeft = 5.0f + (average / max) * 0.9f;
+                break;
+            case BoardType.MachI:
+                GameManager.instance.roundTimer.TimeLeft = 5.0f + (average / max) * 0.1f;
+                break;
+            case BoardType.MachII:
+                GameManager.instance.roundTimer.TimeLeft = 5.0f ;
+                break;
+            case BoardType.MachIII:
+                GameManager.instance.roundTimer.TimeLeft = 5.0f -((average / max) * 0.5f);
+                break;
+            case BoardType.Custom:
+                break;
+            default:
+                break;
+        }
 
         switch (GameManager.instance.gameMode.currentMode)
         {
