@@ -10,27 +10,28 @@ public class LevelMenu : MonoBehaviour
     enum DisplayToUpdate { TopScores, GameMode, AICount, Difficulty, PortalSelect, displayCount };
     bool[] displayUpdateFlags;
 
-    enum Levels { Canyon = 2, MultiEnvironment = 3, BackyardRacetrack = 4, levelCount };
+    enum Levels { Canyon = 2, MultiEnvironment, BackyardRacetrack, levelCount };
     Levels currentLevel = Levels.Canyon;
 
+    [Header("Sink Effect")]
     [SerializeField] BackBoardSinkEffect sinkEffect;
     [SerializeField] Transform[] backs;
 
     ManagerClasses.GameMode gameMode;
+    ManagerClasses.GameDifficulty gameDifficulty;
 
     [Header("Level Options")]
+    [SerializeField] TextMeshPro gameModeTMP;
     [SerializeField]
-    TextMeshPro gameModeTMP;
+    TextMeshPro difficultyTMP;
 
     [Header("Portal Select")]
-    [SerializeField]
-    WorldPortalProperties portal;
+    [SerializeField] WorldPortalProperties portal;
     [SerializeField] Image preview;
     [SerializeField] Sprite[] previewSprites;
 
     [Header("Top Scores")]
-    [SerializeField]
-    TextMeshPro[] highScoreTMPS;
+    [SerializeField] TextMeshPro[] highScoreTMPS;
     ScoreManager scoreScript;
     int[] scores = new int[10];
     float[] times = new float[10];
@@ -39,6 +40,7 @@ public class LevelMenu : MonoBehaviour
     void Start()
     {
         gameMode = GameManager.instance.gameMode;
+        gameDifficulty = GameManager.instance.gameDifficulty;
         scoreScript = GameManager.instance.scoreScript;
         gameModeTMP.text = gameMode.currentMode.ToString();
 
@@ -107,6 +109,26 @@ public class LevelMenu : MonoBehaviour
         displayUpdateFlags[(int)DisplayToUpdate.GameMode] = true;
         StartCoroutine(sinkEffect.SinkEffectCoroutine(backs[(int)DisplayToUpdate.TopScores]));
         StartCoroutine(sinkEffect.SinkEffectCoroutine(backs[(int)DisplayToUpdate.GameMode]));
+    }
+
+    public void NextDifficulty()
+    {
+        gameDifficulty.NextDifficulty();
+
+        displayUpdateFlags[(int)DisplayToUpdate.TopScores] = true;
+        displayUpdateFlags[(int)DisplayToUpdate.Difficulty] = true;
+        StartCoroutine(sinkEffect.SinkEffectCoroutine(backs[(int)DisplayToUpdate.TopScores]));
+        StartCoroutine(sinkEffect.SinkEffectCoroutine(backs[(int)DisplayToUpdate.Difficulty]));
+    }
+
+    public void PreviousDifficulty()
+    {
+        gameDifficulty.PreviousDifficulty();
+
+        displayUpdateFlags[(int)DisplayToUpdate.TopScores] = true;
+        displayUpdateFlags[(int)DisplayToUpdate.Difficulty] = true;
+        StartCoroutine(sinkEffect.SinkEffectCoroutine(backs[(int)DisplayToUpdate.TopScores]));
+        StartCoroutine(sinkEffect.SinkEffectCoroutine(backs[(int)DisplayToUpdate.Difficulty]));
     }
 
     public void UpdateScoreDisplay()
@@ -182,6 +204,7 @@ public class LevelMenu : MonoBehaviour
             case DisplayToUpdate.AICount:
                 break;
             case DisplayToUpdate.Difficulty:
+                difficultyTMP.text = gameDifficulty.currentDifficulty.ToString();
                 break;
             case DisplayToUpdate.PortalSelect:
                 preview.sprite = previewSprites[(int)currentLevel - 2];

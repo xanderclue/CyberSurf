@@ -9,7 +9,7 @@ public class BackBoardSinkEffect : MonoBehaviour
     Transform translationTransform;
 
     [SerializeField] float transitionTime = 1f;
-    [SerializeField] float sinkRate = 0.1f;
+    [SerializeField] float sinkRate = 6f;
     [SerializeField] float sinkDistance = 0.2f;
 
     void Start ()
@@ -37,10 +37,10 @@ public class BackBoardSinkEffect : MonoBehaviour
             switch (currentTransition)
             {
                 case TransitionStates.Sinking:
-                    currPosition = Vector3.Lerp(currPosition, sinkToPosition, sinkRate);
+                    currPosition = Vector3.Lerp(currPosition, sinkToPosition, sinkRate * Time.deltaTime);
                     break;
                 case TransitionStates.Floating:
-                    currPosition = Vector3.Lerp(currPosition, originalPosition, sinkRate);
+                    currPosition = Vector3.Lerp(currPosition, originalPosition, sinkRate * Time.deltaTime);
                     break;
             }
 

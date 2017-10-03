@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     //store our game mode
     public ManagerClasses.GameMode gameMode = new ManagerClasses.GameMode();
 
+    //store our game difficulty
+    public ManagerClasses.GameDifficulty gameDifficulty = new ManagerClasses.GameDifficulty();
+
     //store our round timer
     public ManagerClasses.RoundTimer roundTimer;
 
