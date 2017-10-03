@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using TMPro;
 public class LevelSelectOptions : LevelMenuObjectGroup
 {
     [SerializeField]
-    LevelMenuButton leftButton = null, rightButton = null;
+    private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField]
+    private TextMeshPro levelNameText = null;
     new private void Start()
     {
         base.Start();
@@ -10,5 +13,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
             Debug.LogWarning("Missing LevelSelectOptions.leftButton");
         if (null == rightButton)
             Debug.LogWarning("Missing LevelSelectOptions.rightButton");
+        if (null == levelNameText)
+            Debug.LogWarning("Missing LevelSelectOptions.levelNameText");
     }
 }

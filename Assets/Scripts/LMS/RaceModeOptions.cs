@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using TMPro;
 public class RaceModeOptions : LevelMenuObjectGroup
 {
     [SerializeField]
-    LevelMenuButton leftButton = null, rightButton = null;
+    private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField]
+    private TextMeshPro raceModeText = null;
     new private void Start()
     {
         base.Start();
@@ -10,5 +13,7 @@ public class RaceModeOptions : LevelMenuObjectGroup
             Debug.LogWarning("Missing RaceModeOptions.leftButton");
         if (null == rightButton)
             Debug.LogWarning("Missing RaceModeOptions.rightButton");
+        if (null == raceModeText)
+            Debug.LogWarning("Missing RaceModeOptions.raceModeText");
     }
 }

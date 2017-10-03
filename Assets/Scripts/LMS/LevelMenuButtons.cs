@@ -2,7 +2,7 @@
 public class LevelMenuButtons : LevelMenuObjectGroup
 {
     [SerializeField]
-    LevelMenuButton confirmButton = null, defaultButton = null, exitButton = null;
+    private LevelMenuButton confirmButton = null, defaultButton = null, exitButton = null;
     new private void Start()
     {
         base.Start();

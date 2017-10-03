@@ -2,7 +2,7 @@
 public class AiOptions : LevelMenuObjectGroup
 {
     [SerializeField]
-    LevelMenuButton plusButton = null, minusButton = null;
+    private LevelMenuButton plusButton = null, minusButton = null;
     new private void Start()
     {
         base.Start();

@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using TMPro;
 public class WeatherOptions : LevelMenuObjectGroup
 {
     [SerializeField]
-    LevelMenuButton leftButton = null, rightButton = null;
+    private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField]
+    private TextMeshPro weatherText = null;
     new private void Start()
     {
         base.Start();
@@ -10,5 +13,7 @@ public class WeatherOptions : LevelMenuObjectGroup
             Debug.LogWarning("Missing WeatherOptions.leftButton");
         if (null == rightButton)
             Debug.LogWarning("Missing WeatherOptions.rightButton");
+        if (null == weatherText)
+            Debug.LogWarning("Missing WeatherOptions.weatherText");
     }
 }

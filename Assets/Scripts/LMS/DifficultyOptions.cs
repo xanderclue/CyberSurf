@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using TMPro;
 public class DifficultyOptions : LevelMenuObjectGroup
 {
     [SerializeField]
-    LevelMenuButton leftButton = null, rightButton = null;
+    private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField]
+    private TextMeshPro difficultyText = null;
     new private void Start()
     {
         base.Start();
@@ -10,5 +13,7 @@ public class DifficultyOptions : LevelMenuObjectGroup
             Debug.LogWarning("Missing DifficultyOptions.leftButton");
         if (null == rightButton)
             Debug.LogWarning("Missing DifficultyOptions.rightButton");
+        if (null == difficultyText)
+            Debug.LogWarning("Missing DifficultyOptions.difficultyText");
     }
 }

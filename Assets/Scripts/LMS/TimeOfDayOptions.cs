@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using TMPro;
 public class TimeOfDayOptions : LevelMenuObjectGroup
 {
     [SerializeField]
-    LevelMenuButton leftButton = null, rightButton = null;
+    private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField]
+    private TextMeshPro timeOfDayText = null;
     new private void Start()
     {
         base.Start();
@@ -10,5 +13,7 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
             Debug.LogWarning("Missing TimeOfDayOptions.leftButton");
         if (null == rightButton)
             Debug.LogWarning("Missing TimeOfDayOptions.rightButton");
+        if (null == timeOfDayText)
+            Debug.LogWarning("Missing TimeOfDayOptions.timeOfDayText");
     }
 }
