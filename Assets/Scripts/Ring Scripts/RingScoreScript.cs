@@ -35,6 +35,7 @@ public class RingScoreScript : MonoBehaviour
 
     ParticleSystem hitEffect;
 
+    PlayerRespawn respawnScript;
 
     private void Start()
     {
@@ -45,6 +46,7 @@ public class RingScoreScript : MonoBehaviour
         capsuleType = typeof(CapsuleCollider);
         bonusTimeText = GameManager.player.GetComponentInChildren<bonusTimeTextUpdater>();
         hitEffect = GetComponentInChildren<ParticleSystem>();
+        respawnScript = GameManager.player.GetComponent<PlayerRespawn>();
 
         //set our prevRingInOrder to -1, so we don't apply a consecutive score multiplier for the very first ring we go through in a scene
         prevPositionInOrder = -1;
@@ -113,7 +115,7 @@ public class RingScoreScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetType() == capsuleType && other.tag == "Player")
+        if (!respawnScript.IsRespawning && other.GetType() == capsuleType && other.tag == "Player")
         {
             pArrowHandler.UpdatePlayerHUDPointer(rp);
 

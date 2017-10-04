@@ -145,7 +145,7 @@ public class PlayerGameplayController : MonoBehaviour
         }
 
         //update our currAcceleration based off of our inverted momentum variable
-        //give the player a boost for the first couple of seconds in a level
+        //give the player a boost for the first second in a level
         if (roundTimer.TimeInLevel < 1f)
             currAcceleration = movementVariables.downwardAcceleration;
         else

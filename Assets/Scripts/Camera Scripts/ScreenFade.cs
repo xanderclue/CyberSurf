@@ -128,8 +128,12 @@ public class ScreenFade : MonoBehaviour
 
     public void StartTransitionFade()
     {
-        StopAllCoroutines();
-        StartCoroutine(FadeOut());
+        //only start a new transition if we aren't already transitioning
+        if (gameState.currentState != GameStates.SceneTransition)
+        {
+            StopAllCoroutines();
+            StartCoroutine(FadeOut());
+        }
     }
 
     void OnEnable()

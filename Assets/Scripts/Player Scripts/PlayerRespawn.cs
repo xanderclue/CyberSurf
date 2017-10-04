@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    public Image theFadeObj;
+    [SerializeField] Image theFadeObj;
     float fadeTime = 1.0f;
 
     Rigidbody playerRB;
@@ -21,7 +21,6 @@ public class PlayerRespawn : MonoBehaviour
     float roundTimerStartTime;
 
     bool isRespawning = false;
-
 
     public bool IsRespawning { get { return isRespawning; } }
 
@@ -48,7 +47,7 @@ public class PlayerRespawn : MonoBehaviour
 
     public void RespawnPlayer(Transform rsPoint, float startTime, float countDownFrom = 3.25f)
     {
-        if (!isRespawning)
+        if (!isRespawning && GameManager.instance.gameState.currentState != GameStates.SceneTransition)
         {
             roundTimer.TimeLeft = 0f;
 
@@ -98,9 +97,9 @@ public class PlayerRespawn : MonoBehaviour
             playerRB.MoveRotation(Quaternion.Euler(respawnPoint.eulerAngles.x, respawnPoint.eulerAngles.y, 0f));
         }
 
-
-        //then start to fade in   
-        StartCoroutine(FadeIn());
+        //then start to fade in if we aren't transitioning
+        if (GameManager.instance.gameState.currentState != GameStates.SceneTransition)
+            StartCoroutine(FadeIn());
     }
 
     IEnumerator FadeIn()
@@ -116,7 +115,7 @@ public class PlayerRespawn : MonoBehaviour
         float quarterFadeTime = fadeTime * 0.25f;
         bool countdownStarted = false;
 
-        while (timeIntoFade < fadeTime)
+        while (timeIntoFade < fadeTime && GameManager.instance.gameState.currentState != GameStates.SceneTransition)
         {
             UpdateAlpha(false);
 
@@ -130,19 +129,23 @@ public class PlayerRespawn : MonoBehaviour
             yield return null;
         }
 
-        //wait for the countdown to finish if we need to
-        if (countDownTime - timeIntoFade > 0f)
-            yield return new WaitForSeconds(countDownTime - timeIntoFade);
+        //unlock movement, but only if we aren't transitioning
+        if (GameManager.instance.gameState.currentState != GameStates.SceneTransition)
+        {
+            //wait for the countdown to finish if we need to
+            if (countDownTime - timeIntoFade > 0f)
+                yield return new WaitForSeconds(countDownTime - timeIntoFade);
 
-        //unlock movement
-        EventManager.OnSetGameplayMovementLock(false);
+            EventManager.OnSetGameplayMovementLock(false);
 
-        //unpause the timer
-        roundTimer.PauseTimer(false);
+            //unpause the timer
+            roundTimer.PauseTimer(false);
 
+            isRespawning = false;
+        }
 
-        isRespawning = false;
         respawnPoint = null;
+
     }
 
     private void OnEnable()
