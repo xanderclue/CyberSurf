@@ -20,6 +20,7 @@ public class DifficultyOptions : LevelMenuObjectGroup
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;
         rightButton.OnButtonPressed += ButtonRightFunction;
+        difficultyText.SetText(GameManager.instance.gameDifficulty.currentDifficulty.ToString());
     }
     private void OnDisable()
     {
@@ -28,8 +29,12 @@ public class DifficultyOptions : LevelMenuObjectGroup
     }
     private void ButtonLeftFunction()
     {
+        GameManager.instance.gameDifficulty.PreviousDifficulty();
+        difficultyText.SetText(GameManager.instance.gameDifficulty.currentDifficulty.ToString());
     }
     private void ButtonRightFunction()
     {
+        GameManager.instance.gameDifficulty.NextDifficulty();
+        difficultyText.SetText(GameManager.instance.gameDifficulty.currentDifficulty.ToString());
     }
 }
