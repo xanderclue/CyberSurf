@@ -21,7 +21,7 @@ public class ringPathMaker : MonoBehaviour
 
     private void Start()
     {
-        myself = GetComponent<LineRenderer>();
+        myself = GetComponentInChildren<LineRenderer>();
     }
     
 
@@ -96,6 +96,7 @@ public class ringPathMaker : MonoBehaviour
 
             myself.positionCount = finalPoints.Length;
             myself.SetPositions(finalPoints);
+            //myself.useWorldSpace = true;
         }
     }
 
