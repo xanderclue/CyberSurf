@@ -7695,6 +7695,7 @@ MonoBehaviour:
   mirrorTrackOptions: {fileID: 114021199549219716}
   reverseTrackOptions: {fileID: 114831457507110512}
   lockTransform: {fileID: 4335094792909598}
+  sinkDuration: 0.45
 --- !u!114 &114114286555863384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11934,11 +11935,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93955179faec26419d6a98821a64c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrayedOut: 1
+  isGrayedOut: 0
   levelMenuScript: {fileID: 114110647125654334}
   leftButton: {fileID: 114514294216299514}
   rightButton: {fileID: 114702001666498918}
   raceModeText: {fileID: 114733922793852748}
+  defaultMode: 0
 --- !u!114 &114825388240848978
 MonoBehaviour:
   m_ObjectHideFlags: 1

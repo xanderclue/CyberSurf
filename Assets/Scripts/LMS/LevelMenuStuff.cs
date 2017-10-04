@@ -16,6 +16,9 @@ public class LevelMenuStuff : MonoBehaviour
     public ReverseTrackOptions reverseTrackOptions = null;
     [SerializeField]
     private Transform lockTransform = null;
+    [SerializeField]
+    private float sinkDuration = 0.45f;
+    public float SinkDuration { get { return sinkDuration; } }
 
     private void Start()
     {
