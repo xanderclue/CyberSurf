@@ -143,10 +143,15 @@ public class BoardManager : MonoBehaviour
             case BoardType.Original:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
+                    //downward acceleration, resting acceleration, upward acceleration, momentum
                     30f, 17f, 15f, 0.1f,
+                    //max speed, resting speed, min speed
                     25f, 15f, 12f,
+                    //pitch sensativity, yaw sensativity
                     3.45f, 3.45f,
+                    //max downward angle, resting angle, max upward angle
                     30f, 15f, 30f,
+                    //bounce modifier, mass, drag, angular drag
                     1f, 1f, 1f, 5f
                     );
                 break;
@@ -194,10 +199,15 @@ public class BoardManager : MonoBehaviour
             case BoardType.Original:
                 pmv = new ManagerClasses.PlayerMovementVariables
                     (
+                    //downward acceleration, resting acceleration, upward acceleration, momentum
                     30f, 17f, 15f, 0.1f,
+                    //max speed, resting speed, min speed
                     25f, 15f, 12f,
+                    //pitch sensativity, yaw sensativity
                     2.5f, 2.5f,
+                    //max downward angle, resting angle, max upward angle
                     30f, 15f, 30f,
+                    //bounce modifier, mass, drag, angular drag
                     1f, 1f, 1f, 5f
                     );
                 break;
