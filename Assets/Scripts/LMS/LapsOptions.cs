@@ -16,8 +16,9 @@ public class LapsOptions : LevelMenuObjectGroup
         if (null == lapsText)
             Debug.LogWarning("Missing LapsOptions.lapsText");
     }
-    private void OnEnable()
+    new private void OnEnable()
     {
+        base.OnEnable();
         plusButton.OnButtonPressed += ButtonPlusFunction;
         minusButton.OnButtonPressed += ButtonMinusFunction;
     }

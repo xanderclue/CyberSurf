@@ -11,8 +11,9 @@ public class ReverseTrackOptions : LevelMenuObjectGroup
         if (null == offButton)
             Debug.LogWarning("Missing ReverseTrackOptions.offButton");
     }
-    private void OnEnable()
+    new private void OnEnable()
     {
+        base.OnEnable();
         onButton.OnButtonPressed += ButtonOnFunction;
         offButton.OnButtonPressed += ButtonOffFunction;
     }

@@ -16,8 +16,9 @@ public class AiOptions : LevelMenuObjectGroup
         if (null == aiText)
             Debug.LogWarning("Missing AiOptions.aiText");
     }
-    private void OnEnable()
+    new private void OnEnable()
     {
+        base.OnEnable();
         plusButton.OnButtonPressed += ButtonPlusFunction;
         minusButton.OnButtonPressed += ButtonMinusFunction;
     }

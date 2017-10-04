@@ -3,6 +3,7 @@ public class LevelMenuStuff : MonoBehaviour
 {
     [SerializeField] private GameObject menuBox = null;
     [SerializeField] private EnterLevelOptionsButton enterLevelOptions = null;
+    public Material grayOutMaterial = null;
     public LevelMenuButtons levelMenuButtons = null;
     public LevelSelectOptions levelSelectOptions = null;
     public RaceModeOptions raceModeOptions = null;
@@ -25,6 +26,8 @@ public class LevelMenuStuff : MonoBehaviour
                 }
         if (null == enterLevelOptions)
             enterLevelOptions = GetComponentInChildren<EnterLevelOptionsButton>();
+        if (null == grayOutMaterial)
+            Debug.LogWarning("Missing LevelMenuStuff.grayOutMaterial");
         if (null == levelMenuButtons)
             levelMenuButtons = GetComponentInChildren<LevelMenuButtons>();
         if (null == levelSelectOptions)
@@ -50,6 +53,7 @@ public class LevelMenuStuff : MonoBehaviour
     }
     public void EnterMenu()
     {
+        ResetOptions();
         menuBox.SetActive(true);
         enterLevelOptions.gameObject.SetActive(false);
     }
@@ -57,5 +61,43 @@ public class LevelMenuStuff : MonoBehaviour
     {
         menuBox.SetActive(false);
         enterLevelOptions.gameObject.SetActive(true);
+    }
+    public void ResetOptions()
+    {
+        levelSelectOptions.ResetOptions();
+        raceModeOptions.ResetOptions();
+        lapsOptions.ResetOptions();
+        aiOptions.ResetOptions();
+        difficultyOptions.ResetOptions();
+        weatherOptions.ResetOptions();
+        timeOfDayOptions.ResetOptions();
+        mirrorTrackOptions.ResetOptions();
+        reverseTrackOptions.ResetOptions();
+    }
+    public void DefaultOptions()
+    {
+        levelMenuButtons.DefaultOptions();
+        levelSelectOptions.DefaultOptions();
+        raceModeOptions.DefaultOptions();
+        lapsOptions.DefaultOptions();
+        aiOptions.DefaultOptions();
+        difficultyOptions.DefaultOptions();
+        weatherOptions.DefaultOptions();
+        timeOfDayOptions.DefaultOptions();
+        mirrorTrackOptions.DefaultOptions();
+        reverseTrackOptions.DefaultOptions();
+    }
+    public void ConfirmOptions()
+    {
+        levelMenuButtons.ConfirmOptions();
+        levelSelectOptions.ConfirmOptions();
+        raceModeOptions.ConfirmOptions();
+        lapsOptions.ConfirmOptions();
+        aiOptions.ConfirmOptions();
+        difficultyOptions.ConfirmOptions();
+        weatherOptions.ConfirmOptions();
+        timeOfDayOptions.ConfirmOptions();
+        mirrorTrackOptions.ConfirmOptions();
+        reverseTrackOptions.ConfirmOptions();
     }
 }

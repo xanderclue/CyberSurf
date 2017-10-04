@@ -2,6 +2,8 @@
 
 public class LevelMenuObjectGroup : MonoBehaviour
 {
+    [SerializeField, Tooltip("Check this box if these options are not available for the game")]
+    private bool isGrayedOut = false;
     [SerializeField]
     private LevelMenuStuff levelMenuScript = null;
     protected LevelMenuStuff LevelMenuScript { get { return levelMenuScript; } }
@@ -16,6 +18,10 @@ public class LevelMenuObjectGroup : MonoBehaviour
             levelMenuScript = GetComponentInParent<LevelMenuStuff>();
         inactiveLocalPosition = activeLocalPosition = transform.localPosition;
         inactiveLocalPosition.z = -activeLocalPosition.z;
+        if (isGrayedOut)
+            foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+                if (null == mr.GetComponent<TMPro.TextMeshPro>())
+                    mr.material = levelMenuScript.grayOutMaterial;
     }
     public void EnableGroup()
     {
@@ -30,4 +36,10 @@ public class LevelMenuObjectGroup : MonoBehaviour
         tVal = Mathf.Clamp01(tVal += (groupEnabled ? Time.deltaTime : -Time.deltaTime) * invSinkDuration);
         transform.localPosition = Vector3.Lerp(inactiveLocalPosition, activeLocalPosition, tVal);
     }
+    protected void OnEnable()
+    {
+    }
+    public virtual void ConfirmOptions() { }
+    public virtual void ResetOptions() { }
+    public virtual void DefaultOptions() { }
 }

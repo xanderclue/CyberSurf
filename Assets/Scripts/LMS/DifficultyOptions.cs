@@ -6,6 +6,9 @@ public class DifficultyOptions : LevelMenuObjectGroup
     private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField]
     private TextMeshPro difficultyText = null;
+    [SerializeField]
+    private GameDifficulties defaultDifficulty = GameDifficulties.Normal;
+    private GameDifficulties tempDifficulty;
     new private void Start()
     {
         base.Start();
@@ -16,11 +19,11 @@ public class DifficultyOptions : LevelMenuObjectGroup
         if (null == difficultyText)
             Debug.LogWarning("Missing DifficultyOptions.difficultyText");
     }
-    private void OnEnable()
+    new private void OnEnable()
     {
+        base.OnEnable();
         leftButton.OnButtonPressed += ButtonLeftFunction;
         rightButton.OnButtonPressed += ButtonRightFunction;
-        difficultyText.SetText(GameManager.instance.gameDifficulty.currentDifficulty.ToString());
     }
     private void OnDisable()
     {
@@ -29,12 +32,34 @@ public class DifficultyOptions : LevelMenuObjectGroup
     }
     private void ButtonLeftFunction()
     {
-        GameManager.instance.gameDifficulty.PreviousDifficulty();
-        difficultyText.SetText(GameManager.instance.gameDifficulty.currentDifficulty.ToString());
+        if (tempDifficulty - 1 < 0)
+            tempDifficulty = GameDifficulties.GameDifficultiesSize - 1;
+        else
+            --tempDifficulty;
+        difficultyText.SetText(tempDifficulty.ToString());
     }
     private void ButtonRightFunction()
     {
-        GameManager.instance.gameDifficulty.NextDifficulty();
-        difficultyText.SetText(GameManager.instance.gameDifficulty.currentDifficulty.ToString());
+        if (tempDifficulty + 1 >= GameDifficulties.GameDifficultiesSize)
+            tempDifficulty = 0;
+        else
+            ++tempDifficulty;
+        difficultyText.SetText(tempDifficulty.ToString());
+    }
+    public override void ResetOptions()
+    {
+        base.ResetOptions();
+        tempDifficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+        difficultyText.SetText(tempDifficulty.ToString());
+    }
+    public override void ConfirmOptions()
+    {
+        base.ConfirmOptions();
+        GameManager.instance.gameDifficulty.currentDifficulty = tempDifficulty;
+    }
+    public override void DefaultOptions()
+    {
+        base.ConfirmOptions();
+        tempDifficulty = defaultDifficulty;
     }
 }

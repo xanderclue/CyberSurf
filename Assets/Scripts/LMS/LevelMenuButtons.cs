@@ -13,8 +13,9 @@ public class LevelMenuButtons : LevelMenuObjectGroup
         if (null == exitButton)
             Debug.LogWarning("Missing LevelMenuButtons.exitButton");
     }
-    private void OnEnable()
+    new private void OnEnable()
     {
+        base.OnEnable();
         confirmButton.OnButtonPressed += ButtonConfirmFunction;
         defaultButton.OnButtonPressed += ButtonDefaultFunction;
         exitButton.OnButtonPressed += ButtonExitFunction;
@@ -27,9 +28,11 @@ public class LevelMenuButtons : LevelMenuObjectGroup
     }
     private void ButtonConfirmFunction()
     {
+        LevelMenuScript.ConfirmOptions();
     }
     private void ButtonDefaultFunction()
     {
+        LevelMenuScript.DefaultOptions();
     }
     private void ButtonExitFunction()
     {

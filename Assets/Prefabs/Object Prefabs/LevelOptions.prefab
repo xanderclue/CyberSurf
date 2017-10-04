@@ -6726,6 +6726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b437168b1a3cb4e40b1dfe5280b85156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 1
   levelMenuScript: {fileID: 114110647125654334}
   onButton: {fileID: 114170824279131350}
   offButton: {fileID: 114114286555863384}
@@ -7653,6 +7654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuBox: {fileID: 1433330472624814}
   enterLevelOptions: {fileID: 114464552120079106}
+  grayOutMaterial: {fileID: 2100000, guid: 868fa035d1adf1b4ab3f0d7ba8c880e9, type: 2}
   levelMenuButtons: {fileID: 114480438708734428}
   levelSelectOptions: {fileID: 114833754981304134}
   raceModeOptions: {fileID: 114816025788011798}
@@ -8167,6 +8169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d8607054f59e54c89f6818b42887a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 1
   levelMenuScript: {fileID: 114110647125654334}
   plusButton: {fileID: 114097860401017268}
   minusButton: {fileID: 114178163046140110}
@@ -10021,6 +10024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3192bce9f03817409dcc9209e648b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 1
   levelMenuScript: {fileID: 114110647125654334}
   leftButton: {fileID: 114491660884744234}
   rightButton: {fileID: 114849910112537620}
@@ -10051,6 +10055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a37533364a70442bd06d131052bc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 0
   levelMenuScript: {fileID: 114110647125654334}
   confirmButton: {fileID: 114480214795007064}
   defaultButton: {fileID: 114322837310386988}
@@ -11403,6 +11408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e3d684d4eccf83469b0b6ec91b43d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 1
   levelMenuScript: {fileID: 114110647125654334}
   plusButton: {fileID: 114665964182801774}
   minusButton: {fileID: 114453388775428656}
@@ -11657,10 +11663,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4ebd2456c37b947b04b7b0c1691aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 0
   levelMenuScript: {fileID: 114110647125654334}
   leftButton: {fileID: 114562925760571950}
   rightButton: {fileID: 114872903938070912}
   difficultyText: {fileID: 114568339750923460}
+  defaultDifficulty: 1
 --- !u!114 &114768619649197386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11896,6 +11904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93955179faec26419d6a98821a64c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 1
   levelMenuScript: {fileID: 114110647125654334}
   leftButton: {fileID: 114514294216299514}
   rightButton: {fileID: 114702001666498918}
@@ -11926,6 +11935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb67d0f9db54d394cbdedd169a3871c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 1
   levelMenuScript: {fileID: 114110647125654334}
   leftButton: {fileID: 114961112686619468}
   rightButton: {fileID: 114718383615651436}
@@ -11941,6 +11951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6df08139021792469065caa203dd110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 1
   levelMenuScript: {fileID: 114110647125654334}
   onButton: {fileID: 114610616744621488}
   offButton: {fileID: 114834683352345292}
@@ -11955,6 +11966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5da1e775df6dbe4cbbf2a48407b211a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrayedOut: 1
   levelMenuScript: {fileID: 114110647125654334}
   leftButton: {fileID: 114825388240848978}
   rightButton: {fileID: 114863011113762782}
