@@ -11,6 +11,8 @@ public class BoardStandSelectBoard : SelectedObject
 
     Material renderMat = null;
 
+    [SerializeField] Color emissionColor;
+
     new private void Start()
     {
         base.Start();
@@ -27,7 +29,7 @@ public class BoardStandSelectBoard : SelectedObject
     {
         base.SelectedFunction();
         //renderMat.EnableKeyword("_EMISSION");
-        renderMat.SetColor("_EmissionColor", Color.white);
+        renderMat.SetColor("_EmissionColor", emissionColor);
     }
     protected override void DeselectedFunction()
     {

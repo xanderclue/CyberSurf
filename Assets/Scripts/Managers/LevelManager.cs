@@ -96,7 +96,7 @@ public class LevelManager : MonoBehaviour
                 EventManager.OnCallSetRingPath(RingPathIsOn);
                 break;
             case GameModes.Free:
-
+                gameManager.lastPortalBuildIndex = -1;
                 EventManager.OnCallSetRingPath(false);
                 break;
             default:
