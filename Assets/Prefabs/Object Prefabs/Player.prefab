@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 224543626258268952}
   - component: {fileID: 222398323504084782}
   - component: {fileID: 114235876065593640}
+  - component: {fileID: 114081857436335744}
   m_Layer: 5
   m_Name: BestLapTimeTextElement
   m_TagString: Untagged
@@ -143,6 +144,7 @@ GameObject:
   - component: {fileID: 224187793886902730}
   - component: {fileID: 222563787250810312}
   - component: {fileID: 114873019127939360}
+  - component: {fileID: 114036085885560214}
   m_Layer: 5
   m_Name: PlayerListTextElement
   m_TagString: Untagged
@@ -247,6 +249,7 @@ GameObject:
   - component: {fileID: 224804296335199322}
   - component: {fileID: 222935824142635928}
   - component: {fileID: 114976643420229956}
+  - component: {fileID: 114489387357279322}
   m_Layer: 5
   m_Name: PositionTextElement
   m_TagString: Untagged
@@ -550,6 +553,7 @@ GameObject:
   - component: {fileID: 224544847238725684}
   - component: {fileID: 222685434923506726}
   - component: {fileID: 114196473806494628}
+  - component: {fileID: 114445260790771390}
   m_Layer: 5
   m_Name: TimeGapTextElement
   m_TagString: Untagged
@@ -567,6 +571,7 @@ GameObject:
   - component: {fileID: 224460558137186030}
   - component: {fileID: 222946744585827462}
   - component: {fileID: 114526401393014850}
+  - component: {fileID: 114689482879339002}
   m_Layer: 5
   m_Name: CurrentLapTimeTextElement
   m_TagString: Untagged
@@ -652,6 +657,7 @@ GameObject:
   - component: {fileID: 224928046374758698}
   - component: {fileID: 222890765509047310}
   - component: {fileID: 114367895925075604}
+  - component: {fileID: 114557035150662100}
   m_Layer: 5
   m_Name: CheckpointTimeTextElement
   m_TagString: Untagged
@@ -864,6 +870,7 @@ GameObject:
   - component: {fileID: 224262469531237378}
   - component: {fileID: 222159742930972850}
   - component: {fileID: 114011618187102318}
+  - component: {fileID: 114515215534507940}
   m_Layer: 5
   m_Name: LapTextElement
   m_TagString: Untagged
@@ -1616,6 +1623,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114036085885560214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187298564201978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a852c8dac2f81ba4e8b57dc6ff980116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114057501859580884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1740,6 +1758,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraContainerTransform: {fileID: 4533433893766036}
+--- !u!114 &114081857436335744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172042722654924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4ee023d0c743c45a1fb822578b3abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114104859954865464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2802,6 +2831,17 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114445260790771390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1633117775499614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd7196e6f1118341b15c9f06c045127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114447452719579822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3064,6 +3104,17 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114489387357279322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1272517107269180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15892c955d3cc394384d13da5706a14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114492331848152630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3087,6 +3138,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theFadeObj: {fileID: 114757866654277876}
+--- !u!114 &114515215534507940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987632617331386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1242e74adecec4142a705c1bd1c2613b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114516686203932478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3434,6 +3496,17 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114557035150662100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1723714010538918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 582133d49522dd34a894417fa7aa1692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114573748196447276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3640,6 +3713,17 @@ MonoBehaviour:
   numberOfPoints: 5
   startingDistance: 4
   rotationLerpAmount: 0.1
+--- !u!114 &114689482879339002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1670047137387948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37b5be6f908d3d4ebd9aa69b12059c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114699823735932458
 MonoBehaviour:
   m_ObjectHideFlags: 1
