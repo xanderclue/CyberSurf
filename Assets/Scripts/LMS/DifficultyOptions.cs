@@ -61,5 +61,6 @@ public class DifficultyOptions : LevelMenuObjectGroup
     {
         base.ConfirmOptions();
         tempDifficulty = defaultDifficulty;
+        difficultyText.SetText(tempDifficulty.ToString());
     }
 }

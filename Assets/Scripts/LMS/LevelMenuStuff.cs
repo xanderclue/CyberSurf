@@ -14,6 +14,8 @@ public class LevelMenuStuff : MonoBehaviour
     public TimeOfDayOptions timeOfDayOptions = null;
     public MirrorTrackOptions mirrorTrackOptions = null;
     public ReverseTrackOptions reverseTrackOptions = null;
+    [SerializeField]
+    private Transform lockTransform = null;
 
     private void Start()
     {
@@ -48,17 +50,21 @@ public class LevelMenuStuff : MonoBehaviour
             mirrorTrackOptions = GetComponentInChildren<MirrorTrackOptions>();
         if (null == reverseTrackOptions)
             reverseTrackOptions = GetComponentInChildren<ReverseTrackOptions>();
+        if (null == lockTransform)
+            Debug.LogWarning("Missing LevelMenuStuff.lockTransform");
         menuBox.SetActive(false);
         enterLevelOptions.gameObject.SetActive(true);
     }
     public void EnterMenu()
     {
+        GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(lockTransform.position, lockTransform.rotation);
         ResetOptions();
         menuBox.SetActive(true);
         enterLevelOptions.gameObject.SetActive(false);
     }
     public void ExitMenu()
     {
+        GameManager.player.GetComponent<PlayerMenuController>().UnlockPlayerPosition();
         menuBox.SetActive(false);
         enterLevelOptions.gameObject.SetActive(true);
     }
