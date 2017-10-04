@@ -18,6 +18,14 @@ public class RingSetupScript : MonoBehaviour
         mode = GameManager.instance.gameMode.currentMode;
         difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
 
+        //turn off the parents, just in case they got left on
+        foreach (GameObject item in ringDifficultyParents)
+        {
+            if (item != null && item.activeSelf)
+                item.SetActive(false);
+        }
+
+        //turn on the parent depending on difficulty setting
         switch(difficulty)
         {
             case GameDifficulties.Easy:
