@@ -16,4 +16,20 @@ public class DifficultyOptions : LevelMenuObjectGroup
         if (null == difficultyText)
             Debug.LogWarning("Missing DifficultyOptions.difficultyText");
     }
+    private void OnEnable()
+    {
+        leftButton.OnButtonPressed += ButtonLeftFunction;
+        rightButton.OnButtonPressed += ButtonRightFunction;
+    }
+    private void OnDisable()
+    {
+        leftButton.OnButtonPressed -= ButtonLeftFunction;
+        rightButton.OnButtonPressed -= ButtonRightFunction;
+    }
+    private void ButtonLeftFunction()
+    {
+    }
+    private void ButtonRightFunction()
+    {
+    }
 }

@@ -16,4 +16,20 @@ public class LevelSelectOptions : LevelMenuObjectGroup
         if (null == levelNameText)
             Debug.LogWarning("Missing LevelSelectOptions.levelNameText");
     }
+    private void OnEnable()
+    {
+        leftButton.OnButtonPressed += ButtonLeftFunction;
+        rightButton.OnButtonPressed += ButtonRightFunction;
+    }
+    private void OnDisable()
+    {
+        leftButton.OnButtonPressed -= ButtonLeftFunction;
+        rightButton.OnButtonPressed -= ButtonRightFunction;
+    }
+    private void ButtonLeftFunction()
+    {
+    }
+    private void ButtonRightFunction()
+    {
+    }
 }

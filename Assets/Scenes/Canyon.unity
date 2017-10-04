@@ -1549,7 +1549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f3b5ca3a848c04a8bb10f838c36967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEffect: 2
+  myEffect: 3
 --- !u!135 &581266735
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3068,7 +3068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f3b5ca3a848c04a8bb10f838c36967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEffect: 2
+  myEffect: 3
 --- !u!135 &854152379
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4085,7 +4085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f3b5ca3a848c04a8bb10f838c36967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEffect: 2
+  myEffect: 3
 --- !u!135 &1352946734
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4623,6 +4623,21 @@ Prefab:
     - target: {fileID: 4854295015811652, guid: d27c166107038ea48a7a744520f2b618, type: 2}
       propertyPath: m_RootOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114422406415066274, guid: d27c166107038ea48a7a744520f2b618,
+        type: 2}
+      propertyPath: myEffect
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114064982492447126, guid: d27c166107038ea48a7a744520f2b618,
+        type: 2}
+      propertyPath: myEffect
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114675762088267226, guid: d27c166107038ea48a7a744520f2b618,
+        type: 2}
+      propertyPath: myEffect
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d27c166107038ea48a7a744520f2b618, type: 2}

@@ -3,16 +3,16 @@ public class LevelMenuStuff : MonoBehaviour
 {
     [SerializeField] private GameObject menuBox = null;
     [SerializeField] private EnterLevelOptionsButton enterLevelOptions = null;
-    [SerializeField] private LevelMenuButtons levelMenuButtons = null;
-    [SerializeField] private LevelSelectOptions levelSelectOptions = null;
-    [SerializeField] private RaceModeOptions raceModeOptions = null;
-    [SerializeField] private LapsOptions lapsOptions = null;
-    [SerializeField] private AiOptions aiOptions = null;
-    [SerializeField] private DifficultyOptions difficultyOptions = null;
-    [SerializeField] private WeatherOptions weatherOptions = null;
-    [SerializeField] private TimeOfDayOptions timeOfDayOptions = null;
-    [SerializeField] private MirrorTrackOptions mirrorTrackOptions = null;
-    [SerializeField] private ReverseTrackOptions reverseTrackOptions = null;
+    public LevelMenuButtons levelMenuButtons = null;
+    public LevelSelectOptions levelSelectOptions = null;
+    public RaceModeOptions raceModeOptions = null;
+    public LapsOptions lapsOptions = null;
+    public AiOptions aiOptions = null;
+    public DifficultyOptions difficultyOptions = null;
+    public WeatherOptions weatherOptions = null;
+    public TimeOfDayOptions timeOfDayOptions = null;
+    public MirrorTrackOptions mirrorTrackOptions = null;
+    public ReverseTrackOptions reverseTrackOptions = null;
 
     private void Start()
     {

@@ -6,6 +6,10 @@ public class LevelMenuObjectGroup : MonoBehaviour
     private LevelMenuStuff levelMenuScript = null;
     protected LevelMenuStuff LevelMenuScript { get { return levelMenuScript; } }
     private Vector3 activeLocalPosition, inactiveLocalPosition;
+    private float tVal = 1.0f;
+    private const float sinkDuration = 0.75f;
+    private const float invSinkDuration = 1.0f / sinkDuration;
+    private bool groupEnabled = true;
     protected void Start()
     {
         if (null == levelMenuScript)
@@ -15,10 +19,15 @@ public class LevelMenuObjectGroup : MonoBehaviour
     }
     public void EnableGroup()
     {
-        transform.localPosition = activeLocalPosition;
+        groupEnabled = true;
     }
     public void DisableGroup()
     {
-        transform.localPosition = inactiveLocalPosition;
+        groupEnabled = false;
+    }
+    protected void Update()
+    {
+        tVal = Mathf.Clamp01(tVal += (groupEnabled ? Time.deltaTime : -Time.deltaTime) * invSinkDuration);
+        transform.localPosition = Vector3.Lerp(inactiveLocalPosition, activeLocalPosition, tVal);
     }
 }

@@ -16,4 +16,20 @@ public class WeatherOptions : LevelMenuObjectGroup
         if (null == weatherText)
             Debug.LogWarning("Missing WeatherOptions.weatherText");
     }
+    private void OnEnable()
+    {
+        leftButton.OnButtonPressed += ButtonLeftFunction;
+        rightButton.OnButtonPressed += ButtonRightFunction;
+    }
+    private void OnDisable()
+    {
+        leftButton.OnButtonPressed -= ButtonLeftFunction;
+        rightButton.OnButtonPressed -= ButtonRightFunction;
+    }
+    private void ButtonLeftFunction()
+    {
+    }
+    private void ButtonRightFunction()
+    {
+    }
 }

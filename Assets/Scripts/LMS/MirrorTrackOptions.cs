@@ -11,4 +11,20 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
         if (null == offButton)
             Debug.LogWarning("Missing MirrorTrackOptions.offButton");
     }
+    private void OnEnable()
+    {
+        onButton.OnButtonPressed += ButtonOnFunction;
+        offButton.OnButtonPressed += ButtonOffFunction;
+    }
+    private void OnDisable()
+    {
+        onButton.OnButtonPressed -= ButtonOnFunction;
+        offButton.OnButtonPressed -= ButtonOffFunction;
+    }
+    private void ButtonOnFunction()
+    {
+    }
+    private void ButtonOffFunction()
+    {
+    }
 }

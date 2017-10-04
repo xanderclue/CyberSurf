@@ -16,4 +16,20 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
         if (null == timeOfDayText)
             Debug.LogWarning("Missing TimeOfDayOptions.timeOfDayText");
     }
+    private void OnEnable()
+    {
+        leftButton.OnButtonPressed += ButtonLeftFunction;
+        rightButton.OnButtonPressed += ButtonRightFunction;
+    }
+    private void OnDisable()
+    {
+        leftButton.OnButtonPressed -= ButtonLeftFunction;
+        rightButton.OnButtonPressed -= ButtonRightFunction;
+    }
+    private void ButtonLeftFunction()
+    {
+    }
+    private void ButtonRightFunction()
+    {
+    }
 }

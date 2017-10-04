@@ -15,10 +15,24 @@ public class LevelMenuButtons : LevelMenuObjectGroup
     }
     private void OnEnable()
     {
-        exitButton.OnButtonPressed += LevelMenuScript.ExitMenu;
+        confirmButton.OnButtonPressed += ButtonConfirmFunction;
+        defaultButton.OnButtonPressed += ButtonDefaultFunction;
+        exitButton.OnButtonPressed += ButtonExitFunction;
     }
     private void OnDisable()
     {
-        exitButton.OnButtonPressed -= LevelMenuScript.ExitMenu;
+        confirmButton.OnButtonPressed -= ButtonConfirmFunction;
+        defaultButton.OnButtonPressed -= ButtonDefaultFunction;
+        exitButton.OnButtonPressed -= ButtonExitFunction;
+    }
+    private void ButtonConfirmFunction()
+    {
+    }
+    private void ButtonDefaultFunction()
+    {
+    }
+    private void ButtonExitFunction()
+    {
+        LevelMenuScript.ExitMenu();
     }
 }
