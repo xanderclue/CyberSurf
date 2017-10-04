@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class MirrorTrackOptions : LevelMenuObjectGroup
+public class ReverseTrackOptions : LevelMenuObjectGroup
 {
     [SerializeField]
     private LevelMenuButton onButton = null, offButton = null;
@@ -7,9 +7,9 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     {
         base.Start();
         if (null == onButton)
-            Debug.LogWarning("Missing MirrorTrackOptions.onButton");
+            Debug.LogWarning("Missing ReverseTrackOptions.onButton");
         if (null == offButton)
-            Debug.LogWarning("Missing MirrorTrackOptions.offButton");
+            Debug.LogWarning("Missing ReverseTrackOptions.offButton");
     }
     new private void OnEnable()
     {
@@ -21,6 +21,18 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     {
         onButton.OnButtonPressed -= ButtonOnFunction;
         offButton.OnButtonPressed -= ButtonOffFunction;
+    }
+    public override void EnableGroup()
+    {
+        base.EnableGroup();
+        onButton.enabled = true;
+        offButton.enabled = true;
+    }
+    public override void DisableGroup()
+    {
+        base.DisableGroup();
+        onButton.enabled = false;
+        offButton.enabled = false;
     }
     private void ButtonOnFunction()
     {

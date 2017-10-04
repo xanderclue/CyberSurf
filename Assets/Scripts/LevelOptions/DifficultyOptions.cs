@@ -30,13 +30,25 @@ public class DifficultyOptions : LevelMenuObjectGroup
         leftButton.OnButtonPressed -= ButtonLeftFunction;
         rightButton.OnButtonPressed -= ButtonRightFunction;
     }
+    public override void EnableGroup()
+    {
+        base.EnableGroup();
+        leftButton.enabled = true;
+        rightButton.enabled = true;
+    }
+    public override void DisableGroup()
+    {
+        base.DisableGroup();
+        leftButton.enabled = false;
+        rightButton.enabled = false;
+    }
     private void ButtonLeftFunction()
     {
         if (tempDifficulty - 1 < 0)
             tempDifficulty = GameDifficulties.GameDifficultiesSize - 1;
         else
             --tempDifficulty;
-        difficultyText.SetText(tempDifficulty.ToString());
+        UpdateDisplay();
     }
     private void ButtonRightFunction()
     {
@@ -44,13 +56,13 @@ public class DifficultyOptions : LevelMenuObjectGroup
             tempDifficulty = 0;
         else
             ++tempDifficulty;
-        difficultyText.SetText(tempDifficulty.ToString());
+        UpdateDisplay();
     }
     public override void ResetOptions()
     {
         base.ResetOptions();
         tempDifficulty = GameManager.instance.gameDifficulty.currentDifficulty;
-        difficultyText.SetText(tempDifficulty.ToString());
+        UpdateDisplay();
     }
     public override void ConfirmOptions()
     {
@@ -61,6 +73,10 @@ public class DifficultyOptions : LevelMenuObjectGroup
     {
         base.ConfirmOptions();
         tempDifficulty = defaultDifficulty;
+        UpdateDisplay();
+    }
+    private void UpdateDisplay()
+    {
         difficultyText.SetText(tempDifficulty.ToString());
     }
 }

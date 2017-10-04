@@ -21,11 +21,11 @@ public class LevelMenuObjectGroup : MonoBehaviour
                 if (null == mr.GetComponent<TMPro.TextMeshPro>())
                     mr.material = levelMenuScript.grayOutMaterial;
     }
-    public void EnableGroup()
+    public virtual void EnableGroup()
     {
         groupEnabled = true;
     }
-    public void DisableGroup()
+    public virtual void DisableGroup()
     {
         groupEnabled = false;
     }
