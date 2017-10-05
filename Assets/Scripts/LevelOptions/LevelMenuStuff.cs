@@ -108,5 +108,6 @@ public class LevelMenuStuff : MonoBehaviour
         timeOfDayOptions.ConfirmOptions();
         mirrorTrackOptions.ConfirmOptions();
         reverseTrackOptions.ConfirmOptions();
+        ExitMenu();
     }
 }
