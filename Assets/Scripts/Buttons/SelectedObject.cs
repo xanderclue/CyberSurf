@@ -38,12 +38,15 @@ public abstract class SelectedObject : MonoBehaviour
     //grabs the reticle object to show timer status
     public void Selected(reticle grabbedReticle)
     {
-        theReticle = grabbedReticle;
         if (!CanSelect || isDisabled)
             return;
         TooltipTextScript.SetText(tooltipText);
         SelectedFunction();
-        isSelected = true;
+        if (!tooltipOnly)
+        {
+            theReticle = grabbedReticle;
+            isSelected = true;
+        }
     }
 
     //What the class actually does with the object while selected(if applicable)
@@ -54,11 +57,14 @@ public abstract class SelectedObject : MonoBehaviour
     {
         TooltipTextScript.SetText("");
         DeselectedFunction();
-        theReticle.UpdateReticleFill(0.0f);
-        isSelected = false;
-        timeWaited = 0;
-        delayTime = 0;
-        CanSelect = true;
+        if (!tooltipOnly)
+        {
+            theReticle.UpdateReticleFill(0.0f);
+            isSelected = false;
+            timeWaited = 0;
+            delayTime = 0;
+            CanSelect = true;
+        }
     }
 
     //Cleans up what the class actually does(if applicable)
@@ -69,6 +75,8 @@ public abstract class SelectedObject : MonoBehaviour
 
     protected void FixedUpdate()
     {
+        if (tooltipOnly)
+            return;
         if (isSelected && CanSelect && !isDisabled)
         {
             ++delayTime;
@@ -104,7 +112,7 @@ public abstract class SelectedObject : MonoBehaviour
     {
         if (gameObject.layer != LayerMask.NameToLayer(LAYERNAME))
         {
-            Debug.LogWarning("SelectableObject is not in " + LAYERNAME + " layer. (\"" + BuildDebugger.GetHierarchyName(gameObject) + "\") Changing layer from " +
+            Debug.LogWarning("A SelectedObject is not in " + LAYERNAME + " layer. (\"" + BuildDebugger.GetHierarchyName(gameObject) + "\") Changing layer from " +
                 LayerMask.LayerToName(gameObject.layer) + " (" + gameObject.layer + ") to " + LAYERNAME + " (" + LayerMask.NameToLayer(LAYERNAME) + ")");
             gameObject.layer = LayerMask.NameToLayer(LAYERNAME);
         }
@@ -117,7 +125,8 @@ public abstract class SelectedObject : MonoBehaviour
 
     protected void Update()
     {
-        waitTimer -= Time.deltaTime;
+        if (!tooltipOnly)
+            waitTimer -= Time.deltaTime;
     }
     protected void SetupTooltipOnly()
     {

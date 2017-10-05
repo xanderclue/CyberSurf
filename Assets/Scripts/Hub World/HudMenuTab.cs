@@ -2,7 +2,7 @@
 public class HudMenuTab : MenuTab
 {
     [SerializeField]
-    HudOnOffObject overallHud = null, reticle = null, speed = null, timer = null, score = null, players = null, ringCount = null, arrow = null, lapCounter = null, position = null;
+    HudOnOffObject overallHud = null, reticle = null, speed = null, timer = null, score = null, players = null, compass = null, arrow = null, lapCounter = null, position = null;
     private void Start()
     {
         if (null == overallHud)
@@ -17,8 +17,8 @@ public class HudMenuTab : MenuTab
             Debug.LogWarning("Menu System: HudMenuTab missing reference to Score object");
         if (null == players)
             Debug.LogWarning("Menu System: HudMenuTab missing reference to Players object");
-        if (null == ringCount)
-            Debug.LogWarning("Menu System: HudMenuTab missing reference to Ring Count object");
+        if (null == compass)
+            Debug.LogWarning("Menu System: HudMenuTab missing reference to Compass object");
         if (null == arrow)
             Debug.LogWarning("Menu System: HudMenuTab missing reference to Arrow object");
         if (null == lapCounter)

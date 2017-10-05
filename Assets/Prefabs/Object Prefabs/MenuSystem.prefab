@@ -2029,9 +2029,8 @@ GameObject:
   - component: {fileID: 65058138154055686}
   - component: {fileID: 23271083427587768}
   - component: {fileID: 114859726296961634}
-  - component: {fileID: 114133726870354532}
   m_Layer: 10
-  m_Name: RingCount
+  m_Name: Compass
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9182,22 +9181,6 @@ MonoBehaviour:
   delay: 20
   waitTime: 1.5
   tooltipOnly: 0
---- !u!114 &114133726870354532
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1889038879515470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f2d53475193ba4ebe0317174cce46f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tooltipText: 
-  timeToWait: 50
-  delay: 20
-  waitTime: 1.5
-  tooltipOnly: 0
 --- !u!114 &114135645499501296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10725,7 +10708,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: On
+  m_text: N/A
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -16292,7 +16275,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Ring Count
+  m_text: Compass
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -16525,7 +16508,7 @@ MonoBehaviour:
   timer: {fileID: 114400108637269662}
   score: {fileID: 114552706013998848}
   players: {fileID: 114633549169589482}
-  ringCount: {fileID: 114859726296961634}
+  compass: {fileID: 114859726296961634}
   arrow: {fileID: 114075123488859400}
   lapCounter: {fileID: 114128872509786768}
   position: {fileID: 114909078896152538}
