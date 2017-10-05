@@ -6,7 +6,7 @@ public class unlockMenuMoveButton : SelectedObject
 {
     public GameObject panel;
 
-    override public void selectSuccessFunction()
+    override public void SuccessFunction()
     {
         GameManager.player.GetComponent<PlayerMenuController>().ToggleMenuMovement(false);
         gameObject.SetActive(false);

@@ -14,7 +14,7 @@
         if (null != OnSelected)
             OnSelected();
     }
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         if (null != OnSelectSuccess)
             OnSelectSuccess();

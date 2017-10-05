@@ -36,7 +36,7 @@ public class togleDebugHUD : SelectedObject
         isOnUpdate();
     }
 
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         if (safeCheck)
         {

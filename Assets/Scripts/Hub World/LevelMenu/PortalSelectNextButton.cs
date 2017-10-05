@@ -12,7 +12,7 @@ public class PortalSelectNextButton : SelectedObject
         levelMenu = GetComponentInParent<LevelMenu>();
     }
 
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         levelMenu.NextLevel();
     }

@@ -44,7 +44,7 @@ public class EnterMainMenuButton : SelectedObject
         base.DeselectedFunction();
         meshRenderer.material = noHoverMat;
     }
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         if (null != menuBox && null != menuSystem)
         {

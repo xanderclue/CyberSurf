@@ -34,7 +34,7 @@ public class closeScoreSplashScreen : SelectedObject
         }
     }
 
-    override public void selectSuccessFunction()
+    override public void SuccessFunction()
     {
         GameManager.player.GetComponent<PlayerMenuController>().ToggleMenuMovement(false);
         gameObject.SetActive(false);

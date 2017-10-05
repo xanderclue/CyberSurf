@@ -10,7 +10,7 @@ public class ExitLevelOptionsButton : SelectedObject
         if (null == levelMenuScript)
             levelMenuScript = GetComponentInParent<LevelMenuStuff>();
     }
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         levelMenuScript.ExitMenu();
     }

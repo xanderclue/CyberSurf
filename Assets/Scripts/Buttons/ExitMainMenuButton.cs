@@ -11,7 +11,7 @@ public class ExitMainMenuButton : SelectedObject
             enterMenuObject = FindObjectOfType<EnterMainMenuButton>();
     }
 
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         if (null != GetComponentInParent<MainMenu>().OnMenuExit)
             GetComponentInParent<MainMenu>().OnMenuExit();

@@ -13,7 +13,7 @@ public class GameModeNextButton : SelectedObject
         levelMenu = GetComponentInParent<LevelMenu>();
     }
 
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         levelMenu.NextGameMode();
     }

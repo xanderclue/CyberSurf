@@ -23,7 +23,7 @@ public class TogglePredictivePathButton : SelectedObject
         EventManager.OnUpdateButtons += isOnUpdate;
         isOnUpdate();
     }
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         IsOn = !IsOn;
         if (IsOn)

@@ -9,7 +9,7 @@ public class VolumeControl : SelectedObject
     private float volumeIncrement = 0.0625f;
     [SerializeField]
     private AudioType audioType;
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         switch (audioType)
         {

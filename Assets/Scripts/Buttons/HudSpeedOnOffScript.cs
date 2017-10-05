@@ -35,7 +35,7 @@ public class HudSpeedOnOffScript : SelectedObject
         isOnUpdate();
     }
 
-    override public void selectSuccessFunction()
+    override public void SuccessFunction()
     {
         if (safeCheck)
         {

@@ -4,7 +4,7 @@ public class downLetterScript : SelectedObject
 {
     [SerializeField]
     private TextMeshPro textMesh;
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         textMesh.ForceMeshUpdate();
         char letter = textMesh.GetParsedText()[0];

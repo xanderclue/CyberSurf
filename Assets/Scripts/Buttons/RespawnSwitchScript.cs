@@ -34,7 +34,7 @@ public class RespawnSwitchScript : SelectedObject
         respawnOnOffText = gameObject.GetComponentInChildren<TextMeshPro>();
     }
 
-    override public void selectSuccessFunction()
+    override public void SuccessFunction()
     {
         IsOn = !IsOn;
         if (IsOn)

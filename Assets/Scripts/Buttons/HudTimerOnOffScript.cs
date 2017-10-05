@@ -40,7 +40,7 @@ public class HudTimerOnOffScript : SelectedObject
         EventManager.OnUpdateButtons -= isOnUpdate;
     }
 
-    override public void selectSuccessFunction()
+    override public void SuccessFunction()
     {
         if (safeCheck)
         {

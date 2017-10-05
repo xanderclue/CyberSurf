@@ -17,7 +17,7 @@ public class EnterLevelOptionsButton : SelectedObject
         base.Update();
         gameObject.transform.Rotate(0.0f, Time.deltaTime * rotationSpeed, 0.0f);
     }
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         levelMenuScript.EnterMenu();
     }

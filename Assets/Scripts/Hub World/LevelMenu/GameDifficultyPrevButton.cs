@@ -12,7 +12,7 @@ public class GameDifficultyPrevButton : SelectedObject
         levelMenu = GetComponentInParent<LevelMenu>();
     }
 
-    public override void selectSuccessFunction()
+    public override void SuccessFunction()
     {
         levelMenu.PreviousDifficulty();
     }

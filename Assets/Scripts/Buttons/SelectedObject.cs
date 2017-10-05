@@ -65,7 +65,7 @@ public abstract class SelectedObject : MonoBehaviour
     protected virtual void DeselectedFunction() { }
 
     //what the class actually does when select is successful, inherited class must fill this out
-    public abstract void selectSuccessFunction();
+    public abstract void SuccessFunction();
 
     protected void FixedUpdate()
     {
@@ -76,7 +76,7 @@ public abstract class SelectedObject : MonoBehaviour
                 ++timeWaited;
             if (timeWaited >= timeToWait)
             {
-                selectSuccessFunction();
+                SuccessFunction();
                 CanSelect = false;
                 theReticle.UpdateReticleFill(0.0f);
                 timeWaited = 0;

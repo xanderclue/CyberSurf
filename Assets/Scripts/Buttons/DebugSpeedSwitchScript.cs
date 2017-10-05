@@ -34,7 +34,7 @@ public class DebugSpeedSwitchScript : SelectedObject
         debugSpeedOnOffText = gameObject.GetComponentInChildren<TextMeshPro>();
     }
 
-    override public void selectSuccessFunction()
+    override public void SuccessFunction()
     {
         IsOn = !IsOn;
         controllerIsOnUpdate();

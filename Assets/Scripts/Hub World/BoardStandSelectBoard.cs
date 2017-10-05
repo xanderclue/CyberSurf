@@ -37,7 +37,7 @@ public class BoardStandSelectBoard : SelectedObject
         //renderMat.DisableKeyword("_EMISSION");
         renderMat.SetColor("_EmissionColor", Color.black);
     }
-    override public void selectSuccessFunction()
+    override public void SuccessFunction()
     {
         //set the player board to one of our pre-defined boards
         boardManager.BoardSelect(selectionVariables.boardType);
