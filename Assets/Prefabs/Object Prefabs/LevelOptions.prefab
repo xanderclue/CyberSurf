@@ -6736,6 +6736,8 @@ MonoBehaviour:
   levelMenuScript: {fileID: 114110647125654334}
   onButton: {fileID: 114170824279131350}
   offButton: {fileID: 114114286555863384}
+  activeMaterial: {fileID: 2100000, guid: 3fea99354ec30d44989524a085dac173, type: 2}
+  defaultValue: 0
 --- !u!114 &114022285470159250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7561,6 +7563,7 @@ MonoBehaviour:
   reverseTrackOptions: {fileID: 114831457507110512}
   lockTransform: {fileID: 4335094792909598}
   sinkDuration: 0.45
+  forceNoGray: 1
 --- !u!114 &114114286555863384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11893,6 +11896,8 @@ MonoBehaviour:
   levelMenuScript: {fileID: 114110647125654334}
   onButton: {fileID: 114610616744621488}
   offButton: {fileID: 114834683352345292}
+  activeMaterial: {fileID: 2100000, guid: 3fea99354ec30d44989524a085dac173, type: 2}
+  defaultValue: 0
 --- !u!114 &114833754981304134
 MonoBehaviour:
   m_ObjectHideFlags: 1

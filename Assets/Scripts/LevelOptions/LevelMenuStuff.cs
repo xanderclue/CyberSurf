@@ -110,4 +110,6 @@ public class LevelMenuStuff : MonoBehaviour
         reverseTrackOptions.ConfirmOptions();
         ExitMenu();
     }
+    [Space]
+    public bool forceNoGray = false;
 }

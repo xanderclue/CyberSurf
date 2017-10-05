@@ -32,6 +32,18 @@ public class WeatherOptions : LevelMenuObjectGroup
         leftButton.OnButtonPressed -= ButtonLeftFunction;
         rightButton.OnButtonPressed -= ButtonRightFunction;
     }
+    public override void EnableGroup()
+    {
+        base.EnableGroup();
+        leftButton.enabled = true;
+        rightButton.enabled = true;
+    }
+    public override void DisableGroup()
+    {
+        base.DisableGroup();
+        leftButton.enabled = false;
+        rightButton.enabled = false;
+    }
     private void ButtonLeftFunction()
     {
         if (0 == tempWeather)
