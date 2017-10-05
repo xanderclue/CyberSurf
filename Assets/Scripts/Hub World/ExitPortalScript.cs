@@ -49,8 +49,12 @@ public class ExitPortalScript : MonoBehaviour
         Application.Quit();
 
         //in case we're in the editor
-        yield return new WaitForSeconds(1f);
-        pmc.ToggleMenuMovement(false);
-        theFadeObj.material.color = new Color(0f, 0f, 0f, 0f);
+        if (Application.isEditor)
+        {
+            yield return new WaitForSeconds(1f);
+            pmc.ToggleMenuMovement(false);
+            theFadeObj.material.color = new Color(0f, 0f, 0f, 0f);
+        }       
     }
+
 }
