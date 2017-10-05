@@ -6,6 +6,11 @@ public class WeatherOptions : LevelMenuObjectGroup
     private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField]
     private TextMeshPro weatherText = null;
+    private enum Weather { Sunny, Rainy, Snowy, NumWeathers }
+    [SerializeField]
+    private Weather defaultWeather = Weather.Sunny;
+    private Weather tempWeather;
+    private static Weather ActualWeather { get; set; } // replace with game's value
     new private void Start()
     {
         base.Start();
@@ -29,8 +34,38 @@ public class WeatherOptions : LevelMenuObjectGroup
     }
     private void ButtonLeftFunction()
     {
+        if (0 == tempWeather)
+            tempWeather = Weather.NumWeathers - 1;
+        else
+            --tempWeather;
+        UpdateDisplay();
     }
     private void ButtonRightFunction()
     {
+        ++tempWeather;
+        if (Weather.NumWeathers == tempWeather)
+            tempWeather = 0;
+        UpdateDisplay();
+    }
+    private void UpdateDisplay()
+    {
+        weatherText.SetText(tempWeather.ToString());
+    }
+    public override void ConfirmOptions()
+    {
+        base.ConfirmOptions();
+        ActualWeather = tempWeather;
+    }
+    public override void DefaultOptions()
+    {
+        base.DefaultOptions();
+        tempWeather = defaultWeather;
+        UpdateDisplay();
+    }
+    public override void ResetOptions()
+    {
+        base.ResetOptions();
+        tempWeather = ActualWeather;
+        UpdateDisplay();
     }
 }

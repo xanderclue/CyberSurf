@@ -159,18 +159,6 @@ public class PlayerMenuController : MonoBehaviour
             playerRB.AddForce(appliedHoverForce, ForceMode.Acceleration);
         }
     }
-    private bool spawnLock = false;
-    private void ReturnToSpawnPoint()
-    {
-        lockingMotion = false;
-        startMotionPos = playerRB.transform.position;
-        startMotionRot = endMotionRot = playerRB.transform.rotation;
-        endMotionPos = GameManager.instance.levelScript.spawnPoints[SceneManager.GetActiveScene().buildIndex].position;
-        tVal = 0.0f;
-        spawnLock = true;
-        playerRB.GetComponent<CapsuleCollider>().enabled = false;
-        lockingMotion = true;
-    }
 
     private IEnumerator ControllerCoroutine()
     {
@@ -182,8 +170,6 @@ public class PlayerMenuController : MonoBehaviour
 
         if (!menuMovementIsLocked)
         {
-            if (Input.GetButtonDown("XBox Start") || Input.GetKeyDown(KeyCode.R))
-                ReturnToSpawnPoint();
             playerRB.AddRelativeForce(0.0f, 0.0f, Input.GetAxis("LVertical") * controllerForwardSpeed);
             playerRB.AddRelativeTorque(0.0f, Input.GetAxis("LHorizontal") * controllerTurnSpeed, 0.0f);
         }
@@ -265,12 +251,7 @@ public class PlayerMenuController : MonoBehaviour
                 playerRB.transform.position = endMotionPos;
                 playerRB.transform.rotation = endMotionRot;
                 lockingMotion = false;
-                if (spawnLock)
-                {
-                    playerRB.GetComponent<CapsuleCollider>().enabled = true;
-                    spawnLock = false;
-                }
-                else if (null != OnPlayerLock)
+                if (null != OnPlayerLock)
                     OnPlayerLock();
             }
             else

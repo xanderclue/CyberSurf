@@ -9947,6 +9947,7 @@ MonoBehaviour:
   leftButton: {fileID: 114491660884744234}
   rightButton: {fileID: 114849910112537620}
   timeOfDayText: {fileID: 114418080316568028}
+  defaultTimeOfDay: 2
 --- !u!114 &114480214795007064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11876,6 +11877,7 @@ MonoBehaviour:
   leftButton: {fileID: 114961112686619468}
   rightButton: {fileID: 114718383615651436}
   weatherText: {fileID: 114061624515559314}
+  defaultWeather: 0
 --- !u!114 &114831457507110512
 MonoBehaviour:
   m_ObjectHideFlags: 1
