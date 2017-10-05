@@ -29,6 +29,11 @@ public class trailStripCreator : MonoBehaviour
     //since we're using a fixed time step, use the inverse of our time step in order to prevent divisions every update. 1 / 0.02 = 50
     float inverseDeltaTime = 50f;
 
+
+    //[SerializeField] LineRenderer theLine;
+    //[SerializeField] Transform boardFront;
+    //Vector3[] lineRPoints;
+
     //use to enable or disable the trail
     public void TogglePredictiveTrail(bool enabled)
     {
@@ -136,6 +141,15 @@ public class trailStripCreator : MonoBehaviour
 
             //TODO:: couldn't we just calculate the player's speed once per update, then use that in every script that needs the velocity.magnitude...?
             cookieTransforms[i].Translate(cookieTransforms[i].forward * playerRigidBody.velocity.magnitude * timeIncrement * (i + startingDistance), Space.World);
+
+            //Line render piece of this
+            //theLine.positionCount = cookieTransforms.Length;
+            //lineRPoints = new Vector3[theLine.positionCount];
+            //for (int j = 0; j < lineRPoints.Length; j++)
+            //{
+            //    lineRPoints[j] = cookieTransforms[j ].position;
+            //}
+            //theLine.SetPositions(lineRPoints);
         }
 
         pRot = cRot;
