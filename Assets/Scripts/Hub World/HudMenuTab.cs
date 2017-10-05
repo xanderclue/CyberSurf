@@ -1,9 +1,73 @@
 ﻿using UnityEngine;
 public class HudMenuTab : MenuTab
 {
+    public enum HudMenuOption { OverallHud, Reticle, Speed, Timer, Score, Players, Compass, Arrow, LapCounter, Position, Opacity, Color }
     [SerializeField]
-    HudOnOffObject overallHud = null, reticle = null, speed = null, timer = null, score = null, players = null, compass = null, arrow = null, lapCounter = null, position = null;
+    HudOnOffObject overallHud = null, reticle = null,
+        speed = null, timer = null, score = null,
+        players = null, compass = null,
+        arrow = null, lapCounter = null, position = null;
     private void Start()
+    {
+        ShowNullWarnings();
+    }
+    private void OnEnable()
+    {
+        overallHud.OnValueChanged += TurnOnAll;
+        overallHud.OnValueChanged += UpdateHudPreview;
+        reticle.OnValueChanged += UpdateHudPreview;
+        speed.OnValueChanged += UpdateHudPreview;
+        timer.OnValueChanged += UpdateHudPreview;
+        score.OnValueChanged += UpdateHudPreview;
+        players.OnValueChanged += UpdateHudPreview;
+        compass.OnValueChanged += UpdateHudPreview;
+        arrow.OnValueChanged += UpdateHudPreview;
+        lapCounter.OnValueChanged += UpdateHudPreview;
+        position.OnValueChanged += UpdateHudPreview;
+    }
+    private void OnDisable()
+    {
+        overallHud.OnValueChanged -= TurnOnAll;
+        overallHud.OnValueChanged -= UpdateHudPreview;
+        reticle.OnValueChanged -= UpdateHudPreview;
+        speed.OnValueChanged -= UpdateHudPreview;
+        timer.OnValueChanged -= UpdateHudPreview;
+        score.OnValueChanged -= UpdateHudPreview;
+        players.OnValueChanged -= UpdateHudPreview;
+        compass.OnValueChanged -= UpdateHudPreview;
+        arrow.OnValueChanged -= UpdateHudPreview;
+        lapCounter.OnValueChanged -= UpdateHudPreview;
+        position.OnValueChanged -= UpdateHudPreview;
+    }
+    private void UpdateHudPreview()
+    {
+
+    }
+    public void TurnOnAll()
+    {
+        reticle.TurnOn();
+        speed.TurnOn();
+        timer.TurnOn();
+        score.TurnOn();
+        players.TurnOn();
+        compass.TurnOn();
+        arrow.TurnOn();
+        lapCounter.TurnOn();
+        position.TurnOn();
+    }
+    public void TurnOffAll()
+    {
+        reticle.TurnOff();
+        speed.TurnOff();
+        timer.TurnOff();
+        score.TurnOff();
+        players.TurnOff();
+        compass.TurnOff();
+        arrow.TurnOff();
+        lapCounter.TurnOff();
+        position.TurnOff();
+    }
+    private void ShowNullWarnings()
     {
         if (null == overallHud)
             Debug.LogWarning("Menu System: HudMenuTab missing reference to Overall HUD object");

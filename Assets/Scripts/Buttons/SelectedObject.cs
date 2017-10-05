@@ -107,7 +107,7 @@ public abstract class SelectedObject : MonoBehaviour
             selectsoundplayed = false;
         }
     }
-    private const string LAYERNAME = "Selectable";
+    public static string LAYERNAME { get { return "Selectable"; } }
     protected void Start()
     {
         if (gameObject.layer != LayerMask.NameToLayer(LAYERNAME))
