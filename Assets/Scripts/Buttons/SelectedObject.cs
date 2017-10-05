@@ -22,9 +22,13 @@ public abstract class SelectedObject : MonoBehaviour
     private bool isDisabled = false;
     private bool selectsoundplayed = false;
     public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.UpdateReticleFill(0.0f); } }
+    [SerializeField]
+    private bool tooltipOnly = false;
     protected void Awake()
     {
-        if (delay < 0)
+        if (tooltipOnly)
+            SetupTooltipOnly();
+        else if (delay < 0)
             delay = DEFAULT_DELAY;
     }
 
@@ -78,13 +82,15 @@ public abstract class SelectedObject : MonoBehaviour
                 timeWaited = 0;
                 if (isActiveAndEnabled)
                 {
-                    AudioSource.PlayClipAtPoint(successSound, transform.position, AudioLevels.Instance.SfxVolume);
+                    if (null != successSound)
+                        AudioSource.PlayClipAtPoint(successSound, transform.position, AudioLevels.Instance.SfxVolume);
                 }
             }
             theReticle.UpdateReticleFill((float)timeWaited / timeToWait);
             if (selectsoundplayed == false && timeWaited >= 2)
             {
-                AudioSource.PlayClipAtPoint(selectedSound, transform.position, AudioLevels.Instance.SfxVolume);
+                if (null != selectedSound)
+                    AudioSource.PlayClipAtPoint(selectedSound, transform.position, AudioLevels.Instance.SfxVolume);
                 selectsoundplayed = true;
             }
         }
@@ -102,12 +108,23 @@ public abstract class SelectedObject : MonoBehaviour
                 LayerMask.LayerToName(gameObject.layer) + " (" + gameObject.layer + ") to " + LAYERNAME + " (" + LayerMask.NameToLayer(LAYERNAME) + ")");
             gameObject.layer = LayerMask.NameToLayer(LAYERNAME);
         }
-        successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
-        selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
+        if (!tooltipOnly)
+        {
+            successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
+            selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
+        }
     }
 
     protected void Update()
     {
         waitTimer -= Time.deltaTime;
+    }
+    protected void SetupTooltipOnly()
+    {
+        delay = int.MaxValue;
+        waitTime = float.MaxValue;
+        timeToWait = int.MaxValue;
+        selectedSound = null;
+        successSound = null;
     }
 }
