@@ -23,17 +23,17 @@ public class changeCurrentScreen : SelectedObject
         if (button.transform.position.x < player.transform.position.x)
         {
             if (startupSplashScreenPlayer.currentScreen != 0)
-            { 
-                startupSplashScreenPlayer.currentScreen--; 
+            {
+                startupSplashScreenPlayer.currentScreen--;
                 startupSplashScreenPlayer.timePlayingCurrent = 0.0f;
             }
             else
                 Debug.Log("boo");
         }
 
-        else if (button.transform.position.x > player.transform.position.x)   
+        else if (button.transform.position.x > player.transform.position.x)
         {
-            if (startupSplashScreenPlayer.currentScreen != 5)
+            if (startupSplashScreenPlayer.currentScreen != 6)
             {
 
                 startupSplashScreenPlayer.currentScreen++;
@@ -47,16 +47,16 @@ public class changeCurrentScreen : SelectedObject
                 GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
             }
         }
-         else if(button.transform.position.x == player.transform.position.x)
-         {
-             
-                 startupSplashScreenPlayer.currentScreen++;
-               //  button.SetActive(false);
-             
-        
-         }
+        else if(button.transform.position.x == player.transform.position.x && button.transform.position.y < 1.4f)
+        {
+            startupSplashScreenPlayer.currentScreen = 6;
+        }
+        else if (button.transform.position.x == player.transform.position.x)
+        {
 
+            startupSplashScreenPlayer.currentScreen++;
+        }
     }
 
-    
+
 }

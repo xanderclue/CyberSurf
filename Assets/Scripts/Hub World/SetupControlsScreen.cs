@@ -18,7 +18,7 @@ public class SetupControlsScreen : MonoBehaviour
 	
 	IEnumerator WaitForDetection()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.25f);
 
         if (boardManager.gamepadEnabled)
             controlsObject.GetComponent<Image>().sprite = controlsImages[0];
