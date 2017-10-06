@@ -92,16 +92,19 @@ public class startupSplashScreenPlayer : MonoBehaviour
                 timePlayingCurrent = 0.0f;
                 }
                 break;
-           // case 5:
-           //     {
-           //         for (int i = 0; i < 5; i++)
-           //         {
-           //             splashScreens[i].SetActive(false);
-           //         }
-           //         splashScreens[5].SetActive(true);
-           //     }
-           //     timePlayingCurrent = 0.0f;
-           //     break;
+             case 5:
+                 {
+                     for (int i = 0; i < splashScreens.Length; i++)
+                     {
+                         splashScreens[i].SetActive(false);
+                     }
+                    // splashScreens[5].SetActive(true);
+                    keepPlayerStill.tutorialOn = false;
+                    GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
+
+                }
+                timePlayingCurrent = 0.0f;
+                 break;
 
         }
     }
@@ -112,7 +115,8 @@ public class startupSplashScreenPlayer : MonoBehaviour
         {
             checker();
             timePlayingCurrent += Time.deltaTime;
-
+            if (currentScreen == 5)
+                //Debug.Break();
             if (timePlayingCurrent >= timesToPlayScreens[currentScreen])
             {
                 splashScreens[currentScreen].SetActive(false);
@@ -127,9 +131,10 @@ public class startupSplashScreenPlayer : MonoBehaviour
                     active = false;
                 }
                 timePlayingCurrent = 0;
-                if(currentScreen == splashScreens.Length)
+                if(currentScreen == 4)
                 {
                     keepPlayerStill.tutorialOn = false;
+                    GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
                 }
             }
         }

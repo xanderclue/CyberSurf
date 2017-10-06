@@ -10,8 +10,9 @@ public class changeCurrentScreen : SelectedObject
     GameObject player;
 
     // Use this for initialization
-    void Start()
+    new void Start()
     {
+        base.Start();
         player = GameObject.FindGameObjectWithTag("Player");
         button = this.gameObject;
 
@@ -41,7 +42,9 @@ public class changeCurrentScreen : SelectedObject
             else
             {
                 keepPlayerStill.tutorialOn = false;
+
                 Debug.Log("boohoo");
+                GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
             }
 
         }

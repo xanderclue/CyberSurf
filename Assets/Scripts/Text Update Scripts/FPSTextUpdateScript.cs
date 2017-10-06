@@ -14,6 +14,11 @@ public class FPSTextUpdateScript : MonoBehaviour
     float fps = 0.0f;
     float updateRate = 4.0f;
 
+    void Start()
+    {
+        element = gameObject.GetComponent<TextMeshProUGUI>();
+    }
+
     void Update()
     {
         frameCount++;
@@ -32,21 +37,5 @@ public class FPSTextUpdateScript : MonoBehaviour
             element.enabled = !element.enabled;
         }
      
-    }
-
-    void OnEnable()
-    {
-        element = gameObject.GetComponent<TextMeshProUGUI>();
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-    }
-
-    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
-    {
-        element.enabled = true;
     }
 }
