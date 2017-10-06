@@ -3,48 +3,56 @@ public class HudOnOffObject : MonoBehaviour
 {
     public HudMenuTab.HudMenuOption menuOption = HudMenuTab.HudMenuOption.OverallHud;
     public EventSelectedObject onButton = null, offButton = null;
+    private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
     [SerializeField]
     private bool defaultOnOffValue = true;
     private bool tempOnOffValue;
     public bool IsOn { get { return tempOnOffValue; } }
-    private static EventSelectedObject NewInactiveEventSelectedObject
+    [SerializeField]
+    private Material activeMaterial = null, inactiveMaterial = null;
+    private void Start()
     {
-        get
-        {
-            GameObject go = new GameObject("IGNORE_THIS");
-            go.SetActive(false);
-            go.layer = LayerMask.NameToLayer(SelectedObject.LAYERNAME);
-            EventSelectedObject outVal = go.AddComponent<EventSelectedObject>();
-            outVal.enabled = false;
-            GameObject gop = GameObject.Find("!!_NO_TOUCHY_!!_!!_IGNORE_THESE_!!");
-            if (null == gop)
-                gop = new GameObject("!!_NO_TOUCHY_!!_!!_IGNORE_THESE_!!");
-            go.transform.parent = gop.transform;
-            return outVal;
-        }
+        if (null == inactiveMaterial)
+            if (null != HudMenuTab.inactiveMaterial)
+                inactiveMaterial = HudMenuTab.inactiveMaterial;
+            else
+                HudMenuTab.inactiveMaterial = inactiveMaterial = (defaultOnOffValue ? offButtonRenderer : onButtonRenderer).material;
+        if (null == activeMaterial)
+            if (null != HudMenuTab.activeMaterial)
+                activeMaterial = HudMenuTab.activeMaterial;
+            else
+                HudMenuTab.activeMaterial = activeMaterial = (defaultOnOffValue ? onButtonRenderer : offButtonRenderer).material;
+        UpdateButtonDisplay();
     }
     protected void Awake()
     {
-        if (null == onButton)
-        {
-            Debug.LogWarning("Missing HudOnOffObject.offButton (" + BuildDebugger.GetHierarchyName(gameObject) + ")");
-            onButton = NewInactiveEventSelectedObject;
-        }
-        if (null == offButton)
-        {
-            Debug.LogWarning("Missing HudOnOffObject.offButton (" + BuildDebugger.GetHierarchyName(gameObject) + ")");
-            offButton = NewInactiveEventSelectedObject;
-        }
+        onButtonRenderer = onButton.GetComponent<MeshRenderer>();
+        offButtonRenderer = offButton.GetComponent<MeshRenderer>();
     }
     protected void OnEnable()
     {
         onButton.OnSelectSuccess += TurnOn;
         offButton.OnSelectSuccess += TurnOff;
+        OnValueChanged += UpdateButtonDisplay;
     }
     protected void OnDisable()
     {
         onButton.OnSelectSuccess -= TurnOn;
         offButton.OnSelectSuccess -= TurnOff;
+        OnValueChanged -= UpdateButtonDisplay;
+    }
+    private void UpdateButtonDisplay()
+    {
+        if (tempOnOffValue)
+        {
+            onButtonRenderer.material = activeMaterial;
+            offButtonRenderer.material = inactiveMaterial;
+        }
+        else
+        {
+            onButtonRenderer.material = inactiveMaterial;
+            offButtonRenderer.material = activeMaterial;
+        }
     }
     public void TurnOn()
     {
@@ -82,70 +90,70 @@ public class HudOnOffObject : MonoBehaviour
     }
     public delegate void ValueChangedEvent();
     public ValueChangedEvent OnValueChanged;
+    private TextElementControllerScript textElementController = null;
     private bool ActualValue
     {
         get
         {
+            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             switch (menuOption)
             {
                 case HudMenuTab.HudMenuOption.OverallHud:
-                    break;
-                case HudMenuTab.HudMenuOption.Reticle:
-                    break;
+                    return textElementController.hudElementsControl.overAllBool;
                 case HudMenuTab.HudMenuOption.Speed:
-                    break;
+                    return textElementController.hudElementsControl.speedBool;
                 case HudMenuTab.HudMenuOption.Timer:
-                    break;
+                    return textElementController.hudElementsControl.timerBool;
                 case HudMenuTab.HudMenuOption.Score:
-                    break;
-                case HudMenuTab.HudMenuOption.Players:
-                    break;
-                case HudMenuTab.HudMenuOption.Compass:
-                    break;
+                    return textElementController.hudElementsControl.scoreBool;
                 case HudMenuTab.HudMenuOption.Arrow:
-                    break;
+                    return textElementController.hudElementsControl.arrowBool;
+                case HudMenuTab.HudMenuOption.Reticle:
+                case HudMenuTab.HudMenuOption.Players:
+                case HudMenuTab.HudMenuOption.Compass:
                 case HudMenuTab.HudMenuOption.LapCounter:
-                    break;
                 case HudMenuTab.HudMenuOption.Position:
-                    break;
                 case HudMenuTab.HudMenuOption.Opacity:
-                    break;
                 case HudMenuTab.HudMenuOption.Color:
-                    break;
                 default:
-                    break;
+                    return defaultOnOffValue;
             }
-            return false;
         }
         set
         {
+            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             switch (menuOption)
             {
                 case HudMenuTab.HudMenuOption.OverallHud:
-                    break;
-                case HudMenuTab.HudMenuOption.Reticle:
+                    textElementController.setAll(value);
                     break;
                 case HudMenuTab.HudMenuOption.Speed:
+                    textElementController.setSpeed(value);
+                    textElementController.setSpeedBar(value);
                     break;
                 case HudMenuTab.HudMenuOption.Timer:
+                    textElementController.setTimer(value);
+                    textElementController.setCheckpoint_time(value);
+                    textElementController.setCurrentLapTime(value);
+                    textElementController.setBestLap(value);
+                    textElementController.setTimeDifference(value);
                     break;
                 case HudMenuTab.HudMenuOption.Score:
-                    break;
-                case HudMenuTab.HudMenuOption.Players:
-                    break;
-                case HudMenuTab.HudMenuOption.Compass:
+                    textElementController.setScore(value);
+                    textElementController.setScoreMulti(value);
                     break;
                 case HudMenuTab.HudMenuOption.Arrow:
+                    textElementController.setArrow(value);
                     break;
+                case HudMenuTab.HudMenuOption.Reticle:
+                case HudMenuTab.HudMenuOption.Players:
+                case HudMenuTab.HudMenuOption.Compass:
                 case HudMenuTab.HudMenuOption.LapCounter:
-                    break;
                 case HudMenuTab.HudMenuOption.Position:
-                    break;
                 case HudMenuTab.HudMenuOption.Opacity:
-                    break;
                 case HudMenuTab.HudMenuOption.Color:
-                    break;
                 default:
+                    defaultOnOffValue = value;
                     break;
             }
         }
