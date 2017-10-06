@@ -9,7 +9,10 @@ public class HudTimerOnOffScript : SelectedObject
     bool safeCheck = false;
 
     TextMeshPro onOffText;
-    bool IsOn { get { return textElementController.hudElementsControl.timerBool; } set { textElementController.setTimer(value); } }
+    bool IsOn { get { return textElementController.hudElementsControl.timerBool; }
+        set { textElementController.setTimer(value); textElementController.setCheckpoint_time(value); textElementController.setCurrentLapTime(value); textElementController.setBestLap(value);
+            textElementController.setTimeDifference(value);
+        } }
 
     public void isOnUpdate()
     {

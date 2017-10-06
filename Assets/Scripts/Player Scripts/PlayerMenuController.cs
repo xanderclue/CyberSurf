@@ -72,7 +72,7 @@ public class PlayerMenuController : MonoBehaviour
     public void ToggleMenuMovement(bool locked)
     {
         menuMovementIsLocked = locked;
-        playerRB.velocity = playerRB.angularVelocity = Vector3.zero;
+        //playerRB.velocity = playerRB.angularVelocity = Vector3.zero;
         //print("Menu movement lock set to: " + menuMovementIsLocked);
     }
 

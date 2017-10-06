@@ -9,7 +9,7 @@ public class HudSpeedOnOffScript : SelectedObject
     bool safeCheck = false;
 
     TextMeshPro onOffText;
-    bool IsOn { get { return textElementController.hudElementsControl.speedBool; } set { textElementController.setSpeed(value); } }
+    bool IsOn { get { return textElementController.hudElementsControl.speedBool; } set { textElementController.setSpeed(value); textElementController.setSpeedBar(value); } }
 
     public void isOnUpdate()
     {
