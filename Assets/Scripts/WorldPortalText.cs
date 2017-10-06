@@ -34,6 +34,6 @@ public class WorldPortalText : MonoBehaviour
     {
         string path = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(properties.SceneIndex);
         theName.SetText(path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1));
-        portalMat.mainTexture = portalViews[properties.SceneIndex - 2];
+        portalMat.mainTexture = portalViews[properties.SceneIndex - LevelSelectOptions.LevelBuildOffset];
     }
 }

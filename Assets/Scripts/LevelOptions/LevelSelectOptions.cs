@@ -22,7 +22,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     private Level tempLevel;
     [SerializeField]
     private WorldPortalProperties portal = null;
-    private const int firstLevelBuildIndex = 2; // build index of the first level
+    public const int LevelBuildOffset = 2; // build index of the first level
     new private void Start()
     {
         base.Start();
@@ -97,7 +97,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        portal.SceneIndex = (int)tempLevel + firstLevelBuildIndex;
+        portal.SceneIndex = (int)tempLevel + LevelBuildOffset;
     }
     public override void DefaultOptions()
     {
@@ -108,7 +108,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempLevel = (Level)(portal.SceneIndex - firstLevelBuildIndex);
+        tempLevel = (Level)(portal.SceneIndex - LevelBuildOffset);
         UpdateDisplay();
     }
 }
