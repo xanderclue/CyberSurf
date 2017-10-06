@@ -57,14 +57,7 @@ public class KeyInputManager : MonoBehaviour
         //TODO:: don't let the player go into 3rd person in start or hub world
         if (Input.GetButtonDown("XBox Y"))
         {
-            usingThirdPersonCamera = !usingThirdPersonCamera;
-
-            if (usingThirdPersonCamera)
-                thirdPersonCameraScript.StartThirdPerson();
-            else
-                thirdPersonCameraScript.StopThirdPerson();
-
-            StartCoroutine(CalibrationCoroutine());
+            thirdPersonCameraScript.UpdateThirdPersonCamera();
         }
 
         #region stuff we're going to get rid of
