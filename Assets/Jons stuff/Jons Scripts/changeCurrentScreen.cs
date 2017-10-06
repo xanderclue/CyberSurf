@@ -46,9 +46,15 @@ public class changeCurrentScreen : SelectedObject
                 Debug.Log("boohoo");
                 GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
             }
-
         }
-
+         else if(button.transform.position.x == player.transform.position.x)
+         {
+             
+                 startupSplashScreenPlayer.currentScreen++;
+               //  button.SetActive(false);
+             
+        
+         }
 
     }
 

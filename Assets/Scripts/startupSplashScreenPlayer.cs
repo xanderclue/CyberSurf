@@ -7,7 +7,9 @@ public class startupSplashScreenPlayer : MonoBehaviour
     public GameObject selector;
     public GameObject[] splashScreens;
     public float[] timesToPlayScreens;
-
+    GameObject confirmation;
+    GameObject tutorial;
+    GameObject nextPrevSkip;
     public static float timePlayingCurrent = 0.0f;
     public static int currentScreen = 0;
     private bool active = true;
@@ -20,8 +22,10 @@ public class startupSplashScreenPlayer : MonoBehaviour
             splashScreens[i].SetActive(false);
         }
         selector.SetActive(false);
-
-       
+        nextPrevSkip = GameObject.FindGameObjectWithTag("nextPrevSkip");
+        tutorial = GameObject.FindGameObjectWithTag("tutorial");
+        confirmation = GameObject.FindGameObjectWithTag("confirm");
+        confirmation.SetActive(true);
 
     }
     private void checker()
@@ -34,8 +38,11 @@ public class startupSplashScreenPlayer : MonoBehaviour
                     {
                         splashScreens[i].SetActive(false);
                     }
+                    nextPrevSkip.SetActive(false);
+
+                    confirmation.SetActive(true);
                     splashScreens[0].SetActive(true);
-                    timePlayingCurrent = 0.0f;
+
                 }
                 break;
 
@@ -47,7 +54,10 @@ public class startupSplashScreenPlayer : MonoBehaviour
                     {
                         splashScreens[i].SetActive(false);
                     }
-                    timePlayingCurrent = 0.0f;
+                    confirmation.SetActive(false);
+                    nextPrevSkip.SetActive(true);
+
+
                 }
                 break;
 
@@ -60,7 +70,10 @@ public class startupSplashScreenPlayer : MonoBehaviour
                     {
                         splashScreens[i].SetActive(false);
                     }
-                    timePlayingCurrent = 0.0f;
+                    confirmation.SetActive(false);
+                    nextPrevSkip.SetActive(true);
+
+
                 }
                 break;
 
@@ -76,7 +89,10 @@ public class startupSplashScreenPlayer : MonoBehaviour
                     {
                         splashScreens[i].SetActive(false);
                     }
-                    timePlayingCurrent = 0.0f;
+                    confirmation.SetActive(false);
+                    nextPrevSkip.SetActive(true);
+
+
                 }
                 break;
 
@@ -88,8 +104,11 @@ public class startupSplashScreenPlayer : MonoBehaviour
 
                     }
                     splashScreens[4].SetActive(true);
-               //     splashScreens[5].SetActive(false);
-                timePlayingCurrent = 0.0f;
+                    //     splashScreens[5].SetActive(false                     
+                    confirmation.SetActive(false);
+                    nextPrevSkip.SetActive(true);
+
+
                 }
                 break;
              case 5:
@@ -100,11 +119,14 @@ public class startupSplashScreenPlayer : MonoBehaviour
                      }
                     // splashScreens[5].SetActive(true);
                     keepPlayerStill.tutorialOn = false;
-                    GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
+                    tutorial.SetActive(false);
+                    confirmation.SetActive(false);
+                    nextPrevSkip.SetActive(false);
+
 
                 }
-                timePlayingCurrent = 0.0f;
-                 break;
+                //  timePlayingCurrent = 0.0f;
+                break;
 
         }
     }
@@ -113,10 +135,9 @@ public class startupSplashScreenPlayer : MonoBehaviour
 
         if (active)
         {
-            checker();
             timePlayingCurrent += Time.deltaTime;
-            if (currentScreen == 5)
-                //Debug.Break();
+            checker();
+            
             if (timePlayingCurrent >= timesToPlayScreens[currentScreen])
             {
                 splashScreens[currentScreen].SetActive(false);
@@ -131,7 +152,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
                     active = false;
                 }
                 timePlayingCurrent = 0;
-                if(currentScreen == 4)
+                if(currentScreen == 5)
                 {
                     keepPlayerStill.tutorialOn = false;
                     GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
