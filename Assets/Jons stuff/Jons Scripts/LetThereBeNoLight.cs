@@ -19,6 +19,7 @@ public class LetThereBeNoLight : MonoBehaviour {
             if(all[i].GetComponent<Light>())
             {
             // baked[i] = all[i].GetComponent<Light>().isBaked;
+            //
                 all[i].GetComponent<Light>().color = new Color(0, 0, 0, 0);
 
             }

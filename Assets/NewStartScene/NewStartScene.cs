@@ -1,9 +1,1 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-public class NewStartScene : MonoBehaviour
-{
-    private void Awake()
-    {
-        SceneManager.LoadScene(1);
-    }
-}
+﻿public class NewStartScene : UnityEngine.MonoBehaviour { private void Awake() { UnityEngine.SceneManagement.SceneManager.LoadScene(1); } }
