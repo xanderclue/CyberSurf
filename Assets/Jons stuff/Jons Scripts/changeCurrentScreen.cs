@@ -20,17 +20,24 @@ public class changeCurrentScreen : SelectedObject
 
     public override void SuccessFunction()
     {
-        if (button.transform.position.x < player.transform.position.x)
+        if (button.transform.position.x < player.transform.position.x && button.transform.position.y > 1.1f)
         {
-            if (startupSplashScreenPlayer.currentScreen != 0)
-            {
-                startupSplashScreenPlayer.currentScreen--;
-                startupSplashScreenPlayer.timePlayingCurrent = 0.0f;
-            }
-            else
-                Debug.Log("boo");
+            startupSplashScreenPlayer.currentScreen++;
         }
+       else if (button.transform.position.x < player.transform.position.x)
+        {
+            //    if (startupSplashScreenPlayer.currentScreen != 0)
+            //    {
+            //        startupSplashScreenPlayer.currentScreen--;
+            //        startupSplashScreenPlayer.timePlayingCurrent = 0.0f;
+            //    }
+            //    else
+            //        Debug.Log("boo");
 
+            startupSplashScreenPlayer.currentScreen = 6;
+
+        }
+       
         else if (button.transform.position.x > player.transform.position.x)
         {
             if (startupSplashScreenPlayer.currentScreen != 6)
@@ -47,15 +54,15 @@ public class changeCurrentScreen : SelectedObject
                 GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
             }
         }
-        else if(button.transform.position.x == player.transform.position.x && button.transform.position.y < 1.4f)
-        {
-            startupSplashScreenPlayer.currentScreen = 6;
-        }
-        else if (button.transform.position.x == player.transform.position.x)
-        {
-
-            startupSplashScreenPlayer.currentScreen++;
-        }
+        //  else if(button.transform.position.x == player.transform.position.x && button.transform.position.y < 1.4f)
+        //  {
+        //      startupSplashScreenPlayer.currentScreen = 6;
+        //  }
+        //else if (button.transform.position.x == player.transform.position.x)
+        //{
+        //
+        //    startupSplashScreenPlayer.currentScreen++;
+        //}
     }
 
 

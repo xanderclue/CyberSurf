@@ -104,7 +104,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
 
                     }
                     splashScreens[4].SetActive(true);
-                    //     splashScreens[5].SetActive(false                     
+                    splashScreens[5].SetActive(false);                    
                     confirmation.SetActive(false);
                     nextPrevSkip.SetActive(true);
 
@@ -113,13 +113,12 @@ public class startupSplashScreenPlayer : MonoBehaviour
                 break;
             case 5:
                 {
-                    for (int i = 0; i < splashScreens.Length - 2; i++)
+                    for (int i = 0; i < splashScreens.Length - 1; i++)
                     {
                         splashScreens[i].SetActive(false);
                     }
                      splashScreens[5].SetActive(true);
-                    keepPlayerStill.tutorialOn = false;
-
+                   
                     confirmation.SetActive(false);
                     nextPrevSkip.SetActive(true);
 
@@ -161,17 +160,13 @@ public class startupSplashScreenPlayer : MonoBehaviour
                 {
                     splashScreens[currentScreen].SetActive(true);
                 }
-                else
-                {
-                    selector.SetActive(true);
-                    active = false;
-                }
+               
                 timePlayingCurrent = 0;
-                if (currentScreen == 5)
-                {
-                    keepPlayerStill.tutorialOn = false;
-                    GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
-                }
+              // if (currentScreen == 6)
+              // {
+              //     keepPlayerStill.tutorialOn = false;
+              //     GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
+              // }
             }
         }
     }
