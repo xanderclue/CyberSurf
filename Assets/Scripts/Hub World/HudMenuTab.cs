@@ -2,16 +2,23 @@
 public class HudMenuTab : MenuTab
 {
     public enum HudMenuOption { OverallHud, Reticle, Speed, Timer, Score, Players, Compass, Arrow, LapCounter, Position, Opacity, Color }
-    [SerializeField]
-    private HudOnOffObject overallHud = null, reticle = null,
-        speed = null, timer = null, score = null,
-        players = null, compass = null,
-        arrow = null, lapCounter = null, position = null;
-    [SerializeField]
-    private EventSelectedObject confirmButton = null, defaultButton = null, revertButton = null;
-    [SerializeField]
-    private Material theActiveMaterial = null, theInactiveMaterial = null;
-    public static Material activeMaterial = null, inactiveMaterial = null;
+    [SerializeField, LabelOverride("Overall  HUD")] private HudOnOffObject overallHudOnOff = null;
+    [SerializeField, LabelOverride("Reticle")] private HudOnOffObject reticleOnOff = null;
+    [SerializeField, LabelOverride("Speed")] private HudOnOffObject speedOnOff = null;
+    [SerializeField, LabelOverride("Timer")] private HudOnOffObject timerOnOff = null;
+    [SerializeField, LabelOverride("Score")] private HudOnOffObject scoreOnOff = null;
+    [SerializeField, LabelOverride("Players")] private HudOnOffObject playersOnOff = null;
+    [SerializeField, LabelOverride("Compass")] private HudOnOffObject compassOnOff = null;
+    [SerializeField, LabelOverride("Arrow")] private HudOnOffObject arrowOnOff = null;
+    [SerializeField, LabelOverride("Lap Counter")] private HudOnOffObject lapCounterOnOff = null;
+    [SerializeField, LabelOverride("Position")] private HudOnOffObject positionOnOff = null;
+    [SerializeField] private EventSelectedObject confirmButton = null;
+    [SerializeField] private EventSelectedObject defaultButton = null;
+    [SerializeField] private EventSelectedObject revertButton = null;
+    [SerializeField, LabelOverride("Active Material")] private Material theActiveMaterial = null;
+    [SerializeField, LabelOverride("Inactive Material")] private Material theInactiveMaterial = null;
+    public static Material activeMaterial = null;
+    public static Material inactiveMaterial = null;
     new private void Awake()
     {
         base.Awake();
@@ -22,17 +29,17 @@ public class HudMenuTab : MenuTab
     }
     private void OnEnable()
     {
-        overallHud.OnValueChanged += TurnOnAll;
-        overallHud.OnValueChanged += UpdateHudPreview;
-        reticle.OnValueChanged += UpdateHudPreview;
-        speed.OnValueChanged += UpdateHudPreview;
-        timer.OnValueChanged += UpdateHudPreview;
-        score.OnValueChanged += UpdateHudPreview;
-        players.OnValueChanged += UpdateHudPreview;
-        compass.OnValueChanged += UpdateHudPreview;
-        arrow.OnValueChanged += UpdateHudPreview;
-        lapCounter.OnValueChanged += UpdateHudPreview;
-        position.OnValueChanged += UpdateHudPreview;
+        overallHudOnOff.OnValueChanged += TurnOnAll;
+        overallHudOnOff.OnValueChanged += UpdateHudPreview;
+        reticleOnOff.OnValueChanged += UpdateHudPreview;
+        speedOnOff.OnValueChanged += UpdateHudPreview;
+        timerOnOff.OnValueChanged += UpdateHudPreview;
+        scoreOnOff.OnValueChanged += UpdateHudPreview;
+        playersOnOff.OnValueChanged += UpdateHudPreview;
+        compassOnOff.OnValueChanged += UpdateHudPreview;
+        arrowOnOff.OnValueChanged += UpdateHudPreview;
+        lapCounterOnOff.OnValueChanged += UpdateHudPreview;
+        positionOnOff.OnValueChanged += UpdateHudPreview;
         confirmButton.OnSelectSuccess += ConfirmAll;
         defaultButton.OnSelectSuccess += DefaultAll;
         revertButton.OnSelectSuccess += ResetAll;
@@ -40,17 +47,17 @@ public class HudMenuTab : MenuTab
     }
     private void OnDisable()
     {
-        overallHud.OnValueChanged -= TurnOnAll;
-        overallHud.OnValueChanged -= UpdateHudPreview;
-        reticle.OnValueChanged -= UpdateHudPreview;
-        speed.OnValueChanged -= UpdateHudPreview;
-        timer.OnValueChanged -= UpdateHudPreview;
-        score.OnValueChanged -= UpdateHudPreview;
-        players.OnValueChanged -= UpdateHudPreview;
-        compass.OnValueChanged -= UpdateHudPreview;
-        arrow.OnValueChanged -= UpdateHudPreview;
-        lapCounter.OnValueChanged -= UpdateHudPreview;
-        position.OnValueChanged -= UpdateHudPreview;
+        overallHudOnOff.OnValueChanged -= TurnOnAll;
+        overallHudOnOff.OnValueChanged -= UpdateHudPreview;
+        reticleOnOff.OnValueChanged -= UpdateHudPreview;
+        speedOnOff.OnValueChanged -= UpdateHudPreview;
+        timerOnOff.OnValueChanged -= UpdateHudPreview;
+        scoreOnOff.OnValueChanged -= UpdateHudPreview;
+        playersOnOff.OnValueChanged -= UpdateHudPreview;
+        compassOnOff.OnValueChanged -= UpdateHudPreview;
+        arrowOnOff.OnValueChanged -= UpdateHudPreview;
+        lapCounterOnOff.OnValueChanged -= UpdateHudPreview;
+        positionOnOff.OnValueChanged -= UpdateHudPreview;
         confirmButton.OnSelectSuccess -= ConfirmAll;
         defaultButton.OnSelectSuccess -= DefaultAll;
         revertButton.OnSelectSuccess -= ResetAll;
@@ -61,62 +68,62 @@ public class HudMenuTab : MenuTab
     }
     public void TurnOnAll()
     {
-        reticle.TurnOn();
-        speed.TurnOn();
-        timer.TurnOn();
-        score.TurnOn();
-        players.TurnOn();
-        compass.TurnOn();
-        arrow.TurnOn();
-        lapCounter.TurnOn();
-        position.TurnOn();
+        reticleOnOff.TurnOn();
+        speedOnOff.TurnOn();
+        timerOnOff.TurnOn();
+        scoreOnOff.TurnOn();
+        playersOnOff.TurnOn();
+        compassOnOff.TurnOn();
+        arrowOnOff.TurnOn();
+        lapCounterOnOff.TurnOn();
+        positionOnOff.TurnOn();
     }
     public void TurnOffAll()
     {
-        reticle.TurnOff();
-        speed.TurnOff();
-        timer.TurnOff();
-        score.TurnOff();
-        players.TurnOff();
-        compass.TurnOff();
-        arrow.TurnOff();
-        lapCounter.TurnOff();
-        position.TurnOff();
+        reticleOnOff.TurnOff();
+        speedOnOff.TurnOff();
+        timerOnOff.TurnOff();
+        scoreOnOff.TurnOff();
+        playersOnOff.TurnOff();
+        compassOnOff.TurnOff();
+        arrowOnOff.TurnOff();
+        lapCounterOnOff.TurnOff();
+        positionOnOff.TurnOff();
     }
     public void ConfirmAll()
     {
-        reticle.ConfirmValue();
-        speed.ConfirmValue();
-        timer.ConfirmValue();
-        score.ConfirmValue();
-        players.ConfirmValue();
-        compass.ConfirmValue();
-        arrow.ConfirmValue();
-        lapCounter.ConfirmValue();
-        position.ConfirmValue();
+        reticleOnOff.ConfirmValue();
+        speedOnOff.ConfirmValue();
+        timerOnOff.ConfirmValue();
+        scoreOnOff.ConfirmValue();
+        playersOnOff.ConfirmValue();
+        compassOnOff.ConfirmValue();
+        arrowOnOff.ConfirmValue();
+        lapCounterOnOff.ConfirmValue();
+        positionOnOff.ConfirmValue();
     }
     public void DefaultAll()
     {
-        reticle.DefaultValue();
-        speed.DefaultValue();
-        timer.DefaultValue();
-        score.DefaultValue();
-        players.DefaultValue();
-        compass.DefaultValue();
-        arrow.DefaultValue();
-        lapCounter.DefaultValue();
-        position.DefaultValue();
+        reticleOnOff.DefaultValue();
+        speedOnOff.DefaultValue();
+        timerOnOff.DefaultValue();
+        scoreOnOff.DefaultValue();
+        playersOnOff.DefaultValue();
+        compassOnOff.DefaultValue();
+        arrowOnOff.DefaultValue();
+        lapCounterOnOff.DefaultValue();
+        positionOnOff.DefaultValue();
     }
     public void ResetAll()
     {
-        reticle.ResetValue();
-        speed.ResetValue();
-        timer.ResetValue();
-        score.ResetValue();
-        players.ResetValue();
-        compass.ResetValue();
-        arrow.ResetValue();
-        lapCounter.ResetValue();
-        position.ResetValue();
+        reticleOnOff.ResetValue();
+        speedOnOff.ResetValue();
+        timerOnOff.ResetValue();
+        scoreOnOff.ResetValue();
+        playersOnOff.ResetValue();
+        compassOnOff.ResetValue();
+        arrowOnOff.ResetValue();
+        lapCounterOnOff.ResetValue();
+        positionOnOff.ResetValue();
     }
 }

@@ -60,13 +60,13 @@
             (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
             UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton3) &&
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton5)))
-            TestFunc(1);
+            TestFunc();
     }
-    private void TestFunc(int id)
+    private void TestFunc(int id = 0)
     {
         switch (id)
         {
-            case 0: // Dynamic mirroring
+            case 0:
                 {
                     WriteLine("Mirroring");
                     UnityEngine.GameObject[] objs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
@@ -84,11 +84,6 @@
                     foreach (UnityEngine.GameObject gObj in objsList)
                         gObj.transform.parent = null;
                     Destroy(go);
-                }
-                break;
-            case 1: // Player model
-                {
-                    GameManager.player.GetComponent<PlayerGameplayController>().TogglePlayerModel();
                 }
                 break;
             default:
@@ -115,4 +110,20 @@
             outStr = tr.gameObject.name + "." + outStr;
         return outStr.Substring(0, outStr.Length - 1);
     }
+}
+public class LabelOverride : UnityEngine.PropertyAttribute
+{
+    public string m_label;
+    public LabelOverride(string _label) { m_label = _label; }
+#if UNITY_EDITOR
+    [UnityEditor.CustomPropertyDrawer(typeof(LabelOverride))]
+    public class ThisPropertyDrawer : UnityEditor.PropertyDrawer
+    {
+        public override void OnGUI(UnityEngine.Rect _pos, UnityEditor.SerializedProperty _prop, UnityEngine.GUIContent _label)
+        {
+            _label.text = ((LabelOverride)attribute).m_label;
+            UnityEditor.EditorGUI.PropertyField(_pos, _prop, _label);
+        }
+    }
+#endif
 }
