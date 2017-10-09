@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ScreenFade : MonoBehaviour
 {
-    [SerializeField] Image theFadeObj;
+    [SerializeField] GameObject theFadeObj;
 
     float alpha = 1.0f;
     float fadeTime = 0.5f;
@@ -116,7 +116,7 @@ public class ScreenFade : MonoBehaviour
             alpha = 1f - alpha;
 
         alpha = Mathf.Clamp01(alpha);
-        theFadeObj.material.color = new Color(0f, 0f, 0f, alpha);
+        theFadeObj.GetComponent<Renderer>().material.SetFloat("_AlphaValue", alpha);
     }
 
     // Starts a fade in when a new level is loaded

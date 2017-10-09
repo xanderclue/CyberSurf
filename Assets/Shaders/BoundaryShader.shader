@@ -22,6 +22,7 @@ Shader "Custom/BoundaryShader"
 			//"IgnoreProjector"="True"
 		}
 		LOD 200
+		Blend SrcAlpha OneMinusSrcAlpha
 		
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
