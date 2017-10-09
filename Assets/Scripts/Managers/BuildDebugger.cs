@@ -8,16 +8,39 @@
     private static bool linesSync = false;
     private static TMPro.TextMeshProUGUI textmesh = null;
     private const string LOG_START = "BuildDebugger: \"";
-    public static void WriteLine(string line, bool writeToUnity = true)
+    public static bool WriteLine(string line, bool writeToUnity = true)
     {
+        if (null != line && line.Length > 0)
+        {
+            string[] splitLines = line.Split('\n');
+            if (splitLines.Length > 1)
+            {
+                if (writeToUnity)
+                    UnityEngine.Debug.Log(LOG_START + line + "\"");
+                foreach (string splitLine in splitLines)
+                {
+                    if (WriteLine(splitLine, false))
+                        --lineCounter;
+                }
+                ++lineCounter;
+                return true;
+            }
+        }
+        else
+            return false;
+        if (line.Length > maxLength)
+        {
+            if (writeToUnity)
+                UnityEngine.Debug.Log(LOG_START + line + "\"");
+            WriteLine(line.Substring(0, maxLength), false);
+            --lineCounter;
+            return WriteLine(line.Substring(maxLength), false);
+        }
         if (writeToUnity)
             UnityEngine.Debug.Log(LOG_START + line + "\"");
         if (null == lines)
-            return;
-        if (line.Length > maxLength)
-            line = line.Substring(0, maxLength);
-        line += "\n";
-        line = lineCounter.ToString() + ": " + line.Substring(0, line.IndexOf('\n'));
+            lines = new System.Collections.Generic.List<string>();
+        line = lineCounter.ToString() + ": " + line;
         ++lineCounter;
         while (linesSync) if (!linesSync) break;
         linesSync = true;
@@ -25,10 +48,12 @@
         if (lines.Count > maxLines)
             lines.RemoveAt(0);
         linesSync = false;
+        return true;
     }
     private void Awake()
     {
-        lines = new System.Collections.Generic.List<string>();
+        if (null == lines)
+            lines = new System.Collections.Generic.List<string>();
     }
     private void Update()
     {
