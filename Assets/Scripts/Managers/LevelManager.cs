@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
         gameManager = g;
         menuController = p.GetComponent<PlayerMenuController>();
         screenFade = p.GetComponentInChildren<ScreenFade>();
-    } 
+    }
 
     //for debugging
     void OnLevelLoaded(Scene scene, LoadSceneMode mode)
@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
         nextScene = sceneIndex;
         EventManager.OnTriggerSelectionLock(true);
         player.GetComponentInChildren<effectController>().disableAllEffects();
-        screenFade.StartTransitionFade();  
+        screenFade.StartTransitionFade();
     }
 
     public void UndoSceneTransitionLocks(Scene scene, LoadSceneMode mode)
@@ -58,18 +58,14 @@ public class LevelManager : MonoBehaviour
                 gameState.currentState = GameStates.MainMenu;
                 break;
             case 1: // HubWorld
-                //moved to a button switch after first startup
-                if (gameManager.lastPortalBuildIndex == -1)
-                {
-                    menuController.ToggleMenuMovement(false);
-                }
-                           
+                menuController.ToggleMenuMovement(false);
+
                 EventManager.OnSetHudOnOff(false);
                 gameState.currentState = GameStates.MainMenu;
                 gameManager.scoreScript.score = 0;
                 gameManager.scoreScript.ringHitCount = 0;
                 gameManager.scoreScript.firstPortal = true;
-                break;             
+                break;
             default:
                 EventManager.OnSetHudOnOff(HudOnOff);
                 EventManager.OnSetArrowOnOff(HudOnOff);

@@ -21,20 +21,31 @@ public class EyeRayCaster : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask;
 
-    private void Start ()
+    private void Start()
     {
         reticleScript = GetComponent<reticle>();
-	}
-	
-	private void Update ()
+    }
+
+    private void Update()
     {
         preObj = curObj;
         if (Physics.Raycast(myCam.transform.position, myCam.transform.TransformDirection(Vector3.forward), out hit, rayCheckLength, layerMask))
         {
             if (canSelect)
             {
-                curObj = hit.collider.gameObject;
-                curObj.GetComponent<SelectedObject>().Selected(reticleScript);
+                SelectedObject selected = hit.collider.gameObject.GetComponent<SelectedObject>();
+                if (null != selected)
+                {
+                    curObj = selected.gameObject;
+                    selected.Selected(reticleScript);
+                }
+                else
+                {
+                    Debug.LogWarning("Missing SelectedObject script on object in the " + SelectedObject.LAYERNAME + " layer. (" + BuildDebugger.GetHierarchyName(hit.collider.gameObject) + ")");
+                    curObj = null;
+                    if (preObj != null)
+                        preObj.GetComponent<SelectedObject>().Deselected();
+                }
             }
         }
         else
