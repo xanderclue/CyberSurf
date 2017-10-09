@@ -105,6 +105,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4488236329239076}
+  - component: {fileID: 114527278677598148}
   m_Layer: 0
   m_Name: CameraPerspective
   m_TagString: Untagged
@@ -734,7 +735,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4853424503245016}
-  - component: {fileID: 114671897847456736}
   m_Layer: 0
   m_Name: ThirdPersonCameraAnchor
   m_TagString: Untagged
@@ -1392,7 +1392,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3bb50de41f3f0d5448e1802f4f60601c, type: 2}
+  - {fileID: 2100000, guid: 51df2b973e473644ba8c12532062c020, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2926,6 +2926,23 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114527278677598148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132951842699562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d6176a3db54c7478c1e54af3dc0d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ACE: {fileID: 1306773209861990}
+  firstPersonAnchor: {fileID: 4722585850115512}
+  thirdPersonAnchor: {fileID: 4853424503245016}
+  cameraContainerTransform: {fileID: 4127599636543010}
+  mainCameraTransform: {fileID: 4646400821507394}
+  translationRate: 2
 --- !u!114 &114535643005753902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3300,19 +3317,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114671897847456736
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1789118395488340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81d6176a3db54c7478c1e54af3dc0d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ACE: {fileID: 1306773209861990}
-  firstPersonAnchor: {fileID: 0}
 --- !u!114 &114679635446165570
 MonoBehaviour:
   m_ObjectHideFlags: 1
