@@ -15,7 +15,7 @@ public class keepPlayerStill : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (tutorialOn == true)
