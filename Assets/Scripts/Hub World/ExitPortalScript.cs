@@ -22,7 +22,7 @@ public class ExitPortalScript : MonoBehaviour
         {
             pmc.ToggleMenuMovement(true);
 
-            theFadeObj = GameObject.FindGameObjectWithTag("FadeCover").GetComponent<Image>();
+            try { theFadeObj = GameObject.FindGameObjectWithTag("FadeCover").GetComponent<Image>(); } catch { }
             StartCoroutine(ExitGameCoroutine());
         }
     }
@@ -31,7 +31,8 @@ public class ExitPortalScript : MonoBehaviour
     {
         float timeIntoFade = 0f;
         float fadeTime = 0.8f;
-        float alpha = theFadeObj.color.a;
+        float alpha;
+        try { alpha = theFadeObj.color.a; } catch { }
 
         while (timeIntoFade < fadeTime)
         {
@@ -40,7 +41,7 @@ public class ExitPortalScript : MonoBehaviour
             alpha = timeIntoFade / fadeTime;
             alpha = Mathf.Clamp01(alpha);
 
-            theFadeObj.material.color = new Color(0f, 0f, 0f, alpha);
+            try { theFadeObj.material.color = new Color(0f, 0f, 0f, alpha); } catch { }
 
             yield return null;
         }
@@ -53,8 +54,8 @@ public class ExitPortalScript : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             pmc.ToggleMenuMovement(false);
-            theFadeObj.material.color = new Color(0f, 0f, 0f, 0f);
-        }       
+            try { theFadeObj.material.color = new Color(0f, 0f, 0f, 0f); } catch { }
+        }
     }
 
 }
