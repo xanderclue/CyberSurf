@@ -152,7 +152,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
             timePlayingCurrent += Time.deltaTime;
             checker();
 
-            if (timePlayingCurrent >= timesToPlayScreens[currentScreen])
+            if (currentScreen < timesToPlayScreens.Length && timePlayingCurrent >= timesToPlayScreens[currentScreen])
             {
                 splashScreens[currentScreen].SetActive(false);
                 currentScreen++;

@@ -22,6 +22,7 @@ public class changeCurrentScreen : SelectedObject
     {
         if (button.transform.position.x < player.transform.position.x && button.transform.position.y > 1.1f)
         {
+            startupSplashScreenPlayer.timePlayingCurrent = 0.0f;
             startupSplashScreenPlayer.currentScreen++;
         }
        else if (button.transform.position.x < player.transform.position.x)

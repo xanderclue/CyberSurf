@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
         backButtonBackPos.z = BACK_LOCAL_Z_POS;
         backButtonFrontPos.z = FRONT_LOCAL_Z_POS;
         mainTab.gameObject.SetActive(true);
+        backButton.gameObject.SetActive(false);
     }
     enum TransitionState
     {
@@ -100,12 +101,14 @@ public class MainMenu : MonoBehaviour
                     if (mainTab == prevTab)
                         backButton.transform.localPosition = Vector3.Lerp(backButtonBackPos, backButtonFrontPos, transitionTimer);
                     currTab.gameObject.SetActive(true);
+                    backButton.gameObject.SetActive(true);
                 }
                 break;
             case TransitionState.SwitchingToMain:
                 if (transitionTimer >= 1.0f)
                 {
                     prevTab.gameObject.SetActive(false);
+                    backButton.gameObject.SetActive(false);
                     prevTab.transform.localPosition = TABS_BACK_LOCAL_POS;
                     mainTab.transform.localPosition = TABS_FRONT_LOCAL_POS;
                     backButton.transform.localPosition = backButtonBackPos;

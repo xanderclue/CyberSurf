@@ -12,7 +12,7 @@ public class AudioMenuTab : MenuTab
     [SerializeField] private EventSelectedObject sfxDownButton = null;
     [SerializeField] private EventSelectedObject envUpButton = null;
     [SerializeField] private EventSelectedObject envDownButton = null;
-    private float volumeIncrement { get { return 1.0f / maxNumber; } }
+    private float VolumeIncrement { get { return 1.0f / maxNumber; } }
     private void SetBgmText()
     {
         bgmVolume.SetText(Mathf.RoundToInt(AudioLevels.Instance.BgmVolume * maxNumber).ToString());
@@ -58,26 +58,26 @@ public class AudioMenuTab : MenuTab
     }
     private void BgmUp()
     {
-        AudioLevels.Instance.BgmVolume += volumeIncrement;
+        AudioLevels.Instance.BgmVolume += VolumeIncrement;
     }
     private void BgmDown()
     {
-        AudioLevels.Instance.BgmVolume -= volumeIncrement;
+        AudioLevels.Instance.BgmVolume -= VolumeIncrement;
     }
     private void SfxUp()
     {
-        AudioLevels.Instance.SfxVolume += volumeIncrement;
+        AudioLevels.Instance.SfxVolume += VolumeIncrement;
     }
     private void SfxDown()
     {
-        AudioLevels.Instance.SfxVolume -= volumeIncrement;
+        AudioLevels.Instance.SfxVolume -= VolumeIncrement;
     }
     private void EnvUp()
     {
-        AudioLevels.Instance.EnvVolume += volumeIncrement;
+        AudioLevels.Instance.EnvVolume += VolumeIncrement;
     }
     private void EnvDown()
     {
-        AudioLevels.Instance.EnvVolume -= volumeIncrement;
+        AudioLevels.Instance.EnvVolume -= VolumeIncrement;
     }
 }

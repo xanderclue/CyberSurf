@@ -11,7 +11,7 @@ public class keepPlayerStill : MonoBehaviour
     {
         tutorialOn = true;
         player = gameObject.GetComponent<Rigidbody>();
-      //  GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(player.gameObject.transform.position);
+     
 
     }
 

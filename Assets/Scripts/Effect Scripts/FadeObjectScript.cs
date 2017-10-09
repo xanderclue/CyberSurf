@@ -26,8 +26,7 @@ public class FadeObjectScript : MonoBehaviour {
         //also if I set the ring rendering mode to transparent
         //run it by the team, if they want me to find a way to optimize it I will have to do more research
 	}
-	
-	// Update is called once per frame
+	 
 	void Update () {
         float distance = (Camera.main.transform.position - obj.transform.position).magnitude;
         if(distance < howFarToFade)
