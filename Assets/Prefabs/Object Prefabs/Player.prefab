@@ -1086,7 +1086,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486569028391340}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.94000006, z: -8.46}
+  m_LocalPosition: {x: 0, y: 1, z: -8.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4003302365546912}
@@ -4300,6 +4300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionRadial: {fileID: 114038238509676444}
+  reticleCenter: {fileID: 114465711398145696}
 --- !u!114 &114578433448287022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4333,10 +4334,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ACE: {fileID: 1189941137627634}
+  eyeRayCaster: {fileID: 114256541295880346}
   firstPersonAnchor: {fileID: 4003302365546912}
   thirdPersonAnchor: {fileID: 4383465426264468}
   cameraContainerTransform: {fileID: 4099797900681624}
-  mainCameraTransform: {fileID: 4606251668191428}
   translationRate: 2
 --- !u!114 &114612525296396170
 MonoBehaviour:

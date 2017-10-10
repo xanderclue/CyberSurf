@@ -121,7 +121,7 @@ public class KeyInputManager : MonoBehaviour
             //therefore, translate the cameraContainer in opposite directions of wherever the headPosition is
             cameraContainer.Translate(headPosition * -1f);
 
-            thirdPersonCameraScript.CalibrateThirdPersonAnchors();
+            thirdPersonCameraScript.CalibrateThirdPersonAnchors(cameraContainer.position, playerRotation);
         }
     }
 

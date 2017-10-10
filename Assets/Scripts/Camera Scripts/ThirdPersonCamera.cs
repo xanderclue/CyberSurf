@@ -5,16 +5,16 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
     [SerializeField] GameObject ACE;
+    [SerializeField] EyeRayCaster eyeRayCaster;
     [SerializeField] Transform firstPersonAnchor;
     [SerializeField] Transform thirdPersonAnchor;
     [SerializeField] Transform cameraContainerTransform;
-    //might not need this one
-    [SerializeField] Transform mainCameraTransform;
-    [SerializeField] float translationRate = 2f;
-    float aceFadeTime = 1f;
-    float tolerance = 0.01f;
 
-    KeyInputManager keyInputManager;
+    [SerializeField] float translationRate = 2f;
+    float aceFadeTime = 0.8f;
+    float tolerance = 0.05f;
+    float originalEyeRaycastLength;
+
     Material aceMaterial;
 
     bool updatingCameraPosition, usingThirdPersonCamera;
@@ -27,8 +27,6 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Start()
     {
-        keyInputManager = GameManager.instance.keyInputScript;
-
         if (ACE.activeInHierarchy)
             ACE.SetActive(false);       
 
@@ -36,6 +34,7 @@ public class ThirdPersonCamera : MonoBehaviour
         aceMaterial.color = new Color(aceMaterial.color.r, aceMaterial.color.g, aceMaterial.color.b, 0f);
 
         updatingCameraPosition = usingThirdPersonCamera = false;
+        originalEyeRaycastLength = eyeRayCaster.rayCheckLength;
     }
 
     public void UpdateThirdPersonCamera()
@@ -45,12 +44,14 @@ public class ThirdPersonCamera : MonoBehaviour
             StartCoroutine(MoveCameraContainer());
     }
 
-    public void CalibrateThirdPersonAnchors()
+    public void CalibrateThirdPersonAnchors(Vector3 position, Quaternion rotation)
     {
-        firstPersonAnchor.SetPositionAndRotation(cameraContainerTransform.position, cameraContainerTransform.rotation);
-        thirdPersonAnchor.SetPositionAndRotation(cameraContainerTransform.position, cameraContainerTransform.rotation);
+        firstPersonAnchor.SetPositionAndRotation(position, rotation);
 
-        thirdPersonAnchor.Translate(new Vector3(0f, 1f, -8f));
+        if (usingThirdPersonCamera)
+            cameraContainerTransform.position = thirdPersonAnchor.position;
+        else
+            cameraContainerTransform.position = firstPersonAnchor.position;
     }
     
     //helper function
@@ -83,7 +84,11 @@ public class ThirdPersonCamera : MonoBehaviour
 
         //enable ace if we're switching to the third person camera
         if (!usingThirdPersonCamera)
+        {
             ACE.SetActive(true);
+
+            eyeRayCaster.rayCheckLength += (firstPersonAnchor.position - thirdPersonAnchor.position).magnitude;
+        }
 
         //slowly move our camera into position until the camera reaches it's destination
         while (!destinationReached)
@@ -112,7 +117,10 @@ public class ThirdPersonCamera : MonoBehaviour
 
         //disable ace if we faded him out
         if (usingThirdPersonCamera)
+        {
             ACE.SetActive(false);
+            eyeRayCaster.rayCheckLength = originalEyeRaycastLength;           
+        }
 
         usingThirdPersonCamera = !usingThirdPersonCamera;
         updatingCameraPosition = false;

@@ -15,8 +15,7 @@ public class EyeRayCaster : MonoBehaviour
     private reticle reticleScript = null;
     private RaycastHit hit;
 
-    [SerializeField]
-    private float rayCheckLength = 50.0f;
+    public float rayCheckLength = 12.0f;
 
     [SerializeField]
     private LayerMask layerMask;
