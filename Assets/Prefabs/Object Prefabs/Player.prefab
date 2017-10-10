@@ -817,6 +817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4099797900681624}
   - component: {fileID: 114090985784466480}
+  - component: {fileID: 114469009989611790}
   m_Layer: 0
   m_Name: CameraContainer
   m_TagString: CameraContainer
@@ -2933,7 +2934,6 @@ MonoBehaviour:
   hoverHeight: 2
   controllerForwardSpeed: 25
   controllerTurnSpeed: 30
-  debugCameraSpeed: 1
   gyroForwardSpeed: 1.75
   gyroTurnSpeed: 1
   gyroPitchDeadZone: 3
@@ -3875,6 +3875,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114469009989611790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1845563601949962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c8e64a6a30f2f45b4e3fce6466d1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSpeed: 1
 --- !u!114 &114483155200988340
 MonoBehaviour:
   m_ObjectHideFlags: 1

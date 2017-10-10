@@ -10,7 +10,6 @@ public class PlayerMenuController : MonoBehaviour
 
     [Header("Controller Specific Variables"), SerializeField, Range(5.0f, 60.0f)] private float controllerForwardSpeed = 25.0f;
     [SerializeField, Range(5.0f, 60.0f)] private float controllerTurnSpeed = 12.0f;
-    [SerializeField, Range(0.1f, 5.0f)] private float debugCameraSpeed = 1.0f;
 
     [Header("Gyro Specific Variables"), SerializeField, Range(1.0f, 3.0f)] private float gyroForwardSpeed = 1.3f;
     [SerializeField, Range(0.1f, 3.0f)] private float gyroTurnSpeed = 0.3f;
@@ -25,13 +24,11 @@ public class PlayerMenuController : MonoBehaviour
     private bool menuMovementIsLocked = false;
 
     private Rigidbody playerRB = null;
-    private Transform cameraContainerTransform = null;
     private SpatialData gyro = null;
 
     //called by our BoardManager
     public void SetupMenuControllerScript()
     {
-        cameraContainerTransform = GameManager.player.GetComponentInChildren<CameraCounterRotate>().transform;
         gyro = GameManager.instance.boardScript.gyro;
         gamepadEnabled = GameManager.instance.boardScript.gamepadEnabled;
 
@@ -101,10 +98,6 @@ public class PlayerMenuController : MonoBehaviour
         }
         else if (!coroutinesStopped)
         {
-            //reset our camera position to the player's rotation, if we were using debug camera rotation
-            if (!VRDevice.isPresent)
-                cameraContainerTransform.eulerAngles = playerRB.transform.eulerAngles;
-
             coroutinesStopped = true;
             inAMenu = false;
             playerRB.useGravity = false;
@@ -136,18 +129,6 @@ public class PlayerMenuController : MonoBehaviour
             playerRB.rotation = Quaternion.Euler(new Vector3(0.0f, playerRB.rotation.eulerAngles.y, 0.0f));
     }
 
-    //let our right joystick control the camera if there is no HMD present
-    private void DebugCameraRotation()
-    {
-        if (!VRDevice.isPresent)
-        {
-            float cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * debugCameraSpeed;
-            float cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontal") * debugCameraSpeed;
-
-            cameraContainerTransform.rotation = (Quaternion.Euler(new Vector3(cameraPitch, cameraYaw, 0.0f)));
-        }
-    }
-
     private void ApplyHoverForce()
     {
         Ray ray = new Ray(playerRB.position, -playerRB.transform.up);
@@ -166,7 +147,6 @@ public class PlayerMenuController : MonoBehaviour
         yield return new WaitForFixedUpdate();
 
         ClampRotation();
-        DebugCameraRotation();
         ApplyHoverForce();
 
         if (!menuMovementIsLocked)
@@ -212,11 +192,10 @@ public class PlayerMenuController : MonoBehaviour
         yield return new WaitForFixedUpdate();
 
         ClampRotation();
-        DebugCameraRotation();
         ApplyHoverForce();
 
         pitch = (float)gyro.rollAngle * Mathf.Rad2Deg;
-        yaw = (float)gyro.pitchAngle * Mathf.Rad2Deg * -1.0f;
+        yaw = (float)gyro.pitchAngle * Mathf.Rad2Deg * -1f;
 
         GyroApplyDeadZone();
 
