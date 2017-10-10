@@ -59,8 +59,8 @@ public class LevelManager : MonoBehaviour
                 break;
             case 1: // HubWorld
                 //if the last game mode wasn't free mode, unlock movement
-                if (gameManager.lastPortalBuildIndex != -1)
-                    menuController.ToggleMenuMovement(false);
+                if (gameManager.lastPortalBuildIndex != -1 )
+                    menuController.ToggleMenuMovement(true);
 
                 EventManager.OnSetHudOnOff(false);
                 gameState.currentState = GameStates.MainMenu;
