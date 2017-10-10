@@ -8,7 +8,7 @@
     private static bool linesSync = false;
     private static TMPro.TextMeshProUGUI textmesh = null;
     private const string LOG_START = "BuildDebugger: \"";
-    public static bool WriteLine(string line, bool writeToUnity = true)
+    private static bool WriteLine(string line, bool writeToUnity = true)
     {
         if (null != line && line.Length > 0)
         {
@@ -116,18 +116,31 @@
                 break;
         }
     }
-    private void GetLog(string condition, string stackTrace, UnityEngine.LogType type)
+    private static bool debuggerInited = false;
+    private static void GetLog(string logMessage, string stackTrace, UnityEngine.LogType logType)
     {
-        if (!condition.StartsWith(LOG_START))
-            WriteLine(type.ToString() + " << " + condition, false);
+        if (!logMessage.StartsWith(LOG_START))
+            WriteLine(logType.ToString() + " << " + logMessage, false);
+    }
+    public static void InitDebugger()
+    {
+        if (!debuggerInited)
+        {
+            debuggerInited = true;
+            UnityEngine.Application.logMessageReceivedThreaded += GetLog;
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        if (debuggerInited)
+        {
+            UnityEngine.Application.logMessageReceivedThreaded -= GetLog;
+            debuggerInited = false;
+        }
     }
     private void OnEnable()
     {
-        UnityEngine.Application.logMessageReceivedThreaded += GetLog;
-    }
-    private void OnDisable()
-    {
-        UnityEngine.Application.logMessageReceivedThreaded -= GetLog;
+        InitDebugger();
     }
     public static string GetHierarchyName(UnityEngine.GameObject gObj)
     {

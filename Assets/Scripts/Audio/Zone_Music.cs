@@ -47,7 +47,7 @@ public class Zone_Music : MonoBehaviour
         if (9 == other.gameObject.layer && reference.audioSource.clip.name != zone_music.name)
         {
             enabled = true;
-            BuildDebugger.WriteLine("changing music to: " + zone_music.name);
+            Debug.Log("changing music to: " + zone_music.name);
             is_changing = true;
         }
     }

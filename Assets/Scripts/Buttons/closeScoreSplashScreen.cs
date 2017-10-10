@@ -30,7 +30,8 @@ public class closeScoreSplashScreen : SelectedObject
         {
             gameObject.SetActive(false);
             panel.SetActive(false);
-            GameManager.player.GetComponent<PlayerMenuController>().ToggleMenuMovement(false);
+            if (!keepPlayerStill.tutorialOn)
+                GameManager.player.GetComponent<PlayerMenuController>().ToggleMenuMovement(false);
         }
     }
 

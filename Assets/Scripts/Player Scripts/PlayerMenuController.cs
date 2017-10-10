@@ -71,7 +71,7 @@ public class PlayerMenuController : MonoBehaviour
 
     public void ToggleMenuMovement(bool locked)
     {
-        BuildDebugger.WriteLine("Setting Menu Movement Lock: " + (locked ? "TRUE" : "FALSE"));
+        Debug.Log("Setting Menu Movement Lock: " + (locked ? "TRUE" : "FALSE"));
         menuMovementIsLocked = locked;
         //playerRB.velocity = playerRB.angularVelocity = Vector3.zero;
         //print("Menu movement lock set to: " + menuMovementIsLocked);

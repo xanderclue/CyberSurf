@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
     //for debugging
     void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        BuildDebugger.WriteLine("Scene changed to: " + scene.name);
+        Debug.Log("Scene changed to: " + scene.name);
     }
 
     public void DoSceneTransition(int sceneIndex)

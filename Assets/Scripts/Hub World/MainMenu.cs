@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         try { menuBox.SetActive(false); }
-        catch { BuildDebugger.WriteLine("MenuBox missing"); }
+        catch { Debug.LogWarning("MenuBox missing"); }
         currTab = prevTab = mainTab;
         OnBackButtonPressed += GoBack;
         OnMenuExit += OnExit;
