@@ -26,12 +26,17 @@ public class closeScoreSplashScreen : SelectedObject
         base.Start();
         gameManager = GameManager.instance;
         scoreScript = gameManager.scoreScript;
-        if (gameManager.lastPortalBuildIndex < 2)
+        if (gameManager.lastPortalBuildIndex == -1)
         {
             gameObject.SetActive(false);
             panel.SetActive(false);
             if (!keepPlayerStill.tutorialOn)
                 GameManager.player.GetComponent<PlayerMenuController>().ToggleMenuMovement(false);
+        }
+        else if (gameManager.lastPortalBuildIndex == 0)
+        {
+            gameObject.SetActive(false);
+            panel.SetActive(false);
         }
     }
 

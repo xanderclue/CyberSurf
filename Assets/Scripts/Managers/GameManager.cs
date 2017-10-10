@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     //last level and mode we were in
     [HideInInspector] public GameModes lastMode;
-    [HideInInspector] public int lastPortalBuildIndex = -1;
+    [HideInInspector] public int lastPortalBuildIndex = 0;
     [HideInInspector] public int lastBuildIndex = -1;
 
     //set our player prefab through the inspector

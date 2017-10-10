@@ -2663,6 +2663,7 @@ GameObject:
   - component: {fileID: 33422095172574566}
   - component: {fileID: 65226274185653294}
   - component: {fileID: 23071159915657594}
+  - component: {fileID: 95648712986982432}
   m_Layer: 0
   m_Name: MenuBox
   m_TagString: Untagged
@@ -10808,6 +10809,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95648712986982432
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1875890463209402}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09bc2828d94a4fd4ba55a286ab4cc6fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114010807605989314
 MonoBehaviour:
   m_ObjectHideFlags: 1

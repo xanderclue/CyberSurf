@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MENU_BACK
-  m_Shader: {fileID: 4800000, guid: de32a8074bc6dd14eb9ef9990919a23e, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 3fdf27446d821fa45b08b7ad2ff3ccb1, type: 3}
+  m_ShaderKeywords: EFFECTLAYER1ON EFFECTLAYER2ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -42,6 +42,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EffectsLayer1Motion:
+        m_Texture: {fileID: 2800000, guid: c0d8146649eb27f4ea4ed0cdc1d57fbb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer1Tex:
+        m_Texture: {fileID: 2800000, guid: 2b63a159f4d8170448d324bafdb6e70d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer2Motion:
+        m_Texture: {fileID: 2800000, guid: 4de6e5c60f6aa7344a2398de2bd49286, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer2Tex:
+        m_Texture: {fileID: 2800000, guid: 5e50e40612db59841a1eb1294832246c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EffectsLayerMotion:
         m_Texture: {fileID: 2800000, guid: c0d8146649eb27f4ea4ed0cdc1d57fbb, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -71,11 +87,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AlphaValue: 0.5
+    - _AlphaValue: 0.7
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EffectsLayer1Foreground: 0
+    - _EffectsLayer1MotionSpeedXAxis: 0.3
+    - _EffectsLayer1MotionSpeedYAxis: 0
+    - _EffectsLayer1Rotation: 0
+    - _EffectsLayer2Foreground: 1
+    - _EffectsLayer2MotionSpeedXAxis: 0
+    - _EffectsLayer2MotionSpeedYAxis: 0
+    - _EffectsLayer2Rotation: 0
     - _EffectsLayerForeground: 0
     - _EffectsLayerMotionSpeed: 0
     - _EffectsLayerMotionSpeedXAxis: 0.07
@@ -88,6 +112,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Redify: 0
     - _SliceRange: 6
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -97,6 +122,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.24705884, g: 0.503, b: 1, a: 1}
+    - _EffectsLayer1Color: {r: 1, g: 1, b: 1, a: 0.56078434}
+    - _EffectsLayer1PivotScale: {r: 0.5, g: 0.5, b: 1, a: 1}
+    - _EffectsLayer1Translation: {r: 0, g: 0, b: 0, a: 0}
+    - _EffectsLayer2Color: {r: 1, g: 1, b: 1, a: 0.247}
+    - _EffectsLayer2PivotScale: {r: 0, g: 0.5, b: 0.5, a: 0.5}
+    - _EffectsLayer2Translation: {r: 0, g: 0, b: 0, a: 0}
     - _EffectsLayerColor: {r: 1, g: 1, b: 1, a: 1}
     - _EffectsLayerPivotScale: {r: 1, g: 1, b: 1, a: 1}
     - _EffectsLayerTranslation: {r: 0, g: 0, b: 0, a: 0}

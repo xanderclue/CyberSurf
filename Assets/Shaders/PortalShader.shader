@@ -9,7 +9,8 @@
 		_EffectsLayerTex("Effect Texture", 2D) = "black"{}
 		_EffectsLayerColor("Effect Color", Color) = (1,1,1,1)
 		_EffectsLayerMotion("Motion Texture", 2D) = "black"{}
-		_EffectsLayerMotionSpeedYAxis("Effect Speed", float) = 0
+		_EffectsLayerMotionSpeedYAxis("Effect Speed Y Axis", float) = 0
+		_EffectsLayerMotionSpeedXAxis("Effect Speed X Axis", float) = 0
 		_EffectsLayerRotation("Effect Rotation", float) = 0
 		_EffectsLayerPivotScale("Effect Scale", Vector) = (0.5,0.5,1,1)
 		_EffectsLayerTranslation("Effect Translation", Vector) = (0,0,0,0)
