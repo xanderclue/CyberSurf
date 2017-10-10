@@ -67,7 +67,7 @@
         }
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.BackQuote) ||
             (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
-            UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton3) &&
+            UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton0) &&
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton4)))
         {
             textObject.SetActive(!textObject.activeSelf);
@@ -81,11 +81,12 @@
         linesSync = false;
         textmesh.SetText(tmstr);
         textmesh.ForceMeshUpdate();
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T) ||
+        if ((UnityEngine.Input.GetKey(UnityEngine.KeyCode.K) &&
+            UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T)) ||
             (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
-            UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton3) &&
+            UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton0) &&
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton5)))
-            TestFunc();
+            TestFunc(-1);
     }
     private void TestFunc(int id = 0)
     {
