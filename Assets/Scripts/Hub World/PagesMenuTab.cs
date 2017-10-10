@@ -60,7 +60,7 @@ public class PagesMenuTab : MenuTab
     {
         if (null != pageText)
         {
-            pageText.SetText(CurrentPage.ToString() + "/" + NumPages.ToString());
+            pageText.SetText((CurrentPage + 1).ToString() + "/" + NumPages.ToString());
         }
     }
     private void NextPage()
