@@ -3724,7 +3724,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: dcd904f4dd0c3a3448ca166c47694a98, type: 2}
+  - {fileID: 2100000, guid: 10c2df7b9566d5b40a0d101d23825542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8911,6 +8911,8 @@ MonoBehaviour:
   tooltipOnly: 0
   levelMenuScript: {fileID: 114110647125654334}
   rotationSpeed: 111
+  hoverMat: {fileID: 2100000, guid: 3fea99354ec30d44989524a085dac173, type: 2}
+  noHoverMat: {fileID: 2100000, guid: 10c2df7b9566d5b40a0d101d23825542, type: 2}
 --- !u!114 &114469717017235748
 MonoBehaviour:
   m_ObjectHideFlags: 1

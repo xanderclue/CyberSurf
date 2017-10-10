@@ -5230,7 +5230,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: dcd904f4dd0c3a3448ca166c47694a98, type: 2}
+  - {fileID: 2100000, guid: 10c2df7b9566d5b40a0d101d23825542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16953,7 +16953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db7d6d286320ff4d958231e9cdb29fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumber: 16
+  maxNumber: 25
   bgmVolume: {fileID: 114255086190431564}
   sfxVolume: {fileID: 114841630324835836}
   envVolume: {fileID: 114447132125773950}
@@ -21547,8 +21547,8 @@ MonoBehaviour:
   menuBox: {fileID: 1875890463209402}
   lockTransform: {fileID: 4069230660606860}
   menuSystem: {fileID: 114519151008228066}
-  hoverMat: {fileID: 2100000, guid: 10c2df7b9566d5b40a0d101d23825542, type: 2}
-  noHoverMat: {fileID: 2100000, guid: dcd904f4dd0c3a3448ca166c47694a98, type: 2}
+  hoverMat: {fileID: 2100000, guid: 3fea99354ec30d44989524a085dac173, type: 2}
+  noHoverMat: {fileID: 2100000, guid: 10c2df7b9566d5b40a0d101d23825542, type: 2}
   rotationSpeed: 111
 --- !u!114 &114947204825287432
 MonoBehaviour:
