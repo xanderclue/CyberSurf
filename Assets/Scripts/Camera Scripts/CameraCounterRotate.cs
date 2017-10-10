@@ -5,7 +5,7 @@ using UnityEngine.VR;
 
 public class CameraCounterRotate : MonoBehaviour
 {
-    public Transform cameraContainerTransform;
+    Transform cameraContainerTransform;
 
     private void Start()
     {

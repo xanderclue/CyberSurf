@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    [SerializeField] Image theFadeObj;
+    [SerializeField] GameObject theFadeObj;
     float fadeTime = 1.0f;
 
     Rigidbody playerRB;
@@ -54,8 +54,7 @@ public class PlayerRespawn : MonoBehaviour
             respawnPoint = rsPoint;
             roundTimerStartTime = startTime;
             countDownTime = countDownFrom;
-
-            alpha = theFadeObj.color.a;           
+      
             StartCoroutine(FadeOut());
         }     
     }
@@ -69,7 +68,7 @@ public class PlayerRespawn : MonoBehaviour
             alpha = 1f - alpha;
 
         alpha = Mathf.Clamp01(alpha);
-        theFadeObj.material.color = new Color(0f, 0f, 0f, alpha);
+        theFadeObj.GetComponent<Renderer>().material.SetFloat("_AlphaValue", alpha);
     }
 
     IEnumerator FadeOut()
