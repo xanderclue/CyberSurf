@@ -12,12 +12,11 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] Transform mainCameraTransform;
     [SerializeField] float translationRate = 2f;
     float aceFadeTime = 1f;
-    float tolerance = 0.001f;
+    float tolerance = 0.01f;
 
     KeyInputManager keyInputManager;
     Material aceMaterial;
 
-    Vector3 midVector;
     bool updatingCameraPosition, usingThirdPersonCamera;
     float timeIntoFade = 0f;
     float alpha = 0f;
@@ -37,8 +36,6 @@ public class ThirdPersonCamera : MonoBehaviour
         aceMaterial.color = new Color(aceMaterial.color.r, aceMaterial.color.g, aceMaterial.color.b, 0f);
 
         updatingCameraPosition = usingThirdPersonCamera = false;
-
-        midVector = thirdPersonAnchor.position - firstPersonAnchor.position;
     }
 
     public void UpdateThirdPersonCamera()
@@ -51,7 +48,9 @@ public class ThirdPersonCamera : MonoBehaviour
     public void CalibrateThirdPersonAnchors()
     {
         firstPersonAnchor.SetPositionAndRotation(cameraContainerTransform.position, cameraContainerTransform.rotation);
-        //thirdPersonAnchor.SetPositionAndRotation(firstPersonAnchor.TransformVector(midVector), cameraContainerTransform.rotation);
+        thirdPersonAnchor.SetPositionAndRotation(cameraContainerTransform.position, cameraContainerTransform.rotation);
+
+        thirdPersonAnchor.Translate(new Vector3(0f, 1f, -8f));
     }
     
     //helper function
