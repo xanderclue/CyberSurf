@@ -26,20 +26,6 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     new private void Start()
     {
         base.Start();
-        if (null == leftButton)
-            Debug.LogWarning("Missing LevelSelectOptions.leftButton");
-        if (null == rightButton)
-            Debug.LogWarning("Missing LevelSelectOptions.rightButton");
-        if (null == levelNameText)
-            Debug.LogWarning("Missing LevelSelectOptions.levelNameText");
-        if (null == levelImage)
-            Debug.LogWarning("Missing LevelSelectOptions.levelImage");
-        if (null == canyonImage)
-            Debug.LogWarning("Missing LevelSelectOptions.canyonImage");
-        if (null == multiEnrironmentImage)
-            Debug.LogWarning("Missing LevelSelectOptions.multiEnrironmentImage");
-        if (null == backyardRacetrackImage)
-            Debug.LogWarning("Missing LevelSelectOptions.backyardRacetrackImage");
         if (null == portal)
         {
             Debug.LogWarning("Missing LevelSelectOptions.portal.. Will attempt to find a world portal");

@@ -14,19 +14,11 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     new private void Start()
     {
         base.Start();
-        if (null == onButton)
-            Debug.LogWarning("Missing MirrorTrackOptions.onButton");
-        if (null == offButton)
-            Debug.LogWarning("Missing MirrorTrackOptions.offButton");
         onButtonRenderer = onButton.GetComponent<MeshRenderer>();
         offButtonRenderer = offButton.GetComponent<MeshRenderer>();
         inactiveMaterial = onButtonRenderer.material;
         if (null == activeMaterial)
-        {
-            if (!IsGrayedOut)
-                Debug.LogWarning("Missing MirrorTrackOptions.activeMaterial");
             activeMaterial = inactiveMaterial;
-        }
     }
     new private void OnEnable()
     {

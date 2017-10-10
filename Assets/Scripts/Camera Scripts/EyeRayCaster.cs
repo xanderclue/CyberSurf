@@ -43,8 +43,6 @@ public class EyeRayCaster : MonoBehaviour
                 {
                     Debug.LogWarning("Missing SelectedObject script on object in the " + SelectedObject.LAYERNAME + " layer. (" + BuildDebugger.GetHierarchyName(hit.collider.gameObject) + ")");
                     curObj = null;
-                    if (preObj != null)
-                        preObj.GetComponent<SelectedObject>().Deselected();
                 }
             }
         }

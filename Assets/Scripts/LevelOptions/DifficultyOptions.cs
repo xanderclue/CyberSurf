@@ -9,16 +9,6 @@ public class DifficultyOptions : LevelMenuObjectGroup
     [SerializeField]
     private GameDifficulties defaultDifficulty = GameDifficulties.Normal;
     private GameDifficulties tempDifficulty;
-    new private void Start()
-    {
-        base.Start();
-        if (null == leftButton)
-            Debug.LogWarning("Missing DifficultyOptions.leftButton");
-        if (null == rightButton)
-            Debug.LogWarning("Missing DifficultyOptions.rightButton");
-        if (null == difficultyText)
-            Debug.LogWarning("Missing DifficultyOptions.difficultyText");
-    }
     new private void OnEnable()
     {
         base.OnEnable();

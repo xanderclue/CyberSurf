@@ -14,19 +14,11 @@ public class ReverseTrackOptions : LevelMenuObjectGroup
     new private void Start()
     {
         base.Start();
-        if (null == onButton)
-            Debug.LogWarning("Missing ReverseTrackOptions.onButton");
-        if (null == offButton)
-            Debug.LogWarning("Missing ReverseTrackOptions.offButton");
         onButtonRenderer = onButton.GetComponent<MeshRenderer>();
         offButtonRenderer = offButton.GetComponent<MeshRenderer>();
         inactiveMaterial = onButtonRenderer.material;
         if (null == activeMaterial)
-        {
-            if (!IsGrayedOut)
-                Debug.LogWarning("Missing ReverseTrackOptions.activeMaterial");
             activeMaterial = inactiveMaterial;
-        }
     }
     new private void OnEnable()
     {

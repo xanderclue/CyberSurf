@@ -13,12 +13,6 @@ public class LapsOptions : LevelMenuObjectGroup
     new private void Start()
     {
         base.Start();
-        if (null == plusButton)
-            Debug.LogWarning("Missing LapsOptions.plusButton");
-        if (null == minusButton)
-            Debug.LogWarning("Missing LapsOptions.minusButton");
-        if (null == lapsText)
-            Debug.LogWarning("Missing LapsOptions.lapsText");
         if (ActualValue < 1)
             ActualValue = 1;
     }

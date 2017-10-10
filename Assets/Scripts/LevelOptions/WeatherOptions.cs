@@ -11,16 +11,6 @@ public class WeatherOptions : LevelMenuObjectGroup
     private Weather defaultWeather = Weather.Sunny;
     private Weather tempWeather;
     private static Weather ActualWeather { get; set; } // replace with game's value
-    new private void Start()
-    {
-        base.Start();
-        if (null == leftButton)
-            Debug.LogWarning("Missing WeatherOptions.leftButton");
-        if (null == rightButton)
-            Debug.LogWarning("Missing WeatherOptions.rightButton");
-        if (null == weatherText)
-            Debug.LogWarning("Missing WeatherOptions.weatherText");
-    }
     new private void OnEnable()
     {
         base.OnEnable();

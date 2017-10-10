@@ -12,12 +12,6 @@ public class RaceModeOptions : LevelMenuObjectGroup
     new private void Start()
     {
         base.Start();
-        if (null == leftButton)
-            Debug.LogWarning("Missing RaceModeOptions.leftButton");
-        if (null == rightButton)
-            Debug.LogWarning("Missing RaceModeOptions.rightButton");
-        if (null == raceModeText)
-            Debug.LogWarning("Missing RaceModeOptions.raceModeText");
     }
     new private void OnEnable()
     {

@@ -31,8 +31,6 @@ public class LevelMenuStuff : MonoBehaviour
                 }
         if (null == enterLevelOptions)
             enterLevelOptions = GetComponentInChildren<EnterLevelOptionsButton>();
-        if (null == grayOutMaterial)
-            Debug.LogWarning("Missing LevelMenuStuff.grayOutMaterial");
         if (null == levelMenuButtons)
             levelMenuButtons = GetComponentInChildren<LevelMenuButtons>();
         if (null == levelSelectOptions)
@@ -53,8 +51,6 @@ public class LevelMenuStuff : MonoBehaviour
             mirrorTrackOptions = GetComponentInChildren<MirrorTrackOptions>();
         if (null == reverseTrackOptions)
             reverseTrackOptions = GetComponentInChildren<ReverseTrackOptions>();
-        if (null == lockTransform)
-            Debug.LogWarning("Missing LevelMenuStuff.lockTransform");
         menuBox.SetActive(false);
         enterLevelOptions.gameObject.SetActive(true);
     }
