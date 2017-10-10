@@ -1,6 +1,5 @@
 ﻿public class BuildDebugger : UnityEngine.MonoBehaviour
 {
-    private const string cstStrLogStart = "BuildDebugger: \"";
     private const int cstIntMaxNumLines = 20;
     private const int cstIntMaxLineLength = 45;
     private static System.Collections.Generic.List<string> stcStrlistLines = null;
@@ -9,20 +8,16 @@
     private static uint stcUintLineCounter = 0u;
     private static bool stcBoolLinesSync = false;
     private static bool stcBoolDebuggerInited = false;
-    private static bool WriteLine(string pStrLine, bool pBoolWriteToUnity = true)
+    private static bool WriteLine(string pStrLine)
     {
         if (null != pStrLine && pStrLine.Length > 0)
         {
             string[] lStrarrSplitLines = pStrLine.Split('\n');
             if (lStrarrSplitLines.Length > 1)
             {
-                if (pBoolWriteToUnity)
-                    UnityEngine.Debug.Log(cstStrLogStart + pStrLine + "\"");
                 foreach (string lStrSplitLine in lStrarrSplitLines)
-                {
-                    if (WriteLine(lStrSplitLine, false))
+                    if (WriteLine(lStrSplitLine))
                         --stcUintLineCounter;
-                }
                 ++stcUintLineCounter;
                 return true;
             }
@@ -31,14 +26,10 @@
             return false;
         if (pStrLine.Length > cstIntMaxLineLength)
         {
-            if (pBoolWriteToUnity)
-                UnityEngine.Debug.Log(cstStrLogStart + pStrLine + "\"");
-            WriteLine(pStrLine.Substring(0, cstIntMaxLineLength), false);
+            WriteLine(pStrLine.Substring(0, cstIntMaxLineLength));
             --stcUintLineCounter;
-            return WriteLine(pStrLine.Substring(cstIntMaxLineLength), false);
+            return WriteLine(pStrLine.Substring(cstIntMaxLineLength));
         }
-        if (pBoolWriteToUnity)
-            UnityEngine.Debug.Log(cstStrLogStart + pStrLine + "\"");
         if (null == stcStrlistLines)
             stcStrlistLines = new System.Collections.Generic.List<string>();
         pStrLine = stcUintLineCounter.ToString() + ": " + pStrLine;
@@ -69,10 +60,7 @@
             (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
             UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton0) &&
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton4)))
-        {
             stcGobjTextObject.SetActive(!stcGobjTextObject.activeSelf);
-            WriteLine("Build Debugger " + (stcGobjTextObject.activeSelf ? "SHOWN" : "HIDDEN"));
-        }
         string lStrTemp = "";
         while (stcBoolLinesSync) if (!stcBoolLinesSync) break;
         stcBoolLinesSync = true;
@@ -94,7 +82,7 @@
         {
             case 0:
                 {
-                    WriteLine("Mirroring");
+                    UnityEngine.Debug.Log("Mirroring");
                     UnityEngine.GameObject[] lGobjarrRootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
                     System.Collections.Generic.List<UnityEngine.GameObject> lGobjlistRootObjects = new System.Collections.Generic.List<UnityEngine.GameObject>();
                     foreach (UnityEngine.GameObject lGobjRootObject in lGobjarrRootObjects)
@@ -118,8 +106,7 @@
     }
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
-        if (!pStrLogMessage.StartsWith(cstStrLogStart))
-            WriteLine(pEnmLogType.ToString() + " << " + pStrLogMessage, false);
+        WriteLine(pEnmLogType.ToString() + " << " + pStrLogMessage);
     }
     public static void InitDebugger()
     {
