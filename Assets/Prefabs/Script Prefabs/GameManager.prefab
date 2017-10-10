@@ -131,7 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flippedTimer: 2
   hubOnFlippedHMD: 1
-  usingThirdPersonCamera: 0
 --- !u!114 &114714506037350866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +145,7 @@ MonoBehaviour:
   lastMode: 0
   lastPortalBuildIndex: -1
   lastBuildIndex: -1
-  playerPrefab: {fileID: 1852150241017488, guid: cd6996909900ff44cac341d9483ba297,
+  playerPrefab: {fileID: 1888161922960542, guid: cd6996909900ff44cac341d9483ba297,
     type: 2}
   scoreScript: {fileID: 0}
   levelScript: {fileID: 0}

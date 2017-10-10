@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.VR;
 
-//our ManagerLoader prefab, will ensure that an instance of GameManager is loaded
+//our ManagerLoader prefab will ensure that an instance of GameManager is loaded
 public class GameManager : MonoBehaviour
 {
     //store our game game state

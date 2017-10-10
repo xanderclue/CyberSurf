@@ -61,7 +61,7 @@ public class PlayerFanController : MonoBehaviour
 		//print ("Min Val: " + pmv.minSpeed + " Max Val: " + pmv.maxSpeed);
 
 		motorPercentage = sampledVelocity * 100f * invertedMaxSpeed;
-		motorPercentage = Mathf.Clamp (motorPercentage, 15f, 100f);
+		motorPercentage = Mathf.Clamp (motorPercentage, 25f, 100f);
 
 		//print ("Motor Percentage: " + motorPercentage);
 		//print ("Applying motor percentage.");

@@ -101,22 +101,16 @@ public class KeyInputManager : MonoBehaviour
             Transform cameraContainer = player.GetComponentInChildren<CameraCounterRotate>().transform;
 
             Vector3 playerPosition = player.GetComponent<Transform>().position;
-            //TODO:: this needsa fixin
-            Vector3 originalPosition = new Vector3(playerPosition.x, playerPosition.y + originalCameraContainerHeight, playerPosition.z);
             Quaternion playerRotation = player.GetComponent<Transform>().rotation;
 
             //set the cameraContainer back on top of the board, in case we are re-calibrating
-            if (thirdPersonCameraScript.UsingThirdPersonCamera)
-            {
-                cameraContainer.SetPositionAndRotation(thirdPersonCameraScript.ThirdPersonAnchorPos, playerRotation);
-            }
-            else
-                cameraContainer.SetPositionAndRotation(originalPosition, playerRotation);
+            cameraContainer.SetPositionAndRotation(playerPosition, playerRotation);
 
             Vector3 headPosition = player.GetComponentInChildren<ScreenFade>().transform.localPosition;
             Vector3 headRotation = player.GetComponentInChildren<ScreenFade>().transform.eulerAngles;
 
             //rotate, then translate
+            cameraContainer.Translate(Vector3.up * originalCameraContainerHeight);
 
             //rotate the camera so that it is rotated in the same direction as the board
             float yRotation = Mathf.DeltaAngle(headRotation.y, cameraContainer.eulerAngles.y);
@@ -126,6 +120,8 @@ public class KeyInputManager : MonoBehaviour
             //so if headPosition.y = 1.4, then the camera will be sitting 1.4 meters above the cameraContainer
             //therefore, translate the cameraContainer in opposite directions of wherever the headPosition is
             cameraContainer.Translate(headPosition * -1f);
+
+            thirdPersonCameraScript.CalibrateThirdPersonAnchors();
         }
     }
 

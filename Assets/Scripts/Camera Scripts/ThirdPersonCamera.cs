@@ -17,6 +17,7 @@ public class ThirdPersonCamera : MonoBehaviour
     KeyInputManager keyInputManager;
     Material aceMaterial;
 
+    Vector3 midVector;
     bool updatingCameraPosition, usingThirdPersonCamera;
     float timeIntoFade = 0f;
     float alpha = 0f;
@@ -36,6 +37,8 @@ public class ThirdPersonCamera : MonoBehaviour
         aceMaterial.color = new Color(aceMaterial.color.r, aceMaterial.color.g, aceMaterial.color.b, 0f);
 
         updatingCameraPosition = usingThirdPersonCamera = false;
+
+        midVector = thirdPersonAnchor.position - firstPersonAnchor.position;
     }
 
     public void UpdateThirdPersonCamera()
@@ -45,6 +48,11 @@ public class ThirdPersonCamera : MonoBehaviour
             StartCoroutine(MoveCameraContainer());
     }
 
+    public void CalibrateThirdPersonAnchors()
+    {
+        firstPersonAnchor.SetPositionAndRotation(cameraContainerTransform.position, cameraContainerTransform.rotation);
+        //thirdPersonAnchor.SetPositionAndRotation(firstPersonAnchor.TransformVector(midVector), cameraContainerTransform.rotation);
+    }
     
     //helper function
     bool UpdateAlpha(bool fadingOut)
@@ -67,6 +75,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     IEnumerator MoveCameraContainer()
     {
+        //TODO:: look into using SmoothDamp instead
         updatingCameraPosition = true;
         bool destinationReached = false;
         bool stillFadingAce = true;

@@ -1,16 +1,17 @@
-﻿Shader "Custom/FadeCoverShader"
+﻿Shader "Custom/EffectShaderExpanded" 
 {
 	Properties
 	{
 		_MainTex("Texture", 2D) = "black"{}
 		_DistTex("Distortion Texture", 2D) = "grey"{}
 		_DistMask("Distortion Mask", 2D) = "black"{}
-
+	
 		_AlphaValue("Alpha", float) = 0
+			
+		_EffectsLayerTex("Effect Textures", 2DArray) = "black"{}
 
-		_EffectsLayerTex("Effect Texture", 2D) = "black"{}
 		_EffectsLayerColor("Effect Color", Color) = (1,1,1,1)
-		_EffectsLayerMotion("Motion Texture", 2D) = "black"{}
+		//_EffectsLayerMotion("Motion Texture", 2D) = "black"{}
 		_EffectsLayerMotionSpeedYAxis("Effect Speed Y Axis", float) = 0
 		_EffectsLayerMotionSpeedXAxis("Effect Speed X Axis", float) = 0
 		_EffectsLayerRotation("Effect Rotation", float) = 0
@@ -53,8 +54,8 @@
 	sampler2D _DistTex;
 	sampler2D _DistMask;
 
-	sampler2D _EffectsLayerTex;
-	sampler2D _EffectsLayerMotion;
+	UNITY_DECLARE_TEX2DARRAY(_EffectsLayerTex);
+	//sampler2D _EffectsLayerMotion;
 	float _EffectsLayerMotionSpeedYAxis;
 	float _EffectsLayerMotionSpeedXAxis;
 	float _EffectsLayerRotation;
@@ -93,7 +94,7 @@
 		fixed4 col = tex2D(_MainTex, i.uv + dist * distMask * 0.025);
 		fixed bg = col.a;
 
-		fixed4 motion = tex2D(_EffectsLayerMotion, i.uv);
+		fixed4 motion = tex2D(_EffectsLayerTex[1], i.uv);
 
 		if (_EffectsLayerMotionSpeedYAxis)
 		{
@@ -108,7 +109,7 @@
 			motion = fixed4(i.effectuv.rg, motion.b, motion.a);
 		}
 
-		fixed4 effect = tex2D(_EffectsLayerTex, motion.xy) * motion.a;
+		fixed4 effect = tex2D(_EffectsLayerTex[0], motion.xy) * motion.a;
 		effect *= _EffectsLayerColor;
 
 		col += effect * effect.a * max(bg, _EffectsLayerForeground);
@@ -120,7 +121,6 @@
 
 		ENDCG
 	}
-		}
-			Fallback OFF
-
+	}
+	FallBack "Diffuse"
 }

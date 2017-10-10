@@ -2,14 +2,14 @@
 {
 	Properties
 	{
-		_MainTex("Texture", 2D) = "black"{}
+		_MainTex("Main Texture", 2D) = "black"{}
 		_DistTex("Distortion Texture", 2D) = "grey"{}
 		_DistMask("Distortion Mask", 2D) = "black"{}
 
 		_EffectsLayerTex("Effect Texture", 2D) = "black"{}
 		_EffectsLayerColor("Effect Color", Color) = (1,1,1,1)
 		_EffectsLayerMotion("Motion Texture", 2D) = "black"{}
-		_EffectsLayerMotionSpeed("Effect Speed", float) = 0
+		_EffectsLayerMotionSpeedYAxis("Effect Speed", float) = 0
 		_EffectsLayerRotation("Effect Rotation", float) = 0
 		_EffectsLayerPivotScale("Effect Scale", Vector) = (0.5,0.5,1,1)
 		_EffectsLayerTranslation("Effect Translation", Vector) = (0,0,0,0)
@@ -51,7 +51,8 @@
 
 			sampler2D _EffectsLayerTex;
 			sampler2D _EffectsLayerMotion;
-			float _EffectsLayerMotionSpeed;
+			float _EffectsLayerMotionSpeedYAxis;
+			float _EffectsLayerMotionSpeedXAxis;
 			float _EffectsLayerRotation;
 			float4 _EffectsLayerPivotScale;
 			half4 _EffectsLayerColor;
@@ -88,9 +89,13 @@
 
 				fixed4 motion = tex2D(_EffectsLayerMotion, i.uv);
 
-				if (_EffectsLayerMotionSpeed)
+				if (_EffectsLayerMotionSpeedYAxis)
 				{
-					motion.y -= _Time.x * _EffectsLayerMotionSpeed;
+					motion.y -= _Time.x * _EffectsLayerMotionSpeedYAxis;
+				}
+				else if (_EffectsLayerMotionSpeedXAxis)
+				{
+					motion.x -= _Time.x * _EffectsLayerMotionSpeedXAxis;
 				}
 				else
 				{
