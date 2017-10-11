@@ -29,7 +29,7 @@ public class HudMenuTab : MenuTab
     }
     private void OnEnable()
     {
-        overallHudOnOff.OnValueChanged += TurnOnAll;
+        overallHudOnOff.OnValueChanged += OverallChange;
         overallHudOnOff.OnValueChanged += UpdateHudPreview;
         reticleOnOff.OnValueChanged += UpdateHudPreview;
         speedOnOff.OnValueChanged += UpdateHudPreview;
@@ -47,7 +47,7 @@ public class HudMenuTab : MenuTab
     }
     private void OnDisable()
     {
-        overallHudOnOff.OnValueChanged -= TurnOnAll;
+        overallHudOnOff.OnValueChanged -= OverallChange;
         overallHudOnOff.OnValueChanged -= UpdateHudPreview;
         reticleOnOff.OnValueChanged -= UpdateHudPreview;
         speedOnOff.OnValueChanged -= UpdateHudPreview;
@@ -61,6 +61,10 @@ public class HudMenuTab : MenuTab
         confirmButton.OnSelectSuccess -= ConfirmAll;
         defaultButton.OnSelectSuccess -= DefaultAll;
         revertButton.OnSelectSuccess -= ResetAll;
+    }
+    private void OverallChange()
+    {
+        if (overallHudOnOff.IsOn) TurnOnAll(); else TurnOffAll();
     }
     private void UpdateHudPreview()
     {
