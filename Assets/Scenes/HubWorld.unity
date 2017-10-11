@@ -584,6 +584,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 300475460}
+  - component: {fileID: 300475461}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -612,6 +613,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &300475461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 300475459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6171fd5aa86e540b76427d644178f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &313989313
 Prefab:
   m_ObjectHideFlags: 0
@@ -3219,7 +3231,7 @@ GameObject:
   - component: {fileID: 747452055}
   m_Layer: 0
   m_Name: BoardStands
-  m_TagString: Untagged
+  m_TagString: boardStands
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4390,7 +4402,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1706404526421566, guid: 6113efba086412d4fa9a49185d5d1da4, type: 2}
       propertyPath: m_TagString
-      value: Untagged
+      value: worldPortals
       objectReference: {fileID: 0}
     - target: {fileID: 1161384966548352, guid: 6113efba086412d4fa9a49185d5d1da4, type: 2}
       propertyPath: m_TagString
@@ -8535,6 +8547,18 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4018922577694512, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 10.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018922577694512, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4018922577694512, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.065778
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
   m_IsPrefabParent: 0
@@ -8931,6 +8955,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 8b998a9fe9a64ea4aa026370f55fb8a6, type: 2}
+    - target: {fileID: 1086067507446776, guid: bea3ec5aff31c984bbfa755278aa0767, type: 2}
+      propertyPath: m_TagString
+      value: menuSystem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bea3ec5aff31c984bbfa755278aa0767, type: 2}
   m_IsPrefabParent: 0
