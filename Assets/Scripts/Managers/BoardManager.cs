@@ -124,7 +124,7 @@ public class BoardManager : MonoBehaviour
 
         //return the proper variables, depending on if we are using a gamepad or gyro
         if (gamepadEnabled)
-            GamepadBoardSelect(out newBoardVariables);
+            GamepadBoardSelect(out newBoardVariables, currentBoardSelection);
         else
             GyroBoardSelect(out newBoardVariables);
 
@@ -136,9 +136,9 @@ public class BoardManager : MonoBehaviour
 
 
     //helper function
-    void GamepadBoardSelect(out ManagerClasses.PlayerMovementVariables pmv)
+    public void GamepadBoardSelect(out ManagerClasses.PlayerMovementVariables pmv, BoardType boardType)
     {
-        switch (currentBoardSelection)
+        switch (boardType)
         {
             case BoardType.Original:
                 pmv = new ManagerClasses.PlayerMovementVariables

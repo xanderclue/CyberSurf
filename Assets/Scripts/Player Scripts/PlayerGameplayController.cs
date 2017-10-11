@@ -135,14 +135,14 @@ public class PlayerGameplayController : MonoBehaviour
     {
         //update our debugSpeedIncease, if it is enabled
         if (debugSpeedEnabled)
-        {
-            float changeAmt = Input.GetAxis("DebugAccelerateDecelerate");
-            if (changeAmt != 0f)
             {
-                if (debugSpeedIncrease + changeAmt > -50f && debugSpeedIncrease + changeAmt < 101f)
-                    debugSpeedIncrease += changeAmt;
+                float changeAmt = Input.GetAxis("DebugAccelerateDecelerate");
+                if (changeAmt != 0f)
+                {
+                    if (debugSpeedIncrease + changeAmt > -50f && debugSpeedIncrease + changeAmt < 101f)
+                        debugSpeedIncrease += changeAmt;
+                }
             }
-        }
 
         //update our currAcceleration based off of our inverted momentum variable
         //give the player a boost for the first second in a level

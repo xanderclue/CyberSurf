@@ -11,11 +11,10 @@ public class RingProperties : MonoBehaviour
     public bool lastRingInScene = false;
     public int nextScene = 1;
 
-
-    [SerializeField] public float timeBonusOriginal = 10.0f;
-    [SerializeField] public float timeBonusMachI = 8.0f;
-    [SerializeField] public float timeBonusMachII = 0.0f;
-    [SerializeField] public float timeBonusMachIII = -4.0f;
+    //bonus time
+    BoardManager boardManager;
+    ManagerClasses.PlayerMovementVariables currPMV;
+    ManagerClasses.PlayerMovementVariables basePMV;
 
     //if we have children, set their values, but only if this is marked as a duplicate
     private void Awake()
@@ -37,26 +36,31 @@ public class RingProperties : MonoBehaviour
 
     private void Start()
     {
-        BoardManager boardScript = GameManager.instance.boardScript;
-        float max;
-        float min;
-        float average;
-        if (boardScript.gamepadEnabled)
+        if (GameManager.instance.gameMode.currentMode == GameModes.Cursed)
         {
-            max = boardScript.customGamepadMovementVariables.maxSpeed;
-            min = boardScript.customGamepadMovementVariables.minSpeed;
-            average = (min) + ((max-min) * 0.5f);
-        }
-        else
-        {
-            max = boardScript.customGyroMovementVariables.maxSpeed;
-            min = boardScript.customGyroMovementVariables.minSpeed;
-            average = (min) + ((max - min) * 0.5f);
-        }
-        timeBonusOriginal = (average / max) * 2.5f;
-        timeBonusMachI = (average / max) * 0.3f;
-        timeBonusMachII = 0;
-        timeBonusMachIII = -timeBonusMachI;
+            //bonus time stuff
+            boardManager = GameManager.instance.boardScript;
+            currPMV = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
+            boardManager.GamepadBoardSelect(out basePMV, BoardType.MachII);
 
+            //calculate averages
+            float currentAverage = (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed) / 3f;
+            float baseAverage;
+            float percentDifference;
+            float percentIncrease = 1.1f;
+
+            //set our baseAverage
+            if (boardManager.currentBoardSelection != BoardType.MachII)
+                baseAverage = (basePMV.minSpeed + basePMV.restingAcceleration + basePMV.maxSpeed) / 3f;
+            else
+                baseAverage = currentAverage;
+
+            //calculate the percent difference depending on how much over/under we are based off of the mach II board average velocity
+            percentDifference = (baseAverage / currentAverage) * percentIncrease;
+
+            //increase/decrease the bonus time based off of our percentDifference
+            bonusTime *= percentDifference;
+        }
     }
+
 }

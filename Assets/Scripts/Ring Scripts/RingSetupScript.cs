@@ -7,16 +7,19 @@ public class RingSetupScript : MonoBehaviour
     [SerializeField] GameObject[] ringDifficultyParents;
     Transform[] ringTransforms;
     arrowPointAtUpdater arrowScript;
+    RingProperties[] sortedRings;
 
     //state of what the rings should be setup as determined by gamemode
-    [HideInInspector] public GameModes mode;
+    GameModes mode;
     GameDifficulties difficulty;
+    ManagerClasses.RoundTimer roundTimer;
 
     void Start()
     {
         arrowScript = GameManager.player.GetComponentInChildren<arrowPointAtUpdater>();
         mode = GameManager.instance.gameMode.currentMode;
         difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+        roundTimer = GameManager.instance.roundTimer;
 
         //turn off the parents, just in case they got left on
         foreach (GameObject item in ringDifficultyParents)
@@ -48,36 +51,42 @@ public class RingSetupScript : MonoBehaviour
                 break;
         }
 
+        RingProperties[] rings;
+
+        //use a list to remove rings we won't need depending on game mode
+        List<RingProperties> ringList = new List<RingProperties>();
+
+        rings = GetComponentsInChildren<RingProperties>();
+
+        //insertion sort the rings according to their position in order
+        InsertionSort(rings, rings.GetLength(0));
+
+        //set our sorted rings to our ring list
+        foreach (RingProperties rp in rings)
+        {
+            ringList.Add(rp);
+        }
+
+        //update our ring list depending on game mode
+        setRingsMode(ringList);
+
+        //assign the transforms from the sorted list
+        ringTransforms = new Transform[ringList.Count];
+
+        for (int i = 0; i < ringList.Count; i++)
+            ringTransforms[i] = ringList[i].transform;
+
+        sortedRings = rings;
+
+        //set the startup bonus time for the player if in curse mode
+        if (mode == GameModes.Cursed)
+            SetupStartBonusTime();
+
+        //setup our arrowScript if we're using it
         if (arrowScript != null)
         {
-            RingProperties[] rings;
-
-            //use a list to remove rings we won't need depending on game mode
-            List<RingProperties> ringList = new List<RingProperties>();
-
-            rings = GetComponentsInChildren<RingProperties>();
-
-            //insertion sort the rings according to their position in order
-            InsertionSort(rings, rings.GetLength(0));
-
-            //set our sorted rings to our ring list
-            foreach (RingProperties rp in rings)
-            {
-                ringList.Add(rp);
-            }
-
-            //update our ring list depending on game mode
-            setRingsMode(mode, ringList);
-
-            //assign the transforms from the sorted list
-            ringTransforms = new Transform[ringList.Count];
-
-            for (int i = 0; i < ringList.Count; i++)
-                ringTransforms[i] = ringList[i].transform;
-            
-
             arrowScript.thingsToLookAt = ringTransforms;
-            arrowScript.sortedRings = rings;
+            arrowScript.sortedRings = rings;           
         }
         if (ringTransforms != null)
         {
@@ -85,9 +94,9 @@ public class RingSetupScript : MonoBehaviour
         }
     }
 
-    void setRingsMode(GameModes theMode, List<RingProperties> rings)
+    void setRingsMode(List<RingProperties> rings)
     {
-        switch (theMode)
+        switch (mode)
         {
             case GameModes.Continuous:
                 arrowScript.currentlyLookingAt = 1;
@@ -142,6 +151,18 @@ public class RingSetupScript : MonoBehaviour
         }
     }
 
+    void SetupStartBonusTime()
+    {
+        ManagerClasses.PlayerMovementVariables currPMV = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
+
+        float currentAverage = (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed) / 3f;
+        float startingBonusTime = 5f;
+
+        float distanceToRing = Vector3.Distance(GameManager.player.GetComponent<Transform>().position, sortedRings[0].GetComponent<Transform>().position);
+
+        roundTimer.TimeLeft = (distanceToRing / currentAverage) + startingBonusTime;
+    }
+
     private void OnDisable()
     {
         if (arrowScript != null)
@@ -150,4 +171,5 @@ public class RingSetupScript : MonoBehaviour
             arrowScript.currentlyLookingAt = -1;
         }
     }
+
 }

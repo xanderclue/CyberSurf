@@ -91,7 +91,6 @@ public class RingProcessorWizard : ScriptableWizard
                 rp.bonusTime = CalculateBonusTime();
                 rp.positionInOrder = currQueuePosition;
 
-
                 UnityEditorInternal.ComponentUtility.CopyComponent(rp);
                 UnityEditorInternal.ComponentUtility.PasteComponentValues(rp);
             }

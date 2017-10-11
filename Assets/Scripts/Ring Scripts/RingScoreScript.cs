@@ -15,12 +15,12 @@ public class RingScoreScript : MonoBehaviour
     }
 
     //static ring effect settings
+    public static ScoreMultipliers multipliers = new ScoreMultipliers(1.5f, 1f, 0.25f);
     static int prevPositionInOrder;
     static int prevConsecutiveCount;
     static int consecutiveCount;
     static bool effectsStopped;
 
-    public static ScoreMultipliers multipliers = new ScoreMultipliers(1.5f, 1f, 0.25f);
     playerCollisionSoundEffects pColSoundEffects;
     PlayerArrowHandler pArrowHandler;
     ScoreManager scoreManager;
@@ -32,7 +32,6 @@ public class RingScoreScript : MonoBehaviour
     float totalMultiplier;
 
     bonusTimeTextUpdater bonusTimeText;
-
     ParticleSystem hitEffect;
 
     PlayerRespawn respawnScript;
@@ -128,25 +127,6 @@ public class RingScoreScript : MonoBehaviour
 
                 if (GameManager.instance.gameMode.currentMode == GameModes.Cursed)
                 {
-                    switch (GameManager.instance.boardScript.currentBoardSelection)
-                    {
-                        case BoardType.Original:
-                            rp.bonusTime += rp.timeBonusOriginal;
-                            break;
-                        case BoardType.MachI:
-                            rp.bonusTime += rp.timeBonusMachI;
-                            break;
-                        case BoardType.MachII:
-                            rp.bonusTime += rp.timeBonusMachII;
-                            break;
-                        case BoardType.MachIII:
-                            rp.bonusTime += rp.timeBonusMachIII;
-                            break;
-                        case BoardType.Custom:
-                            break;
-                        default:
-                            break;
-                    }
                     GameManager.instance.roundTimer.IncreaseTimeLeft(rp.bonusTime);
                     bonusTimeText.play((rp.bonusTime).ToString("n2"));
                 }

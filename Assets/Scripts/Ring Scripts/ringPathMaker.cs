@@ -12,18 +12,9 @@ public class ringPathMaker : MonoBehaviour
     CatmullRomSplineDrawn pathDrawer = new CatmullRomSplineDrawn();
 
     LineRenderer myself;
-    
 
     //line or loop
     public bool isLooping = false;
-
-
-
-    private void Start()
-    {
-        myself = GetComponentInChildren<LineRenderer>();
-    }
-    
 
     #region EventStuff
     void togglePath(bool isOn)
@@ -45,6 +36,9 @@ public class ringPathMaker : MonoBehaviour
     //sets up array before we even do the catmull stuff, then does the actual drawing once at the very end
     public void init(Transform[] array)
     {
+        if (myself == null)
+            myself = GetComponentInChildren<LineRenderer>();
+
         if (drawLine)
         {
             //push back the first ring in the array 

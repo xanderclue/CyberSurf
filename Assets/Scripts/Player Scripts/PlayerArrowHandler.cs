@@ -9,6 +9,7 @@ public class PlayerArrowHandler : MonoBehaviour
 
     int prevPositionInOrder;
 
+    arrowPointAtUpdater ArrowScript { get { return arrowScript; } }
     private void Start()
     {
         prevPositionInOrder = 0;
