@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameStates { MainMenu, GamePlay, GameOver, SceneTransition };
+public enum GameStates { HubWorld, GamePlay, SceneTransition };
 public enum GameModes { Continuous, Cursed, Free, GameModesSize };
 public enum GameDifficulties { Easy, Normal, Hard, GameDifficultiesSize};
 
@@ -36,7 +36,7 @@ public class ManagerClasses : MonoBehaviour
     public class GameState
     {
         public GameStates currentState;
-        public GameState() { currentState = GameStates.MainMenu; }
+        public GameState() { currentState = GameStates.HubWorld; }
     }
 
     public class GameMode

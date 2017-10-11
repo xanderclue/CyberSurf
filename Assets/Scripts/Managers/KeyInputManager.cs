@@ -29,7 +29,7 @@ public class KeyInputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (state.currentState != GameStates.MainMenu)
+            if (state.currentState != GameStates.HubWorld)
             {
                 GameManager.instance.lastPortalBuildIndex = -1;
                 EventManager.OnTriggerTransition(1);
@@ -46,7 +46,7 @@ public class KeyInputManager : MonoBehaviour
             StartCoroutine(CalibrationCoroutine());
         }
 
-        if (state.currentState != GameStates.MainMenu && Input.GetButtonDown("XBox Start"))
+        if (state.currentState != GameStates.HubWorld && Input.GetButtonDown("XBox Start"))
         {
             GameManager.instance.lastPortalBuildIndex = -1;
             EventManager.OnTriggerTransition(1);
@@ -59,7 +59,7 @@ public class KeyInputManager : MonoBehaviour
         }
 
         #region stuff we're going to get rid of
-        if (state.currentState != GameStates.MainMenu && hubOnFlippedHMD && VRDevice.isPresent)
+        if (state.currentState != GameStates.HubWorld && hubOnFlippedHMD && VRDevice.isPresent)
         {
             flippedQuaternion = InputTracking.GetLocalRotation(VRNode.Head);
 

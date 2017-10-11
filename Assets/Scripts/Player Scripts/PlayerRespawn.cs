@@ -18,6 +18,7 @@ public class PlayerRespawn : MonoBehaviour
 
     CameraSplashScreen countdown;
     ManagerClasses.RoundTimer roundTimer;
+    ManagerClasses.GameState gameState;
     float roundTimerStartTime;
 
     bool isRespawning = false;
@@ -29,6 +30,7 @@ public class PlayerRespawn : MonoBehaviour
         countdown = GetComponentInChildren<CameraSplashScreen>();
         playerRB = GameManager.player.GetComponent<Rigidbody>();
         roundTimer = GameManager.instance.roundTimer;
+        gameState = GameManager.instance.gameState;
     }
 
     void OnLevelLoaded(Scene scene, LoadSceneMode mode)
@@ -47,7 +49,7 @@ public class PlayerRespawn : MonoBehaviour
 
     public void RespawnPlayer(Transform rsPoint, float startTime, float countDownFrom = 3.25f)
     {
-        if (!isRespawning && GameManager.instance.gameState.currentState != GameStates.SceneTransition)
+        if (!isRespawning && gameState.currentState == GameStates.GamePlay)
         {
             roundTimer.TimeLeft = 0f;
 
@@ -97,7 +99,7 @@ public class PlayerRespawn : MonoBehaviour
         }
 
         //then start to fade in if we aren't transitioning
-        if (GameManager.instance.gameState.currentState != GameStates.SceneTransition)
+        if (gameState.currentState == GameStates.GamePlay)
             StartCoroutine(FadeIn());
     }
 
@@ -114,7 +116,7 @@ public class PlayerRespawn : MonoBehaviour
         float quarterFadeTime = fadeTime * 0.25f;
         bool countdownStarted = false;
 
-        while (timeIntoFade < fadeTime && GameManager.instance.gameState.currentState != GameStates.SceneTransition)
+        while (timeIntoFade < fadeTime && gameState.currentState == GameStates.GamePlay)
         {
             UpdateAlpha(false);
 
@@ -129,22 +131,20 @@ public class PlayerRespawn : MonoBehaviour
         }
 
         //unlock movement, but only if we aren't transitioning
-        if (GameManager.instance.gameState.currentState != GameStates.SceneTransition)
+        if (gameState.currentState == GameStates.GamePlay)
         {
             //wait for the countdown to finish if we need to
             if (countDownTime - timeIntoFade > 0f)
                 yield return new WaitForSeconds(countDownTime - timeIntoFade);
 
-            EventManager.OnSetGameplayMovementLock(false);
-
-            //unpause the timer
-            roundTimer.PauseTimer(false);
-
-            isRespawning = false;
+            yield return null;
+            if (gameState.currentState == GameStates.GamePlay)
+                EventManager.OnSetGameplayMovementLock(false);
         }
 
+        roundTimer.PauseTimer(false);
+        isRespawning = false;
         respawnPoint = null;
-
     }
 
     private void OnEnable()

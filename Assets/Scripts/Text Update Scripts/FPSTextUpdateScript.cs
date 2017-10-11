@@ -8,6 +8,7 @@ public class FPSTextUpdateScript : MonoBehaviour
 {
 
     TextMeshProUGUI element;
+    public TMPro.TMP_FontAsset the_font_asset;
 
     float frameCount = 0;
     float dt = 0.0f;
@@ -21,20 +22,27 @@ public class FPSTextUpdateScript : MonoBehaviour
 
     void Update()
     {
-        frameCount++;
-        dt += Time.deltaTime;
-        if (dt > 1.0f / updateRate)
+        if (element.enabled == true)
         {
-            fps = frameCount / dt;
-            frameCount = 0;
-            dt -= 1.0f / updateRate;
-        }
+            frameCount++;
+            dt += Time.deltaTime;
+            if (dt > 1.0f / updateRate)
+            {
+                fps = frameCount / dt;
+                frameCount = 0;
+                dt -= 1.0f / updateRate;
+            }
 
-        string textToWrite = " " + fps.ToString("n2") + " ";
-        element.SetText(textToWrite);
+            string textToWrite = " " + fps.ToString("n2") + " ";
+            element.SetText(textToWrite);
+        }
         if (Input.GetKeyDown(KeyCode.F1))
         {
             element.enabled = !element.enabled;
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            element.faceColor = new Color(element.faceColor.r, element.faceColor.g, element.faceColor.b, 0.0f);
         }
      
     }

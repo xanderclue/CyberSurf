@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
             case 0: //Starting area
                 menuController.ToggleMenuMovement(true);
                 EventManager.OnSetHudOnOff(false);
-                gameState.currentState = GameStates.MainMenu;
+                gameState.currentState = GameStates.HubWorld;
                 break;
             case 1: // HubWorld
                 //if the last game mode wasn't free mode, unlock movement
@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
                     menuController.ToggleMenuMovement(true);
 
                 EventManager.OnSetHudOnOff(false);
-                gameState.currentState = GameStates.MainMenu;
+                gameState.currentState = GameStates.HubWorld;
                 gameManager.scoreScript.score = 0;
                 gameManager.scoreScript.ringHitCount = 0;
                 gameManager.scoreScript.firstPortal = true;
