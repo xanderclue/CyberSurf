@@ -30,9 +30,6 @@ public class speedBarUpdater : MonoBehaviour
 
     private void OnEnable()
     {
-        moveVars = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
-        maxValue = moveVars.maxSpeed;
-        minValue = moveVars.minSpeed;
     }
 
     private void Update()
