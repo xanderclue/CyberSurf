@@ -23,7 +23,8 @@ public class ThirdPersonCamera : MonoBehaviour
 
     public bool UpdatingCameraPosition { get { return updatingCameraPosition; } }
     public bool UsingThirdPersonCamera { get { return usingThirdPersonCamera; } }
-    public Vector3 ThirdPersonAnchorPos { get { return thirdPersonAnchor.position; } }
+    public Transform FirstPersonAnchor { get { return firstPersonAnchor; } }
+    public Transform ThirdPersonAnchor { get { return thirdPersonAnchor; } }
 
     private void Start()
     {
