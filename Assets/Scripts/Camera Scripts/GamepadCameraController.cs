@@ -15,6 +15,10 @@ public class GamepadCameraController : MonoBehaviour
     ThirdPersonCamera thirdPersonCamera;
     Vector3 thirdPersonTranslation;
 
+    float timeTillStartReaglign = 1.5f;
+    float timeSinceLastCameraMove = 0f;
+    bool realigning = false;
+
     void Start ()
     {
         cameraContainerTransform = GetComponent<Transform>();
@@ -37,6 +41,8 @@ public class GamepadCameraController : MonoBehaviour
 
     void ThirdPersonCameraMove()
     {
+        ThirdPersonCameraAlign();
+
         float cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * thirdPersonCameraSpeed * Time.deltaTime;
         float cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontal") * thirdPersonCameraSpeed * Time.deltaTime;
 
@@ -69,10 +75,38 @@ public class GamepadCameraController : MonoBehaviour
         cameraContainerTransform.rotation = (Quaternion.Euler(new Vector3(cameraPitch, cameraYaw, 0.0f)));
     }
 
-    void ReAlignCamera()
+    void ReAlignCamera(float alignRate)
     {
         Quaternion alignQuaternion = Quaternion.Euler(0f, playerTransform.eulerAngles.y, 0f);
-        cameraContainerTransform.rotation = Quaternion.Slerp(cameraContainerTransform.rotation, alignQuaternion, Time.deltaTime * 2f);
+        cameraContainerTransform.rotation = Quaternion.Slerp(cameraContainerTransform.rotation, alignQuaternion, Time.deltaTime * alignRate);
+    }
+
+    void ThirdPersonCameraAlign()
+    {
+        if (!realigning)
+        {
+            if (Input.GetAxis("RVertical") == 0f && Input.GetAxis("RHorizontal") == 0f)
+                timeSinceLastCameraMove += Time.deltaTime;
+            else
+                timeSinceLastCameraMove = 0f;
+
+            //start realigning if the player hasn't moved in a while
+            if (timeSinceLastCameraMove > timeTillStartReaglign)
+                realigning = true;
+        }
+        else
+        {
+            //make sure the player isn't trying to move the camera about
+            if (Input.GetAxis("RVertical") != 0f || Input.GetAxis("RHorizontal") != 0f)
+            {
+                realigning = false;
+                timeSinceLastCameraMove = 0f;
+            }
+            else
+                ReAlignCamera(1f);
+        }
+
+        print(timeSinceLastCameraMove);
     }
 
     IEnumerator CameraControllerCoroutine()
@@ -81,9 +115,11 @@ public class GamepadCameraController : MonoBehaviour
 
         //while updating to the third person camera, re-align the camera 
         if (thirdPersonCamera.UpdatingCameraPosition)
-            ReAlignCamera();
+            ReAlignCamera(2f);
         else if (thirdPersonCamera.UsingThirdPersonCamera)
+        {
             ThirdPersonCameraMove();
+        }
         else
             FirstPersonCameraMove();
 

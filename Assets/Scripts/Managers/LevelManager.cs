@@ -33,11 +33,11 @@ public class LevelManager : MonoBehaviour
         screenFade = p.GetComponentInChildren<ScreenFade>();
     }
 
-    //for debugging
-    void OnLevelLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("Scene changed to: " + scene.name);
-    }
+    ////for debugging
+    //void OnLevelLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    Debug.Log("Scene changed to: " + scene.name);
+    //}
 
     public void DoSceneTransition(int sceneIndex)
     {
@@ -106,14 +106,14 @@ public class LevelManager : MonoBehaviour
     {
         EventManager.OnTransition += DoSceneTransition;
         SceneManager.sceneLoaded += UndoSceneTransitionLocks;
-        SceneManager.sceneLoaded += OnLevelLoaded;
+        //SceneManager.sceneLoaded += OnLevelLoaded;
     }
 
     public void OnDisable()
     {
         EventManager.OnTransition -= DoSceneTransition;
         SceneManager.sceneLoaded -= UndoSceneTransitionLocks;
-        SceneManager.sceneLoaded -= OnLevelLoaded;
+        //SceneManager.sceneLoaded -= OnLevelLoaded;
     }
 
 }
