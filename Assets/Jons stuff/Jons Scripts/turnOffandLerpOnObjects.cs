@@ -22,11 +22,11 @@ public class turnOffandLerpOnObjects : MonoBehaviour
     GameObject menus;
 
     float currentTime;
-    float timeToPlay;
+    //float timeToPlay;
     // Use this for initialization
     void Start()
     {
-        timeToPlay = 15.0f;
+        //timeToPlay = 15.0f;
 
         stds = GameObject.FindGameObjectWithTag("boardStands");
         portals = GameObject.FindGameObjectWithTag("worldPortals");

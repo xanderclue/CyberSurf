@@ -59,7 +59,8 @@ public abstract class SelectedObject : MonoBehaviour
         DeselectedFunction();
         if (!tooltipOnly)
         {
-            theReticle.UpdateReticleFill(0.0f);
+            if (null != theReticle)
+                theReticle.UpdateReticleFill(0.0f);
             isSelected = false;
             timeWaited = 0;
             delayTime = 0;
@@ -116,6 +117,8 @@ public abstract class SelectedObject : MonoBehaviour
                 LayerMask.LayerToName(gameObject.layer) + " (" + gameObject.layer + ") to " + LAYERNAME + " (" + LayerMask.NameToLayer(LAYERNAME) + ")");
             gameObject.layer = LayerMask.NameToLayer(LAYERNAME);
         }
+        if (null == GetComponent<Collider>())
+            Debug.LogWarning("A SelectedObject script is attached to an object that does not have a Collider component. (\"" + BuildDebugger.GetHierarchyName(gameObject) + "\")");
         if (!tooltipOnly)
         {
             successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
