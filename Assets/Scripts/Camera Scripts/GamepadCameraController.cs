@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GamepadCameraController : MonoBehaviour
 {
     [SerializeField, Range(10f, 100f)] float firstPersonCameraSpeed = 60f;
-    [SerializeField, Range(30f, 120f)] float thirdPersonCameraSpeed = 90f;
+    float thirdPersonCameraSpeed = 90f;
 
     Transform playerTransform;
     Rigidbody playerRB;
@@ -39,9 +39,13 @@ public class GamepadCameraController : MonoBehaviour
             cameraContainerTransform.eulerAngles = playerRB.transform.eulerAngles;
     }
 
+    Quaternion prevRotation;
+
     void ThirdPersonCameraMove()
     {
         ThirdPersonCameraAlign();
+
+        prevRotation = cameraContainerTransform.rotation;
 
         float cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * thirdPersonCameraSpeed * Time.deltaTime;
         float cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontal") * thirdPersonCameraSpeed * Time.deltaTime;
@@ -61,7 +65,7 @@ public class GamepadCameraController : MonoBehaviour
                 cameraPitch = 80f;
         }
 
-        cameraContainerTransform.rotation = (Quaternion.Euler(new Vector3(cameraPitch, cameraYaw, 0f)));
+        cameraContainerTransform.rotation = Quaternion.Euler(new Vector3(cameraPitch, cameraYaw, 0f));
 
         cameraContainerTransform.position = thirdPersonCamera.FirstPersonAnchor.position;
         cameraContainerTransform.Translate(thirdPersonTranslation);
@@ -77,7 +81,7 @@ public class GamepadCameraController : MonoBehaviour
 
     void ReAlignCamera(float alignRate)
     {
-        Quaternion alignQuaternion = Quaternion.Euler(0f, playerTransform.eulerAngles.y, 0f);
+        Quaternion alignQuaternion = Quaternion.Euler(playerTransform.eulerAngles.x, playerTransform.eulerAngles.y, 0f);
         cameraContainerTransform.rotation = Quaternion.Slerp(cameraContainerTransform.rotation, alignQuaternion, Time.deltaTime * alignRate);
     }
 
@@ -103,11 +107,39 @@ public class GamepadCameraController : MonoBehaviour
                 timeSinceLastCameraMove = 0f;
             }
             else
-                ReAlignCamera(1f);
+                ReAlignCamera(2f);
         }
-
-        print(timeSinceLastCameraMove);
     }
+
+    //private void LateUpdate()
+    //{
+    //    if (!VRDevice.isPresent)
+    //    {
+    //        if (thirdPersonCamera.UpdatingCameraPosition)
+    //            ReAlignCamera(2f);
+
+    //        else if (thirdPersonCamera.UsingThirdPersonCamera)
+    //            ThirdPersonCameraMove();
+
+    //        else
+    //            FirstPersonCameraMove();
+    //    }      
+    //}
+
+    //private void Update()
+    //{
+    //    if (!VRDevice.isPresent)
+    //    {
+    //        if (thirdPersonCamera.UpdatingCameraPosition)
+    //            ReAlignCamera(2f);
+
+    //        else if (thirdPersonCamera.UsingThirdPersonCamera)
+    //            ThirdPersonCameraMove();
+
+    //        else
+    //            FirstPersonCameraMove();
+    //    }      
+    //}
 
     IEnumerator CameraControllerCoroutine()
     {
@@ -116,10 +148,10 @@ public class GamepadCameraController : MonoBehaviour
         //while updating to the third person camera, re-align the camera 
         if (thirdPersonCamera.UpdatingCameraPosition)
             ReAlignCamera(2f);
+
         else if (thirdPersonCamera.UsingThirdPersonCamera)
-        {
             ThirdPersonCameraMove();
-        }
+
         else
             FirstPersonCameraMove();
 

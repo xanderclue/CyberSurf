@@ -136,6 +136,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1157705464313506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4019853073490066}
+  m_Layer: 0
+  m_Name: PlayerPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1176845307788398
 GameObject:
   m_ObjectHideFlags: 1
@@ -994,6 +1009,19 @@ Transform:
   m_Father: {fileID: 4248008849386278}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4019853073490066
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157705464313506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4502858656846404}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4040487242616278
 Transform:
   m_ObjectHideFlags: 1
@@ -1154,13 +1182,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888161922960542}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -2.77}
+  m_LocalPosition: {x: 0, y: 2, z: -12.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4420551917184220}
   - {fileID: 4248008849386278}
   - {fileID: 4099797900681624}
   - {fileID: 4167518794059552}
+  - {fileID: 4019853073490066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2524,6 +2553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ea0c44eb3da7241b948e4c6e86a732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pivotPoint: {fileID: 4019853073490066}
   gryoPitchInterpolation: 0.05
   gyroPitchPercentIncrease: 2.2
   movementVariables:
@@ -3887,7 +3917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c8e64a6a30f2f45b4e3fce6466d1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 50
+  firstPersonCameraSpeed: 60
+  thirdPersonCameraSpeed: 90
 --- !u!114 &114483155200988340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3902,6 +3933,7 @@ MonoBehaviour:
   arrow:
   - {fileID: 1215156304253862}
   - {fileID: 1361971636061022}
+  HUD_Color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114520779886557318
 MonoBehaviour:
   m_ObjectHideFlags: 1
