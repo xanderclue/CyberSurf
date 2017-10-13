@@ -34,6 +34,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
         {
             case 0:
                 {
+                    respawnAndDespawnSphere.sphereState = false;
                     for (int i = 1; i < splashScreens.Length; i++)
                     {
                         splashScreens[i].SetActive(false);
@@ -137,8 +138,8 @@ public class startupSplashScreenPlayer : MonoBehaviour
                     tutorial.SetActive(false);
                     confirmation.SetActive(false);
                     nextPrevSkip.SetActive(false);
-
-
+                    respawnAndDespawnSphere.sphereState = true;
+                    
                 }
                 //  timePlayingCurrent = 0.0f;
                 break;
