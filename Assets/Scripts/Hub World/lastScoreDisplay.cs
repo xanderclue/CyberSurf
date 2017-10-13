@@ -7,6 +7,7 @@ public class lastScoreDisplay : MonoBehaviour
 {
     [SerializeField] TextMeshPro scoreDisplay;
     [SerializeField] TextMeshPro timeDisplay;
+    [SerializeField] TextMeshPro[] letters;
 
 
     ScoreManager scoreScript;

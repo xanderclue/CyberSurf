@@ -38,6 +38,16 @@ public class closeScoreSplashScreen : SelectedObject
             gameObject.SetActive(false);
             panel.SetActive(false);
         }
+
+        if (scoreScript.currentName[0] != 0)
+        {
+            lOne.ForceMeshUpdate();
+            lOne.SetText(scoreScript.currentName[0].ToString());
+            lTwo.ForceMeshUpdate();
+            lTwo.SetText(scoreScript.currentName[1].ToString());
+            lThree.ForceMeshUpdate();
+            lThree.SetText(scoreScript.currentName[2].ToString());
+        }
     }
 
     override public void SuccessFunction()
@@ -63,6 +73,10 @@ public class closeScoreSplashScreen : SelectedObject
                 {
                     scoreScript.topContinuousScores[lastScoreLocation].name 
                         = lOne.GetParsedText() + lTwo.GetParsedText() + lThree.GetParsedText();
+
+                    scoreScript.currentName[0] = lOne.GetParsedText()[0];
+                    scoreScript.currentName[1] = lTwo.GetParsedText()[0];
+                    scoreScript.currentName[2] = lThree.GetParsedText()[0];
                 }
                 break;
 
@@ -91,6 +105,9 @@ public class closeScoreSplashScreen : SelectedObject
                 {
                     scoreScript.topCurseScores[lastPortalBuildIndex].curseScores[lastScoreLocation].name
                         = lOne.GetParsedText() + lTwo.GetParsedText() + lThree.GetParsedText();
+                    scoreScript.currentName[0] = lOne.GetParsedText()[0];
+                    scoreScript.currentName[1] = lTwo.GetParsedText()[0];
+                    scoreScript.currentName[2] = lThree.GetParsedText()[0];
                 }
                 break;
 

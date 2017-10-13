@@ -38,6 +38,8 @@ public class ScoreManager : MonoBehaviour
     public int curFilledCont = -1;
     [HideInInspector] public bool firstPortal = true;
 
+    public char[] currentName = new char[3];
+
     void initScores()
     {
         topCurseScores = SaveLoader.loadCurseScores();
