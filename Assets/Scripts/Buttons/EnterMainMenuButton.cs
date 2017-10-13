@@ -48,7 +48,7 @@ public class EnterMainMenuButton : SelectedObject
     {
         if (null != menuBox && null != menuSystem)
         {
-            respawnAndDespawnSphere.sphereState = false;
+            RespawnAndDespawnSphere.SphereState = false;
             menuBox.SetActive(true);
             if (null != lockTransform)
                 GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(lockTransform.position, lockTransform.rotation);

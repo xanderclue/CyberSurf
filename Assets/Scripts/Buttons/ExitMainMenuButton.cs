@@ -15,7 +15,7 @@ public class ExitMainMenuButton : SelectedObject
     {
         if (null != GetComponentInParent<MainMenu>().OnMenuExit)
             GetComponentInParent<MainMenu>().OnMenuExit();
-        respawnAndDespawnSphere.sphereState = true;
+        RespawnAndDespawnSphere.SphereState = true;
         PlayerPrefs.Save();
         enterMenuObject.gameObject.SetActive(true);
     }
