@@ -74,39 +74,44 @@
             (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
             UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton0) &&
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton5)))
-            TestFunc(-1);
+            TestFunc();
     }
-    private void TestFunc(int pIntId = 0)
+    private void TestFunc()
     {
-        switch (pIntId)
-        {
-            case 0:
-                {
-                    UnityEngine.Debug.Log("Mirroring");
-                    UnityEngine.GameObject[] lGobjarrRootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-                    System.Collections.Generic.List<UnityEngine.GameObject> lGobjlistRootObjects = new System.Collections.Generic.List<UnityEngine.GameObject>();
-                    foreach (UnityEngine.GameObject lGobjRootObject in lGobjarrRootObjects)
-                        lGobjlistRootObjects.Add(lGobjRootObject);
-                    UnityEngine.GameObject lGobjMirrorRoot = new UnityEngine.GameObject("MIRRORROOT");
-                    lGobjMirrorRoot.transform.position = GameManager.player.transform.position;
-                    lGobjMirrorRoot.transform.rotation = GameManager.player.transform.rotation;
-                    foreach (UnityEngine.GameObject lGobjRootObject in lGobjlistRootObjects)
-                        lGobjRootObject.transform.parent = lGobjMirrorRoot.transform;
-                    UnityEngine.Vector3 lVecTempLocalScale = lGobjMirrorRoot.transform.localScale;
-                    lVecTempLocalScale.x = -lVecTempLocalScale.x;
-                    lGobjMirrorRoot.transform.localScale = lVecTempLocalScale;
-                    foreach (UnityEngine.GameObject lGobjRootObject in lGobjlistRootObjects)
-                        lGobjRootObject.transform.parent = null;
-                    Destroy(lGobjMirrorRoot);
-                }
-                break;
-            default:
-                break;
-        }
+        UnityEngine.GameObject[] lGobjarrRootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+        System.Collections.Generic.List<UnityEngine.GameObject> lGobjlistRootObjects = new System.Collections.Generic.List<UnityEngine.GameObject>();
+        foreach (UnityEngine.GameObject lGobjRootObject in lGobjarrRootObjects)
+            lGobjlistRootObjects.Add(lGobjRootObject);
+        UnityEngine.GameObject lGobjMirrorRoot = new UnityEngine.GameObject("MIRRORROOT");
+        lGobjMirrorRoot.transform.position = GameManager.player.transform.position;
+        lGobjMirrorRoot.transform.rotation = GameManager.player.transform.rotation;
+        foreach (UnityEngine.GameObject lGobjRootObject in lGobjlistRootObjects)
+            lGobjRootObject.transform.parent = lGobjMirrorRoot.transform;
+        UnityEngine.Vector3 lVecTempLocalScale = lGobjMirrorRoot.transform.localScale;
+        lVecTempLocalScale.x = -lVecTempLocalScale.x;
+        lGobjMirrorRoot.transform.localScale = lVecTempLocalScale;
+        foreach (UnityEngine.GameObject lGobjRootObject in lGobjlistRootObjects)
+            lGobjRootObject.transform.parent = null;
+        Destroy(lGobjMirrorRoot);
     }
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
         WriteLine(pEnmLogType.ToString() + " << " + pStrLogMessage);
+        if (UnityEngine.LogType.Error == pEnmLogType || UnityEngine.LogType.Exception == pEnmLogType)
+            WriteToErrorLog(pStrLogMessage, pStrStackTrace, UnityEngine.LogType.Exception == pEnmLogType);
+    }
+    private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, bool pBoolIsException = false)
+    {
+        try
+        {
+            System.IO.StreamWriter lSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog.txt", true);
+            lSwWriter.Write((pBoolIsException ? "[!!EXCEPTION!!]" : "") +
+                "Time: " + System.DateTime.Now.ToString("(dddd) yyyy/MM/dd HH:mm:ss.fff") +
+                "\nLog Message: \"" + pStrLogMessage +
+                "\"\nStack Trace:\n" + pStrStackTrace + "\n\n");
+            lSwWriter.Close();
+        }
+        catch { WriteLine("kánótlógerRtufAil"); }
     }
     public static void InitDebugger()
     {
