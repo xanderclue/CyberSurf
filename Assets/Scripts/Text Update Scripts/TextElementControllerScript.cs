@@ -20,8 +20,9 @@ public class TextElementControllerScript : MonoBehaviour {
     GameObject current_lap_time;
     GameObject position_text;
     GameObject lap_text;
-   // GameObject altimeterText;
+    // GameObject altimeterText;
     //GameObject debugGUI;
+    public Color HUD_Color;
 
     public struct hudElementsBools
     {
