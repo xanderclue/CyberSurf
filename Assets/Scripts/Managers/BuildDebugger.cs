@@ -100,13 +100,14 @@
         if (UnityEngine.LogType.Error == pEnmLogType || UnityEngine.LogType.Exception == pEnmLogType)
             WriteToErrorLog(pStrLogMessage, pStrStackTrace, UnityEngine.LogType.Exception == pEnmLogType);
     }
+    public static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
     private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, bool pBoolIsException = false)
     {
         try
         {
             System.IO.StreamWriter lSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog.txt", true);
             lSwWriter.Write((pBoolIsException ? "[!!EXCEPTION!!]" : "") +
-                "Time: " + System.DateTime.Now.ToString("(dddd) yyyy/MM/dd HH:mm:ss.fff") +
+                "Time: " + TimeStamp +
                 "\nLog Message: \"" + pStrLogMessage +
                 "\"\nStack Trace:\n" + pStrStackTrace + "\n\n");
             lSwWriter.Close();
