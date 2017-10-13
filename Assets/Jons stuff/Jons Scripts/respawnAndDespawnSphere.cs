@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class RespawnAndDespawnSphere : MonoBehaviour
+public class respawnAndDespawnSphere : MonoBehaviour
 {
     private delegate void SphereStateChangeEvent(bool bValue);
     private static SphereStateChangeEvent OnSphereStateChange;
