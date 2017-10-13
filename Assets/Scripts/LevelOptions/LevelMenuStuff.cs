@@ -56,6 +56,7 @@ public class LevelMenuStuff : MonoBehaviour
     }
     public void EnterMenu()
     {
+        respawnAndDespawnSphere.sphereState = false;
         GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(lockTransform.position, lockTransform.rotation);
         ResetOptions();
         menuBox.SetActive(true);
@@ -63,6 +64,7 @@ public class LevelMenuStuff : MonoBehaviour
     }
     public void ExitMenu()
     {
+        respawnAndDespawnSphere.sphereState = true;
         GameManager.player.GetComponent<PlayerMenuController>().UnlockPlayerPosition();
         menuBox.SetActive(false);
         enterLevelOptions.gameObject.SetActive(true);
