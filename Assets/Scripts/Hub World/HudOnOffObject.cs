@@ -115,7 +115,9 @@ public class HudOnOffObject : MonoBehaviour
                 case HudMenuTab.HudMenuOption.Position:
                 case HudMenuTab.HudMenuOption.Opacity:
                 case HudMenuTab.HudMenuOption.Color:
+                    return defaultOnOffValue;
                 default:
+                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
                     return defaultOnOffValue;
             }
         }
@@ -152,8 +154,10 @@ public class HudOnOffObject : MonoBehaviour
                 case HudMenuTab.HudMenuOption.Position:
                 case HudMenuTab.HudMenuOption.Opacity:
                 case HudMenuTab.HudMenuOption.Color:
-                default:
                     defaultOnOffValue = value;
+                    break;
+                default:
+                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
                     break;
             }
         }

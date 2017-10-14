@@ -174,6 +174,7 @@ public class ScoreManager : MonoBehaviour
             case GameModes.Free:
                 break;
             default:
+                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"");
                 break;
         }
 
@@ -313,6 +314,7 @@ public class ScoreManager : MonoBehaviour
                 respawnEnabled = false;
                 break;
             default:
+                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"");
                 break;
         }
     }

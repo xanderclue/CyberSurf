@@ -185,7 +185,11 @@ public class BoardManager : MonoBehaviour
                     1f, 1f, 1f, 5f
                     );
                 break;
+            case BoardType.Custom:
+                pmv = customGamepadMovementVariables;
+                break;
             default:
+                Debug.LogWarning("Missing case: \"" + boardType.ToString("F") + "\"");
                 pmv = customGamepadMovementVariables;
                 break;
         }
@@ -241,7 +245,11 @@ public class BoardManager : MonoBehaviour
                     1f, 1f, 1f, 5f
                     );
                 break;
+            case BoardType.Custom:
+                pmv = customGyroMovementVariables;
+                break;
             default:
+                Debug.LogWarning("Missing case: \"" + currentBoardSelection.ToString("F") + "\"");
                 pmv = customGyroMovementVariables;
                 break;
         }

@@ -11,7 +11,7 @@ public class changeCurrentScreen : SelectedObject
 
     public override void SuccessFunction()
     {
-        switch(buttonType)
+        switch (buttonType)
         {
             case ButtonType.Confirm:
                 startupSplashScreenPlayer.timePlayingCurrent = 0.0f;
@@ -33,6 +33,9 @@ public class changeCurrentScreen : SelectedObject
                 break;
             case ButtonType.Skip:
                 startupSplashScreenPlayer.currentScreen = 6;
+                break;
+            default:
+                Debug.LogWarning("Missing case: \"" + buttonType.ToString("F") + "\"");
                 break;
         }
     }

@@ -28,11 +28,8 @@ public class phantomScript : MonoBehaviour
 
             case GameModes.Free:
                 break;
-
-            case GameModes.GameModesSize:
-                break;
-
             default:
+                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"");
                 break;
         }
 	}

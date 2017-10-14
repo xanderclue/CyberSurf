@@ -58,8 +58,8 @@ public class TimerTextUpdateScript : MonoBehaviour
                 textToWrite = " " + roundTimer.TimeInLevel.ToString("n2") + " ";
 
                 break;
-
             default:
+                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
                 break;
         }
 

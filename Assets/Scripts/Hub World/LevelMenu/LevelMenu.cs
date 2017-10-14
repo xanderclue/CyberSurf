@@ -167,9 +167,8 @@ public class LevelMenu : MonoBehaviour
                     names[i] = "NOBODY";
                 }
                 break;
-            case GameModes.GameModesSize:
-                break;
             default:
+                Debug.LogWarning("Missing case: \"" + gameMode.currentMode.ToString("F") + "\"");
                 break;
         }
 
@@ -209,6 +208,9 @@ public class LevelMenu : MonoBehaviour
                 break;
             case DisplayToUpdate.PortalSelect:
                 preview.sprite = previewSprites[(int)currentLevel - 2];
+                break;
+            default:
+                Debug.LogWarning("Missing case: \"" + display.ToString("F") + "\"");
                 break;
         }
     }

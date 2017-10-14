@@ -49,6 +49,9 @@ public class RingSetupScript : MonoBehaviour
                 else
                     print("HARD RINGS PARENT NOT SET IN THE RINGS PARENT OBJECT!");
                 break;
+            default:
+                Debug.LogWarning("Missing case: \"" + difficulty.ToString("F") + "\"");
+                break;
         }
 
         RingProperties[] rings;
@@ -125,9 +128,8 @@ public class RingSetupScript : MonoBehaviour
 
                 arrowScript.currentlyLookingAt = rings.Count - 1;
                 break;
-            case GameModes.GameModesSize:
-                break;
             default:
+                Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"");
                 break;
         }
     }

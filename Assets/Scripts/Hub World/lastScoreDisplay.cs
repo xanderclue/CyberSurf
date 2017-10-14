@@ -101,11 +101,8 @@ public class lastScoreDisplay : MonoBehaviour
             case GameModes.Free:
                 Debug.Log("Free Mode shouldnt display anything");
                 break;
-
-            case GameModes.GameModesSize:
-                break;
-
             default:
+                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
                 break;
         }
     }

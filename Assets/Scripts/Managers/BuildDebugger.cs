@@ -3,11 +3,14 @@
     private const int cstIntMaxNumLines = 20;
     private const int cstIntMaxLineLength = 45;
     private static System.Collections.Generic.List<string> stcStrlistLines = null;
+    private static System.IO.StreamWriter stcSwWriter;
     private static UnityEngine.GameObject stcGobjTextObject = null;
     private static TMPro.TextMeshProUGUI stcCompTextmesh = null;
     private static uint stcUintLineCounter = 0u;
     private static bool stcBoolLinesSync = false;
     private static bool stcBoolDebuggerInited = false;
+    private static bool stcBoolErrorLogInited = false;
+    public static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
     private static bool WriteLine(string pStrLine)
     {
         if (null != pStrLine && pStrLine.Length > 0)
@@ -76,7 +79,7 @@
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton5)))
             TestFunc();
     }
-    private void TestFunc()
+    private static void TestFunc()
     {
         UnityEngine.GameObject[] lGobjarrRootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
         System.Collections.Generic.List<UnityEngine.GameObject> lGobjlistRootObjects = new System.Collections.Generic.List<UnityEngine.GameObject>();
@@ -97,22 +100,24 @@
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
         WriteLine(pEnmLogType.ToString() + " << " + pStrLogMessage);
-        if (UnityEngine.LogType.Error == pEnmLogType || UnityEngine.LogType.Exception == pEnmLogType)
-            WriteToErrorLog(pStrLogMessage, pStrStackTrace, UnityEngine.LogType.Exception == pEnmLogType);
+        if (UnityEngine.LogType.Log != pEnmLogType)
+            WriteToErrorLog(pStrLogMessage, pStrStackTrace, pEnmLogType);
     }
-    public static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
-    private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, bool pBoolIsException = false)
+    private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
         try
         {
-            System.IO.StreamWriter lSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog.txt", true);
-            lSwWriter.Write((pBoolIsException ? "[!!EXCEPTION!!]" : "") +
+            if (!stcBoolErrorLogInited)
+            {
+                stcSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog.txt", false);
+                stcBoolErrorLogInited = true;
+            }
+            stcSwWriter.Write(("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n") +
                 "Time: " + TimeStamp +
                 "\nLog Message: \"" + pStrLogMessage +
                 "\"\nStack Trace:\n" + pStrStackTrace + "\n\n");
-            lSwWriter.Close();
         }
-        catch { WriteLine("kánótlógerRtufAil"); }
+        catch (System.Exception e) { WriteLine("kánótlógerRtufAil: " + e.Message); }
     }
     public static void InitDebugger()
     {
@@ -126,11 +131,8 @@
     }
     private void OnApplicationQuit()
     {
-        if (stcBoolDebuggerInited)
-        {
-            UnityEngine.Application.logMessageReceivedThreaded -= GetLog;
-            stcBoolDebuggerInited = false;
-        }
+        if (stcBoolDebuggerInited) UnityEngine.Application.logMessageReceivedThreaded -= GetLog;
+        if (stcBoolErrorLogInited) try { stcSwWriter.Close(); } catch { }
     }
     public static string GetHierarchyName(UnityEngine.GameObject pGobjGameObject)
     {

@@ -98,6 +98,7 @@ public class LevelManager : MonoBehaviour
                 EventManager.OnCallSetRingPath(false);
                 break;
             default:
+                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
                 break;
         }
     }
