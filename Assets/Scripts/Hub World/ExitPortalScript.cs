@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ExitPortalScript : MonoBehaviour
 {
-    Image theFadeObj;
+    GameObject theFadeObj;
 
     System.Type boxCollider;
     PlayerMenuController pmc;
@@ -14,6 +14,7 @@ public class ExitPortalScript : MonoBehaviour
     {
         boxCollider = typeof(UnityEngine.CapsuleCollider);
         pmc = GameManager.player.GetComponent<PlayerMenuController>();
+        theFadeObj = GameManager.player.GetComponentInChildren<counterRotater>().gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +23,6 @@ public class ExitPortalScript : MonoBehaviour
         {
             pmc.ToggleMenuMovement(true);
 
-            try { theFadeObj = GameObject.FindGameObjectWithTag("FadeCover").GetComponent<Image>(); } catch { }
             StartCoroutine(ExitGameCoroutine());
         }
     }
@@ -31,8 +31,7 @@ public class ExitPortalScript : MonoBehaviour
     {
         float timeIntoFade = 0f;
         float fadeTime = 0.8f;
-        float alpha;
-        try { alpha = theFadeObj.color.a; } catch { }
+        float alpha = 0f;
 
         while (timeIntoFade < fadeTime)
         {
@@ -41,7 +40,7 @@ public class ExitPortalScript : MonoBehaviour
             alpha = timeIntoFade / fadeTime;
             alpha = Mathf.Clamp01(alpha);
 
-            try { theFadeObj.material.color = new Color(0f, 0f, 0f, alpha); } catch { }
+            theFadeObj.GetComponent<Renderer>().material.SetFloat("_AlphaValue", alpha);
 
             yield return null;
         }
@@ -54,7 +53,7 @@ public class ExitPortalScript : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             pmc.ToggleMenuMovement(false);
-            try { theFadeObj.material.color = new Color(0f, 0f, 0f, 0f); } catch { }
+            theFadeObj.GetComponent<Renderer>().material.SetFloat("_AlphaValue", 0f);
         }
     }
 
