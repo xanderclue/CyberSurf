@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VR;
 
 public class SetupControlsScreen : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class SetupControlsScreen : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         if (boardManager.gamepadEnabled)
-            controlsObject.GetComponent<Image>().sprite = controlsImages[0];
+            if (VRDevice.isPresent)
+                controlsObject.GetComponent<Image>().sprite = controlsImages[0];
+            else
+                controlsObject.GetComponent<Image>().sprite = controlsImages[2];
         else
             controlsObject.GetComponent<Image>().sprite = controlsImages[1];
     }
