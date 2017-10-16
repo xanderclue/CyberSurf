@@ -78,6 +78,12 @@
             UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton0) &&
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton5)))
             TestFunc();
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
+            if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) ||
+                UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))
+                UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + "_Double.png", 2);
+            else
+                UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + ".png");
     }
     private static void TestFunc()
     {
@@ -99,23 +105,25 @@
     }
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
+        string lStrTimeStamp = TimeStamp;
         WriteLine(pEnmLogType.ToString() + " << " + pStrLogMessage);
         if (UnityEngine.LogType.Log != pEnmLogType)
-            WriteToErrorLog(pStrLogMessage, pStrStackTrace, pEnmLogType);
+            WriteToErrorLog(pStrLogMessage, pStrStackTrace, pEnmLogType, lStrTimeStamp);
     }
-    private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
+    private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType, string pStrTimeStamp)
     {
         try
         {
             if (!stcBoolErrorLogInited)
             {
-                stcSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog.txt", false);
+                stcSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog" + pStrTimeStamp.Substring(0, 8) + ".txt", true);
+                stcSwWriter.Write("<BEGIN>\n\n");
                 stcBoolErrorLogInited = true;
             }
             stcSwWriter.Write(("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n") +
-                "Time: " + TimeStamp +
+                "Time: " + pStrTimeStamp +
                 "\nLog Message: \"" + pStrLogMessage +
-                "\"\nStack Trace:\n" + pStrStackTrace + "\n\n");
+                "\"\nStack Trace:\n" + pStrStackTrace + "\n");
         }
         catch (System.Exception e) { WriteLine("kánótlógerRtufAil: " + e.Message); }
     }
@@ -132,7 +140,7 @@
     private void OnApplicationQuit()
     {
         if (stcBoolDebuggerInited) UnityEngine.Application.logMessageReceivedThreaded -= GetLog;
-        if (stcBoolErrorLogInited) try { stcSwWriter.Close(); } catch { }
+        if (stcBoolErrorLogInited) try { stcSwWriter.Write("<END>\n\n\n"); stcSwWriter.Close(); } catch { }
     }
     public static string GetHierarchyName(UnityEngine.GameObject pGobjGameObject)
     {

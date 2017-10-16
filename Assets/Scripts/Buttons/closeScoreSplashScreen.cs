@@ -19,7 +19,7 @@ public class closeScoreSplashScreen : SelectedObject
 
     int lastScoreLocation;
 
-    [SerializeField] LevelMenu lMenu;
+    [SerializeField] TopScoreDisplay topScoreDisplay;
 
     new private void Start()
     {
@@ -118,6 +118,6 @@ public class closeScoreSplashScreen : SelectedObject
                 Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
                 break;
         }
-        lMenu.UpdateScoreDisplay();
+        topScoreDisplay.StartScoreUpdate();
     }
 }
