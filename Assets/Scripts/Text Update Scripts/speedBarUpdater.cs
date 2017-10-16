@@ -22,14 +22,14 @@ public class speedBarUpdater : MonoBehaviour
     void Start()
     {
         fillUpBar = gameObject.GetComponentsInParent<Image>()[1];
-        moveVars = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
-        maxValue = moveVars.maxSpeed;
-        minValue = moveVars.minSpeed;
         player = GetComponentInParent<Rigidbody>();
     }
 
     private void OnEnable()
     {
+        moveVars = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
+        maxValue = moveVars.maxSpeed;
+        minValue = moveVars.minSpeed;
     }
 
     private void Update()
