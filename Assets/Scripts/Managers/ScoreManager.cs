@@ -113,8 +113,6 @@ public class ScoreManager : MonoBehaviour
                     curFilledCont++;
                     firstPortal = false;
                 }
-                topContinuousScores[curFilledCont].difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
-
                 scoreStruct newLevelScore = new scoreStruct();
                 newLevelScore.score = score;
                 newLevelScore.time = roundTimer.TimeInLevel;
@@ -127,6 +125,8 @@ public class ScoreManager : MonoBehaviour
 
                 if (curFilledCont < 10)
                 {
+                    topContinuousScores[curFilledCont].difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+
                     if (topContinuousScores[curFilledCont].levels[level].positions == null)
                     {
                         topContinuousScores[curFilledCont].levels[level] = newLevelScore;
@@ -139,6 +139,8 @@ public class ScoreManager : MonoBehaviour
                 }
                 else
                 {
+                    topContinuousScores[9].difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+
                     topContinuousScores[9].levels[level] = compareContinuousScores(level, topContinuousScores[9].levels[level], newLevelScore);
                     topContinuousScores[9].isLastScoreInput = true;
                 }

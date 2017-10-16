@@ -12,15 +12,21 @@ public class KeyInputManager : MonoBehaviour
     public bool hubOnFlippedHMD = false;
     bool countingDown = false;
     float timeUpsideDown = 0f;
-    float originalCameraContainerHeight;
     Quaternion flippedQuaternion;
 
+    //calibration variables
     ThirdPersonCamera thirdPersonCameraScript;
+    Transform playerTransform;
+    Transform cameraContainer;
+    Vector3 cameraContainerPositionDifference;
+
 
     public void setupKeyInputManager(ManagerClasses.GameState s)
     {
         state = s;
-        originalCameraContainerHeight = GameManager.player.GetComponentInChildren<CameraCounterRotate>().transform.localPosition.y;
+        playerTransform = GameManager.player.GetComponent<Transform>();
+        cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().GetComponent<Transform>();
+        cameraContainerPositionDifference = cameraContainer.position - playerTransform.position;
         thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
         StartCoroutine(CalibrationCoroutine());
     }
@@ -98,19 +104,17 @@ public class KeyInputManager : MonoBehaviour
 
             GameObject player = GameManager.player;
 
-            Transform cameraContainer = player.GetComponentInChildren<CameraCounterRotate>().transform;
-
             Vector3 playerPosition = player.GetComponent<Transform>().position;
             Quaternion playerRotation = player.GetComponent<Transform>().rotation;
 
             //set the cameraContainer back on top of the board, in case we are re-calibrating
             cameraContainer.SetPositionAndRotation(playerPosition, playerRotation);
+            cameraContainer.Translate(cameraContainerPositionDifference);
 
             Vector3 headPosition = player.GetComponentInChildren<ScreenFade>().transform.localPosition;
             Vector3 headRotation = player.GetComponentInChildren<ScreenFade>().transform.eulerAngles;
 
             //rotate, then translate
-            cameraContainer.Translate(Vector3.up * originalCameraContainerHeight);
 
             //rotate the camera so that it is rotated in the same direction as the board
             float yRotation = Mathf.DeltaAngle(headRotation.y, cameraContainer.eulerAngles.y);
