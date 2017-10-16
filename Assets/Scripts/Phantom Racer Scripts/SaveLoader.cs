@@ -77,6 +77,7 @@ public static class SaveLoader
         public float time;
         public int board;
         public string name;
+        public int difficulty;
     }
     [System.Serializable]
     struct serializableCurseLevelScores
@@ -90,6 +91,7 @@ public static class SaveLoader
         //one score per level
         public serializableScore[] levels;
         public string name;
+        public int difficulty;
     }
 
     [System.Serializable]
@@ -120,7 +122,7 @@ public static class SaveLoader
                 convertedScores.curseScores[i].curseScores[j].name = unConvertedCurseScores[i].curseScores[j].name;
                 convertedScores.curseScores[i].curseScores[j].score = unConvertedCurseScores[i].curseScores[j].score;
                 convertedScores.curseScores[i].curseScores[j].time = unConvertedCurseScores[i].curseScores[j].time;
-
+                convertedScores.curseScores[i].curseScores[j].difficulty = (int)unConvertedCurseScores[i].curseScores[j].difficulty;
 
                 if (unConvertedCurseScores[i].curseScores[j].positions != null)
                 {
@@ -151,6 +153,7 @@ public static class SaveLoader
         {
             convertedScores.continuousScores[i].levels = new serializableScore[unconvertedContScores[i].levels.Length];
             convertedScores.continuousScores[i].name = unconvertedContScores[i].name;
+            convertedScores.continuousScores[i].difficulty = (int)unconvertedContScores[i].difficulty;
             for (int j = 0; j < unconvertedContScores[i].levels.Length; j++)
             {
                 convertedScores.continuousScores[i].levels[j].board = unconvertedContScores[i].levels[j].board;
@@ -212,6 +215,7 @@ public static class SaveLoader
                     convertedScores[i].curseScores[j].name = unConvertedScores[i].curseScores[j].name;
                     convertedScores[i].curseScores[j].score = unConvertedScores[i].curseScores[j].score;
                     convertedScores[i].curseScores[j].time = unConvertedScores[i].curseScores[j].time;
+                    convertedScores[i].curseScores[j].difficulty = (GameDifficulties)unConvertedScores[i].curseScores[j].difficulty;
 
                     if (convertedScores[i].curseScores[j].score != 0)
                     {
@@ -267,6 +271,7 @@ public static class SaveLoader
             {
                 convertedScores[i].levels = new ScoreManager.scoreStruct[unConvertedScores[i].levels.Length];
                 convertedScores[i].name = unConvertedScores[i].name;
+                convertedScores[i].difficulty = (GameDifficulties)unConvertedScores[i].difficulty;
                 if (convertedScores[i].name != "")
                 {
                     GameManager.instance.scoreScript.curFilledCont += 1;

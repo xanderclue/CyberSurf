@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
         public float time;
         public int board;
         public string name;
+        public GameDifficulties difficulty;
 
         public bool isLastScoreInput;
     }
@@ -29,6 +30,7 @@ public class ScoreManager : MonoBehaviour
         public scoreStruct[] levels;
         public bool isLastScoreInput;
         public string name;
+        public GameDifficulties difficulty;
     }
 
     public levelCurseScores[] topCurseScores;
@@ -111,6 +113,8 @@ public class ScoreManager : MonoBehaviour
                     curFilledCont++;
                     firstPortal = false;
                 }
+                topContinuousScores[curFilledCont].difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+
                 scoreStruct newLevelScore = new scoreStruct();
                 newLevelScore.score = score;
                 newLevelScore.time = roundTimer.TimeInLevel;
@@ -153,6 +157,7 @@ public class ScoreManager : MonoBehaviour
                 newCurseScore.positions = recorder.positions.ToArray();
                 newCurseScore.rotations = recorder.rotations.ToArray();
                 newCurseScore.isLastScoreInput = true;
+                newCurseScore.difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
 
 
                 level = SceneManager.GetActiveScene().buildIndex;
