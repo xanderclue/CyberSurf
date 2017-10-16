@@ -34,18 +34,14 @@ public class GamepadCameraController : MonoBehaviour
 
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        //reset our camera position to the player's rotation whenever we change scenes
+        //reset our camera rotation to the player's rotation whenever we change scenes
         if (!VRDevice.isPresent)
             cameraContainerTransform.eulerAngles = playerRB.transform.eulerAngles;
     }
 
-    Quaternion prevRotation;
-
     void ThirdPersonCameraMove()
     {
         ThirdPersonCameraAlign();
-
-        prevRotation = cameraContainerTransform.rotation;
 
         float cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * thirdPersonCameraSpeed * Time.deltaTime;
         float cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontal") * thirdPersonCameraSpeed * Time.deltaTime;
@@ -59,6 +55,7 @@ public class GamepadCameraController : MonoBehaviour
             if (cameraPitch < 335f)
                 cameraPitch = 335f;
         }
+        //camera position is higher than the player
         else
         {
             if (cameraPitch > 80f)
@@ -145,7 +142,7 @@ public class GamepadCameraController : MonoBehaviour
     {
         yield return null;
 
-        //while updating to the third person camera, re-align the camera 
+        //while updating to the third/first person camera, re-align the camera 
         if (thirdPersonCamera.UpdatingCameraPosition)
             ReAlignCamera(2f);
 
