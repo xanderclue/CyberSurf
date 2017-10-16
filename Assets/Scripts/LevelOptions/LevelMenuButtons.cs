@@ -2,7 +2,11 @@
 public class LevelMenuButtons : LevelMenuObjectGroup
 {
     [SerializeField]
+    TopScoreDisplay topScoreDisplay;
+
+    [SerializeField]
     private LevelMenuButton confirmButton = null, defaultButton = null, exitButton = null;
+
     new private void OnEnable()
     {
         base.OnEnable();
@@ -26,6 +30,7 @@ public class LevelMenuButtons : LevelMenuObjectGroup
     }
     private void ButtonExitFunction()
     {
+        topScoreDisplay.StartScoreUpdate();
         LevelMenuScript.ExitMenu();
     }
 }

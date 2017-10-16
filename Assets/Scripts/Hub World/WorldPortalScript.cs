@@ -11,27 +11,22 @@ public class WorldPortalScript : MonoBehaviour
     PlayerMenuController pmc;
 
     ManagerClasses.GameMode gameMode;
-    LevelMenu levelMenuScript;
 
     private void Start()
     {
         boxCollider = typeof(UnityEngine.CapsuleCollider);
         pmc = GameManager.player.GetComponent<PlayerMenuController>();
         gameMode = GameManager.instance.gameMode;
-
-        //if we are in the hub world
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-            levelMenuScript = GameObject.Find("LevelMenu").GetComponent<LevelMenu>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetType() == boxCollider && other.gameObject.tag == "Board")
         {
-            if (isDemoMode && levelMenuScript != null)
+            if (isDemoMode)
             {
-                while (gameMode.currentMode != GameModes.Continuous)
-                    levelMenuScript.NextGameMode();
+                if (gameMode.currentMode != GameModes.Continuous)
+                    gameMode.currentMode = GameModes.Continuous;
             }
 
             int level = GetComponentInParent<WorldPortalProperties>().SceneIndex;
