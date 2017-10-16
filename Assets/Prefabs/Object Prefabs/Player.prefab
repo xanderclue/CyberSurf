@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 33345094883991752}
   - component: {fileID: 23023834223389850}
   - component: {fileID: 114076895536927700}
+  - component: {fileID: 114242357172947022}
   m_Layer: 5
   m_Name: New Fade Cover
   m_TagString: Untagged
@@ -1182,7 +1183,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888161922960542}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -11.84}
+  m_LocalPosition: {x: 0, y: 2, z: -15.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4420551917184220}
@@ -3206,6 +3207,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114242357172947022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021273628228576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7707900ef9a029a40b95982e083dc069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loopFade: 0
+  length: 2
 --- !u!114 &114256541295880346
 MonoBehaviour:
   m_ObjectHideFlags: 1

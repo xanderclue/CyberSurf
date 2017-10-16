@@ -35,11 +35,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistMask:
-        m_Texture: {fileID: 2800000, guid: 55e2334423fefa34fb4916f6780413d3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 576f3804346573a46a8c08c0f704b910, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistTex:
-        m_Texture: {fileID: 2800000, guid: 55e2334423fefa34fb4916f6780413d3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 576f3804346573a46a8c08c0f704b910, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EffectsLayerMotion:
@@ -79,6 +79,8 @@ Material:
     - _DstBlend: 10
     - _EffectsLayerForeground: 0
     - _EffectsLayerMotionSpeed: 5
+    - _EffectsLayerMotionSpeedXAxis: 0
+    - _EffectsLayerMotionSpeedYAxis: 0
     - _EffectsLayerRotation: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
