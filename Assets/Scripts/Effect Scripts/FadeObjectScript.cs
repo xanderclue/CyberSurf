@@ -32,6 +32,7 @@ public class FadeObjectScript : MonoBehaviour {
         if(distance < howFarToFade)
         {
             objectRenderer.material.color = Color.Lerp(color, invis, (howFarToFade / 2) / distance);
+          //  objectRenderer.material.Lerp(objectRenderer.material,)
         }
 	}
 }
