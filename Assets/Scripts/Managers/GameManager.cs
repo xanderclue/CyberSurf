@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.VR;
+using UnityEngine.PostProcessing;
 
 //our ManagerLoader prefab will ensure that an instance of GameManager is loaded
 public class GameManager : MonoBehaviour
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
     public ManagerClasses.GameDifficulty gameDifficulty = new ManagerClasses.GameDifficulty();
 
     //store our round timer
-    public ManagerClasses.RoundTimer roundTimer;
+    public ManagerClasses.RoundTimer roundTimer = new ManagerClasses.RoundTimer();
 
     //last level and mode we were in
     [HideInInspector] public GameModes lastMode;
@@ -57,12 +58,15 @@ public class GameManager : MonoBehaviour
         boardScript = GetComponent<BoardManager>();
         keyInputScript = GetComponent<KeyInputManager>();
 
-        //setup our round timer
-        roundTimer = new ManagerClasses.RoundTimer();
-
         //Instantiate our player, store the clone, then make sure it persists between scenes
         player = Instantiate(playerPrefab);
         DontDestroyOnLoad(player);
+
+        //enable/disable vignette depending on if we are using a HMD
+        if (VRDevice.isPresent)
+            player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = true;
+        else
+            player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = false;
 
         //set the game to run in the background
         Application.runInBackground = true;
