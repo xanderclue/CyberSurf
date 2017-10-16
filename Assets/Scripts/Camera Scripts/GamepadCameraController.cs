@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GamepadCameraController : MonoBehaviour
 {
     [SerializeField, Range(10f, 100f)] float firstPersonCameraSpeed = 60f;
-    float thirdPersonCameraSpeed = 90f;
+    [SerializeField, Range(40f, 130f)] float thirdPersonCameraSpeed = 90f;
 
     Transform playerTransform;
     Rigidbody playerRB;
@@ -15,7 +15,7 @@ public class GamepadCameraController : MonoBehaviour
     ThirdPersonCamera thirdPersonCamera;
     Vector3 thirdPersonTranslation;
 
-    float timeTillStartReaglign = 1.5f;
+    float timeTillStartReaglign = 2f;
     float timeSinceLastCameraMove = 0f;
     bool realigning = false;
 

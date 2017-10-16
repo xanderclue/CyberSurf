@@ -20,14 +20,14 @@ public class KeyInputManager : MonoBehaviour
     Transform cameraContainer;
     Vector3 cameraContainerPositionDifference;
 
-
     public void setupKeyInputManager(ManagerClasses.GameState s)
     {
         state = s;
+        thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
         playerTransform = GameManager.player.GetComponent<Transform>();
         cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().GetComponent<Transform>();
         cameraContainerPositionDifference = cameraContainer.position - playerTransform.position;
-        thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
+
         StartCoroutine(CalibrationCoroutine());
     }
 

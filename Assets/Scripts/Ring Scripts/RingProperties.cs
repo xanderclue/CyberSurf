@@ -47,7 +47,7 @@ public class RingProperties : MonoBehaviour
             float currentAverage = (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed) / 3f;
             float baseAverage;
             float percentDifference;
-            float percentIncrease = 1.1f;
+            float percentIncrease = 1f;
 
             //set our baseAverage
             if (boardManager.currentBoardSelection != BoardType.MachII)
