@@ -74,6 +74,10 @@ public class GameManager : MonoBehaviour
         //set the game to run in the background
         Application.runInBackground = true;
 
+		//set the game difficulty depending on if a HMD is present
+		if (VRDevice.isPresent)
+			gameDifficulty.currentDifficulty = GameDifficulties.Easy;
+
         InitGame();
 
         levelScript.RingPathIsOn = (0 != PlayerPrefs.GetInt("RingPath", levelScript.RingPathIsOn ? 1 : 0));

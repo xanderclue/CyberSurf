@@ -9,9 +9,18 @@ public class CameraCounterRotate : MonoBehaviour
 
     private void Start()
     {
+		cameraContainerTransform = GetComponent<Transform> ();
+
         if (VRDevice.isPresent)
-            StartCoroutine(CounterRotate());
+			StartCoroutine(WaitForFirstFrame());
     }
+
+	IEnumerator WaitForFirstFrame()
+	{
+		yield return new WaitForEndOfFrame ();
+
+		StartCoroutine (CounterRotate ());
+	}
 
     IEnumerator CounterRotate()
     {
