@@ -17,8 +17,8 @@ public class PlayerGameplayController : MonoBehaviour
     float pitch, yaw;
     float gyroPrevPitch;
     float newAcceleration, currAcceleration;
-    [SerializeField] [Range(0.01f, 1.0f)] float gryoPitchInterpolation = 0.1f;
-    [SerializeField] [Range(1f, 3f)] float gyroPitchPercentIncrease = 1f;
+    [SerializeField] [Range(0.01f, 1.0f)] float gryoPitchInterpolation = 0.075f;
+    [SerializeField] [Range(1f, 3f)] float gyroPitchPercentIncrease = 2.75f;
     float debugSpeedIncrease;
 
     BoardManager boardManager;
