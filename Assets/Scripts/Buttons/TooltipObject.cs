@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 public class TooltipObject : MonoBehaviour
 {
+    [SerializeField, LabelOverride("Disabled")]
+    private bool isDisabled = false;
     [SerializeField, LabelOverride("Grab from Parent")]
     private bool m_grabTextFromParent = false;
     [Multiline, SerializeField]
@@ -28,6 +30,8 @@ public class TooltipObject : MonoBehaviour
         selectedObject.tooltipText = m_tooltipText;
         selectedObject.tooltipOnly = true;
         selectedObject.SetupTooltipOnly();
+        if (isDisabled)
+            selectedObject.enabled = false;
         Destroy(this);
     }
 }
