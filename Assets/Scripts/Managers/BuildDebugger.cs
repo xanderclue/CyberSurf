@@ -79,8 +79,9 @@
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton5)))
             TestFunc();
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
-            if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) ||
-                UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))
+            if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) && UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))
+                UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + "_Triple.png", 3);
+            else if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) || UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))
                 UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + "_Double.png", 2);
             else
                 UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + ".png");
