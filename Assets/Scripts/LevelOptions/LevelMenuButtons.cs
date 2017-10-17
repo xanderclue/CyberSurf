@@ -22,10 +22,12 @@ public class LevelMenuButtons : LevelMenuObjectGroup
     }
     private void ButtonConfirmFunction()
     {
+        topScoreDisplay.StartScoreUpdate();
         LevelMenuScript.ConfirmOptions();
     }
     private void ButtonDefaultFunction()
     {
+        topScoreDisplay.StartScoreUpdate();
         LevelMenuScript.DefaultOptions();
     }
     private void ButtonExitFunction()
