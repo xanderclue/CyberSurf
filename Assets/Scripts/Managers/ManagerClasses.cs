@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
 
 public enum GameStates { HubWorld, GamePlay, SceneTransition };
 public enum GameModes { Continuous, Cursed, Free, GameModesSize };
@@ -66,7 +67,10 @@ public class ManagerClasses : MonoBehaviour
     {
         public GameDifficulties currentDifficulty;
 
-        public GameDifficulty() { currentDifficulty = GameDifficulties.Normal; }
+        public GameDifficulty() 
+		{
+				currentDifficulty = GameDifficulties.Normal;
+		}
 
         public void NextDifficulty()
         {

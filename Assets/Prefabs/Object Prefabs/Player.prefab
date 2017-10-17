@@ -2554,8 +2554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ea0c44eb3da7241b948e4c6e86a732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gryoPitchInterpolation: 0.05
-  gyroPitchPercentIncrease: 2.2
+  gryoPitchInterpolation: 0.075
+  gyroPitchPercentIncrease: 2.75
   movementVariables:
     maxSpeed: 40
     restingSpeed: 35
@@ -3931,6 +3931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPersonCameraSpeed: 60
+  thirdPersonCameraSpeed: 90
 --- !u!114 &114483155200988340
 MonoBehaviour:
   m_ObjectHideFlags: 1

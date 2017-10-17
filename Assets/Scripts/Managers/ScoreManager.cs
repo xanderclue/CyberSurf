@@ -37,10 +37,10 @@ public class ScoreManager : MonoBehaviour
 
     //top 10 scores for continuous mode
     public continuousScores[] topContinuousScores;
-    public int curFilledCont = -1;
+    [HideInInspector] public int curFilledCont = -1;
     [HideInInspector] public bool firstPortal = true;
 
-    public char[] currentName = new char[3];
+    [HideInInspector] public char[] currentName = new char[3];
 
     void initScores()
     {

@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public BoardManager boardScript;
     [HideInInspector] public KeyInputManager keyInputScript;
 
+    //for recording purposes
+    [SerializeField] bool disableVignette = false;
+
     void Awake()
     {
         //make sure we only have one instance of GameManager
@@ -63,13 +66,17 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(player);
 
         //enable/disable vignette depending on if we are using a HMD
-        if (VRDevice.isPresent)
+        if (VRDevice.isPresent && !disableVignette)
             player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = true;
         else
             player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = false;
 
         //set the game to run in the background
         Application.runInBackground = true;
+
+		//set the game difficulty depending on if a HMD is present
+		if (VRDevice.isPresent)
+			gameDifficulty.currentDifficulty = GameDifficulties.Easy;
 
         InitGame();
 

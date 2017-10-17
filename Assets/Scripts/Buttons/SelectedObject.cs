@@ -22,8 +22,7 @@ public abstract class SelectedObject : MonoBehaviour
     private bool isDisabled = false;
     private bool selectsoundplayed = false;
     public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.UpdateReticleFill(0.0f); } }
-    [SerializeField]
-    private bool tooltipOnly = false;
+    public bool tooltipOnly = false;
     protected void Awake()
     {
         if (tooltipOnly)
@@ -133,7 +132,7 @@ public abstract class SelectedObject : MonoBehaviour
         if (!tooltipOnly)
             waitTimer -= Time.deltaTime;
     }
-    protected void SetupTooltipOnly()
+    public void SetupTooltipOnly()
     {
         delay = int.MaxValue;
         waitTime = float.MaxValue;
