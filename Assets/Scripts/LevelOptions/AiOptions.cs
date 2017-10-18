@@ -16,9 +16,8 @@ public class AiOptions : LevelMenuObjectGroup
         if (ActualValue < 0)
             ActualValue = 0;
     }
-    new private void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         plusButton.OnButtonPressed += ButtonPlusFunction;
         minusButton.OnButtonPressed += ButtonMinusFunction;
     }

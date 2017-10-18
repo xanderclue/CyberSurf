@@ -9,9 +9,8 @@ public class DifficultyOptions : LevelMenuObjectGroup
     [SerializeField]
     private GameDifficulties defaultDifficulty = GameDifficulties.Normal;
     private GameDifficulties tempDifficulty;
-    new private void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         leftButton.OnButtonPressed += ButtonLeftFunction;
         rightButton.OnButtonPressed += ButtonRightFunction;
     }

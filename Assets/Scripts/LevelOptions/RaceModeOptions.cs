@@ -13,9 +13,8 @@ public class RaceModeOptions : LevelMenuObjectGroup
     {
         base.Start();
     }
-    new private void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         leftButton.OnButtonPressed += ButtonLeftFunction;
         rightButton.OnButtonPressed += ButtonRightFunction;
     }

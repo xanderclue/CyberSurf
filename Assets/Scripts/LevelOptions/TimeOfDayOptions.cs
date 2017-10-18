@@ -11,9 +11,8 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     private TimeOfDay defaultTimeOfDay = TimeOfDay.Evening;
     private TimeOfDay tempTimeOfDay;
     private static TimeOfDay ActualTimeOfDay { get; set; } // replace with game's value
-    new private void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         leftButton.OnButtonPressed += ButtonLeftFunction;
         rightButton.OnButtonPressed += ButtonRightFunction;
     }

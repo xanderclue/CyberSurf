@@ -35,9 +35,8 @@ public class LevelSelectOptions : LevelMenuObjectGroup
                 Debug.LogWarning("LevelSelectOptions cannot find portal");
         }
     }
-    new private void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         leftButton.OnButtonPressed += ButtonLeftFunction;
         rightButton.OnButtonPressed += ButtonRightFunction;
     }

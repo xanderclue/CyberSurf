@@ -37,9 +37,6 @@ public class LevelMenuObjectGroup : MonoBehaviour
         tVal = Mathf.Clamp01(tVal += (groupEnabled ? Time.deltaTime : -Time.deltaTime) / levelMenuScript.SinkDuration);
         transform.localPosition = Vector3.Lerp(inactiveLocalPosition, activeLocalPosition, tVal);
     }
-    protected void OnEnable()
-    {
-    }
     public virtual void ConfirmOptions() { }
     public virtual void ResetOptions() { }
     public virtual void DefaultOptions() { }

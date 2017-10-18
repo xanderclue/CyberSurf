@@ -16,9 +16,8 @@ public class LapsOptions : LevelMenuObjectGroup
         if (ActualValue < 1)
             ActualValue = 1;
     }
-    new private void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         plusButton.OnButtonPressed += ButtonPlusFunction;
         minusButton.OnButtonPressed += ButtonMinusFunction;
     }

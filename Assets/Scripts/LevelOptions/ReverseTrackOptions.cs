@@ -20,9 +20,8 @@ public class ReverseTrackOptions : LevelMenuObjectGroup
         if (null == activeMaterial)
             activeMaterial = inactiveMaterial;
     }
-    new private void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         onButton.OnButtonPressed += ButtonOnFunction;
         offButton.OnButtonPressed += ButtonOffFunction;
     }

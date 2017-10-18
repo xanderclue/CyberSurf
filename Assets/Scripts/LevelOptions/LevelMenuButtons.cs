@@ -7,9 +7,8 @@ public class LevelMenuButtons : LevelMenuObjectGroup
     [SerializeField]
     private LevelMenuButton confirmButton = null, defaultButton = null, exitButton = null;
 
-    new private void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         confirmButton.OnButtonPressed += ButtonConfirmFunction;
         defaultButton.OnButtonPressed += ButtonDefaultFunction;
         exitButton.OnButtonPressed += ButtonExitFunction;
