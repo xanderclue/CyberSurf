@@ -105,7 +105,6 @@ public class ManagerClasses : MonoBehaviour
         [Range(0.001f, 1f)] public float momentum = 0.1f;
 
         [Header("Sensitivities")]
-        [Tooltip("Pitch has no effect on gyro sensitivities.")]
         [Range(0.5f, 5f)] public float pitchSensitivity = 3f;
         [Range(0.5f, 5f)] public float yawSensitivity = 3f;
 

@@ -121,13 +121,6 @@ public class PlayerGameplayController : MonoBehaviour
 
         //make sure only half of the resting threshold is being checked for the upper and lower angles
         movementVariables.restingThreshold *= 0.5f;
-
-        if (!gamepadEnabled)
-        {
-            //since the information we are getting from the gyro is in radians, include Mathf.Rad2Deg in our sensitivities
-            movementVariables.pitchSensitivity = movementVariables.pitchSensitivity * Mathf.Rad2Deg * 0.05f;
-            movementVariables.yawSensitivity = movementVariables.yawSensitivity * Mathf.Rad2Deg * 0.05f * -1f;
-        }
     }
 
     //helper function
@@ -229,11 +222,11 @@ public class PlayerGameplayController : MonoBehaviour
     {
         yield return new WaitForFixedUpdate();
 
-        pitch = (float)gyro.rollAngle * Mathf.Rad2Deg * gyroPitchPercentIncrease;
+        pitch = (float)gyro.rollAngle * movementVariables.yawSensitivity * Mathf.Rad2Deg * 0.05f * -1f;
         pitch = Mathf.Lerp(gyroPrevPitch, pitch, gryoPitchInterpolation);
         gyroPrevPitch = pitch;
 
-        yaw = playerRigidbody.rotation.eulerAngles.y + (float)gyro.pitchAngle * movementVariables.yawSensitivity;
+        yaw = playerRigidbody.rotation.eulerAngles.y + (float)gyro.pitchAngle * movementVariables.pitchSensitivity;
 
         ApplyForce();
 
