@@ -1390,7 +1390,7 @@ GameObject:
   - component: {fileID: 387987962}
   m_Layer: 0
   m_Name: WorldPortals
-  m_TagString: Untagged
+  m_TagString: worldPortals
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 406681075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5747f88e35999c54392a85dff38f3f09, type: 3}
+  m_Script: {fileID: 11500000, guid: 1835734dad1c01c459a846d6ab75c89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &465406893
@@ -2708,7 +2708,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 636026222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5747f88e35999c54392a85dff38f3f09, type: 3}
+  m_Script: {fileID: 11500000, guid: 1835734dad1c01c459a846d6ab75c89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &644286370
@@ -4288,7 +4288,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1706404526421566, guid: 6113efba086412d4fa9a49185d5d1da4, type: 2}
       propertyPath: m_TagString
-      value: worldPortals
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1161384966548352, guid: 6113efba086412d4fa9a49185d5d1da4, type: 2}
       propertyPath: m_TagString
@@ -6107,7 +6107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1676395867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5747f88e35999c54392a85dff38f3f09, type: 3}
+  m_Script: {fileID: 11500000, guid: 1835734dad1c01c459a846d6ab75c89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1729968263
@@ -6317,7 +6317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1744259628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5747f88e35999c54392a85dff38f3f09, type: 3}
+  m_Script: {fileID: 11500000, guid: 1835734dad1c01c459a846d6ab75c89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1773152601
