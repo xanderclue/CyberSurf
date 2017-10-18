@@ -74,10 +74,11 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
                 stcSwWriter.Write("<BEGIN>\n\n");
                 stcBoolErrorLogInited = true;
             }
-            stcSwWriter.Write(("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n") +
+            stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
                 "Time: " + pStrTimeStamp +
-                "\nLog Message: \"" + pStrLogMessage +
-                "\"\nStack Trace:\n" + pStrStackTrace + "\n");
+                "\nLog Message: \"" + pStrLogMessage + "\"\n");
+            if (null != pStrStackTrace && "" != pStrStackTrace)
+                stcSwWriter.Write("Stack Trace:\n" + pStrStackTrace + "\n");
         }
         catch (System.Exception e) { WriteLine("kánótlógerRtufAil: " + e.Message); }
     }
