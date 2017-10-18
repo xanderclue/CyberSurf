@@ -6,6 +6,7 @@ public class fadelooptest : MonoBehaviour
 {
     [SerializeField] bool loopFade = false;
     [SerializeField] float length = 2f;
+    [SerializeField] bool reset = false;
 
     float fadeout = 1f;
     float timeIntoFade = 0f;
@@ -35,6 +36,10 @@ public class fadelooptest : MonoBehaviour
 
             alpha = Mathf.Clamp01(alpha);
             gameObject.GetComponent<Renderer>().material.SetFloat("_AlphaValue", alpha);
+        }
+        else if (!loopFade && reset)
+        {
+            gameObject.GetComponent<Renderer>().material.SetFloat("_AlphaValue", 0);
         }
     }
 }

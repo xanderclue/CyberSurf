@@ -10,25 +10,6 @@ public class PagesMenuTab : MenuTab
     [SerializeField] private bool dontLoop = false;
     public delegate void PageChangeEvent();
     public PageChangeEvent OnPageChanged;
-    public int NumPages { get { if (null == pages) return 0; return pages.Length; } }
-    public int CurrentPage
-    {
-        get { return currPage; }
-        set
-        {
-            if (null == pages) return;
-            int newPage = value;
-            while (newPage < 0) newPage += NumPages;
-            newPage %= NumPages;
-            if (currPage != newPage)
-            {
-                pages[currPage].SetActive(false);
-                currPage = newPage; pages[currPage].SetActive(true);
-                if (null != OnPageChanged)
-                    OnPageChanged();
-            }
-        }
-    }
     new private void Awake()
     {
         base.Awake();
@@ -59,9 +40,7 @@ public class PagesMenuTab : MenuTab
     private void UpdateText()
     {
         if (null != pageText)
-        {
-            pageText.SetText((CurrentPage + 1).ToString() + "/" + NumPages.ToString());
-        }
+            pageText.SetText((currPage + 1).ToString() + "/" + pages.Length.ToString());
     }
     private void NextPage()
     {
