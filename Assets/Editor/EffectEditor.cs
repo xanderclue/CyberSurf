@@ -31,6 +31,7 @@ public class EffectEditor : MaterialEditor
 
         bool effectLayer1Enabled = find(keys, "EFFECTLAYER1ON");
         bool effectLayer2Enabled = find(keys, "EFFECTLAYER2ON");
+        bool effectLayer3Enabled = find(keys, "EFFECTLAYER3ON");
 
         EditorGUI.BeginChangeCheck();
 
@@ -39,6 +40,8 @@ public class EffectEditor : MaterialEditor
             TexturePropertySingleLine(new GUIContent(properties[i].displayName), properties[i]);
         }
         FloatProperty(properties[3], "Alpha");
+        FloatProperty(properties[4], "Main Tex X Scroll Speed");
+        FloatProperty(properties[5], "Main Tex Y Scroll Speed");
 
             EditorGUILayout.Separator();
 
@@ -52,14 +55,20 @@ public class EffectEditor : MaterialEditor
             if (effectLayer2Enabled)
             {
                 DrawEffectsLayer(properties, 2);
-            }
+        }
+        effectLayer3Enabled = EditorGUILayout.Toggle("Effect Layer 3", effectLayer3Enabled);
+        if (effectLayer3Enabled)
+        {
+            DrawEffectsLayer(properties, 3);
+        }
 
 
-            if (EditorGUI.EndChangeCheck())
+        if (EditorGUI.EndChangeCheck())
             {
                 string[] newKeys = new string[] {
                 effectLayer1Enabled ? "EFFECTLAYER1ON" : "EFFECTLAYER1OFF",
                 effectLayer2Enabled ? "EFFECTLAYER2ON" : "EFFECTLAYER2OFF",
+                effectLayer3Enabled ? "EFFECTLAYER3ON" : "EFFECTLAYER3OFF",
             };
 
                 material.shaderKeywords = newKeys;
@@ -91,7 +100,9 @@ public class EffectEditor : MaterialEditor
             ColorProperty(GetByName(properties, EffectName(layer, "Color")), "Tint Color");
 
             FloatProperty(GetByName(properties, EffectName(layer, "MotionSpeedYAxis")), "Motion Speed Y Axis");
-            FloatProperty(GetByName(properties, EffectName(layer, "MotionSpeedXAxis")), "Motion Speed X AXis");
+            FloatProperty(GetByName(properties, EffectName(layer, "MotionSpeedXAxis")), "Motion Speed X Axis");
+            FloatProperty(GetByName(properties, EffectName(layer, "ScrollSpeedXAxis")), "Scroll Speed X Axis");
+            FloatProperty(GetByName(properties, EffectName(layer, "ScrollSpeedYAxis")), "Scroll Speed Y Axis");
             FloatProperty(GetByName(properties, EffectName(layer, "Rotation")), "Rotation Speed");
 
             Vector4 translation = GetByName(properties, EffectName(layer, "Translation")).vectorValue;
