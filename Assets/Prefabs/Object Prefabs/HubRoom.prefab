@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33985035994132490}
   - component: {fileID: 64991348323158954}
   m_Layer: 0
-  m_Name: hub_walls
+  m_Name: InvisibleWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 23320282522700314}
   - component: {fileID: 114775146875490516}
   m_Layer: 0
-  m_Name: HUB RM PAN Mesh
+  m_Name: Panel_NW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 23508504694889970}
   - component: {fileID: 114355589065054444}
   m_Layer: 0
-  m_Name: HUB RM PAN Mesh
+  m_Name: Panel_SE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33822134587597410}
   - component: {fileID: 23234010135870848}
   m_Layer: 0
-  m_Name: HUB_RM_Mesh
+  m_Name: Sphere_Upper_SW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 33546177647174308}
   - component: {fileID: 23535732585578074}
   m_Layer: 0
-  m_Name: HUB_RM_Mesh
+  m_Name: Sphere_Lower_SW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 23896570859975344}
   - component: {fileID: 64554954909450392}
   m_Layer: 0
-  m_Name: HUB RM FL Mesh
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 33001621041419286}
   - component: {fileID: 23685274175898646}
   m_Layer: 0
-  m_Name: HUB_RM_Mesh
+  m_Name: Sphere_Lower_NE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 23201888713215242}
   - component: {fileID: 114771757509570852}
   m_Layer: 0
-  m_Name: HUB RM PAN Mesh
+  m_Name: Panel_SW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 33439829457541372}
   - component: {fileID: 23818068552324324}
   m_Layer: 0
-  m_Name: HUB_RM_Mesh
+  m_Name: Sphere_Lower_SE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 33202041409009248}
   - component: {fileID: 23726520771602784}
   m_Layer: 0
-  m_Name: HUB_RM_Mesh
+  m_Name: Sphere_Upper_SE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 23596149363585480}
   - component: {fileID: 114510873608848306}
   m_Layer: 0
-  m_Name: HUB RM PAN Mesh
+  m_Name: Panel_NE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 33509116322506338}
   - component: {fileID: 23426923953091940}
   m_Layer: 0
-  m_Name: HUB_RM_Mesh
+  m_Name: Sphere_Upper_NW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 33526039031608264}
   - component: {fileID: 23618201150604396}
   m_Layer: 0
-  m_Name: HUB_RM_Mesh
+  m_Name: Sphere_Lower_NW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 33866973112964780}
   - component: {fileID: 23471730422950900}
   m_Layer: 0
-  m_Name: HUB_RM_Mesh
+  m_Name: Sphere_Upper_NE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
