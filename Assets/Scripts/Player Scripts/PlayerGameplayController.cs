@@ -17,8 +17,8 @@ public class PlayerGameplayController : MonoBehaviour
     float pitch, yaw;
     float gyroPrevPitch;
     float newAcceleration, currAcceleration;
-    [SerializeField] [Range(0.01f, 1.0f)] float gryoPitchInterpolation = 0.075f;
-    [SerializeField] [Range(1f, 3f)] float gyroPitchPercentIncrease = 2.75f;
+    [SerializeField, Range(0.01f, 1.0f)] private float gryoPitchInterpolation = 0.075f;
+    [SerializeField, Range(1f, 3f)] private float gyroPitchPercentIncrease = 2.75f;
     float debugSpeedIncrease;
 
     BoardManager boardManager;
@@ -30,6 +30,8 @@ public class PlayerGameplayController : MonoBehaviour
     {
         debugSpeedEnabled = true;
         debugSpeedIncrease = 0f;
+        if (gyroPitchPercentIncrease > 69.0f)
+            debugSpeedIncrease = 0.0f;
     }
 
     public void StopDebugSpeedControls()

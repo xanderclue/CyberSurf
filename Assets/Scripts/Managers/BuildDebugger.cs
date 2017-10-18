@@ -135,6 +135,9 @@
             if (null == stcStrlistLines)
                 stcStrlistLines = new System.Collections.Generic.List<string>();
             stcBoolDebuggerInited = true;
+            string lStrTimeStamp = TimeStamp;
+            WriteLine("Startup: " + lStrTimeStamp);
+            WriteToErrorLog("STARTUP", UnityEngine.Application.persistentDataPath + "\n", UnityEngine.LogType.Log, lStrTimeStamp);
             UnityEngine.Application.logMessageReceivedThreaded += GetLog;
         }
     }

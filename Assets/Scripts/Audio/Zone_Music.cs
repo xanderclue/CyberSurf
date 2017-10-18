@@ -15,7 +15,7 @@ public class Zone_Music : MonoBehaviour
         }
         else if (is_changing)
         {
-            if (reference.audioSource.volume > 0.0)
+            if (reference.audioSource.volume > 0.0f)
             {
                 reference.audioSource.volume -= const_vol * 0.1f;
             }
