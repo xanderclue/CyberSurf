@@ -60,9 +60,9 @@
             stcGobjTextObject.SetActive(false);
         }
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.BackQuote) ||
-            (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
-            UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton0) &&
-            UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton4)))
+            (UnityEngine.Input.GetKey(KeyInputManager.XBOX_X) &&
+            UnityEngine.Input.GetKey(KeyInputManager.XBOX_A) &&
+            UnityEngine.Input.GetKeyDown(KeyInputManager.XBOX_LB)))
             stcGobjTextObject.SetActive(!stcGobjTextObject.activeSelf);
         string lStrTemp = "";
         while (stcBoolLinesSync) if (!stcBoolLinesSync) break;
@@ -74,9 +74,9 @@
         stcCompTextmesh.ForceMeshUpdate();
         if ((UnityEngine.Input.GetKey(UnityEngine.KeyCode.K) &&
             UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T)) ||
-            (UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton2) &&
-            UnityEngine.Input.GetKey(UnityEngine.KeyCode.JoystickButton0) &&
-            UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.JoystickButton5)))
+            (UnityEngine.Input.GetKey(KeyInputManager.XBOX_X) &&
+            UnityEngine.Input.GetKey(KeyInputManager.XBOX_A) &&
+            UnityEngine.Input.GetKeyDown(KeyInputManager.XBOX_RB)))
             TestFunc();
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
             if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) && UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))
