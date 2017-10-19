@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 public class TooltipObject : MonoBehaviour
 {
+    [SerializeField, LabelOverride("Parent")]
+    private bool m_isParent = false;
     [SerializeField, LabelOverride("Disabled")]
-    private bool isDisabled = false;
+    private bool m_isDisabled = false;
     [SerializeField, LabelOverride("Grab from Parent")]
     private bool m_grabTextFromParent = false;
     [Multiline, SerializeField]
@@ -21,17 +23,27 @@ public class TooltipObject : MonoBehaviour
                     m_tooltipText = theOtherParent.tooltipText;
             }
         }
-        gameObject.layer = LayerMask.NameToLayer(SelectedObject.LAYERNAME);
-        Collider theCollider = 0 != GetComponents<Collider>().Length ? gameObject.GetComponent<Collider>() : gameObject.AddComponent<BoxCollider>();
-        SelectedObject selectedObject = gameObject.GetComponent<SelectedObject>() ?? gameObject.AddComponent<EventSelectedObject>();
-        if (theCollider is MeshCollider)
-            (theCollider as MeshCollider).convex = true;
-        theCollider.isTrigger = true;
-        selectedObject.tooltipText = m_tooltipText;
-        selectedObject.tooltipOnly = true;
-        selectedObject.SetupTooltipOnly();
-        if (isDisabled)
-            selectedObject.enabled = false;
+        if (m_isParent)
+        {
+            TooltipObject[] theChildren = GetComponentsInChildren<TooltipObject>();
+            foreach (TooltipObject theChild in theChildren)
+                if (theChild.m_grabTextFromParent)
+                    theChild.m_tooltipText = m_tooltipText;
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer(SelectedObject.LAYERNAME);
+            Collider theCollider = 0 != GetComponents<Collider>().Length ? gameObject.GetComponent<Collider>() : gameObject.AddComponent<BoxCollider>();
+            SelectedObject selectedObject = gameObject.GetComponent<SelectedObject>() ?? gameObject.AddComponent<EventSelectedObject>();
+            if (theCollider is MeshCollider)
+                (theCollider as MeshCollider).convex = true;
+            theCollider.isTrigger = true;
+            selectedObject.tooltipText = m_tooltipText;
+            selectedObject.tooltipOnly = true;
+            selectedObject.SetupTooltipOnly();
+            if (m_isDisabled)
+                selectedObject.enabled = false;
+        }
         Destroy(this);
     }
 }
