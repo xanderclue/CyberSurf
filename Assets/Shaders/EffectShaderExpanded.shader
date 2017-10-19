@@ -116,7 +116,9 @@
 	float4		_EffectsLayer1Tex_ST;
 	sampler2D	_EffectsLayer1Motion;
 	sampler2D	_EffectsLayer1DistTex;
+	float4		_EffectsLayer1DistTex_ST;
 	sampler2D	_EffectsLayer1DistMask;
+	float4		_EffectsLayer1DistMask_ST;
 	float		_EffectsLayer1DoDistort;
 	float		_EffectsLayer1MotionSpeedYAxis;
 	float		_EffectsLayer1MotionSpeedXAxis;
@@ -132,7 +134,9 @@
 	float4		_EffectsLayer2Tex_ST;
 	sampler2D	_EffectsLayer2Motion;
 	sampler2D	_EffectsLayer2DistTex;
+	float4		_EffectsLayer2DistTex_ST;
 	sampler2D	_EffectsLayer2DistMask;
+	float4		_EffectsLayer2DistMask_ST;
 	float		_EffectsLayer2DoDistort;
 	float		_EffectsLayer2MotionSpeedYAxis;
 	float		_EffectsLayer2MotionSpeedXAxis;
@@ -148,7 +152,9 @@
 	float4		_EffectsLayer3Tex_ST;
 	sampler2D	_EffectsLayer3Motion;
 	sampler2D	_EffectsLayer3DistTex;
+	float4		_EffectsLayer3DistTex_ST;
 	sampler2D	_EffectsLayer3DistMask;
+	float4		_EffectsLayer3DistMask_ST;
 	float		_EffectsLayer3DoDistort;
 	float		_EffectsLayer3MotionSpeedYAxis;
 	float		_EffectsLayer3MotionSpeedXAxis;
@@ -243,17 +249,17 @@
 		}
 		//distorts the effect layer
 		fixed4 effect1;
-		//if (_EffectsLayer1DoDistort)
-		//{
-		//	fixed2 dist1 = (tex2D(_EffectsLayer1DistTex, i.uv + distScroll).rg - 0.5) * 2;
-		//	fixed dist1Mask = tex2D(_EffectsLayer1DistMask, i.uv)[0];
-		//
-		//	effect1 = tex2D(_EffectsLayer1Tex, i.effect1uv.xy + dist1 * dist1Mask * 0.025);
-		//}
-		//else
-		//{
+		if (_EffectsLayer1DoDistort)
+		{
+			fixed2 dist1 = (tex2D(_EffectsLayer1DistTex, i.uv.xy * _EffectsLayer1DistTex_ST.xy + _EffectsLayer1DistTex_ST.zw ).rg - 0.5) * 2;
+			fixed dist1Mask = tex2D(_EffectsLayer1DistMask, i.uv.xy * _EffectsLayer1DistMask_ST.xy + _EffectsLayer1DistMask_ST.zw)[0];
+		
+			effect1 = tex2D(_EffectsLayer1Tex, motion1.xy + dist1 * dist1Mask * 0.025) * motion1.a;
+		}
+		else
+		{
 			effect1 = tex2D(_EffectsLayer1Tex, motion1.xy) * motion1.a;
-		//}
+		}
 		effect1 *= _EffectsLayer1Color;
 
 		col += effect1 * effect1.a * max(bg, _EffectsLayer1Foreground);
@@ -274,7 +280,20 @@
 			motion2 = fixed4(i.effect2uv.rg, motion2.b, motion2.a);
 		}
 
-		fixed4 effect2 = tex2D(_EffectsLayer2Tex, motion2.xy) * motion2.a;
+		//distorts the effect layer
+		fixed4 effect2;
+		if (_EffectsLayer2DoDistort)
+		{
+			fixed2 dist2 = (tex2D(_EffectsLayer2DistTex, i.uv).rg - 0.5) * 2;
+			fixed dist2Mask = tex2D(_EffectsLayer2DistMask, i.uv.xy * _EffectsLayer2DistMask_ST.xy + _EffectsLayer2DistMask_ST.zw)[0];
+
+			effect2 = tex2D(_EffectsLayer2Tex, motion2.xy + dist2 * dist2Mask * 0.025) * motion2.a;
+		}
+		else
+		{
+			effect2 = tex2D(_EffectsLayer2Tex, motion2.xy) * motion2.a;
+		}
+
 		effect2 *= _EffectsLayer2Color;
 
 		col += effect2 * effect2.a * max(bg, _EffectsLayer2Foreground);
@@ -295,7 +314,20 @@
 			motion3 = fixed4(i.effect3uv.rg, motion3.b, motion3.a);
 		}
 
-		fixed4 effect3 = tex2D(_EffectsLayer3Tex, motion3.xy) * motion3.a;
+		//distorts the effect layer
+		fixed4 effect3;
+		if (_EffectsLayer3DoDistort)
+		{
+			fixed2 dist3 = (tex2D(_EffectsLayer3DistTex, i.uv * _EffectsLayer3DistTex_ST.xy + _EffectsLayer3DistTex_ST.zw).rg - 0.5) * 2;
+			fixed dist3Mask = tex2D(_EffectsLayer3DistMask, i.uv * _EffectsLayer3DistMask_ST.xy + _EffectsLayer3DistMask_ST.zw)[0];
+
+			effect3 = tex2D(_EffectsLayer3Tex, motion3.xy + dist3 * dist3Mask * 0.025) * motion3.a;
+		}
+		else
+		{
+			effect3 = tex2D(_EffectsLayer3Tex, motion3.xy) * motion3.a;
+		}
+
 		effect3 *= _EffectsLayer3Color;
 
 		col += effect3 * effect3.a * max(bg, _EffectsLayer3Foreground);

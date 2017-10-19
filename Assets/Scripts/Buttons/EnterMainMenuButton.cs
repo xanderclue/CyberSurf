@@ -56,6 +56,7 @@ public class EnterMainMenuButton : SelectedObject
                 GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(GameManager.player.transform.position, GameManager.player.transform.rotation);
             menuSystem.mainTab.EnableButtons();
             gameObject.SetActive(false);
+            menuBox.GetComponent<Animator>().SetTrigger("Opened");
         }
     }
 }

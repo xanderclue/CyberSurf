@@ -98,10 +98,12 @@ public class EffectEditor : MaterialEditor
             TextureProperty(GetByName(properties, EffectName(layer, "Tex")),("Effect Texture"));
             TexturePropertySingleLine(new GUIContent("Motion Texture"), GetByName(properties, EffectName(layer, "Motion")));
 
-            TexturePropertySingleLine(new GUIContent("Effect Distortion Texture"), GetByName(properties, EffectName(layer, "DistTex")));
-            TexturePropertySingleLine(new GUIContent("Effect Distortion Mask"), GetByName(properties, EffectName(layer, "DistMask")));
-            
+
             BoolProperty(GetByName(properties, EffectName(layer, "DoDistort")), "Do Distortion");
+
+            TextureProperty(GetByName(properties, EffectName(layer, "DistTex")), "Effect Distortion Texture");
+            TextureProperty( GetByName(properties, EffectName(layer, "DistMask")), "Effect Distortion Mask");
+            
 
             ColorProperty(GetByName(properties, EffectName(layer, "Color")), "Tint Color");
 
