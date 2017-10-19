@@ -36,9 +36,8 @@ public class TooltipObject : MonoBehaviour
             Collider theCollider = 0 != GetComponents<Collider>().Length ? gameObject.GetComponent<Collider>() : gameObject.AddComponent<BoxCollider>();
             SelectedObject selectedObject = gameObject.GetComponent<SelectedObject>();
             if (null == selectedObject)
-                selectedObject = gameObject.AddComponent<EventSelectedObject>();
-            else
             {
+                selectedObject = gameObject.AddComponent<EventSelectedObject>();
                 selectedObject.tooltipOnly = true;
                 selectedObject.SetupTooltipOnly();
             }
