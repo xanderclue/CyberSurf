@@ -20,7 +20,9 @@ public class ManagerLoader : MonoBehaviour
                 try { gObj.SetActive(false); Destroy(gObj); } catch { }
         if (!isLoaded)
         {
+#if UNITY_EDITOR
             BuildDebugger.InitDebugger();
+#endif
             if (null == GameManager.instance)
                 Instantiate(gameManager);
             isLoaded = true;

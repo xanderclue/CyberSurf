@@ -32,7 +32,6 @@ public class togleDebugHUD : SelectedObject
             safeCheck = true;
         }
         onOffText = gameObject.GetComponentsInChildren<TextMeshPro>()[0];
-        EventManager.OnUpdateButtons += isOnUpdate;
         isOnUpdate();
     }
 
@@ -54,10 +53,5 @@ public class togleDebugHUD : SelectedObject
         {
             Debug.Log("The buttong couldnt find the players text element to toggle");
         }
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnUpdateButtons -= isOnUpdate;
     }
 }

@@ -1,83 +1,65 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//this class does not not need to be instantiated
-public class EventManager : MonoBehaviour
+﻿public class EventManager
 {
-    //delegates can be overwritten (less secure)
-    public delegate void ToggleMovementLock(bool locked);
-    //events can only be subscribed to or unsubscribed to (more secure)
-    public static event ToggleMovementLock OnToggleMovement;
-
+    public delegate void ToggleMovementEvent(bool locked);
+    public delegate void TransitionEvent(int sceneIndex);
+    public delegate void SelectionLockEvent(bool locked);
+    public delegate void ToggleHudEvent(bool isOn);
+    public delegate void ToggleArrowEvent(bool isOn);
+    public delegate void SetRingPathEvent(bool isOn);
+    public delegate void UpdateBoardMenuEffectsEvent();
+    public delegate void RingPulseChangeEvent();
+    public static event ToggleMovementEvent OnToggleMovement;
+    public static event TransitionEvent OnTransition;
+    public static event SelectionLockEvent OnSelectionLock;
+    public static event ToggleHudEvent OnToggleHud;
+    public static event ToggleArrowEvent OnToggleArrow;
+    public static event SetRingPathEvent OnSetRingPath;
+    public static event UpdateBoardMenuEffectsEvent OnUpdateBoardMenuEffects;
+    public static event RingPulseChangeEvent OnStartRingPulse;
+    public static event RingPulseChangeEvent OnStopRingPulse;
     static public void OnSetGameplayMovementLock(bool locked)
     {
-        //if the event is subscribed to
-        if (OnToggleMovement != null)
+        if (null != OnToggleMovement)
             OnToggleMovement(locked);
     }
-
-    public delegate void Transition(int sceneIndex);
-    public static event Transition OnTransition;
-
     static public void OnTriggerTransition(int sceneIndex)
     {
-        if (OnTransition != null)
+        if (null != OnTransition)
             OnTransition(sceneIndex);
     }
-
-    public delegate void ToggleSelectionLock(bool locked);
-    public static event ToggleSelectionLock OnSelectionLock;
     static public void OnTriggerSelectionLock(bool locked)
     {
-        if (OnSelectionLock != null)
+        if (null != OnSelectionLock)
             OnSelectionLock(locked);
     }
-
-    public delegate void ToggleHud(bool isOn);
-    public static event ToggleHud OnToggleHud;
-
     static public void OnSetHudOnOff(bool isOn)
     {
-        if (OnToggleHud != null)
+        if (null != OnToggleHud)
             OnToggleHud(isOn);
     }
-
-    //Needed to turn the arrow back on, and let it aim at consecutive rings
-    public delegate void ToggleArrow(bool isOn);
-    public static event ToggleArrow OnToggleArrow;
-
     static public void OnSetArrowOnOff(bool isOn)
     {
-        if (OnToggleArrow != null)
+        if (null != OnToggleArrow)
             OnToggleArrow(isOn);
     }
-
-    public delegate void updateOptionButtons();
-    public static event updateOptionButtons OnUpdateButtons;
-
-    static public void OnCallUpdateButtons()
-    {
-        if (OnUpdateButtons != null)
-            OnUpdateButtons();
-    }
-
-    public delegate void setRingPath(bool isOn);
-    public static event setRingPath OnSetRingPath;
-
     static public void OnCallSetRingPath(bool isOn)
     {
-        if (OnSetRingPath != null)
+        if (null != OnSetRingPath)
             OnSetRingPath(isOn);
     }
-
-
-    public delegate void updateBoardMenuEffects();
-    public static event updateBoardMenuEffects OnUpdateBoardMenuEffects;
-
     static public void OnCallBoardMenuEffects()
     {
-        if (OnUpdateBoardMenuEffects != null)
+        if (null != OnUpdateBoardMenuEffects)
             OnUpdateBoardMenuEffects();
+    }
+    public static void StartRingPulse()
+    {
+        if (OnStartRingPulse != null)
+            OnStartRingPulse();
+    }
+    public static void StopRingPulse()
+    {
+        if (OnStopRingPulse != null)
+            OnStopRingPulse();
     }
 }

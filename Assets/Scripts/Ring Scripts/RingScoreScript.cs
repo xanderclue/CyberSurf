@@ -78,7 +78,7 @@ public class RingScoreScript : MonoBehaviour
             if (!effectsStopped)
             {
                 effectsStopped = true;
-                EventManagerRings.OnStopRingPulse();
+                EventManager.StopRingPulse();
             }
         }
 
@@ -97,7 +97,7 @@ public class RingScoreScript : MonoBehaviour
                     if (effectsStopped)
                     {
                         effectsStopped = false;
-                        EventManagerRings.OnStartRingPulse();
+                        EventManager.StartRingPulse();
                     }
                     break;
                 case 5:

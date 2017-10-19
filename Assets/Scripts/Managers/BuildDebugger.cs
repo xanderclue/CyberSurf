@@ -19,11 +19,13 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         {
             if (null == stcStrlistLines)
                 stcStrlistLines = new System.Collections.Generic.List<string>();
-            stcBoolDebuggerInited = true;
             string lStrTimeStamp = TimeStamp;
+            stcSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog" + lStrTimeStamp.Substring(0, 8) + ".txt", true);
+            stcSwWriter.Write("<BEGIN>\n\n");
+            stcBoolDebuggerInited = true;
             WriteLine("Log Startup: " + lStrTimeStamp);
             WriteToErrorLog("INIT LOG", UnityEngine.Application.persistentDataPath + "/errorLog" + lStrTimeStamp.Substring(0, 8) + ".txt\n", UnityEngine.LogType.Log, lStrTimeStamp);
-            UnityEngine.Application.logMessageReceivedThreaded += GetLog;
+            UnityEngine.Application.logMessageReceived += GetLog;
         }
 #endif
     }
@@ -35,28 +37,8 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     private static UnityEngine.GameObject stcGobjTextObject = null;
     private static TMPro.TextMeshProUGUI stcCompTextmesh = null;
     private static uint stcUintLineCounter = 0u;
-    private static bool stcBoolLinesSync = false;
     private static bool stcBoolDebuggerInited = false;
-    private static bool stcBoolErrorLogInited = false;
     private static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
-    private static void TestFunc()
-    {
-        UnityEngine.GameObject[] lGobjarrRootObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-        System.Collections.Generic.List<UnityEngine.GameObject> lGobjlistRootObjects = new System.Collections.Generic.List<UnityEngine.GameObject>();
-        foreach (UnityEngine.GameObject lGobjRootObject in lGobjarrRootObjects)
-            lGobjlistRootObjects.Add(lGobjRootObject);
-        UnityEngine.GameObject lGobjMirrorRoot = new UnityEngine.GameObject("MIRRORROOT");
-        lGobjMirrorRoot.transform.position = GameManager.player.transform.position;
-        lGobjMirrorRoot.transform.rotation = GameManager.player.transform.rotation;
-        foreach (UnityEngine.GameObject lGobjRootObject in lGobjlistRootObjects)
-            lGobjRootObject.transform.parent = lGobjMirrorRoot.transform;
-        UnityEngine.Vector3 lVecTempLocalScale = lGobjMirrorRoot.transform.localScale;
-        lVecTempLocalScale.x = -lVecTempLocalScale.x;
-        lGobjMirrorRoot.transform.localScale = lVecTempLocalScale;
-        foreach (UnityEngine.GameObject lGobjRootObject in lGobjlistRootObjects)
-            lGobjRootObject.transform.parent = null;
-        Destroy(lGobjMirrorRoot);
-    }
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
         string lStrTimeStamp = TimeStamp;
@@ -66,23 +48,13 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     }
     private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType, string pStrTimeStamp)
     {
-        try
-        {
-            if (!stcBoolErrorLogInited)
-            {
-                stcSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog" + pStrTimeStamp.Substring(0, 8) + ".txt", true);
-                stcSwWriter.Write("<BEGIN>\n\n");
-                stcBoolErrorLogInited = true;
-            }
-            stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
-                "Time: " + pStrTimeStamp +
-                "\nLog Message: \"" + pStrLogMessage + "\"\n");
-            if (null == pStrStackTrace || "" == pStrStackTrace)
-                stcSwWriter.Write("NO STACK TRACE\n\n");
-            else
-                stcSwWriter.Write("Stack Trace:\n" + pStrStackTrace + "\n");
-        }
-        catch (System.Exception e) { WriteLine("kánótlógerRtufAil: " + e.Message); }
+        stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
+            "Time: " + pStrTimeStamp +
+            "\nLog Message: \"" + pStrLogMessage + "\"\n");
+        if (null == pStrStackTrace || "" == pStrStackTrace)
+            stcSwWriter.Write("NO STACK TRACE\n\n");
+        else
+            stcSwWriter.Write("Stack Trace:\n" + pStrStackTrace + "\n");
     }
     private static bool WriteLine(string pStrLine)
     {
@@ -110,59 +82,47 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
             stcStrlistLines = new System.Collections.Generic.List<string>();
         pStrLine = stcUintLineCounter.ToString() + ": " + pStrLine;
         ++stcUintLineCounter;
-        while (stcBoolLinesSync) if (!stcBoolLinesSync) break;
-        stcBoolLinesSync = true;
         stcStrlistLines.Add(pStrLine);
         if (stcStrlistLines.Count > cstIntMaxNumLines)
             stcStrlistLines.RemoveAt(0);
-        stcBoolLinesSync = false;
         return true;
     }
     private void Awake()
     {
         InitDebugger();
     }
-    private void Update()
+    private void Start()
     {
-        if (null == stcGobjTextObject)
+        stcCompTextmesh = GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (null != stcCompTextmesh)
         {
-            stcCompTextmesh = GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            if (null == stcCompTextmesh)
-                return;
             stcGobjTextObject = stcCompTextmesh.gameObject;
             stcGobjTextObject.SetActive(false);
         }
+        else enabled = false;
+    }
+    private void Update()
+    {
+        string lStrTemp = "";
+        foreach (string lStrLine in stcStrlistLines)
+            lStrTemp += lStrLine + "\n";
+        stcCompTextmesh.SetText(lStrTemp);
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.BackQuote) ||
             (UnityEngine.Input.GetKey(KeyInputManager.XBOX_X) &&
             UnityEngine.Input.GetKey(KeyInputManager.XBOX_A) &&
             UnityEngine.Input.GetKeyDown(KeyInputManager.XBOX_LB)))
             stcGobjTextObject.SetActive(!stcGobjTextObject.activeSelf);
-        string lStrTemp = "";
-        while (stcBoolLinesSync) if (!stcBoolLinesSync) break;
-        stcBoolLinesSync = true;
-        foreach (string lStrLine in stcStrlistLines)
-            lStrTemp += lStrLine + "\n";
-        stcBoolLinesSync = false;
-        stcCompTextmesh.SetText(lStrTemp);
-        stcCompTextmesh.ForceMeshUpdate();
-        if ((UnityEngine.Input.GetKey(UnityEngine.KeyCode.K) &&
-            UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.T)) ||
-            (UnityEngine.Input.GetKey(KeyInputManager.XBOX_X) &&
-            UnityEngine.Input.GetKey(KeyInputManager.XBOX_A) &&
-            UnityEngine.Input.GetKeyDown(KeyInputManager.XBOX_RB)))
-            TestFunc();
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
-            if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) && UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))
-                UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + "_Triple.png", 3);
-            else if (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) || UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))
-                UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + "_Double.png", 2);
-            else
-                UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + ".png");
+            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + ".png");
     }
     private void OnApplicationQuit()
     {
-        if (stcBoolDebuggerInited) UnityEngine.Application.logMessageReceivedThreaded -= GetLog;
-        if (stcBoolErrorLogInited) try { stcSwWriter.Write("<END>\n\n\n"); stcSwWriter.Close(); } catch { }
+        if (stcBoolDebuggerInited)
+        {
+            UnityEngine.Application.logMessageReceived -= GetLog;
+            stcSwWriter.Write("<END>\n\n\n");
+            stcSwWriter.Close();
+        }
     }
 #endif
 }
@@ -184,14 +144,14 @@ public class LabelOverride : UnityEngine.PropertyAttribute
 }
 #if UNITY_EDITOR
 [UnityEditor.InitializeOnLoad]
-public class EditorStartup
+public class SteamAppId
 {
-    public const int STEAM_APPID = 735810;
-    static EditorStartup()
+    public const int cstIntSteamAppId = 735810;
+    static SteamAppId()
     {
-        System.IO.StreamWriter steamAppIdEditor = new System.IO.StreamWriter(UnityEngine.Application.dataPath + "/../steam_appid.txt", false);
-        steamAppIdEditor.Write(STEAM_APPID);
-        steamAppIdEditor.Close();
+        System.IO.StreamWriter lSwSteamAppIdFile = new System.IO.StreamWriter(UnityEngine.Application.dataPath + "/../steam_appid.txt", false);
+        lSwSteamAppIdFile.Write(cstIntSteamAppId);
+        lSwSteamAppIdFile.Close();
     }
 }
 #endif

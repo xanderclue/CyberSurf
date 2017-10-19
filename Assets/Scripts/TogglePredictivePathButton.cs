@@ -20,7 +20,6 @@ public class TogglePredictivePathButton : SelectedObject
     private void OnEnable()
     {
         onOffText = gameObject.GetComponentsInChildren<TextMeshPro>()[0];
-        EventManager.OnUpdateButtons += isOnUpdate;
         isOnUpdate();
     }
     public override void SuccessFunction()
@@ -34,10 +33,5 @@ public class TogglePredictivePathButton : SelectedObject
         {
             onOffText.SetText("Off");
         }
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnUpdateButtons -= isOnUpdate;
     }
 }

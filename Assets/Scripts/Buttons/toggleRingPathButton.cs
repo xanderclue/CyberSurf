@@ -24,7 +24,6 @@ public class toggleRingPathButton : SelectedObject
     private void OnEnable()
     {
         onOffText = gameObject.GetComponentsInChildren<TextMeshPro>()[0];
-        EventManager.OnUpdateButtons += isOnUpdate;
         isOnUpdate();
     }
     public override void SuccessFunction()
@@ -38,10 +37,5 @@ public class toggleRingPathButton : SelectedObject
         {
             onOffText.SetText("Off");
         }
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnUpdateButtons -= isOnUpdate;
     }
 }

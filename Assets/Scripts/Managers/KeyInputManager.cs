@@ -10,15 +10,13 @@ public class KeyInputManager : MonoBehaviour
     public const KeyCode XBOX_X = KeyCode.JoystickButton18;
     public const KeyCode XBOX_Y = KeyCode.JoystickButton19;
     public const KeyCode XBOX_LB = KeyCode.JoystickButton13;
-    public const KeyCode XBOX_RB = KeyCode.JoystickButton14;
     public const KeyCode XBOX_BACK = KeyCode.JoystickButton10;
     public const KeyCode XBOX_START = KeyCode.JoystickButton9;
-#elif UNITY_STANDALONE_WIN
+#else
     public const KeyCode XBOX_A = KeyCode.JoystickButton0;
     public const KeyCode XBOX_X = KeyCode.JoystickButton2;
     public const KeyCode XBOX_Y = KeyCode.JoystickButton3;
     public const KeyCode XBOX_LB = KeyCode.JoystickButton4;
-    public const KeyCode XBOX_RB = KeyCode.JoystickButton5;
     public const KeyCode XBOX_BACK = KeyCode.JoystickButton6;
     public const KeyCode XBOX_START = KeyCode.JoystickButton7;
 #endif
@@ -26,10 +24,10 @@ public class KeyInputManager : MonoBehaviour
     ManagerClasses.GameState state;
 
     //variables for returning back to menu
-    public float flippedTimer = 3f;
+    public float flippedTimer = 3.0f;
     public bool hubOnFlippedHMD = false;
     bool countingDown = false;
-    float timeUpsideDown = 0f;
+    float timeUpsideDown = 0.0f;
     Quaternion flippedQuaternion;
 
     //calibration variables
@@ -40,37 +38,6 @@ public class KeyInputManager : MonoBehaviour
 
     public void setupKeyInputManager(ManagerClasses.GameState s)
     {
-        #region TEXTURE2DARRAY
-#if FALSE
-        Texture2D[] arrayOfTextures, newArrayOfTextures;
-        Texture2DArray textureArray;
-
-        // initializing a new array of textures
-        {
-            int numTextures = 4;
-            int texWid = 420;
-            int texHei = 69;
-            arrayOfTextures = new Texture2D[numTextures];
-            for (int i = 0; i < numTextures; ++i)
-                arrayOfTextures[i] = new Texture2D(texWid, texHei);
-        }
-
-        // copying textures from the array of textures to a new texture array
-        {
-            textureArray = new Texture2DArray(arrayOfTextures[0].width, arrayOfTextures[0].height, arrayOfTextures.Length, arrayOfTextures[0].format, false);
-            for (int i = 0; i < arrayOfTextures.Length; ++i)
-                Graphics.CopyTexture(arrayOfTextures[i], 0, textureArray, i);
-        }
-
-        // copying textures from the texture array to a new array of textures
-        {
-            newArrayOfTextures = new Texture2D[textureArray.depth];
-            for (int i = 0; i < textureArray.depth; ++i)
-                Graphics.CopyTexture(textureArray, i, newArrayOfTextures[i], 0);
-        }
-#endif
-        #endregion
-
         state = s;
         thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
         playerTransform = GameManager.player.GetComponent<Transform>();
