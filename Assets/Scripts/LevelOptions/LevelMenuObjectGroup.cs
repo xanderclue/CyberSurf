@@ -27,10 +27,14 @@ public class LevelMenuObjectGroup : MonoBehaviour
     public virtual void EnableGroup()
     {
         groupEnabled = true;
+        foreach (SelectedObject button in GetComponentsInChildren<SelectedObject>())
+            button.IsDisabled = false;
     }
     public virtual void DisableGroup()
     {
         groupEnabled = false;
+        foreach (SelectedObject button in GetComponentsInChildren<SelectedObject>())
+            button.IsDisabled = true;
     }
     protected void Update()
     {
