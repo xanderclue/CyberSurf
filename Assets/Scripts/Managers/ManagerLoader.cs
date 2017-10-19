@@ -23,16 +23,6 @@ public class ManagerLoader : MonoBehaviour
             BuildDebugger.InitDebugger();
             if (null == GameManager.instance)
                 Instantiate(gameManager);
-#if UNITY_EDITOR
-            try
-            {
-                const int appid = 735810;
-                System.IO.StreamWriter steamAppIdEditor = new System.IO.StreamWriter(Application.dataPath + "/../steam_appid.txt", false);
-                steamAppIdEditor.Write(appid);
-                steamAppIdEditor.Close();
-            }
-            catch { }
-#endif
             isLoaded = true;
         }
         try { Destroy(gameObject); } catch { }

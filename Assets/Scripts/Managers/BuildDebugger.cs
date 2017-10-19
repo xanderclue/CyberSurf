@@ -182,3 +182,20 @@ public class LabelOverride : UnityEngine.PropertyAttribute
     }
 #endif
 }
+#if UNITY_EDITOR
+[UnityEditor.InitializeOnLoad]
+public class EditorStartup
+{
+    static EditorStartup()
+    {
+        try
+        {
+            const int appid = 735810;
+            System.IO.StreamWriter steamAppIdEditor = new System.IO.StreamWriter(UnityEngine.Application.dataPath + "/../steam_appid.txt", false);
+            steamAppIdEditor.Write(appid);
+            steamAppIdEditor.Close();
+        }
+        catch { }
+    }
+}
+#endif
