@@ -15,7 +15,7 @@
 		_EffectsLayer1Color("", Color) = (1,1,1,1)
 		_EffectsLayer1Motion("", 2D) = "black"{}
 		_EffectsLayer1DistTex("", 2D) = "grey"{}
-		_EffectsLayer1DistMask("", 2D) = "black"{}
+		_EffectsLayer1DistMask("_EffectsLayer1DistMask", 2D) = "black"{}
 		_EffectsLayer1DoDistort("", float) = 0
 		_EffectsLayer1MotionSpeedYAxis("", float) = 0
 		_EffectsLayer1MotionSpeedXAxis("", float) = 0

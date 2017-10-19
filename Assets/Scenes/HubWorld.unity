@@ -362,11 +362,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 171832065}
@@ -1797,11 +1797,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 365394100}
@@ -1872,6 +1872,7 @@ GameObject:
   - component: {fileID: 366936500}
   - component: {fileID: 366936499}
   - component: {fileID: 366936503}
+  - component: {fileID: 366936504}
   m_Layer: 0
   m_Name: MenuEffectTestCube
   m_TagString: Untagged
@@ -1960,6 +1961,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &366936504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366936498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2661b2364834c4b9f6a2c499bd85dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullMaskTex: {fileID: 2800000, guid: 53007296af1929d419a484be28b119a5, type: 3}
+  partialMaskTex: {fileID: 2800000, guid: 4de6e5c60f6aa7344a2398de2bd49286, type: 3}
 --- !u!1 &379418296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,11 +2204,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 465406897}
@@ -2881,11 +2895,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 679170182}
@@ -3143,11 +3157,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 736099207}
@@ -3849,11 +3863,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 878374507}
@@ -4775,11 +4789,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1129182532}
@@ -4974,11 +4988,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1201458150}
@@ -5168,11 +5182,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1229654864}
@@ -6312,11 +6326,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1729968267}
@@ -6380,7 +6394,20 @@ GameObject:
   m_PrefabParentObject: {fileID: 1933635615283956, guid: 3ca0ff4c71fab2042b50e1fb5a11aeef,
     type: 2}
   m_PrefabInternal: {fileID: 334334886}
---- !u!95 &1760863261
+--- !u!114 &1760863261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760863260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2661b2364834c4b9f6a2c499bd85dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullMaskTex: {fileID: 2800000, guid: 53007296af1929d419a484be28b119a5, type: 3}
+  partialMaskTex: {fileID: 2800000, guid: 4de6e5c60f6aa7344a2398de2bd49286, type: 3}
+--- !u!95 &1760863264
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -6528,11 +6555,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1773152605}
@@ -6658,6 +6685,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1882579991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1882579989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2661b2364834c4b9f6a2c499bd85dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullMaskTex: {fileID: 2800000, guid: 53007296af1929d419a484be28b119a5, type: 3}
+  partialMaskTex: {fileID: 2800000, guid: 4de6e5c60f6aa7344a2398de2bd49286, type: 3}
 --- !u!1 &1901364789
 GameObject:
   m_ObjectHideFlags: 0
@@ -6832,7 +6872,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1875890463209402, guid: bea3ec5aff31c984bbfa755278aa0767,
     type: 2}
   m_PrefabInternal: {fileID: 1256558184}
---- !u!114 &2117777074
+--- !u!114 &2117777078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -6843,5 +6883,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2661b2364834c4b9f6a2c499bd85dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullTex: {fileID: 0}
-  partialTex: {fileID: 0}
+  fullMaskTex: {fileID: 2800000, guid: 53007296af1929d419a484be28b119a5, type: 3}
+  partialMaskTex: {fileID: 2800000, guid: 4de6e5c60f6aa7344a2398de2bd49286, type: 3}
