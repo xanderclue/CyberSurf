@@ -975,7 +975,7 @@ Prefab:
         type: 2}
       propertyPath: destroyOnLoad.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1702950130}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1077365eb4976ba4a913c4e0980e4abb, type: 2}
   m_IsPrefabParent: 0
@@ -9863,7 +9863,7 @@ GameObject:
   m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &1586022488
 MeshCollider:
@@ -10563,6 +10563,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd6996909900ff44cac341d9483ba297, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1702950130 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1888161922960542, guid: cd6996909900ff44cac341d9483ba297,
+    type: 2}
+  m_PrefabInternal: {fileID: 1702950129}
 --- !u!1001 &1710782423
 Prefab:
   m_ObjectHideFlags: 0
@@ -12596,7 +12601,7 @@ GameObject:
   m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!82 &2142085319
 AudioSource:
