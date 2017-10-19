@@ -34,13 +34,18 @@ public class TooltipObject : MonoBehaviour
         {
             gameObject.layer = LayerMask.NameToLayer(SelectedObject.LAYERNAME);
             Collider theCollider = 0 != GetComponents<Collider>().Length ? gameObject.GetComponent<Collider>() : gameObject.AddComponent<BoxCollider>();
-            SelectedObject selectedObject = gameObject.GetComponent<SelectedObject>() ?? gameObject.AddComponent<EventSelectedObject>();
+            SelectedObject selectedObject = gameObject.GetComponent<SelectedObject>();
+            if (null == selectedObject)
+                selectedObject = gameObject.AddComponent<EventSelectedObject>();
+            else
+            {
+                selectedObject.tooltipOnly = true;
+                selectedObject.SetupTooltipOnly();
+            }
+            selectedObject.tooltipText = m_tooltipText;
             if (theCollider is MeshCollider)
                 (theCollider as MeshCollider).convex = true;
             theCollider.isTrigger = true;
-            selectedObject.tooltipText = m_tooltipText;
-            selectedObject.tooltipOnly = true;
-            selectedObject.SetupTooltipOnly();
             if (m_isDisabled)
                 selectedObject.enabled = false;
         }
