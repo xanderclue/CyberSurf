@@ -37,10 +37,11 @@ public abstract class SelectedObject : MonoBehaviour
     //grabs the reticle object to show timer status
     public void Selected(reticle grabbedReticle)
     {
-        if (!isActiveAndEnabled) return;
+        if (!enabled) return;
         if (!CanSelect || isDisabled)
             return;
-        TooltipTextScript.SetText(tooltipText);
+        if (gameObject.activeSelf)
+            TooltipTextScript.SetText(tooltipText);
         SelectedFunction();
         if (!tooltipOnly)
         {
@@ -56,7 +57,7 @@ public abstract class SelectedObject : MonoBehaviour
     public void Deselected()
     {
         TooltipTextScript.SetText("");
-        if (!isActiveAndEnabled) return;
+        if (!enabled) return;
         DeselectedFunction();
         if (!tooltipOnly)
         {
