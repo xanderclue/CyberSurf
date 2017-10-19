@@ -21,8 +21,8 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
                 stcStrlistLines = new System.Collections.Generic.List<string>();
             stcBoolDebuggerInited = true;
             string lStrTimeStamp = TimeStamp;
-            WriteLine("Startup: " + lStrTimeStamp);
-            WriteToErrorLog("STARTUP", UnityEngine.Application.persistentDataPath + "\n", UnityEngine.LogType.Log, lStrTimeStamp);
+            WriteLine("Log Startup: " + lStrTimeStamp);
+            WriteToErrorLog("INIT LOG", UnityEngine.Application.persistentDataPath + "/errorLog" + lStrTimeStamp.Substring(0, 8) + ".txt\n", UnityEngine.LogType.Log, lStrTimeStamp);
             UnityEngine.Application.logMessageReceivedThreaded += GetLog;
         }
 #endif
@@ -77,7 +77,9 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
             stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
                 "Time: " + pStrTimeStamp +
                 "\nLog Message: \"" + pStrLogMessage + "\"\n");
-            if (null != pStrStackTrace && "" != pStrStackTrace)
+            if (null == pStrStackTrace || "" == pStrStackTrace)
+                stcSwWriter.Write("NO STACK TRACE\n\n");
+            else
                 stcSwWriter.Write("Stack Trace:\n" + pStrStackTrace + "\n");
         }
         catch (System.Exception e) { WriteLine("kánótlógerRtufAil: " + e.Message); }
