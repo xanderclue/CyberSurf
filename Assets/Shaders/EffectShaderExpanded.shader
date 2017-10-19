@@ -14,6 +14,9 @@
 		_EffectsLayer1Tex("", 2D) = "black"{}
 		_EffectsLayer1Color("", Color) = (1,1,1,1)
 		_EffectsLayer1Motion("", 2D) = "black"{}
+		_EffectsLayer1DistTex("", 2D) = "grey"{}
+		_EffectsLayer1DistMask("", 2D) = "black"{}
+		_EffectsLayer1DoDistort("", float) = 0
 		_EffectsLayer1MotionSpeedYAxis("", float) = 0
 		_EffectsLayer1MotionSpeedXAxis("", float) = 0
 		_EffectsLayer1ScrollSpeedXAxis("", float) = 0
@@ -27,6 +30,9 @@
 		_EffectsLayer2Tex("", 2D) = "black"{}
 		_EffectsLayer2Color("", Color) = (1,1,1,1)
 		_EffectsLayer2Motion("", 2D) = "black"{}
+		_EffectsLayer2DistTex("", 2D) = "grey"{}
+		_EffectsLayer2DistMask("", 2D) = "black"{}
+		_EffectsLayer2DoDistort("", float) = 0
 		_EffectsLayer2MotionSpeedYAxis("", float) = 0
 		_EffectsLayer2MotionSpeedXAxis("", float) = 0
 		_EffectsLayer2ScrollSpeedXAxis("", float) = 0
@@ -40,6 +46,9 @@
 		_EffectsLayer3Tex("", 2D) = "black"{}
 		_EffectsLayer3Color("", Color) = (1,1,1,1)
 		_EffectsLayer3Motion("", 2D) = "black"{}
+		_EffectsLayer3DistTex("", 2D) = "grey"{}
+		_EffectsLayer3DistMask("", 2D) = "black"{}
+		_EffectsLayer3DoDistort("", float) = 0
 		_EffectsLayer3MotionSpeedYAxis("", float) = 0
 		_EffectsLayer3MotionSpeedXAxis("", float) = 0
 		_EffectsLayer3ScrollSpeedXAxis("", float) = 0
@@ -95,6 +104,7 @@
 	};
 
 	sampler2D _MainTex;
+	float4 _MainTex_ST;
 	sampler2D _DistTex;
 	sampler2D _DistMask;
 
@@ -103,7 +113,11 @@
 	float _ScrollYSpeed;
 
 	sampler2D	_EffectsLayer1Tex;
+	float4		_EffectsLayer1Tex_ST;
 	sampler2D	_EffectsLayer1Motion;
+	sampler2D	_EffectsLayer1DistTex;
+	sampler2D	_EffectsLayer1DistMask;
+	float		_EffectsLayer1DoDistort;
 	float		_EffectsLayer1MotionSpeedYAxis;
 	float		_EffectsLayer1MotionSpeedXAxis;
 	float		_EffectsLayer1ScrollSpeedXAxis;
@@ -115,7 +129,11 @@
 	float2		_EffectsLayer1Translation;
 
 	sampler2D	_EffectsLayer2Tex;
+	float4		_EffectsLayer2Tex_ST;
 	sampler2D	_EffectsLayer2Motion;
+	sampler2D	_EffectsLayer2DistTex;
+	sampler2D	_EffectsLayer2DistMask;
+	float		_EffectsLayer2DoDistort;
 	float		_EffectsLayer2MotionSpeedYAxis;
 	float		_EffectsLayer2MotionSpeedXAxis;
 	float		_EffectsLayer2ScrollSpeedXAxis;
@@ -127,7 +145,11 @@
 	float2		_EffectsLayer2Translation;
 
 	sampler2D	_EffectsLayer3Tex;
+	float4		_EffectsLayer3Tex_ST;
 	sampler2D	_EffectsLayer3Motion;
+	sampler2D	_EffectsLayer3DistTex;
+	sampler2D	_EffectsLayer3DistMask;
+	float		_EffectsLayer3DoDistort;
 	float		_EffectsLayer3MotionSpeedYAxis;
 	float		_EffectsLayer3MotionSpeedXAxis;
 	float		_EffectsLayer3ScrollSpeedXAxis;
@@ -143,7 +165,7 @@
 	{
 		v2f o;
 		o.vertex = UnityObjectToClipPos(v.vertex);
-		o.uv = v.uv;
+		o.uv = v.uv.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 		o.uv.x += _Time.x * _ScrollXSpeed;
 		o.uv.y += _Time * _ScrollYSpeed;
 		float2x2 rotationMatrix;
@@ -160,7 +182,8 @@
 		cosTheta = cos(_EffectsLayer1Rotation * _Time);
 		rotationMatrix = float2x2(cosTheta, -sinTheta, sinTheta, cosTheta);
 		o.effect1uv = (mul((o.effect1uv - _EffectsLayer1Translation.xy) *
-			(1 / _EffectsLayer1PivotScale.zw), rotationMatrix) + _EffectsLayer1PivotScale.xy);
+			(1 / _EffectsLayer1PivotScale.zw), rotationMatrix) + _EffectsLayer1PivotScale.xy)
+			* _EffectsLayer1Tex_ST.xy + _EffectsLayer1Tex_ST.zw;
 #endif // EFFECTLAYER1ON
 #if EFFECTLAYER2ON
 		o.effect2uv = o.uv - _EffectsLayer2PivotScale.xy;
@@ -172,9 +195,9 @@
 		cosTheta = cos(_EffectsLayer2Rotation * _Time);
 		rotationMatrix = float2x2(cosTheta, -sinTheta, sinTheta, cosTheta);
 		o.effect2uv = (mul((o.effect2uv - _EffectsLayer2Translation.xy) *
-			(1 / _EffectsLayer2PivotScale.zw), rotationMatrix) + _EffectsLayer2PivotScale.xy);
+			(1 / _EffectsLayer2PivotScale.zw), rotationMatrix) + _EffectsLayer2PivotScale.xy)
+			* _EffectsLayer2Tex_ST.xy + _EffectsLayer2Tex_ST.zw;
 #endif // EFFECTLAYER2ON
-
 #if EFFECTLAYER3ON
 		o.effect3uv = o.uv - _EffectsLayer3PivotScale.xy;
 
@@ -185,7 +208,8 @@
 		cosTheta = cos(_EffectsLayer3Rotation * _Time);
 		rotationMatrix = float2x2(cosTheta, -sinTheta, sinTheta, cosTheta);
 		o.effect3uv = (mul((o.effect3uv - _EffectsLayer3Translation.xy) *
-			(1 / _EffectsLayer3PivotScale.zw), rotationMatrix) + _EffectsLayer3PivotScale.xy);
+			(1 / _EffectsLayer3PivotScale.zw), rotationMatrix) + _EffectsLayer3PivotScale.xy)
+		*_EffectsLayer3Tex_ST.xy + _EffectsLayer3Tex_ST.zw;
 #endif // EFFECTLAYER3ON
 
 
@@ -217,8 +241,19 @@
 		{
 			motion1 = fixed4(i.effect1uv.rg, motion1.b, motion1.a);
 		}
-
-		fixed4 effect1 = tex2D(_EffectsLayer1Tex, motion1.xy) * motion1.a;
+		//distorts the effect layer
+		fixed4 effect1;
+		//if (_EffectsLayer1DoDistort)
+		//{
+		//	fixed2 dist1 = (tex2D(_EffectsLayer1DistTex, i.uv + distScroll).rg - 0.5) * 2;
+		//	fixed dist1Mask = tex2D(_EffectsLayer1DistMask, i.uv)[0];
+		//
+		//	effect1 = tex2D(_EffectsLayer1Tex, i.effect1uv.xy + dist1 * dist1Mask * 0.025);
+		//}
+		//else
+		//{
+			effect1 = tex2D(_EffectsLayer1Tex, motion1.xy) * motion1.a;
+		//}
 		effect1 *= _EffectsLayer1Color;
 
 		col += effect1 * effect1.a * max(bg, _EffectsLayer1Foreground);
@@ -244,7 +279,6 @@
 
 		col += effect2 * effect2.a * max(bg, _EffectsLayer2Foreground);
 #endif // EFFECTLAYER2ON
-
 #if EFFECTLAYER3ON
 		fixed4 motion3 = tex2D(_EffectsLayer3Motion, i.uv);
 
@@ -267,7 +301,10 @@
 		col += effect3 * effect3.a * max(bg, _EffectsLayer3Foreground);
 #endif // EFFECTLAYER3ON
 
-		col.a = _AlphaValue;
+		if (_AlphaValue != -1)
+		{
+			col.a = _AlphaValue;
+		}
 		return col;
 	}
 

@@ -35,7 +35,8 @@ public class EffectEditor : MaterialEditor
 
         EditorGUI.BeginChangeCheck();
 
-        for (int i = 0; i < 3; i++)
+        TextureProperty(properties[0], properties[0].displayName);
+        for (int i = 1; i < 3; i++)
         {
             TexturePropertySingleLine(new GUIContent(properties[i].displayName), properties[i]);
         }
@@ -94,8 +95,13 @@ public class EffectEditor : MaterialEditor
 
         EditorGUILayout.BeginVertical(style);
         {
-            TexturePropertySingleLine(new GUIContent("Effect Texture"), GetByName(properties, EffectName(layer, "Tex")));
+            TextureProperty(GetByName(properties, EffectName(layer, "Tex")),("Effect Texture"));
             TexturePropertySingleLine(new GUIContent("Motion Texture"), GetByName(properties, EffectName(layer, "Motion")));
+
+            TexturePropertySingleLine(new GUIContent("Effect Distortion Texture"), GetByName(properties, EffectName(layer, "DistTex")));
+            TexturePropertySingleLine(new GUIContent("Effect Distortion Mask"), GetByName(properties, EffectName(layer, "DistMask")));
+            
+            BoolProperty(GetByName(properties, EffectName(layer, "DoDistort")), "Do Distortion");
 
             ColorProperty(GetByName(properties, EffectName(layer, "Color")), "Tint Color");
 

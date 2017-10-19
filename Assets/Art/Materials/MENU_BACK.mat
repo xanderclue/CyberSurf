@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: MENU_BACK
   m_Shader: {fileID: 4800000, guid: 3fdf27446d821fa45b08b7ad2ff3ccb1, type: 3}
-  m_ShaderKeywords: EFFECTLAYER1ON EFFECTLAYER2OFF
+  m_ShaderKeywords: EFFECTLAYER1ON EFFECTLAYER2OFF EFFECTLAYER3OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -38,7 +38,35 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DistPostEffectTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistPreEffectMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistPreEffectTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DistTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer1DistMask:
+        m_Texture: {fileID: 2800000, guid: 797da70bf831ab7429a1234bb26f6e8b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer1DistTex:
+        m_Texture: {fileID: 2800000, guid: 83ea4adbda1bc0f41b9a97668b5fc81d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer1DistortionMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer1DistortionTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -48,14 +76,54 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EffectsLayer1Tex:
         m_Texture: {fileID: 2800000, guid: bd9b536963540bd40b5d2f07f901b819, type: 3}
+        m_Scale: {x: 1, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer2DistMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer2DistTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer2DistortionMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer2DistortionTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EffectsLayer2Motion:
-        m_Texture: {fileID: 2800000, guid: 4de6e5c60f6aa7344a2398de2bd49286, type: 3}
+        m_Texture: {fileID: 2800000, guid: c0d8146649eb27f4ea4ed0cdc1d57fbb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EffectsLayer2Tex:
-        m_Texture: {fileID: 2800000, guid: e3217fbf31a26c046a1e62a7bb72f11a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5c2aab6eb75121f4890739522eb1fa95, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer3DistMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer3DistTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer3DistortionMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer3DistortionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer3Motion:
+        m_Texture: {fileID: 2800000, guid: 4de6e5c60f6aa7344a2398de2bd49286, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EffectsLayer3Tex:
+        m_Texture: {fileID: 2800000, guid: 5e05469312234134980c33a323b7f1f8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EffectsLayerMotion:
@@ -92,18 +160,27 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EffectsLayer1DoDistort: 1
     - _EffectsLayer1Foreground: 1
-    - _EffectsLayer1MotionSpeedXAxis: -0.1
+    - _EffectsLayer1MotionSpeedXAxis: 0
     - _EffectsLayer1MotionSpeedYAxis: 0
     - _EffectsLayer1Rotation: 0
-    - _EffectsLayer1ScrollSpeedXAxis: 0.5
-    - _EffectsLayer1ScrollSpeedYAxis: 0
+    - _EffectsLayer1ScrollSpeedXAxis: 0
+    - _EffectsLayer1ScrollSpeedYAxis: 3
+    - _EffectsLayer2DoDistort: 0
     - _EffectsLayer2Foreground: 1
     - _EffectsLayer2MotionSpeedXAxis: 0
     - _EffectsLayer2MotionSpeedYAxis: 0
     - _EffectsLayer2Rotation: 0
     - _EffectsLayer2ScrollSpeedXAxis: 0
-    - _EffectsLayer2ScrollSpeedYAxis: 0
+    - _EffectsLayer2ScrollSpeedYAxis: -1
+    - _EffectsLayer3DoDistort: 0
+    - _EffectsLayer3Foreground: 1
+    - _EffectsLayer3MotionSpeedXAxis: 0
+    - _EffectsLayer3MotionSpeedYAxis: 0
+    - _EffectsLayer3Rotation: 0
+    - _EffectsLayer3ScrollSpeedXAxis: 0
+    - _EffectsLayer3ScrollSpeedYAxis: 0
     - _EffectsLayerForeground: 0
     - _EffectsLayerMotionSpeed: 0
     - _EffectsLayerMotionSpeedXAxis: 0.07
@@ -128,12 +205,15 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.24705884, g: 0.503, b: 1, a: 1}
-    - _EffectsLayer1Color: {r: 1, g: 1, b: 1, a: 0.222}
+    - _EffectsLayer1Color: {r: 1, g: 1, b: 1, a: 0.478}
     - _EffectsLayer1PivotScale: {r: 0.5, g: 0.5, b: 1, a: 1}
     - _EffectsLayer1Translation: {r: 0, g: 0, b: 0, a: 0}
-    - _EffectsLayer2Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EffectsLayer2Color: {r: 1, g: 1, b: 1, a: 0.278}
     - _EffectsLayer2PivotScale: {r: 0, g: 0.9, b: 0.5, a: 0.5}
     - _EffectsLayer2Translation: {r: 0, g: 0, b: 0, a: 0}
+    - _EffectsLayer3Color: {r: 1, g: 1, b: 1, a: 0.109}
+    - _EffectsLayer3PivotScale: {r: 0.5, g: 0.5, b: 1, a: 1}
+    - _EffectsLayer3Translation: {r: 0, g: 0, b: 0, a: 0}
     - _EffectsLayerColor: {r: 1, g: 1, b: 1, a: 1}
     - _EffectsLayerPivotScale: {r: 1, g: 1, b: 1, a: 1}
     - _EffectsLayerTranslation: {r: 0, g: 0, b: 0, a: 0}
