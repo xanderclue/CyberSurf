@@ -17,17 +17,17 @@ public class ringPathMaker : MonoBehaviour
     public bool isLooping = false;
 
     #region EventStuff
-    void togglePath(bool isOn)
+    private void TogglePath(bool isOn)
     {
         drawLine = isOn;
     }
     private void Awake()
     {
-        EventManager.OnSetRingPath += togglePath;
+        EventManager.OnSetRingPath += TogglePath;
     }
     private void OnDisable()
     {
-        EventManager.OnSetRingPath -= togglePath;
+        EventManager.OnSetRingPath -= TogglePath;
     }
 
     #endregion
@@ -56,7 +56,7 @@ public class ringPathMaker : MonoBehaviour
             for (int i = 1; i < array.Length; i++)
             {
                 theRing = array[i].gameObject.GetComponent<RingProperties>();
-                if (theRing.duplicatePosition)
+                if (theRing.DuplicatePosition)
                 {
                     if (!foundDuplicate)
                     {

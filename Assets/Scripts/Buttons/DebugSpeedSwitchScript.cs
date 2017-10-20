@@ -1,32 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
+﻿using TMPro;
 
 public class DebugSpeedSwitchScript : SelectedObject
 {
-    TextMeshPro debugSpeedOnOffText;
-
-    GameManager theManager;
-    bool IsOn { get { return theManager.boardScript.debugSpeedEnabled; } set { theManager.boardScript.UpdateDebugSpeedControls(value); } }
+    private TextMeshPro debugSpeedOnOffText;
+    private BoardManager theManager;
+    private bool IsOn { get { return theManager.debugSpeedEnabled; } set { theManager.UpdateDebugSpeedControls(value); } }
 
     new private void Start()
     {
         base.Start();
-        theManager = GameManager.instance;
-        controllerIsOnUpdate();
-    }
-
-    public void controllerIsOnUpdate()
-    {
-        if (IsOn)
-        {
-            debugSpeedOnOffText.SetText("On");
-        }
-        else
-        {
-            debugSpeedOnOffText.SetText("Off");
-        }
+        theManager = GameManager.instance.boardScript;
+        debugSpeedOnOffText.SetText(IsOn ? "On" : "Off");
     }
 
     private void OnEnable()
@@ -37,6 +21,6 @@ public class DebugSpeedSwitchScript : SelectedObject
     override public void SuccessFunction()
     {
         IsOn = !IsOn;
-        controllerIsOnUpdate();
+        debugSpeedOnOffText.SetText(IsOn ? "On" : "Off");
     }
 }

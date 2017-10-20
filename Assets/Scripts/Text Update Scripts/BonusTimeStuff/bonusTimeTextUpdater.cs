@@ -1,20 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class bonusTimeTextUpdater : MonoBehaviour
 {
-    public Color myColor;
-
-    TextMeshProUGUI element;
-    Animator myAnimator;
-
-    public void play(string bonusTime)
-    {
-        element.SetText(bonusTime);
-        myAnimator.SetBool("AddTime", true);
-    }
+    private static readonly int addTimeHash = Animator.StringToHash("AddTime");
+    [SerializeField] private Color myColor;
+    private TextMeshProUGUI element;
+    private Animator myAnimator;
 
     private void Start()
     {
@@ -24,9 +16,15 @@ public class bonusTimeTextUpdater : MonoBehaviour
         element.color = myColor;
     }
 
+    public void play(string bonusTime)
+    {
+        element.SetText(bonusTime);
+        myAnimator.SetBool(addTimeHash, true);
+    }
+
     public void animationEnded()
     {
-        myAnimator.SetBool("AddTime", false);
+        myAnimator.SetBool(addTimeHash, false);
     }
 
     private void Update()

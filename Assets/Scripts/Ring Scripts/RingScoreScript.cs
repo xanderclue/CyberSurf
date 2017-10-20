@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RingScoreScript : MonoBehaviour
 {
@@ -26,10 +24,9 @@ public class RingScoreScript : MonoBehaviour
     ScoreManager scoreManager;
 
     RingProperties rp;
-    System.Type capsuleType;
+    private static readonly System.Type capsuleType = typeof(CapsuleCollider);
 
     float originalCrInAmt;
-    float totalMultiplier;
 
     bonusTimeTextUpdater bonusTimeText;
     ParticleSystem hitEffect;
@@ -42,7 +39,6 @@ public class RingScoreScript : MonoBehaviour
         pColSoundEffects = GameManager.player.GetComponent<playerCollisionSoundEffects>();
         pArrowHandler = GameManager.player.GetComponent<PlayerArrowHandler>();
         rp = GetComponent<RingProperties>();
-        capsuleType = typeof(CapsuleCollider);
         bonusTimeText = GameManager.player.GetComponentInChildren<bonusTimeTextUpdater>();
         hitEffect = GetComponentInChildren<ParticleSystem>();
         respawnScript = GameManager.player.GetComponent<PlayerRespawn>();
@@ -57,7 +53,7 @@ public class RingScoreScript : MonoBehaviour
 
     void IncreaseScore()
     {
-        totalMultiplier = 1f;
+        float totalMultiplier = 1.0f;
 
         if (prevPositionInOrder + 1 == rp.positionInOrder)
         {
@@ -114,7 +110,7 @@ public class RingScoreScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!respawnScript.IsRespawning && other.GetType() == capsuleType && other.tag == "Player")
+        if (!respawnScript.IsRespawning && capsuleType == other.GetType() && "Player" == other.tag)
         {
             pArrowHandler.UpdatePlayerHUDPointer(rp);
 
@@ -123,7 +119,7 @@ public class RingScoreScript : MonoBehaviour
                 //update our scoreManager values
                 scoreManager.prevRingBonusTime = rp.bonusTime;
                 scoreManager.prevRingTransform = rp.transform;
-                scoreManager.ringHitCount++;
+                ++scoreManager.ringHitCount;
 
                 if (GameManager.instance.gameMode.currentMode == GameModes.Cursed)
                 {
@@ -135,12 +131,12 @@ public class RingScoreScript : MonoBehaviour
                 UpdateRingEffects();
                 pColSoundEffects.PlayRingClip(gameObject);
 
-                if (hitEffect != null)
+                if (null != hitEffect)
                 {
                     //Debug.Log("Hit a Ring");
                     hitEffect.Play();
                     //MeshRenderer tmp = hitEffect.GetComponentInParent<MeshRenderer>();
-                    hitEffect.GetComponentInParent<MeshRenderer>().gameObject.GetComponent<Renderer>().enabled = false ;
+                    hitEffect.GetComponentInParent<MeshRenderer>().gameObject.GetComponent<Renderer>().enabled = false;
                 }
                 else
                     print("HIT EFFECT NULL");

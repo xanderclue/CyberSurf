@@ -1,90 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RingBouncer : MonoBehaviour
 {
     enum StartDirection { Positive, Negative };
 
-    Transform anchor;
-    float direction = 1f;
-    float step;
+    private Transform anchor;
+    private bool negativeDirection = false;
 
-    Vector3 leftPos, rightPos, topPos, bottomPos, currPos;
+    private Vector3 maxPos, minPos, currPos;
 
-    [SerializeField] StartDirection startDirection = StartDirection.Positive;
-    [SerializeField] bool bounceVertically = true;
-    [SerializeField] float bounceDistance = 1f;
-    [SerializeField] float bounceRate = 5f;
+    [SerializeField] private StartDirection startDirection = StartDirection.Positive;
+    [SerializeField] private bool bounceVertically = true;
+    [SerializeField] private float bounceDistance = 1.0f;
+    [SerializeField] private float bounceRate = 5.0f;
 
-	void Start ()
+    void Start()
     {
-        if (startDirection == StartDirection.Negative)
-            direction = -1f;
+        if (StartDirection.Negative == startDirection)
+            negativeDirection = true;
 
-        anchor = GetComponent<Transform>();
+        anchor = transform;
 
         if (bounceVertically)
         {
-            bottomPos = anchor.position + anchor.TransformDirection(Vector3.up * -bounceDistance);
-            topPos = anchor.position + anchor.TransformDirection(Vector3.up * bounceDistance);
+            maxPos = anchor.position + anchor.TransformDirection(Vector3.up * bounceDistance);
+            minPos = anchor.position - anchor.TransformDirection(Vector3.up * bounceDistance);
         }
         else
         {
-            leftPos = anchor.position + anchor.TransformDirection(Vector3.left * bounceDistance);
-            rightPos = anchor.position + anchor.TransformDirection(Vector3.left * -bounceDistance);
+            maxPos = anchor.position + anchor.TransformDirection(Vector3.left * bounceDistance);
+            minPos = anchor.position - anchor.TransformDirection(Vector3.left * bounceDistance);
         }
 
         currPos = anchor.position;
     }
 
-    void BounceVertically()
-    {
-        step = Time.deltaTime * bounceRate;
-        if (direction > 0f)
-        {
-            if (anchor.position == topPos)
-                direction *= -1f;
-          
-            currPos = Vector3.MoveTowards(currPos, topPos, step);
-        }
-        else
-        {
-            if (anchor.position == bottomPos)
-                direction *= -1f;
-
-            currPos = Vector3.MoveTowards(currPos, bottomPos, step);
-        }
-
-        anchor.position = currPos;
-    }
-
-    void BounceHorizontally()
-    {
-        step = Time.deltaTime * bounceRate;
-        if (direction > 0f)
-        {
-            if (anchor.position == leftPos)
-                direction *= -1f;
-
-            currPos = Vector3.MoveTowards(currPos, leftPos, step);
-        }
-        else
-        {
-            if (anchor.position == rightPos)
-                direction *= -1f;
-
-            currPos = Vector3.MoveTowards(currPos, rightPos, step);
-        }
-
-        anchor.position = currPos;
-    }
-
     private void FixedUpdate()
     {
-        if (bounceVertically)
-            BounceVertically();
+        if (negativeDirection)
+        {
+            if (currPos == minPos)
+                negativeDirection = false;
+
+            anchor.position = currPos = Vector3.MoveTowards(currPos, minPos, Time.fixedDeltaTime * bounceRate);
+        }
         else
-            BounceHorizontally();
+        {
+            if (currPos == maxPos)
+                negativeDirection = true;
+
+            anchor.position = currPos = Vector3.MoveTowards(currPos, maxPos, Time.fixedDeltaTime * bounceRate);
+        }
     }
 }

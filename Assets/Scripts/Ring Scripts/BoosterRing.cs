@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class BoosterRing : MonoBehaviour
 {
-    [SerializeField] MeshRenderer arrowRenderer;
-    [SerializeField] Transform directionTransform;
-    [SerializeField] float boostAmount = 3f;
-    [SerializeField] float boostLength = 0.25f;
-
-    float timeIntoBoost = 0f;
-
-    Rigidbody rb;
+    [SerializeField] private MeshRenderer arrowRenderer;
+    [SerializeField] private Transform directionTransform;
+    [SerializeField] private float boostAmount = 3.0f;
+    [SerializeField] private float boostLength = 0.25f;
+    private float timeIntoBoost = 0.0f;
+    private Rigidbody rb;
 
     private void Start()
     {
-        if (arrowRenderer.enabled == true)
-            arrowRenderer.enabled = false;
+        arrowRenderer.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if ("Player" == other.tag)
         {
             rb = other.GetComponent<Rigidbody>();
             StartCoroutine(BoostCoroutine());
-        }      
+        }
     }
 
     IEnumerator BoostCoroutine()
@@ -33,12 +30,10 @@ public class BoosterRing : MonoBehaviour
         while (timeIntoBoost < boostLength)
         {
             yield return new WaitForFixedUpdate();
-
             timeIntoBoost += Time.deltaTime;
             rb.AddForce(directionTransform.forward * boostAmount, ForceMode.Impulse);
         }
-
-        timeIntoBoost = 0f;
+        timeIntoBoost = 0.0f;
         rb = null;
     }
 }

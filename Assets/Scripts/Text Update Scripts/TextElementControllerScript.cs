@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextElementControllerScript : MonoBehaviour {
-    GameObject fpsText;
-    GameObject timerText;
-    GameObject bonusTimeText;
-    GameObject scoreText;
-    GameObject scoreMulti;
-    [SerializeField] GameObject[] arrow;
-    GameObject ringCountText;
-    GameObject speedText;
-    GameObject speedBar;
+public class TextElementControllerScript : MonoBehaviour
+{
+    private GameObject fpsText;
+    private GameObject timerText;
+    private GameObject bonusTimeText;
+    private GameObject scoreText;
+    private GameObject scoreMulti;
+    [SerializeField] private GameObject[] arrow;
+    private GameObject ringCountText;
+    private GameObject speedText;
+    private GameObject speedBar;
     //need to add
-    GameObject bestlap_time;
-    GameObject checkpoint_time;
-    GameObject time_difference;
-    GameObject player_list;
-    GameObject current_lap_time;
-    GameObject position_text;
-    GameObject lap_text;
-    // GameObject altimeterText;
-    //GameObject debugGUI;
+    private GameObject bestlap_time;
+    private GameObject checkpoint_time;
+    private GameObject time_difference;
+    private GameObject player_list;
+    private GameObject current_lap_time;
+    private GameObject position_text;
+    private GameObject lap_text;
     public Color HUD_Color;
 
     public struct hudElementsBools
@@ -42,9 +41,6 @@ public class TextElementControllerScript : MonoBehaviour {
         public bool current_lap_timeBool;
         public bool positionBool;
         public bool lapBool;
-        //
-       // public bool altimeterBool;
-        public bool debugGUIBool;
         public bool overAllBool;
     }
     public hudElementsBools hudElementsControl;
@@ -65,8 +61,6 @@ public class TextElementControllerScript : MonoBehaviour {
     public void setCurrentLapTime(bool isOn) { hudElementsControl.current_lap_timeBool = isOn; PlayerPrefs.SetInt("CurrentLapTimeBool", isOn ? 1 : 0); }
     public void setPositionText(bool isOn) { hudElementsControl.positionBool = isOn; PlayerPrefs.SetInt("PositionBool", isOn ? 1 : 0); }
     public void setLapText(bool isOn) { hudElementsControl.lapBool = isOn; PlayerPrefs.SetInt("LapBool", isOn ? 1 : 0); }
-    //public void setAltimeter(bool isOn) { hudElementsControl.altimeterBool = isOn; PlayerPrefs.SetInt("HudAltimeterBool", isOn ? 1 : 0); }
-    public void setDebugGUI(bool isOn) { hudElementsControl.debugGUIBool = isOn; PlayerPrefs.SetInt("HudDebugGUIBool", isOn ? 1 : 0); }
     public void setAll(bool isOn)
     {
         setTimer(isOn);
@@ -84,8 +78,6 @@ public class TextElementControllerScript : MonoBehaviour {
         setPositionText(isOn);
         setLapText(isOn);
         setSpeedBar(isOn);
-        //setAltimeter(isOn);
-        setDebugGUI(isOn);
         hudElementsControl.overAllBool = isOn;
     }
 
@@ -100,18 +92,18 @@ public class TextElementControllerScript : MonoBehaviour {
         {
             arrow[i].SetActive(hudElementsControl.arrowBool);
         }
-       /* bestlap_time.SetActive(hudElementsControl.bestlapBool);
-        checkpoint_time.SetActive(hudElementsControl.checkpoint_timeBool);
-        time_difference.SetActive(hudElementsControl.time_differenceBool);
-        player_list.SetActive(hudElementsControl.player_listBool);
-        current_lap_time.SetActive(hudElementsControl.current_lap_timeBool);
-        position_text.SetActive(hudElementsControl.positionBool);
-        lap_text.SetActive(hudElementsControl.lapBool);*/
-      
+        /* bestlap_time.SetActive(hudElementsControl.bestlapBool);
+         checkpoint_time.SetActive(hudElementsControl.checkpoint_timeBool);
+         time_difference.SetActive(hudElementsControl.time_differenceBool);
+         player_list.SetActive(hudElementsControl.player_listBool);
+         current_lap_time.SetActive(hudElementsControl.current_lap_timeBool);
+         position_text.SetActive(hudElementsControl.positionBool);
+         lap_text.SetActive(hudElementsControl.lapBool);*/
+
         //ringCountText.SetActive(hudElementsControl.ringCountBool);
         speedText.SetActive(hudElementsControl.speedBool);
         speedBar.SetActive(hudElementsControl.speedBarBool);
-       // altimeterText.SetActive(hudElementsControl.altimeterBool);
+        // altimeterText.SetActive(hudElementsControl.altimeterBool);
         //debugGUI.SetActive(hudElementsControl.debugGUIBool);
 
 
@@ -154,34 +146,34 @@ public class TextElementControllerScript : MonoBehaviour {
         {
             scoreMulti.SetActive(false);
         }
-       /* if (bestlap_time.activeSelf)
-        {
-            bestlap_time.SetActive(false);
-        }
-        if (checkpoint_time.activeSelf)
-        {
-            checkpoint_time.SetActive(false);
-        }
-        if (time_difference.activeSelf)
-        {
-            time_difference.SetActive(false);
-        }
-        if (player_list.activeSelf)
-        {
-            player_list.SetActive(false);
-        }
-        if (current_lap_time.activeSelf)
-        {
-            current_lap_time.SetActive(false);
-        }
-        if (position_text.activeSelf)
-        {
-            position_text.SetActive(false);
-        }
-        if (lap_text.activeSelf)
-        {
-            lap_text.SetActive(false);
-        }*/
+        /* if (bestlap_time.activeSelf)
+         {
+             bestlap_time.SetActive(false);
+         }
+         if (checkpoint_time.activeSelf)
+         {
+             checkpoint_time.SetActive(false);
+         }
+         if (time_difference.activeSelf)
+         {
+             time_difference.SetActive(false);
+         }
+         if (player_list.activeSelf)
+         {
+             player_list.SetActive(false);
+         }
+         if (current_lap_time.activeSelf)
+         {
+             current_lap_time.SetActive(false);
+         }
+         if (position_text.activeSelf)
+         {
+             position_text.SetActive(false);
+         }
+         if (lap_text.activeSelf)
+         {
+             lap_text.SetActive(false);
+         }*/
         for (int i = 0; i < arrow.Length; i++)
         {
             if (arrow[i].activeSelf)
@@ -189,10 +181,10 @@ public class TextElementControllerScript : MonoBehaviour {
                 arrow[i].SetActive(false);
             }
         }
-       /*if (ringCountText.activeSelf)
-        {
-            ringCountText.SetActive(false);
-        }*/
+        /*if (ringCountText.activeSelf)
+         {
+             ringCountText.SetActive(false);
+         }*/
         if (speedText.activeSelf)
         {
             speedText.SetActive(false);
@@ -201,14 +193,6 @@ public class TextElementControllerScript : MonoBehaviour {
         {
             speedBar.SetActive(false);
         }
-       /* if (altimeterText.activeSelf)
-        {
-            altimeterText.SetActive(false);
-        }*/
-        /*if (debugGUI.activeSelf)
-        {
-            debugGUI.SetActive(false);
-        }*/
     }
 
 
@@ -227,22 +211,20 @@ public class TextElementControllerScript : MonoBehaviour {
         bonusTimeText = GetComponentInChildren<bonusTimeTextUpdater>().gameObject;
         scoreText = GetComponentInChildren<ScoreTextUpdateScript>().gameObject;
         scoreMulti = GetComponentInChildren<Score_Multi_Script>().gameObject;
-      
-       /* bestlap_time = GetComponentInChildren<Best_Lap_Text_script>().gameObject;
-        checkpoint_time = GetComponentInChildren<Checkpoint_Time_Text_Script>().gameObject;
-        time_difference = GetComponentInChildren<Time_Gap_Text_Script>().gameObject;
-        player_list = GetComponentInChildren<Player_List_Text_script>().gameObject;
-        current_lap_time = GetComponentInChildren<Current_Lap_Time_Text>().gameObject;
-        position_text = GetComponentInChildren<Position_Text_script>().gameObject;
-        lap_text = GetComponentInChildren<Lap_Text_script>().gameObject;*/
+
+        /* bestlap_time = GetComponentInChildren<Best_Lap_Text_script>().gameObject;
+         checkpoint_time = GetComponentInChildren<Checkpoint_Time_Text_Script>().gameObject;
+         time_difference = GetComponentInChildren<Time_Gap_Text_Script>().gameObject;
+         player_list = GetComponentInChildren<Player_List_Text_script>().gameObject;
+         current_lap_time = GetComponentInChildren<Current_Lap_Time_Text>().gameObject;
+         position_text = GetComponentInChildren<Position_Text_script>().gameObject;
+         lap_text = GetComponentInChildren<Lap_Text_script>().gameObject;*/
 
 
         //arrow = GetComponentInChildren<arrowPointAtUpdater>().get;
         //ringCountText = GetComponentInChildren<RingCountTextUpdate>().gameObject;
         speedText = GetComponentInChildren<SpeedUpdate>().gameObject;
         speedBar = GetComponentInChildren<speedBarUpdater>().gameObject;
-        //altimeterText = GetComponentInChildren<altimeterTextUpdater>().gameObject;
-        //debugGUI = GameObject.Find("GUI");
 
         GetPlayerPrefs();
 
@@ -263,11 +245,9 @@ public class TextElementControllerScript : MonoBehaviour {
         hudElementsControl.ringCountBool = (0 != PlayerPrefs.GetInt("HudRingCountBool", 1));
         hudElementsControl.speedBool = (0 != PlayerPrefs.GetInt("HudSpeedBool", 1));
         hudElementsControl.speedBarBool = (0 != PlayerPrefs.GetInt("HudSpeedBarBool", 1));
-        //hudElementsControl.altimeterBool = (0 != PlayerPrefs.GetInt("HudAltimeterBool", 1));
-        //hudElementsControl.debugGUIBool = (0 != PlayerPrefs.GetInt("HudDebugGUIBool", 1));
         hudElementsControl.bestlapBool = (0 != PlayerPrefs.GetInt("BestLapBool", 1));
         hudElementsControl.time_differenceBool = (0 != PlayerPrefs.GetInt("TimeDifferenceBool", 1));
-        hudElementsControl.player_listBool = (0 != PlayerPrefs.GetInt("PlayerListBool",1));
+        hudElementsControl.player_listBool = (0 != PlayerPrefs.GetInt("PlayerListBool", 1));
         hudElementsControl.current_lap_timeBool = (0 != PlayerPrefs.GetInt("CurrentLapTimeBool", 1));
         hudElementsControl.positionBool = (0 != PlayerPrefs.GetInt("PositionBool", 1));
         hudElementsControl.checkpoint_timeBool = (0 != PlayerPrefs.GetInt("CheckPointTimeBool", 1));
@@ -288,10 +268,6 @@ public class TextElementControllerScript : MonoBehaviour {
         PlayerPrefs.SetInt("CurrentLapTimeBool", hudElementsControl.current_lap_timeBool ? 1 : 0);
         PlayerPrefs.SetInt("PositionBool", hudElementsControl.positionBool ? 1 : 0);
         PlayerPrefs.SetInt("LapBool", hudElementsControl.lapBool ? 1 : 0);
-
-        //PlayerPrefs.SetInt("HudAltimeterBool", hudElementsControl.altimeterBool ? 1 : 0);
-        //PlayerPrefs.SetInt("HudDebugGUIBool", hudElementsControl.debugGUIBool ? 1 : 0);
-
         PlayerPrefs.SetInt("HudOverAllBool", hudElementsControl.overAllBool ? 1 : 0);
         PlayerPrefs.Save();
     }

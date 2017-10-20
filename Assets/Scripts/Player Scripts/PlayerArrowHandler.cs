@@ -76,7 +76,7 @@ public class PlayerArrowHandler : MonoBehaviour
         {
             int ringArrLength = arrowScript.sortedRings.GetLength(0);
 
-            if (theRing.duplicatePosition)
+            if (theRing.DuplicatePosition)
                 HandleDuplicateRing(ringArrLength);
             else
                 HandleRegularRing(ringArrLength);

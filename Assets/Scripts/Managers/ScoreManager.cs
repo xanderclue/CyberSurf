@@ -102,8 +102,8 @@ public class ScoreManager : MonoBehaviour
     //called when you hit the last ring in the level, do all setting score stuff here
     public void levelEnd()
     {
-        positionRecorder recorder;
-        int level;
+        positionRecorder recorder = GameManager.player.GetComponent<positionRecorder>();
+        int level = SceneManager.GetActiveScene().buildIndex;
         switch (GameManager.instance.gameMode.currentMode)
         {
             case GameModes.Continuous:
@@ -117,11 +117,8 @@ public class ScoreManager : MonoBehaviour
                 newLevelScore.score = score;
                 newLevelScore.time = roundTimer.TimeInLevel;
                 newLevelScore.board = (int)GameManager.instance.boardScript.currentBoardSelection;
-                recorder = GameManager.player.GetComponent<positionRecorder>();
                 newLevelScore.positions = recorder.positions.ToArray();
                 newLevelScore.rotations = recorder.rotations.ToArray();
-
-                level = SceneManager.GetActiveScene().buildIndex;
 
                 if (curFilledCont < 10)
                 {
@@ -155,15 +152,10 @@ public class ScoreManager : MonoBehaviour
                 newCurseScore.score = score;
                 newCurseScore.time = roundTimer.TimeLeft;
                 newCurseScore.board = (int)GameManager.instance.boardScript.currentBoardSelection;
-                recorder = GameManager.player.GetComponent<positionRecorder>();
                 newCurseScore.positions = recorder.positions.ToArray();
                 newCurseScore.rotations = recorder.rotations.ToArray();
                 newCurseScore.isLastScoreInput = true;
                 newCurseScore.difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
-
-
-                level = SceneManager.GetActiveScene().buildIndex;
-
 
                 if (topCurseScores[level].currentAmoutFilled < 10)
                 {
