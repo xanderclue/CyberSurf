@@ -9,7 +9,7 @@ public class BackgroundMusic : MonoBehaviour
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Music");
         if (objs.Length > 1 && objs[0].GetComponent<BackgroundMusic>().audioSource.clip.name == objs[1].GetComponent<BackgroundMusic>().audioSource.clip.name)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else if (objs.Length > 1 && objs[0].GetComponent<BackgroundMusic>().audioSource.clip.name != objs[1].GetComponent<BackgroundMusic>().audioSource.clip.name)
         {

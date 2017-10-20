@@ -1,174 +1,79 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class startupSplashScreenPlayer : MonoBehaviour
 {
-    public GameObject selector;
-    public GameObject[] splashScreens;
-    public float[] timesToPlayScreens;
-    GameObject confirmation;
-    GameObject tutorial;
-    GameObject nextPrevSkip;
-    public static float timePlayingCurrent = 0.0f;
-    public static int currentScreen = 0;
-    private bool active = true;
+    [SerializeField] private GameObject[] splashScreens;
+    [SerializeField] private float timeToPlayScreen = 8.0f;
+    [SerializeField] private GameObject tutorialObject;
+    [SerializeField] private EventSelectedObject ConfirmButton;
+    [SerializeField] private EventSelectedObject NextButton;
+    [SerializeField] private EventSelectedObject SkipButton;
+    private static float timePlayingCurrent = 0.0f;
+    private static int currentScreen = 0;
 
-
-    void Start()
+    private void Start()
     {
-        for (int i = 1; i < splashScreens.Length; i++)
+        if (currentScreen < splashScreens.Length)
         {
-            splashScreens[i].SetActive(false);
+            for (int i = 1; i < splashScreens.Length; ++i)
+                splashScreens[i].SetActive(false);
+            ConfirmButton.gameObject.SetActive(true);
         }
-        selector.SetActive(false);
-        nextPrevSkip = GameObject.FindGameObjectWithTag("nextPrevSkip");
-        tutorial = GameObject.FindGameObjectWithTag("tutorial");
-        confirmation = GameObject.FindGameObjectWithTag("confirm");
-        confirmation.SetActive(true);
-
+        else Destroy(tutorialObject);
     }
-    private void checker()
+    private void OnNextAction()
     {
-        switch (currentScreen)
-        {
-            case 0:
-                {
-                    respawnAndDespawnSphere.SphereState = false;
-                    for (int i = 1; i < splashScreens.Length; i++)
-                    {
-                        splashScreens[i].SetActive(false);
-                    }
-                    nextPrevSkip.SetActive(false);
-
-                    confirmation.SetActive(true);
-                    splashScreens[0].SetActive(true);
-
-                }
-                break;
-
-            case 1:
-                {
-                    splashScreens[0].SetActive(false);
-                    splashScreens[1].SetActive(true);
-                    for (int i = 2; i < splashScreens.Length; i++)
-                    {
-                        splashScreens[i].SetActive(false);
-                    }
-                    confirmation.SetActive(false);
-                    nextPrevSkip.SetActive(true);
-
-
-                }
-                break;
-
-            case 2:
-                {
-                    splashScreens[0].SetActive(false);
-                    splashScreens[1].SetActive(false);
-                    splashScreens[2].SetActive(true);
-                    for (int i = 3; i < splashScreens.Length; i++)
-                    {
-                        splashScreens[i].SetActive(false);
-                    }
-                    confirmation.SetActive(false);
-                    nextPrevSkip.SetActive(true);
-
-
-                }
-                break;
-
-            case 3:
-                {
-
-                    for (int i = 0; i < 3; i++)
-                    {
-                        splashScreens[i].SetActive(false);
-                    }
-                    splashScreens[3].SetActive(true);
-                    for (int i = 4; i < splashScreens.Length; i++)
-                    {
-                        splashScreens[i].SetActive(false);
-                    }
-                    confirmation.SetActive(false);
-                    nextPrevSkip.SetActive(true);
-
-
-                }
-                break;
-
-            case 4:
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        splashScreens[i].SetActive(false);
-
-                    }
-                    splashScreens[4].SetActive(true);
-                    splashScreens[5].SetActive(false);                    
-                    confirmation.SetActive(false);
-                    nextPrevSkip.SetActive(true);
-
-
-                }
-                break;
-            case 5:
-                {
-                    for (int i = 0; i < splashScreens.Length - 1; i++)
-                    {
-                        splashScreens[i].SetActive(false);
-                    }
-                     splashScreens[5].SetActive(true);
-                   
-                    confirmation.SetActive(false);
-                    nextPrevSkip.SetActive(true);
-
-
-                }
-                //  timePlayingCurrent = 0.0f;
-                break;
-
-            case 6:
-                {
-                    for (int i = 0; i < splashScreens.Length; i++)
-                    {
-                        splashScreens[i].SetActive(false);
-                    }
-                    keepPlayerStill.tutorialOn = false;
-                    tutorial.SetActive(false);
-                    confirmation.SetActive(false);
-                    nextPrevSkip.SetActive(false);
-                    respawnAndDespawnSphere.SphereState = true;
-                    
-                }
-                //  timePlayingCurrent = 0.0f;
-                break;
-        }
+        timePlayingCurrent = 0.0f;
+        ++currentScreen;
+    }
+    private void OnSkipAction()
+    {
+        currentScreen = splashScreens.Length;
+    }
+    private void OnEnable()
+    {
+        ConfirmButton.OnSelectSuccess += OnNextAction;
+        NextButton.OnSelectSuccess += OnNextAction;
+        SkipButton.OnSelectSuccess += OnSkipAction;
+    }
+    private void OnDisable()
+    {
+        ConfirmButton.OnSelectSuccess -= OnNextAction;
+        NextButton.OnSelectSuccess -= OnNextAction;
+        SkipButton.OnSelectSuccess -= OnSkipAction;
     }
     private void FixedUpdate()
     {
-
-        if (active)
+        for (int i = 0; i < splashScreens.Length; ++i)
+            splashScreens[i].SetActive(i == currentScreen);
+        if (currentScreen == 0)
         {
-            timePlayingCurrent += Time.deltaTime;
-            checker();
-
-            if (currentScreen < timesToPlayScreens.Length && timePlayingCurrent >= timesToPlayScreens[currentScreen])
+            respawnAndDespawnSphere.SphereState = false;
+            ConfirmButton.gameObject.SetActive(true);
+            NextButton.gameObject.SetActive(false);
+            SkipButton.gameObject.SetActive(false);
+        }
+        else if (currentScreen < splashScreens.Length)
+        {
+            ConfirmButton.gameObject.SetActive(false);
+            NextButton.gameObject.SetActive(true);
+            SkipButton.gameObject.SetActive(true);
+            timePlayingCurrent += Time.fixedDeltaTime;
+            if (timePlayingCurrent >= timeToPlayScreen)
             {
                 splashScreens[currentScreen].SetActive(false);
-                currentScreen++;
+                ++currentScreen;
                 if (currentScreen < splashScreens.Length)
-                {
                     splashScreens[currentScreen].SetActive(true);
-                }
-               
-                timePlayingCurrent = 0;
-              // if (currentScreen == 6)
-              // {
-              //     keepPlayerStill.tutorialOn = false;
-              //     GameObject.FindGameObjectWithTag("tutorial").SetActive(false);
-              // }
+                timePlayingCurrent = 0.0f;
             }
+        }
+        else
+        {
+            keepPlayerStill.tutorialOn = false;
+            respawnAndDespawnSphere.SphereState = true;
+            Destroy(tutorialObject);
+            return;
         }
     }
 }

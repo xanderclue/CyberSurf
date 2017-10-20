@@ -15,13 +15,14 @@ public class invertCollision : MonoBehaviour
             {
                 normals[i] = -normals[i];
             }
-
+            int[] triangles;
+            int temp;
             for (int m = 0; m < mesh.subMeshCount; ++m)
             {
-                int[] triangles = mesh.GetTriangles(m);
+                triangles = mesh.GetTriangles(m);
                 for (int j = 0; j < triangles.Length; j += 3)
                 {
-                    int temp = triangles[j];
+                    temp = triangles[j];
                     triangles[j] = triangles[j + 1];
                     triangles[j + 1] = temp;
                 }
@@ -30,5 +31,6 @@ public class invertCollision : MonoBehaviour
 
             gameObject.GetComponent<MeshCollider>().sharedMesh = filter.mesh;
         }
+        Destroy(this);
     }
 }
