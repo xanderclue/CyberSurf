@@ -870,6 +870,8 @@ GameObject:
   - component: {fileID: 4803524536222554}
   - component: {fileID: 33023581294512354}
   - component: {fileID: 23859126231539864}
+  - component: {fileID: 95191661800967318}
+  - component: {fileID: 114352983214530466}
   m_Layer: 0
   m_Name: MenuBox
   m_TagString: Untagged
@@ -6042,6 +6044,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95191661800967318
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433330472624814}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09bc2828d94a4fd4ba55a286ab4cc6fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114015801928300348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8004,6 +8023,19 @@ MonoBehaviour:
   m_isDisabled: 0
   m_grabTextFromParent: 1
   m_tooltipText: 
+--- !u!114 &114352983214530466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433330472624814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2661b2364834c4b9f6a2c499bd85dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullMaskTex: {fileID: 2800000, guid: 53007296af1929d419a484be28b119a5, type: 3}
+  partialMaskTex: {fileID: 2800000, guid: 4de6e5c60f6aa7344a2398de2bd49286, type: 3}
 --- !u!114 &114353787826526348
 MonoBehaviour:
   m_ObjectHideFlags: 1
