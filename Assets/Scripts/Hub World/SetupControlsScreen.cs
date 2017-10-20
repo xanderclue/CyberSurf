@@ -17,7 +17,7 @@ public class SetupControlsScreen : MonoBehaviour
 
     IEnumerator WaitForDetection()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         if (GameManager.instance.boardScript.gamepadEnabled)
             if (UnityEngine.VR.VRDevice.isPresent)
                 ImageObject.sprite = controlsImages[0];
