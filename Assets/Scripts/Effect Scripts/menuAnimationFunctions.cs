@@ -23,8 +23,7 @@ public class menuAnimationFunctions : MonoBehaviour
 
     public void setRandomOffset()
     {
-        Vector2 offset = new Vector2(Random.Range(0f,1f), Random.Range(0f,1f));
-        float num = Random.Range(0.0f,1.0f);
-        gameObject.GetComponent<Renderer>().material.SetTextureOffset("_EffectsLayer1DistMask", offset);
+        gameObject.GetComponent<Renderer>().material.SetTextureOffset("_EffectsLayer1DistMask",
+            new Vector2(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)));
     }
 }

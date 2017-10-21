@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
+﻿//using UnityEngine;
 using Phidgets;
 using Phidgets.Events;
 
@@ -9,7 +6,7 @@ public class MotorData
 {
     private MotorControl motorControl;
 
-    public MotorControl device
+    public MotorControl MotorDevice
     {
         get { return motorControl; }
     }
@@ -26,12 +23,11 @@ public class MotorData
 
     public void Open()
     {
-        if (device != null)
+        if (motorControl != null)
         {
-            if (!device.Attached)
+            if (!motorControl.Attached)
             {
                 //interfaceKit.waitForAttachment(1000);
-                MonoBehaviour.print("Motor Kit Attach");
 
                 motorControl.Attach += new AttachEventHandler(motorControl_Attach);
                 motorControl.Detach += new DetachEventHandler(motorControl_Detach);
@@ -41,11 +37,11 @@ public class MotorData
                 //motorControl.waitForAttachment(50);
             }
             else
-                Debug.Log("already open");
+                UnityEngine.Debug.Log("already open");
         }
         else
         {
-            Debug.LogWarning("Could not find the phidgets motor controller or drivers");
+            UnityEngine.Debug.LogWarning("Could not find the phidgets motor controller or drivers");
         }
     }
 
@@ -92,14 +88,12 @@ public class MotorData
             try
             {
                 //System.Threading.Thread.Sleep(2000);
-                MonoBehaviour.print("Closing-------");
-
                 motorControl.close();
                 motorControl = null;
             }
             catch (PhidgetException pe)
             {
-                Debug.Log("!!!!!!!!!!!" + pe.Description);
+                UnityEngine.Debug.LogWarning("!!!!!!!!!!!" + pe.Description);
             }
         }
     }
@@ -108,7 +102,6 @@ public class MotorData
     void motorControl_Attach(object sender, AttachEventArgs e)
     {
         //MotorControl attached = (MotorControl)sender;
-        MonoBehaviour.print("Motor Control Open");
         //motorControl.open();
 
         //attached.DataRate = 100; 
@@ -122,13 +115,12 @@ public class MotorData
     //attach event handler
     void motorControl_Detach(object sender, DetachEventArgs e)
     {
-        MonoBehaviour.print("Motor Kit Close");
         motorControl = null;
     }
 
     //attach event handler
     void motorControl_Error(object sender, ErrorEventArgs e)
     {
-        Debug.Log("Phidgets display error: " + e.ToString());
+        UnityEngine.Debug.LogWarning("Phidgets display error: " + e.ToString());
     }
 }

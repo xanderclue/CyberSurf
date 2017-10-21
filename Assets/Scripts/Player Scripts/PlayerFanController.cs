@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class PlayerFanController : MonoBehaviour
 {
-    MotorData motor;
-    Rigidbody playerRB;
-    Transform playerTransform;
-    ManagerClasses.PlayerMovementVariables pmv;
-
-    int motorCount = 0;
-	float motorPercentage = 0f;
-    float sampledVelocity = 0f;
-
-	float invertedMaxSpeed = 0f;
+    private MotorData motor = null;
+    private Rigidbody playerRB = null;
+    private Transform playerTransform = null;
+    private ManagerClasses.PlayerMovementVariables pmv = null;
+    private int motorCount = 0;
+    private float motorPercentage = 0.0f;
+    private float invertedMaxSpeed100x = 0.0f;
 
     //called by our BoardManager
     public void SetupFanControllerScript()
@@ -30,19 +27,19 @@ public class PlayerFanController : MonoBehaviour
     //called by our BoardManager
     public void UpdateFanPercentage()
     {
-		pmv = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
-        invertedMaxSpeed = 1f / pmv.maxSpeed;
+        pmv = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
+        invertedMaxSpeed100x = 100.0f / pmv.maxSpeed;
     }
 
     IEnumerator DetectFanCoroutine()
     {
         motor = new MotorData();
 
-        //wait for the motor to attatch
+        //wait for the motor to attach
         yield return new WaitForSeconds(0.1f);
 
-        if (null != motor.device)
-            motorCount = motor.device.motors.Count;
+        if (null != motor.MotorDevice)
+            motorCount = motor.MotorDevice.motors.Count;
 
         if (motorCount > 0)
             StartCoroutine(FanCoroutine());
@@ -55,19 +52,11 @@ public class PlayerFanController : MonoBehaviour
         yield return new WaitForFixedUpdate();
 
         //get our velocity based on if we are going forward/backwards
-        sampledVelocity = playerTransform.InverseTransformDirection(playerRB.velocity).z;
-        
-		//print ("Sampled Velocity: " + sampledVelocity);
-		//print ("Min Val: " + pmv.minSpeed + " Max Val: " + pmv.maxSpeed);
+        motorPercentage = Mathf.Clamp(playerTransform.InverseTransformDirection(playerRB.velocity).z * invertedMaxSpeed100x, 25.0f, 100.0f);
 
-		motorPercentage = sampledVelocity * 100f * invertedMaxSpeed;
-		motorPercentage = Mathf.Clamp (motorPercentage, 25f, 100f);
+        for (int i = 0; i < motorCount; ++i)
+            motor.MotorDevice.motors[i].Velocity = motorPercentage;
 
-		//print ("Motor Percentage: " + motorPercentage);
-		//print ("Applying motor percentage.");
-		for (int i = 0; i < motorCount; i++)
-			motor.device.motors[i].Velocity = motorPercentage;
-		
         StartCoroutine(FanCoroutine());
     }
 
@@ -79,5 +68,4 @@ public class PlayerFanController : MonoBehaviour
             motor.Close();
         }
     }
-
 }
