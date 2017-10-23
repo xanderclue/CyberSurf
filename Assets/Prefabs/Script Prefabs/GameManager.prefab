@@ -57,7 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugSpeedEnabled: 1
   gamepadEnabled: 0
-  currentBoardSelection: 2
+  currentBoardSelection: 0
   boardMaterials:
   - {fileID: 2100000, guid: 0b6484a1e231baf40885e6bc2cba6af1, type: 2}
   - {fileID: 2100000, guid: 522e1de74fc08ac4a9a9b0bfa81829a6, type: 2}
@@ -151,6 +151,7 @@ MonoBehaviour:
   levelScript: {fileID: 0}
   boardScript: {fileID: 0}
   keyInputScript: {fileID: 0}
+  disableVignette: 0
 --- !u!114 &114829543247464576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curFilledCont: -1
   firstPortal: 1
+  currentName: 000000000000
   baseScorePerRing: 100
   ringHitCount: 0
   score: 0

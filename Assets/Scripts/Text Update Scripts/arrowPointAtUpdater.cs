@@ -58,7 +58,7 @@ public class arrowPointAtUpdater : MonoBehaviour
             myself.value = pointPosition;
             //Debug.DrawLine(referenceObject.transform.position, thingsToLookAt[currentlyLookingAt].position);
 
-            //Debug.DrawRay(player.transform.position, player.transform.forward * 100, Color.blue);
+            Debug.DrawRay(player.transform.position, player.transform.forward * 100, Color.blue);
         }
     }
 }

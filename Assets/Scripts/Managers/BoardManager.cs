@@ -17,7 +17,7 @@ public class BoardManager : MonoBehaviour
     [HideInInspector] public bool gamepadEnabled = false;
 
     //store our current board selection
-    public BoardType currentBoardSelection = BoardType.MachI;
+    public BoardType currentBoardSelection = BoardType.Original;
     [SerializeField] Material[] boardMaterials;
 
     [Space]
@@ -41,8 +41,8 @@ public class BoardManager : MonoBehaviour
         pmc.SetupMenuControllerScript();
         pfc.SetupFanControllerScript();
 
-        currentBoardSelection = (BoardType)PlayerPrefs.GetInt("BoardSelection", (int)currentBoardSelection);
-        PlayerPrefs.SetInt("BoardSelection", (int)currentBoardSelection);
+        //currentBoardSelection = (BoardType)PlayerPrefs.GetInt("BoardSelection", (int)currentBoardSelection);
+        //PlayerPrefs.SetInt("BoardSelection", (int)currentBoardSelection);
         BoardSelect(currentBoardSelection);
 
         if (debugSpeedEnabled)
@@ -117,7 +117,7 @@ public class BoardManager : MonoBehaviour
 
         //update our current board selection
         currentBoardSelection = bSelect;
-        PlayerPrefs.SetInt("BoardSelection", (int)currentBoardSelection);
+        //PlayerPrefs.SetInt("BoardSelection", (int)currentBoardSelection);
 
         //update our current board material
         boardMR.material = boardMaterials[(int)currentBoardSelection];
@@ -207,7 +207,7 @@ public class BoardManager : MonoBehaviour
                     //max speed, resting speed, min speed
                     25f, 15f, 12f,
                     //pitch sensativity, yaw sensativity
-					2.5f, 2.75f,
+                    2.5f, 2.75f,
                     //max downward angle, resting angle, max upward angle (ONLY RESTING ANGLE IS USED IN GYRO GAMEPLAY MOVEMENT)
                     30f, 15f, 30f,
                     //bounce modifier, mass, drag, angular drag
@@ -219,7 +219,7 @@ public class BoardManager : MonoBehaviour
                     (
                     45f, 25f, 22f, 0.1f,
                     35f, 23f, 20f,
-					2.5f, 2.75f,
+                    2.5f, 2.75f,
                     30f, 18f, 30f,
                     1f, 1f, 1f, 5f
                     );
@@ -229,7 +229,7 @@ public class BoardManager : MonoBehaviour
                     (
                     55f, 30f, 25f, 0.1f,
                     40f, 25f, 21f,
-					2.5f, 2.75f,
+                    2.5f, 2.75f,
                     32f, 15f, 32f,
                     1f, 1f, 1f, 5f
                     );
@@ -239,7 +239,7 @@ public class BoardManager : MonoBehaviour
                     (
                     70f, 42f, 37f, 0.1f,
                     50f, 35f, 31f,
-					2.5f, 2.75f,
+                    2.5f, 2.75f,
                     35f, 10f, 35f,
                     1f, 1f, 1f, 5f
                     );
