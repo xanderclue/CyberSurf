@@ -555,6 +555,7 @@ MonoBehaviour:
   - {fileID: 387987961}
   - {fileID: 2102456753}
   - {fileID: 1647009415}
+  - {fileID: 767984265}
 --- !u!21 &301329964
 Material:
   serializedVersion: 6
@@ -2421,6 +2422,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a208d3dad006c64381a218d354997fd, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &767984265 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1321924966985648, guid: 7a208d3dad006c64381a218d354997fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 767984264}
 --- !u!1 &788619807
 GameObject:
   m_ObjectHideFlags: 0
