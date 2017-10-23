@@ -27,6 +27,8 @@ public class HudOptionsOpacityColor : MonoBehaviour
             colors = new Color[1];
             colors[0] = new Color(0.8f, 0.8f, 0.8f, 0.5f);
         }
+        if (GetIndexOf(ActualColor) < 0)
+            ActualColor = DefaultColor;
     }
 
     private void OnEnable()
