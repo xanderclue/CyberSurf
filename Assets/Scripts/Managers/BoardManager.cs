@@ -254,7 +254,7 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
+    private void OnDisable()
     {
         if (gyro != null)
             gyro.Close();
