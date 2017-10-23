@@ -113,8 +113,6 @@ public class HudOnOffObject : MonoBehaviour
                 case HudMenuTab.HudMenuOption.Compass:
                 case HudMenuTab.HudMenuOption.LapCounter:
                 case HudMenuTab.HudMenuOption.Position:
-                case HudMenuTab.HudMenuOption.Opacity:
-                case HudMenuTab.HudMenuOption.Color:
                     return defaultOnOffValue;
                 default:
                     Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
@@ -152,8 +150,6 @@ public class HudOnOffObject : MonoBehaviour
                 case HudMenuTab.HudMenuOption.Compass:
                 case HudMenuTab.HudMenuOption.LapCounter:
                 case HudMenuTab.HudMenuOption.Position:
-                case HudMenuTab.HudMenuOption.Opacity:
-                case HudMenuTab.HudMenuOption.Color:
                     defaultOnOffValue = value;
                     break;
                 default:

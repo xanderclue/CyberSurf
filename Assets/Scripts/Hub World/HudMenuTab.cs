@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class HudMenuTab : MenuTab
 {
-    public enum HudMenuOption { OverallHud, Reticle, Speed, Timer, Score, Players, Compass, Arrow, LapCounter, Position, Opacity, Color }
+    public enum HudMenuOption { OverallHud, Reticle, Speed, Timer, Score, Players, Compass, Arrow, LapCounter, Position }
     [SerializeField, LabelOverride("Overall  HUD")] private HudOnOffObject overallHudOnOff = null;
     [SerializeField, LabelOverride("Reticle")] private HudOnOffObject reticleOnOff = null;
     [SerializeField, LabelOverride("Speed")] private HudOnOffObject speedOnOff = null;
@@ -12,6 +12,7 @@ public class HudMenuTab : MenuTab
     [SerializeField, LabelOverride("Arrow")] private HudOnOffObject arrowOnOff = null;
     [SerializeField, LabelOverride("Lap Counter")] private HudOnOffObject lapCounterOnOff = null;
     [SerializeField, LabelOverride("Position")] private HudOnOffObject positionOnOff = null;
+    [SerializeField] private HudOptionsOpacityColor colorAndOpacity = null;
     [SerializeField] private EventSelectedObject confirmButton = null;
     [SerializeField] private EventSelectedObject defaultButton = null;
     [SerializeField] private EventSelectedObject revertButton = null;
@@ -40,6 +41,7 @@ public class HudMenuTab : MenuTab
         arrowOnOff.OnValueChanged += UpdateHudPreview;
         lapCounterOnOff.OnValueChanged += UpdateHudPreview;
         positionOnOff.OnValueChanged += UpdateHudPreview;
+        colorAndOpacity.OnValueChanged += UpdateHudPreview;
         confirmButton.OnSelectSuccess += ConfirmAll;
         defaultButton.OnSelectSuccess += DefaultAll;
         revertButton.OnSelectSuccess += ResetAll;
@@ -58,6 +60,7 @@ public class HudMenuTab : MenuTab
         arrowOnOff.OnValueChanged -= UpdateHudPreview;
         lapCounterOnOff.OnValueChanged -= UpdateHudPreview;
         positionOnOff.OnValueChanged -= UpdateHudPreview;
+        colorAndOpacity.OnValueChanged -= UpdateHudPreview;
         confirmButton.OnSelectSuccess -= ConfirmAll;
         defaultButton.OnSelectSuccess -= DefaultAll;
         revertButton.OnSelectSuccess -= ResetAll;
@@ -105,6 +108,7 @@ public class HudMenuTab : MenuTab
         arrowOnOff.ConfirmValue();
         lapCounterOnOff.ConfirmValue();
         positionOnOff.ConfirmValue();
+        colorAndOpacity.ConfirmValue();
     }
     public void DefaultAll()
     {
@@ -117,6 +121,7 @@ public class HudMenuTab : MenuTab
         arrowOnOff.DefaultValue();
         lapCounterOnOff.DefaultValue();
         positionOnOff.DefaultValue();
+        colorAndOpacity.DefaultValue();
     }
     public void ResetAll()
     {
@@ -129,5 +134,6 @@ public class HudMenuTab : MenuTab
         arrowOnOff.ResetValue();
         lapCounterOnOff.ResetValue();
         positionOnOff.ResetValue();
+        colorAndOpacity.ResetValue();
     }
 }
