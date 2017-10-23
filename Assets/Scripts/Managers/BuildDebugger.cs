@@ -101,20 +101,6 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         }
         else enabled = false;
     }
-    private void Update()
-    {
-        string lStrTemp = "";
-        foreach (string lStrLine in stcStrlistLines)
-            lStrTemp += lStrLine + "\n";
-        stcCompTextmesh.SetText(lStrTemp);
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.BackQuote) ||
-            (UnityEngine.Input.GetKey(KeyInputManager.XBOX_X) &&
-            UnityEngine.Input.GetKey(KeyInputManager.XBOX_A) &&
-            UnityEngine.Input.GetKeyDown(KeyInputManager.XBOX_LB)))
-            stcGobjTextObject.SetActive(!stcGobjTextObject.activeSelf);
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
-            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + ".png");
-    }
     private void OnApplicationQuit()
     {
         if (stcBoolDebuggerInited)
@@ -125,6 +111,22 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         }
     }
 #endif
+    private void Update()
+    {
+#if DEBUGGER
+        string lStrTemp = "";
+        foreach (string lStrLine in stcStrlistLines)
+            lStrTemp += lStrLine + "\n";
+        stcCompTextmesh.SetText(lStrTemp);
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.BackQuote) ||
+            (UnityEngine.Input.GetKey(KeyInputManager.XBOX_X) &&
+            UnityEngine.Input.GetKey(KeyInputManager.XBOX_A) &&
+            UnityEngine.Input.GetKeyDown(KeyInputManager.XBOX_LB)))
+            stcGobjTextObject.SetActive(!stcGobjTextObject.activeSelf);
+#endif
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
+            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + ".png");
+    }
 }
 public class LabelOverride : UnityEngine.PropertyAttribute
 {
