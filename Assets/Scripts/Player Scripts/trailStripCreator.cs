@@ -162,8 +162,7 @@ public class trailStripCreator : MonoBehaviour
     private void OnEnable()
     {
         inst = this;
-        predictiveTrailEnabled = 0 != PlayerPrefs.GetInt("PredictiveTrail", predictiveTrailEnabled ? 1 : 0);
-        PlayerPrefs.SetInt("PredictiveTrail", predictiveTrailEnabled ? 1 : 0);
+        GameSettings.GetBool("PredictiveTrail", ref predictiveTrailEnabled);
         SceneManager.sceneLoaded += OnLevelLoaded;
     }
 

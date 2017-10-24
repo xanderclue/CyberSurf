@@ -41,6 +41,7 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
             WriteLine("Log Startup: " + lStrTimeStamp);
             WriteToErrorLog("INIT LOG", logpath + "\n", UnityEngine.LogType.Log, lStrTimeStamp);
             UnityEngine.Application.logMessageReceived += GetLog;
+            UnityEngine.Debug.Log(unchecked((uint)(-1)));
         }
 #endif
     }

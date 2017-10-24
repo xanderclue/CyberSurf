@@ -6,11 +6,16 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField]
     private TextMeshPro timeOfDayText = null;
-    private enum TimeOfDay { Noon, Afternoon, Evening, Midnight, Morning, NumTimesOfDay }
+    public enum TimeOfDay { Noon, Afternoon, Evening, Midnight, Morning, NumTimesOfDay }
     [SerializeField]
     private TimeOfDay defaultTimeOfDay = TimeOfDay.Evening;
     private TimeOfDay tempTimeOfDay;
     private static TimeOfDay ActualTimeOfDay { get; set; } // replace with game's value
+    
+    public TimeOfDay getTime()
+    {
+        return ActualTimeOfDay;
+    }
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;

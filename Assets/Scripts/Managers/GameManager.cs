@@ -74,24 +74,27 @@ public class GameManager : MonoBehaviour
         //set the game to run in the background
         Application.runInBackground = true;
 
-		//set the game difficulty depending on if a HMD is present
-		if (VRDevice.isPresent)
-			gameDifficulty.currentDifficulty = GameDifficulties.Easy;
+        //set the game difficulty depending on if a HMD is present
+        if (VRDevice.isPresent)
+            gameDifficulty.currentDifficulty = GameDifficulties.Easy;
 
         InitGame();
-
-        levelScript.RingPathIsOn = (0 != PlayerPrefs.GetInt("RingPath", levelScript.RingPathIsOn ? 1 : 0));
-        scoreScript.respawnEnabled = (0 != PlayerPrefs.GetInt("Respawn", scoreScript.respawnEnabled ? 1 : 0));
-        boardScript.debugSpeedEnabled = (0 != PlayerPrefs.GetInt("DebugSpeed", boardScript.debugSpeedEnabled ? 1 : 0));
     }
 
-    private void OnApplicationQuit()
+    private void OnEnable()
     {
-        PlayerPrefs.SetInt("RingPath", levelScript.RingPathIsOn ? 1 : 0);
-        PlayerPrefs.SetInt("Respawn", scoreScript.respawnEnabled ? 1 : 0);
-        PlayerPrefs.SetInt("DebugSpeed", boardScript.debugSpeedEnabled ? 1 : 0);
-        PlayerPrefs.Save();
+        GameSettings.GetBool("RingPath", ref levelScript.RingPathIsOn);
+        GameSettings.GetBool("Respawn", ref scoreScript.respawnEnabled);
+        GameSettings.GetBool("DebugSpeed", ref boardScript.debugSpeedEnabled);
     }
+    private void OnDisable()
+    {
+        GameSettings.SetBool("RingPath", levelScript.RingPathIsOn);
+        GameSettings.SetBool("Respawn", scoreScript.respawnEnabled);
+        GameSettings.SetBool("DebugSpeed", boardScript.debugSpeedEnabled);
+    }
+
+    private void OnDestroy() { GameSettings.Save(); }
 
     //using this instead of Awake() in our scripts allows us to control the execution order
     void InitGame()
