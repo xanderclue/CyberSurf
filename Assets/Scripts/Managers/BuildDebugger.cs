@@ -1,6 +1,7 @@
 ﻿#define DEBUGGER
 public class BuildDebugger : UnityEngine.MonoBehaviour
 {
+    public static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
     public static string GetHierarchyName(UnityEngine.GameObject pGobjGameObject)
     {
 #if DEBUGGER
@@ -12,6 +13,12 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         return pGobjGameObject.name;
 #endif
     }
+#if DEBUGGER
+    private static string LogFilePath(string pStrTimeStamp)
+    {
+        return UnityEngine.Application.persistentDataPath + "/log" + pStrTimeStamp.Substring(0, 8) + ".txt";
+    }
+#endif
     public static void InitDebugger()
     {
 #if DEBUGGER
@@ -20,11 +27,19 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
             if (null == stcStrlistLines)
                 stcStrlistLines = new System.Collections.Generic.List<string>();
             string lStrTimeStamp = TimeStamp;
-            stcSwWriter = new System.IO.StreamWriter(UnityEngine.Application.persistentDataPath + "/errorLog" + lStrTimeStamp.Substring(0, 8) + ".txt", true);
-            stcSwWriter.Write("<BEGIN>\n\n");
+            string logpath = LogFilePath(lStrTimeStamp);
+            string logError = "Unknown Error";
+            try { stcSwWriter = new System.IO.StreamWriter(logpath, true); } catch (System.Exception e) { stcSwWriter = null; logError = e.Message; }
+            if (null != stcSwWriter)
+            {
+                stcBoolFileOpen = true;
+                stcSwWriter.Write("<BEGIN>\n\n");
+            }
+            else
+                UnityEngine.Debug.LogWarning("Failed to open log file: (" + logpath + ") [" + logError + "]");
             stcBoolDebuggerInited = true;
             WriteLine("Log Startup: " + lStrTimeStamp);
-            WriteToErrorLog("INIT LOG", UnityEngine.Application.persistentDataPath + "/errorLog" + lStrTimeStamp.Substring(0, 8) + ".txt\n", UnityEngine.LogType.Log, lStrTimeStamp);
+            WriteToErrorLog("INIT LOG", logpath + "\n", UnityEngine.LogType.Log, lStrTimeStamp);
             UnityEngine.Application.logMessageReceived += GetLog;
         }
 #endif
@@ -36,9 +51,22 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     private static System.IO.StreamWriter stcSwWriter;
     private static UnityEngine.GameObject stcGobjTextObject = null;
     private static TMPro.TextMeshProUGUI stcCompTextmesh = null;
-    private static uint stcUintLineCounter = 0u;
+    private static ulong stcUlongLineCounter = 0ul, stcUlongFrameCounter = 0ul;
     private static bool stcBoolDebuggerInited = false;
-    private static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
+    private static bool stcBoolFileOpen = false;
+    private const string DozDig = "0123456789xe";
+    public static string Dozenal(ulong i)
+    {
+        if (0ul == i)
+            return "0";
+        string rv = "";
+        while (0ul != i)
+        {
+            rv = DozDig[(int)(i % 12ul)] + rv;
+            i /= 12ul;
+        }
+        return rv;
+    }
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
         string lStrTimeStamp = TimeStamp;
@@ -48,8 +76,11 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     }
     private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType, string pStrTimeStamp)
     {
+        if (null == stcSwWriter)
+            return;
         stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
             "Time: " + pStrTimeStamp +
+            " @" + Dozenal(stcUlongFrameCounter) +
             "\nLog Message: \"" + pStrLogMessage + "\"\n");
         if (null == pStrStackTrace || "" == pStrStackTrace)
             stcSwWriter.Write("NO STACK TRACE\n\n");
@@ -65,8 +96,8 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
             {
                 foreach (string lStrSplitLine in lStrarrSplitLines)
                     if (WriteLine(lStrSplitLine))
-                        --stcUintLineCounter;
-                ++stcUintLineCounter;
+                        --stcUlongLineCounter;
+                ++stcUlongLineCounter;
                 return true;
             }
         }
@@ -75,13 +106,13 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         if (pStrLine.Length > cstIntMaxLineLength)
         {
             WriteLine(pStrLine.Substring(0, cstIntMaxLineLength));
-            --stcUintLineCounter;
+            --stcUlongLineCounter;
             return WriteLine(pStrLine.Substring(cstIntMaxLineLength));
         }
         if (null == stcStrlistLines)
             stcStrlistLines = new System.Collections.Generic.List<string>();
-        pStrLine = stcUintLineCounter.ToString() + ": " + pStrLine;
-        ++stcUintLineCounter;
+        pStrLine = Dozenal(stcUlongLineCounter) + ": " + pStrLine;
+        ++stcUlongLineCounter;
         stcStrlistLines.Add(pStrLine);
         if (stcStrlistLines.Count > cstIntMaxNumLines)
             stcStrlistLines.RemoveAt(0);
@@ -106,14 +137,18 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         if (stcBoolDebuggerInited)
         {
             UnityEngine.Application.logMessageReceived -= GetLog;
-            stcSwWriter.Write("<END>\n\n\n");
-            stcSwWriter.Close();
+            if (null != stcSwWriter)
+            {
+                stcSwWriter.Write("<END>\n\n\n");
+                stcSwWriter.Close();
+            }
         }
     }
 #endif
     private void Update()
     {
 #if DEBUGGER
+        ++stcUlongFrameCounter;
         string lStrTemp = "";
         foreach (string lStrLine in stcStrlistLines)
             lStrTemp += lStrLine + "\n";
