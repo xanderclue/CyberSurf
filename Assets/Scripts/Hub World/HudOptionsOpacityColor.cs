@@ -15,11 +15,39 @@ public class HudOptionsOpacityColor : MonoBehaviour
     [SerializeField, Range(0.0f, 1.0f)] private float defaultOpacity = 1.0f;
     [SerializeField] private float opacityIncrement = 0.25f;
     private float tempOpacity = 1.0f;
-    private static Color ActualColor { get; set; } // replace with game's value
-    private static float ActualOpacity { get; set; } // replace with game's value
+    private Color ActualColor
+    {
+        get
+        {
+            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            Color ret = textElementController.HUD_Color;
+            ret.a = 0.5f;
+            return ret;
+        }
+        set
+        {
+            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            Color ret = value;
+            ret.a = textElementController.HUD_Color.a;
+            textElementController.HUD_Color = ret;
+        }
+    }
+    private float ActualOpacity
+    {
+        get
+        {
+            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            return textElementController.HUD_Color.a;
+        }
+        set
+        {
+            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            textElementController.HUD_Color.a = value;
+        }
+    }
     public Color ColorPreviewValue { get { return (tempColorIndex < 0) ? ActualColor : colors[tempColorIndex]; } }
     public float OpacityValue { get { return tempOpacity; } }
-
+    private TextElementControllerScript textElementController = null;
     private void Awake()
     {
         if (null == colors || colors.Length <= 0)
@@ -86,8 +114,11 @@ public class HudOptionsOpacityColor : MonoBehaviour
     private int GetIndexOf(Color obj)
     {
         for (int i = 0; i < colors.Length; ++i)
+        {
+            obj.a = colors[i].a;
             if (obj.Equals(colors[i]))
                 return i;
+        }
         return -1;
     }
 

@@ -20,6 +20,7 @@ public class HudMenuTab : MenuTab
     [SerializeField, LabelOverride("Inactive Material")] private Material theInactiveMaterial = null;
     public static Material activeMaterial = null;
     public static Material inactiveMaterial = null;
+
     new private void Awake()
     {
         base.Awake();
