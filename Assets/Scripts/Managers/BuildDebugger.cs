@@ -76,16 +76,17 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     }
     private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType, string pStrTimeStamp)
     {
-        if (null == stcSwWriter)
-            return;
-        stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
-            "Time: " + pStrTimeStamp +
-            " @" + Dozenal(stcUlongFrameCounter) +
-            "\nLog Message: \"" + pStrLogMessage + "\"\n");
-        if (null == pStrStackTrace || "" == pStrStackTrace)
-            stcSwWriter.Write("NO STACK TRACE\n\n");
-        else
-            stcSwWriter.Write("Stack Trace:\n" + pStrStackTrace + "\n");
+        if (stcBoolFileOpen)
+        {
+            stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
+                "Time: " + pStrTimeStamp +
+                " @" + Dozenal(stcUlongFrameCounter) +
+                "\nLog Message: \"" + pStrLogMessage + "\"\n");
+            if (null == pStrStackTrace || "" == pStrStackTrace)
+                stcSwWriter.Write("NO STACK TRACE\n\n");
+            else
+                stcSwWriter.Write("Stack Trace:\n" + pStrStackTrace + "\n");
+        }
     }
     private static bool WriteLine(string pStrLine)
     {
@@ -137,7 +138,7 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         if (stcBoolDebuggerInited)
         {
             UnityEngine.Application.logMessageReceived -= GetLog;
-            if (null != stcSwWriter)
+            if (stcBoolFileOpen)
             {
                 stcSwWriter.Write("<END>\n\n\n");
                 stcSwWriter.Close();
