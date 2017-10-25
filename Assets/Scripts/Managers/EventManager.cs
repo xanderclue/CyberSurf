@@ -1,22 +1,11 @@
 ﻿public class EventManager
 {
-    public delegate void ToggleMovementEvent(bool locked);
-    public delegate void TransitionEvent(int sceneIndex);
-    public delegate void SelectionLockEvent(bool locked);
-    public delegate void ToggleHudEvent(bool isOn);
-    public delegate void ToggleArrowEvent(bool isOn);
-    public delegate void SetRingPathEvent(bool isOn);
-    public delegate void UpdateBoardMenuEffectsEvent();
-    public delegate void RingPulseChangeEvent();
-    public static event ToggleMovementEvent OnToggleMovement;
-    public static event TransitionEvent OnTransition;
-    public static event SelectionLockEvent OnSelectionLock;
-    public static event ToggleHudEvent OnToggleHud;
-    public static event ToggleArrowEvent OnToggleArrow;
-    public static event SetRingPathEvent OnSetRingPath;
-    public static event UpdateBoardMenuEffectsEvent OnUpdateBoardMenuEffects;
-    public static event RingPulseChangeEvent OnStartRingPulse;
-    public static event RingPulseChangeEvent OnStopRingPulse;
+    public delegate void IntParamEvent(int sceneIndex);
+    public delegate void BoolParamEvent(bool isOn);
+    public delegate void VoidParamEvent();
+    public static event IntParamEvent OnTransition;
+    public static event BoolParamEvent OnToggleMovement, OnSelectionLock, OnToggleHud, OnSetRingPath;
+    public static event VoidParamEvent OnUpdateBoardMenuEffects, OnStartRingPulse, OnStopRingPulse;
     static public void OnSetGameplayMovementLock(bool locked)
     {
         if (null != OnToggleMovement)
@@ -36,11 +25,6 @@
     {
         if (null != OnToggleHud)
             OnToggleHud(isOn);
-    }
-    static public void OnSetArrowOnOff(bool isOn)
-    {
-        if (null != OnToggleArrow)
-            OnToggleArrow(isOn);
     }
     static public void OnCallSetRingPath(bool isOn)
     {
