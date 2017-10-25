@@ -20,7 +20,7 @@ public class TextElementControllerScript : MonoBehaviour
     private GameObject position_text;
     private GameObject lap_text;
     [SerializeField] private Color HUD_Color;
-    public Color HudColor { get { return HudColor; } set { HUD_Color = GameSettings.SetColor("HudColor", value); } }
+    public Color HudColor { get { return HUD_Color; } set { HUD_Color = GameSettings.SetColor("HudColor", value); } }
 
     public struct hudElementsBools
     {
