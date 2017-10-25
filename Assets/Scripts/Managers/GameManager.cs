@@ -92,6 +92,8 @@ public class GameManager : MonoBehaviour
         GameSettings.SetBool("RingPath", levelScript.RingPathIsOn);
         GameSettings.SetBool("Respawn", scoreScript.respawnEnabled);
         GameSettings.SetBool("DebugSpeed", boardScript.debugSpeedEnabled);
+        GameSettings.SetInt("GameDifficulty", unchecked((int)gameDifficulty.currentDifficulty));
+        GameSettings.SetInt("GameMode", unchecked((int)gameMode.currentMode));
     }
 
     private void OnDestroy() { GameSettings.Save(); }
@@ -99,6 +101,8 @@ public class GameManager : MonoBehaviour
     //using this instead of Awake() in our scripts allows us to control the execution order
     void InitGame()
     {
+        gameDifficulty.currentDifficulty = unchecked((GameDifficulties)GameSettings.GetInt("GameDifficulty", unchecked((int)gameDifficulty.currentDifficulty)));
+        gameMode.currentMode = unchecked((GameModes)GameSettings.GetInt("GameMode", unchecked((int)gameMode.currentMode)));
         boardScript.SetupBoardManager(player);
         levelScript.SetupLevelManager(gameState, player, instance);
         scoreScript.SetupScoreManager();
