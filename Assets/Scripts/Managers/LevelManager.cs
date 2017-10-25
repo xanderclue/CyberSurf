@@ -97,6 +97,10 @@ public class LevelManager : MonoBehaviour
                 gameManager.lastPortalBuildIndex = -1;
                 EventManager.OnCallSetRingPath(false);
                 break;
+            case GameModes.Race:
+
+                EventManager.OnCallSetRingPath(RingPathIsOn);
+                break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
                 break;

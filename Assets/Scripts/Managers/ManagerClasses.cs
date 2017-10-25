@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.VR;
 
 public enum GameStates { HubWorld, GamePlay, SceneTransition };
-public enum GameModes { Continuous, Cursed, Free, GameModesSize };
+public enum GameModes { Continuous, Cursed, Free, Race, GameModesSize };
 public enum GameDifficulties { Easy, Normal, Hard, GameDifficultiesSize};
 
 public class ManagerClasses : MonoBehaviour
