@@ -112,13 +112,31 @@ public static class GameSettings
         value = GetColor(key, value);
         return value;
     }
+    public static T GetEnum<T>(string key, ref T value) where T : struct, System.IFormattable, System.IConvertible, System.IComparable
+    {
+        if (!typeof(T).IsEnum)
+            throw new System.ArgumentException(typeof(T).ToString() + " is not an enum");
+        value = GetEnum(key, value);
+        return value;
+    }
+    public static T GetEnum<T>(string key, T defaultValue) where T : struct, System.IFormattable, System.IConvertible, System.IComparable
+    {
+        if (!typeof(T).IsEnum)
+            throw new System.ArgumentException(typeof(T).ToString() + " is not an enum");
+        int intVal = PlayerPrefs.GetInt(key + "ENUM" + typeof(T).ToString(), System.Convert.ToInt32(defaultValue));
+        T retVal = (T)(object)intVal;
+        return SetEnum(key + "ENUM" + typeof(T).ToString(), retVal);
+    }
+    public static T SetEnum<T>(string key, T value) where T : struct, System.IFormattable, System.IConvertible, System.IComparable
+    {
+        if (!typeof(T).IsEnum)
+            throw new System.ArgumentException(typeof(T).ToString() + " is not an enum");
+        PlayerPrefs.SetInt(key + "ENUM" + typeof(T).ToString(), System.Convert.ToInt32(value));
+        return value;
+    }
     public static void Save()
     {
         PlayerPrefs.Save();
-    }
-    public static void Reset(string key)
-    {
-        PlayerPrefs.DeleteKey(key);
     }
     public static void Reset()
     {

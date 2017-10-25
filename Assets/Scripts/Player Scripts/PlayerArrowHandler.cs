@@ -15,12 +15,6 @@ public class PlayerArrowHandler : MonoBehaviour
         prevPositionInOrder = 0;
     }
 
-    void getArrowScipt(bool isOn)
-    {
-        if (isOn)
-            arrowScript = GetComponentInChildren<arrowPointAtUpdater>();
-    }
-
     void HandleDuplicateRing(int ringArrLength)
     {
         //find the next ring without the same position
@@ -97,12 +91,7 @@ public class PlayerArrowHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnToggleArrow += getArrowScipt;
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnToggleArrow -= getArrowScipt;
+        arrowScript = GetComponentInChildren<arrowPointAtUpdater>();
     }
 
 }
