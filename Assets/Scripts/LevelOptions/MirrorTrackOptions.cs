@@ -54,8 +54,6 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     }
     private void UpdateDisplay()
     {
-        if (IsGrayedOut)
-            return;
         if (tempValue)
         {
             onButtonRenderer.material = activeMaterial;

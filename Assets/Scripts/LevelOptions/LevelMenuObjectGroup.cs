@@ -2,9 +2,6 @@
 
 public class LevelMenuObjectGroup : MonoBehaviour
 {
-    [SerializeField, Tooltip("Check this box if these options are not available for the game")]
-    private bool isGrayedOut = false;
-    protected bool IsGrayedOut { get { return isGrayedOut; } }
     [SerializeField]
     private LevelMenuStuff levelMenuScript = null;
     protected LevelMenuStuff LevelMenuScript { get { return levelMenuScript; } }
@@ -15,14 +12,8 @@ public class LevelMenuObjectGroup : MonoBehaviour
     {
         if (null == levelMenuScript)
             levelMenuScript = GetComponentInParent<LevelMenuStuff>();
-        if (levelMenuScript.forceNoGray)
-            isGrayedOut = false;
         inactiveLocalPosition = activeLocalPosition = transform.localPosition;
         inactiveLocalPosition.z = -activeLocalPosition.z;
-        if (isGrayedOut)
-            foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
-                if (null == mr.GetComponent<TMPro.TextMeshPro>())
-                    mr.material = levelMenuScript.grayOutMaterial;
     }
     public virtual void EnableGroup()
     {
