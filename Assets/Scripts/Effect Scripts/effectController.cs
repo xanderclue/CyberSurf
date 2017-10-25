@@ -7,7 +7,7 @@ public enum particleEffectTypesEnum { rain, snow, crash, sandDust, other }
 
 public class effectController : MonoBehaviour
 {
-    public static ParticleSystem[] triggerParticleEffects;
+    public ParticleSystem[] triggerParticleEffects;
 
     public ParticleSystem dustField;
 

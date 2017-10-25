@@ -16,7 +16,7 @@ public class weatherSetup : MonoBehaviour {
 
 	}
 	
-    void getCorrectWeather()
+    /*void getCorrectWeather()
     {
         if(SceneManager.GetActiveScene().buildIndex > 1)
         {
@@ -57,5 +57,5 @@ public class weatherSetup : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         getCorrectWeather();
-	}
+	}*/
 }
