@@ -20,7 +20,7 @@ public class HudOptionsOpacityColor : MonoBehaviour
         get
         {
             textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
-            Color ret = textElementController.HUD_Color;
+            Color ret = textElementController.HudColor;
             ret.a = 0.5f;
             return ret;
         }
@@ -28,8 +28,8 @@ public class HudOptionsOpacityColor : MonoBehaviour
         {
             textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             Color ret = value;
-            ret.a = textElementController.HUD_Color.a;
-            textElementController.HUD_Color = ret;
+            ret.a = textElementController.HudColor.a;
+            textElementController.HudColor = ret;
         }
     }
     private float ActualOpacity
@@ -37,12 +37,14 @@ public class HudOptionsOpacityColor : MonoBehaviour
         get
         {
             textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
-            return textElementController.HUD_Color.a;
+            return textElementController.HudColor.a;
         }
         set
         {
             textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
-            textElementController.HUD_Color.a = value;
+            Color ret = textElementController.HudColor;
+            ret.a = value;
+            textElementController.HudColor = ret;
         }
     }
     public Color ColorPreviewValue { get { return (tempColorIndex < 0) ? ActualColor : colors[tempColorIndex]; } }

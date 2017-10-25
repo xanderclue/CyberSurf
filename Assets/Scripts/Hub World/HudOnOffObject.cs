@@ -99,7 +99,7 @@ public class HudOnOffObject : MonoBehaviour
             switch (menuOption)
             {
                 case HudMenuTab.HudMenuOption.OverallHud:
-                    return textElementController.hudElementsControl.overAllBool;
+                    return false;
                 case HudMenuTab.HudMenuOption.Speed:
                     return textElementController.hudElementsControl.speedBool;
                 case HudMenuTab.HudMenuOption.Timer:
@@ -108,12 +108,16 @@ public class HudOnOffObject : MonoBehaviour
                     return textElementController.hudElementsControl.scoreBool;
                 case HudMenuTab.HudMenuOption.Arrow:
                     return textElementController.hudElementsControl.arrowBool;
-                case HudMenuTab.HudMenuOption.Reticle:
                 case HudMenuTab.HudMenuOption.Players:
-                case HudMenuTab.HudMenuOption.Compass:
+                    return textElementController.hudElementsControl.player_listBool;
                 case HudMenuTab.HudMenuOption.LapCounter:
+                    return textElementController.hudElementsControl.lapBool;
                 case HudMenuTab.HudMenuOption.Position:
-                    return defaultOnOffValue;
+                    return textElementController.hudElementsControl.positionBool;
+                case HudMenuTab.HudMenuOption.Reticle:
+                    return textElementController.hudElementsControl.reticleBool;
+                case HudMenuTab.HudMenuOption.Compass:
+                    return textElementController.hudElementsControl.compassBool;
                 default:
                     Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
                     return defaultOnOffValue;
@@ -145,12 +149,20 @@ public class HudOnOffObject : MonoBehaviour
                 case HudMenuTab.HudMenuOption.Arrow:
                     textElementController.setArrow(value);
                     break;
-                case HudMenuTab.HudMenuOption.Reticle:
                 case HudMenuTab.HudMenuOption.Players:
-                case HudMenuTab.HudMenuOption.Compass:
+                    textElementController.setPlayerList(value);
+                    break;
                 case HudMenuTab.HudMenuOption.LapCounter:
+                    textElementController.setLapText(value);
+                    break;
                 case HudMenuTab.HudMenuOption.Position:
-                    defaultOnOffValue = value;
+                    textElementController.setPositionText(value);
+                    break;
+                case HudMenuTab.HudMenuOption.Reticle:
+                    textElementController.setReticle(value);
+                    break;
+                case HudMenuTab.HudMenuOption.Compass:
+                    textElementController.setCompass(value);
                     break;
                 default:
                     Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
