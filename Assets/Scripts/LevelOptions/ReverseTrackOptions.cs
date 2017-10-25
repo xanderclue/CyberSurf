@@ -6,7 +6,7 @@ public class ReverseTrackOptions : LevelMenuObjectGroup
     [SerializeField]
     private Material activeMaterial = null;
     private Material inactiveMaterial = null;
-    private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
+    [SerializeField] private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
     [SerializeField]
     private bool defaultValue = false;
     private bool tempValue;
