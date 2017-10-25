@@ -7,7 +7,7 @@ public enum particleEffectTypesEnum { rain, snow, crash, sandDust, other }
 
 public class effectController : MonoBehaviour
 {
-    public ParticleSystem[] triggerParticleEffects;
+    public static ParticleSystem[] triggerParticleEffects;
 
     public ParticleSystem dustField;
 
@@ -29,6 +29,7 @@ public class effectController : MonoBehaviour
 
     void dustFieldActivation(Scene scene, LoadSceneMode loadMode)
     {
+        
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:

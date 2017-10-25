@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DaylightScript : TimeOfDayOptions
+public class DaylightScript : MonoBehaviour
 {
     [SerializeField]
     GameObject sun = null;
@@ -12,7 +12,7 @@ public class DaylightScript : TimeOfDayOptions
     ParticleSystem stars;
      int currentScene;
 
-    private new void Start()
+    private void Start()
     {
         sun = GameObject.FindGameObjectWithTag("sun");
         nono = RenderSettings.skybox;
@@ -27,8 +27,7 @@ public class DaylightScript : TimeOfDayOptions
     {
         if (currentScene > 1)
         {
-
-            switch ((int)getTime())
+            switch ((int)TimeOfDayOptions.ActualTimeOfDay)
             {
                 //noon
                 case 0:
