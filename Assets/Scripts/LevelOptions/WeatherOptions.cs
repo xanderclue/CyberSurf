@@ -6,11 +6,11 @@ public class WeatherOptions : LevelMenuObjectGroup
     private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField]
     private TextMeshPro weatherText = null;
-    private enum Weather { Sunny, Rainy, Snowy, NumWeathers }
+    public enum Weather { Sunny, Rainy, Snowy, NumWeathers }
     [SerializeField]
     private Weather defaultWeather = Weather.Sunny;
     private Weather tempWeather;
-    private static Weather ActualWeather { get; set; } // replace with game's value
+    public static Weather ActualWeather { get; set; } // replace with game's value
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;

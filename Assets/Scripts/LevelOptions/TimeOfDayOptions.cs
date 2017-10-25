@@ -10,7 +10,7 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     [SerializeField]
     private TimeOfDay defaultTimeOfDay = TimeOfDay.Evening;
     private TimeOfDay tempTimeOfDay;
-    private static TimeOfDay ActualTimeOfDay { get; set; } // replace with game's value
+    public static TimeOfDay ActualTimeOfDay { get; set; } // replace with game's value
     
     public TimeOfDay getTime()
     {
