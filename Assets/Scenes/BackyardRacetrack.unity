@@ -11281,7 +11281,7 @@ GameObject:
   - component: {fileID: 1376289242}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11335,6 +11335,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 75, y: 120, z: 0}
+--- !u!1 &1433767526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1433767528}
+  - component: {fileID: 1433767527}
+  m_Layer: 0
+  m_Name: daytime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1433767527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1433767526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be17983f2b5f9a4e99aada37635ee64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrayedOut: 0
+  levelMenuScript: {fileID: 0}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
+  timeOfDayText: {fileID: 0}
+  defaultTimeOfDay: 2
+--- !u!4 &1433767528
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1433767526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.816381, y: -24.591787, z: -73.63009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1474248345 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100006, guid: 9eb5603aaad096f47b2b5fbb650b12e8, type: 3}
@@ -13621,6 +13667,48 @@ Transform:
   m_PrefabParentObject: {fileID: 4223804784761788, guid: 9adbc287463e99f4299ef1f0fc6032d6,
     type: 2}
   m_PrefabInternal: {fileID: 1901444866}
+--- !u!1001 &1955476291
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4516096342887818, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 7.4646997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516096342887818, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 212
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516096342887818, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516096342887818, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516096342887818, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516096342887818, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516096342887818, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516096342887818, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c9536b42754f0c44ebe945ff24d925da, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1956848020
 Prefab:
   m_ObjectHideFlags: 0
