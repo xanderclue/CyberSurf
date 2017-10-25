@@ -6,7 +6,7 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     [SerializeField]
     private Material activeMaterial = null;
     private Material inactiveMaterial = null;
-    private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
+    [SerializeField] private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
     [SerializeField]
     private bool defaultValue = false;
     private bool tempValue;
@@ -54,8 +54,6 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     }
     private void UpdateDisplay()
     {
-        if (IsGrayedOut)
-            return;
         if (tempValue)
         {
             onButtonRenderer.material = activeMaterial;
