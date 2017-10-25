@@ -86,13 +86,13 @@ public class TextElementControllerScript : MonoBehaviour
         scoreMulti.SetActive(hudElementsControl.scoremultiBool);
         for (int i = 0; i < arrow.Length; ++i)
             arrow[i].SetActive(hudElementsControl.arrowBool);
-        //bestlap_time.SetActive(hudElementsControl.bestlapBool);
-        //checkpoint_time.SetActive(hudElementsControl.checkpoint_timeBool);
-        //time_difference.SetActive(hudElementsControl.time_differenceBool);
-        //player_list.SetActive(hudElementsControl.player_listBool);
-        //current_lap_time.SetActive(hudElementsControl.current_lap_timeBool);
-        //position_text.SetActive(hudElementsControl.positionBool);
-        //lap_text.SetActive(hudElementsControl.lapBool);
+        bestlap_time.SetActive(hudElementsControl.bestlapBool);
+        checkpoint_time.SetActive(hudElementsControl.checkpoint_timeBool);
+        time_difference.SetActive(hudElementsControl.time_differenceBool);
+        player_list.SetActive(hudElementsControl.player_listBool);
+        current_lap_time.SetActive(hudElementsControl.current_lap_timeBool);
+        position_text.SetActive(hudElementsControl.positionBool);
+        lap_text.SetActive(hudElementsControl.lapBool);
 
         speedText.SetActive(hudElementsControl.speedBool);
         speedBar.SetActive(hudElementsControl.speedBarBool);
@@ -121,13 +121,13 @@ public class TextElementControllerScript : MonoBehaviour
         bonusTimeText.SetActive(false);
         scoreText.SetActive(false);
         scoreMulti.SetActive(false);
-        //bestlap_time.SetActive(false);
-        //checkpoint_time.SetActive(false);
-        //time_difference.SetActive(false);
-        //player_list.SetActive(false);
-        //current_lap_time.SetActive(false);
-        //position_text.SetActive(false);
-        //lap_text.SetActive(false);
+        bestlap_time.SetActive(false);
+        checkpoint_time.SetActive(false);
+        time_difference.SetActive(false);
+        player_list.SetActive(false);
+        current_lap_time.SetActive(false);
+        position_text.SetActive(false);
+        lap_text.SetActive(false);
         for (int i = 0; i < arrow.Length; ++i)
             arrow[i].SetActive(false);
         speedText.SetActive(false);
@@ -150,13 +150,13 @@ public class TextElementControllerScript : MonoBehaviour
         scoreText = GetComponentInChildren<ScoreTextUpdateScript>().gameObject;
         scoreMulti = GetComponentInChildren<Score_Multi_Script>().gameObject;
 
-        //bestlap_time = GetComponentInChildren<Best_Lap_Text_script>().gameObject;
-        //checkpoint_time = GetComponentInChildren<Checkpoint_Time_Text_Script>().gameObject;
-        //time_difference = GetComponentInChildren<Time_Gap_Text_Script>().gameObject;
-        //player_list = GetComponentInChildren<Player_List_Text_script>().gameObject;
-        //current_lap_time = GetComponentInChildren<Current_Lap_Time_Text>().gameObject;
-        //position_text = GetComponentInChildren<Position_Text_script>().gameObject;
-        //lap_text = GetComponentInChildren<Lap_Text_script>().gameObject;
+        bestlap_time = GetComponentInChildren<Best_Lap_Text_script>().gameObject;
+        checkpoint_time = GetComponentInChildren<Checkpoint_Time_Text_Script>().gameObject;
+        time_difference = GetComponentInChildren<Time_Gap_Text_Script>().gameObject;
+        player_list = GetComponentInChildren<Player_List_Text_script>().gameObject;
+        current_lap_time = GetComponentInChildren<Current_Lap_Time_Text>().gameObject;
+        position_text = GetComponentInChildren<Position_Text_script>().gameObject;
+        lap_text = GetComponentInChildren<Lap_Text_script>().gameObject;
 
 
         //arrow = GetComponentInChildren<arrowPointAtUpdater>().get;
