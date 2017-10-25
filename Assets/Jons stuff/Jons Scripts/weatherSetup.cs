@@ -28,7 +28,7 @@ public class weatherSetup : MonoBehaviour {
                         //take away any particle systems besides dust
                         effectController.triggerParticleEffects[0].Stop();
                         effectController.triggerParticleEffects[1].Stop();
-                        //effectController.triggerParticleEffects[2].Stop();
+
 
                     }
                     break;
@@ -56,6 +56,6 @@ public class weatherSetup : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+        getCorrectWeather();
 	}
 }
