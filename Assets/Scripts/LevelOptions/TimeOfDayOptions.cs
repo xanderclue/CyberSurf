@@ -6,16 +6,10 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField]
     private TextMeshPro timeOfDayText = null;
-    public enum TimeOfDay { Noon, Afternoon, Evening, Midnight, Morning, NumTimesOfDay }
     [SerializeField]
-    private TimeOfDay defaultTimeOfDay = TimeOfDay.Evening;
-    private TimeOfDay tempTimeOfDay;
-    public static TimeOfDay ActualTimeOfDay { get; set; } // replace with game's value
-    
-    public TimeOfDay getTime()
-    {
-        return ActualTimeOfDay;
-    }
+    private DaylightScript.TimeOfDay defaultTimeOfDay = DaylightScript.TimeOfDay.Evening;
+    private DaylightScript.TimeOfDay tempTimeOfDay;
+
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;
@@ -29,7 +23,7 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     private void ButtonLeftFunction()
     {
         if (0 == tempTimeOfDay)
-            tempTimeOfDay = TimeOfDay.NumTimesOfDay - 1;
+            tempTimeOfDay = DaylightScript.TimeOfDay.NumTimesOfDay - 1;
         else
             --tempTimeOfDay;
         UpdateDisplay();
@@ -37,7 +31,7 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     private void ButtonRightFunction()
     {
         ++tempTimeOfDay;
-        if (TimeOfDay.NumTimesOfDay == tempTimeOfDay)
+        if (DaylightScript.TimeOfDay.NumTimesOfDay == tempTimeOfDay)
             tempTimeOfDay = 0;
         UpdateDisplay();
     }
@@ -45,19 +39,19 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     {
         switch (tempTimeOfDay)
         {
-            case TimeOfDay.Noon:
+            case DaylightScript.TimeOfDay.Noon:
                 timeOfDayText.SetText("12:00 PM (Noon)");
                 break;
-            case TimeOfDay.Afternoon:
+            case DaylightScript.TimeOfDay.Afternoon:
                 timeOfDayText.SetText("4:20 PM (Afternoon)");
                 break;
-            case TimeOfDay.Evening:
+            case DaylightScript.TimeOfDay.Evening:
                 timeOfDayText.SetText("8:17 PM (Evening)");
                 break;
-            case TimeOfDay.Midnight:
+            case DaylightScript.TimeOfDay.Midnight:
                 timeOfDayText.SetText("12:00 AM (Midnight)");
                 break;
-            case TimeOfDay.Morning:
+            case DaylightScript.TimeOfDay.Morning:
                 timeOfDayText.SetText("9:00 AM (Morning)");
                 break;
             default:
@@ -68,7 +62,7 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        ActualTimeOfDay = tempTimeOfDay;
+        DaylightScript.currentTimeOfDay = tempTimeOfDay;
     }
     public override void DefaultOptions()
     {
@@ -79,7 +73,7 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempTimeOfDay = ActualTimeOfDay;
+        tempTimeOfDay = DaylightScript.currentTimeOfDay;
         UpdateDisplay();
     }
 }
