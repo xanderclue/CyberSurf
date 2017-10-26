@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class DaylightScript : MonoBehaviour
 {
+    public enum TimeOfDay { Noon, Afternoon, Evening, Midnight, Morning, NumTimesOfDay }
     [SerializeField]
     GameObject sun = null;
     
     Material ogSkybox;
     ParticleSystem stars;
      int currentScene;
+    public static TimeOfDay currentTimeOfDay = TimeOfDay.Noon;
 
     private void Start()
     {
@@ -27,10 +29,10 @@ public class DaylightScript : MonoBehaviour
     {
         if (currentScene > 1)
         {
-            switch ((int)TimeOfDayOptions.ActualTimeOfDay)
+            switch (currentTimeOfDay)
             {
                 //noon
-                case 0:
+                case TimeOfDay.Noon:
                     {
                         sun.SetActive(true);
                         Vector3 highNoon = new Vector3(73f, 0, 0);
@@ -44,7 +46,7 @@ public class DaylightScript : MonoBehaviour
                     }
                     break;
                     //afternoon
-                case 1:
+                case TimeOfDay.Afternoon:
                     {
                         sun.SetActive(true);
                         Vector3 afterNoon = new Vector3(120f, 0, 0);
@@ -58,7 +60,7 @@ public class DaylightScript : MonoBehaviour
                     }
                     break;
                     //evening
-                case 2:
+                case TimeOfDay.Evening:
                     {
                         sun.SetActive(true);
                         //180.6
@@ -74,7 +76,7 @@ public class DaylightScript : MonoBehaviour
                     }
                     break;
                     //night
-                case 3:
+                case TimeOfDay.Midnight:
                     {
                         sun.SetActive(false);
                         RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
@@ -84,7 +86,7 @@ public class DaylightScript : MonoBehaviour
                     }
                     break;
                     //morning
-                case 4:
+                case TimeOfDay.Morning:
                     {
                         sun.SetActive(true);
                         Vector3 morning = new Vector3(36f, 0, 0);
