@@ -7,7 +7,7 @@ public class DaylightScript : MonoBehaviour
 {
     [SerializeField]
     GameObject sun = null;
-    Material nono;
+    
     Material ogSkybox;
     ParticleSystem stars;
      int currentScene;
@@ -15,7 +15,7 @@ public class DaylightScript : MonoBehaviour
     private void Start()
     {
         sun = GameObject.FindGameObjectWithTag("sun");
-        nono = RenderSettings.skybox;
+        
         ogSkybox = RenderSettings.skybox;
         stars = GameObject.FindGameObjectWithTag("stars").GetComponent<ParticleSystem>();
 
@@ -37,7 +37,7 @@ public class DaylightScript : MonoBehaviour
                         sun.transform.localRotation = Quaternion.Euler(highNoon);
                         stars.maxParticles = 1;
                      //sets ambient light to cheese
-                        RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f); 
+                        RenderSettings.ambientLight = new Color(1.0f, 1.0f, 0.5f); 
                       //can change skybox
                           RenderSettings.skybox = ogSkybox;
 
@@ -66,7 +66,7 @@ public class DaylightScript : MonoBehaviour
                         stars.maxParticles = 1;
 
                         //ambient 0.257
-                        RenderSettings.ambientLight = new Color(0.8f, 0.8f, 0.8f);
+                        RenderSettings.ambientLight = new Color(0.6f, 0.6f, 0.6f);
                         sun.transform.localRotation = Quaternion.Euler(evening);
 
                           RenderSettings.skybox = ogSkybox;
