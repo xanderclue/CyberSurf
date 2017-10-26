@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Compass_rotate : MonoBehaviour {
@@ -30,13 +31,13 @@ public class Compass_rotate : MonoBehaviour {
         myself = GetComponent<Slider>();
         element = gameObject.GetComponent<TextMeshPro>();
     }
-    private void OnEnable()
-    {
-        thingToLookAt = GameObject.Find("True North").GetComponent<Transform>();
-    }
     private void Update()
     {
-        
+
+        if (thingToLookAt != null)
+        {
+
+
             Vector3 direction = thingToLookAt.position - player.transform.position;
 
 
@@ -64,18 +65,21 @@ public class Compass_rotate : MonoBehaviour {
                     pointPosition = 0;
                 }
             }
-       /* if (pointPosition == 1 || pointPosition == 0)
-        {
-            element.enabled = false;
-        }
-        else
-        {
-            element.enabled = true;
-        }*/
+           
 
             myself.value = pointPosition;
             //Debug.DrawLine(referenceObject.transform.position, thingsToLookAt[currentlyLookingAt].position);
 
             Debug.DrawRay(player.transform.position, player.transform.forward * 100, Color.blue);
         }
+        else
+        {
+            thingToLookAt = GameObject.Find("True North").GetComponent<Transform>();
+        }
+    }
+    
 }
+
+         
+
+

@@ -3,7 +3,6 @@ public class LevelMenuStuff : MonoBehaviour
 {
     [SerializeField] private GameObject menuBox = null;
     [SerializeField] private EnterLevelOptionsButton enterLevelOptions = null;
-    public Material grayOutMaterial = null;
     public LevelMenuButtons levelMenuButtons = null;
     public LevelSelectOptions levelSelectOptions = null;
     public RaceModeOptions raceModeOptions = null;
@@ -108,6 +107,4 @@ public class LevelMenuStuff : MonoBehaviour
         reverseTrackOptions.ConfirmOptions();
         ExitMenu();
     }
-    [Space]
-    public bool forceNoGray = false;
 }

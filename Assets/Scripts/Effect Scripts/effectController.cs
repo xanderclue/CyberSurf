@@ -29,6 +29,7 @@ public class effectController : MonoBehaviour
 
     void dustFieldActivation(Scene scene, LoadSceneMode loadMode)
     {
+        
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:

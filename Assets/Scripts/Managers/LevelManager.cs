@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
 
     //for transitions
     [HideInInspector] public int nextScene;
-    [HideInInspector] public bool HudOnOff = true;
+    //[HideInInspector] public bool HudOnOff = true;
     [HideInInspector] public bool RingPathIsOn = true;
 
     //stores each player spawn point at each different level
@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour
                 break;
             case 1: // HubWorld
                 //if the last game mode wasn't free mode, unlock movement
-                if (gameManager.lastPortalBuildIndex != -1 )
+                if (gameManager.lastPortalBuildIndex != -1)
                     menuController.ToggleMenuMovement(true);
 
                 EventManager.OnSetHudOnOff(false);
@@ -69,8 +69,7 @@ public class LevelManager : MonoBehaviour
                 gameManager.scoreScript.firstPortal = true;
                 break;
             default:
-                EventManager.OnSetHudOnOff(HudOnOff);
-                EventManager.OnSetArrowOnOff(HudOnOff);
+                EventManager.OnSetHudOnOff(true);
                 applyGamemodeChanges();
                 gameState.currentState = GameStates.GamePlay;
                 break;
@@ -96,6 +95,10 @@ public class LevelManager : MonoBehaviour
             case GameModes.Free:
                 gameManager.lastPortalBuildIndex = -1;
                 EventManager.OnCallSetRingPath(false);
+                break;
+            case GameModes.Race:
+
+                EventManager.OnCallSetRingPath(RingPathIsOn);
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
