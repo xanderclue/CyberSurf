@@ -53,6 +53,14 @@ public class startupSplashScreenPlayer : MonoBehaviour
             NextButton.gameObject.SetActive(false);
             SkipButton.gameObject.SetActive(false);
         }
+        else if(currentScreen == splashScreens.Length - 1)
+        {
+            ConfirmButton.gameObject.SetActive(false);
+            NextButton.gameObject.SetActive(true);
+            SkipButton.gameObject.SetActive(false);
+            timePlayingCurrent = 0;
+
+        }
         else if (currentScreen < splashScreens.Length)
         {
             ConfirmButton.gameObject.SetActive(false);
@@ -68,6 +76,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
                 timePlayingCurrent = 0.0f;
             }
         }
+        
         else
         {
             keepPlayerStill.tutorialOn = false;
