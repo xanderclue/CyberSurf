@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 199649161442519594}
   m_Layer: 9
   m_Name: Rain - PlaceHolder
-  m_TagString: Untagged
+  m_TagString: rain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12208,7 +12208,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2027937784
+  randomSeed: -946077344
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15470,7 +15470,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1139986962
+  randomSeed: 326581963
   InitialModule:
     serializedVersion: 3
     enabled: 1

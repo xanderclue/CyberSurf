@@ -29,6 +29,7 @@ public class DaylightScript : MonoBehaviour
     {
         if (currentScene > 1)
         {
+            //for those with skybox, uses skybox to light up scene instead of color 
             switch (currentTimeOfDay)
             {
                 //noon
@@ -68,7 +69,7 @@ public class DaylightScript : MonoBehaviour
                         stars.maxParticles = 1;
 
                         //ambient 0.257
-                        RenderSettings.ambientLight = new Color(0.6f, 0.6f, 0.6f);
+                        RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f);
                         sun.transform.localRotation = Quaternion.Euler(evening);
 
                           RenderSettings.skybox = ogSkybox;
@@ -107,10 +108,7 @@ public class DaylightScript : MonoBehaviour
         }
 
     }
-
-    // Update is called once per frame
-    new
-
+ 
     // Update is called once per frame
     void Update()
     {

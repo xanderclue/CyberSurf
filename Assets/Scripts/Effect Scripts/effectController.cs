@@ -10,6 +10,17 @@ public class effectController : MonoBehaviour
     public ParticleSystem[] triggerParticleEffects;
 
     public ParticleSystem dustField;
+    int particleType = 0;
+    public ParticleSystem getParticleToDo()
+    {
+        if (particleType == 0)
+            return triggerParticleEffects[0];
+        else
+            return triggerParticleEffects[1];
+
+
+
+    }
 
     private void OnEnable()
     {
@@ -29,7 +40,7 @@ public class effectController : MonoBehaviour
 
     void dustFieldActivation(Scene scene, LoadSceneMode loadMode)
     {
-        
+
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:
@@ -53,11 +64,18 @@ public class effectController : MonoBehaviour
             switch (theEffect)
             {
                 case particleEffectTypesEnum.rain:
-                    triggerParticleEffects[0].Play();
+                    {
+                        triggerParticleEffects[0].Play();
+                        particleType = 0;
+                    }
                     break;
                 case particleEffectTypesEnum.snow:
-                    triggerParticleEffects[1].Play();
+                    {
+                        triggerParticleEffects[1].Play();
+                        particleType = 1;
+                    }
                     break;
+
                 case particleEffectTypesEnum.sandDust:
                     triggerParticleEffects[3].Play();
                     break;
