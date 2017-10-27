@@ -51,10 +51,12 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     private static System.IO.StreamWriter stcSwWriter;
     private static UnityEngine.GameObject stcGobjTextObject = null;
     private static TMPro.TextMeshProUGUI stcCompTextmesh = null;
+    private static UnityEngine.UI.Image stcImageWarningIcon = null;
     private static ulong stcUlongLineCounter = 0ul, stcUlongFrameCounter = 0ul;
     private static bool stcBoolDebuggerInited = false;
     private static bool stcBoolFileOpen = false;
-    private const string DozDig = "0123456789xe";
+    private const string cstStrDozDig = "0123456789xe";
+    private static float stcFloatWarningTimer = 0.0f;
     public static string Dozenal(ulong i)
     {
         if (0ul == i)
@@ -62,7 +64,7 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         string rv = "";
         while (0ul != i)
         {
-            rv = DozDig[(int)(i % 12ul)] + rv;
+            rv = cstStrDozDig[(int)(i % 12ul)] + rv;
             i /= 12ul;
         }
         return rv;
@@ -72,7 +74,28 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         string lStrTimeStamp = TimeStamp;
         WriteLine(pEnmLogType.ToString() + " << " + pStrLogMessage);
         if (UnityEngine.LogType.Log != pEnmLogType)
+        {
+            if (null != stcImageWarningIcon)
+            {
+                stcFloatWarningTimer = 1.0f;
+                switch (pEnmLogType)
+                {
+                    case UnityEngine.LogType.Error:
+                        stcImageWarningIcon.color = new UnityEngine.Color(0.8f, 0.2f, 0.2f, 1.0f);
+                        break;
+                    case UnityEngine.LogType.Assert:
+                        stcImageWarningIcon.color = new UnityEngine.Color(0.9f, 0.9f, 0.1f, 1.0f);
+                        break;
+                    case UnityEngine.LogType.Warning:
+                        stcImageWarningIcon.color = new UnityEngine.Color(0.8f, 0.8f, 0.2f, 1.0f);
+                        break;
+                    case UnityEngine.LogType.Exception:
+                        stcImageWarningIcon.color = new UnityEngine.Color(0.9f, 0.1f, 0.1f, 1.0f);
+                        break;
+                }
+            }
             WriteToErrorLog(pStrLogMessage, pStrStackTrace, pEnmLogType, lStrTimeStamp);
+        }
     }
     private static void WriteToErrorLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType, string pStrTimeStamp)
     {
@@ -126,10 +149,13 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     private void Start()
     {
         stcCompTextmesh = GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        stcImageWarningIcon = GetComponentInChildren<UnityEngine.UI.Image>();
         if (null != stcCompTextmesh)
         {
             stcGobjTextObject = stcCompTextmesh.gameObject;
             stcGobjTextObject.SetActive(false);
+            if (null != stcImageWarningIcon)
+                stcImageWarningIcon.gameObject.SetActive(false);
         }
         else enabled = false;
     }
@@ -149,6 +175,14 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     private void Update()
     {
 #if DEBUGGER
+        if (null != stcImageWarningIcon)
+        {
+            UnityEngine.Color lColorTmp = stcImageWarningIcon.color;
+            lColorTmp.a = UnityEngine.Mathf.Clamp01(stcFloatWarningTimer);
+            stcImageWarningIcon.color = lColorTmp;
+            stcImageWarningIcon.gameObject.SetActive(stcFloatWarningTimer > 0.0f);
+            stcFloatWarningTimer -= UnityEngine.Time.deltaTime;
+        }
         ++stcUlongFrameCounter;
         string lStrTemp = "";
         foreach (string lStrLine in stcStrlistLines)
