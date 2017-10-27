@@ -8,7 +8,7 @@ public class weatherSetup : MonoBehaviour {
     private GameObject rainSystem;
     private GameObject player;
     private GameObject rain;
-    public GameObject snow;
+    private GameObject snow;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -39,6 +39,13 @@ public class weatherSetup : MonoBehaviour {
                         //add and make active snow particle system 
                         snow.GetComponent<ParticleSystem>().Play(); 
                   break;
+
+                default:
+                    {
+                        rain.GetComponent<ParticleSystem>().Stop();
+                        snow.GetComponent<ParticleSystem>().Stop();
+                    }
+                    break;
           }
       }
   }

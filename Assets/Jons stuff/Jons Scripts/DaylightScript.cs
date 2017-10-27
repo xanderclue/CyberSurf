@@ -54,6 +54,7 @@ public class DaylightScript : MonoBehaviour
                         stars.maxParticles = 1;
 
                         RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
+                       
                         sun.transform.localRotation = Quaternion.Euler(afterNoon);
 
                        RenderSettings.skybox = ogSkybox;
@@ -80,7 +81,9 @@ public class DaylightScript : MonoBehaviour
                 case TimeOfDay.Midnight:
                     {
                         sun.SetActive(false);
-                        RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
+                          RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
+                       // RenderSettings.ambientLight = new Color(1f, 1f, 1f);
+
                         stars.maxParticles = 2000;
 
                         RenderSettings.skybox = null;

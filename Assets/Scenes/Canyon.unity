@@ -723,11 +723,6 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198123506288562888, guid: cd6996909900ff44cac341d9483ba297,
     type: 2}
   m_PrefabInternal: {fileID: 74784872}
---- !u!198 &74784874 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198672372830781056, guid: cd6996909900ff44cac341d9483ba297,
-    type: 2}
-  m_PrefabInternal: {fileID: 74784872}
 --- !u!1001 &79858005
 Prefab:
   m_ObjectHideFlags: 0
@@ -11119,7 +11114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912f461c03a15474f83dbd8740f82c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rain: {fileID: 74784874}
   snow: {fileID: 74784873}
 --- !u!1001 &1786334544
 Prefab:
