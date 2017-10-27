@@ -38,7 +38,7 @@ public class BoardStandSelectBoard : SelectedObject
     private void StartAnimation()
     {
         boardCopy.localPosition = Vector3.zero;
-        boardCopy.localRotation = Quaternion.Euler(-90.0f, 0.0f, 180.0f);
+        boardCopy.localRotation = ogLocalRot;
         boardCopy.localScale = Vector3.one;
         boardCopy.parent = null;
         startPosition = boardCopy.position;

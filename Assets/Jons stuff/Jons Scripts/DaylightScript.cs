@@ -29,6 +29,7 @@ public class DaylightScript : MonoBehaviour
     {
         if (currentScene > 1)
         {
+            ParticleSystem.MainModule starsMain = stars.main;
             //for those with skybox, uses skybox to light up scene instead of color 
             switch (currentTimeOfDay)
             {
@@ -38,7 +39,7 @@ public class DaylightScript : MonoBehaviour
                         sun.SetActive(true);
                         Vector3 highNoon = new Vector3(73f, 0, 0);
                         sun.transform.localRotation = Quaternion.Euler(highNoon);
-                        stars.maxParticles = 1;
+                        starsMain.maxParticles = 1;
                      //sets ambient light to cheese
                         RenderSettings.ambientLight = new Color(1.0f, 1.0f, 0.5f); 
                       //can change skybox
@@ -51,7 +52,7 @@ public class DaylightScript : MonoBehaviour
                     {
                         sun.SetActive(true);
                         Vector3 afterNoon = new Vector3(120f, 0, 0);
-                        stars.maxParticles = 1;
+                        starsMain.maxParticles = 1;
 
                         RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
                        
@@ -67,7 +68,7 @@ public class DaylightScript : MonoBehaviour
                         sun.SetActive(true);
                         //180.6
                         Vector3 evening = new Vector3(166.24f, 0, 0);
-                        stars.maxParticles = 1;
+                        starsMain.maxParticles = 1;
 
                         //ambient 0.257
                         RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f);
@@ -84,7 +85,7 @@ public class DaylightScript : MonoBehaviour
                           RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
                        // RenderSettings.ambientLight = new Color(1f, 1f, 1f);
 
-                        stars.maxParticles = 2000;
+                        starsMain.maxParticles = 2000;
 
                         RenderSettings.skybox = null;
                     }
@@ -94,7 +95,7 @@ public class DaylightScript : MonoBehaviour
                     {
                         sun.SetActive(true);
                         Vector3 morning = new Vector3(36f, 0, 0);
-                        stars.maxParticles = 1;
+                        starsMain.maxParticles = 1;
                         RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
                         RenderSettings.skybox = ogSkybox;
                         sun.transform.localRotation = Quaternion.Euler(morning);
