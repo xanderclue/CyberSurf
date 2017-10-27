@@ -24,34 +24,20 @@ public class weatherSetup : MonoBehaviour {
           switch((int)WeatherOptions.ActualWeather)
           {
               //sunny
-              case 0:
-                  {
-
-                        //take away any particle systems besides dust
-
-                        // effectController.triggerParticleEffects[1].Stop();
-                        rain.GetComponent<ParticleSystem>().Stop();
-
-
-                    }
+              case 0: 
+                        //take away any particle systems besides dust 
+                        rain.GetComponent<ParticleSystem>().Stop(); 
                     break;
                   //rainy
-              case 1:
-                  {
+              case 1: 
                         //add rain particle system
                         rain.GetComponent<ParticleSystem>().Play();
-  
-  
-                  }
+   
                   break;
                   //snowy
-              case 2:
-                  {
-                        //add and make active snow particle system
-                        //  effectController.triggerParticleEffects[1].Play();
-                        snow.GetComponent<ParticleSystem>().Play();
-  
-                  }
+              case 2: 
+                        //add and make active snow particle system 
+                        snow.GetComponent<ParticleSystem>().Play(); 
                   break;
           }
       }
