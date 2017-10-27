@@ -22,14 +22,14 @@ public class Compass_rotate : MonoBehaviour {
     [HideInInspector]
     public int currentlyLookingAt = -1;
 
-    TextMeshPro element;
+    //TextMeshPro element;
 
 
     private void Start()
     {
         player = GameManager.player;
         myself = GetComponent<Slider>();
-        element = gameObject.GetComponent<TextMeshPro>();
+        //element = gameObject.GetComponent<TextMeshPro>();
     }
     private void Update()
     {
