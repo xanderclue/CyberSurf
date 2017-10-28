@@ -718,6 +718,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd6996909900ff44cac341d9483ba297, type: 2}
   m_IsPrefabParent: 0
+--- !u!198 &74784873 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198123506288562888, guid: cd6996909900ff44cac341d9483ba297,
+    type: 2}
+  m_PrefabInternal: {fileID: 74784872}
 --- !u!1001 &79858005
 Prefab:
   m_ObjectHideFlags: 0
@@ -11065,6 +11070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777327455}
   - component: {fileID: 1777327454}
+  - component: {fileID: 1777327456}
   m_Layer: 0
   m_Name: dayTime
   m_TagString: Untagged
@@ -11097,6 +11103,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1777327456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1777327453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912f461c03a15474f83dbd8740f82c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snow: {fileID: 74784873}
 --- !u!1001 &1786334544
 Prefab:
   m_ObjectHideFlags: 0

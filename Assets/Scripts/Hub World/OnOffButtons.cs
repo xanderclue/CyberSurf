@@ -4,8 +4,22 @@ public class OnOffButtons : MonoBehaviour
     [SerializeField] private EventSelectedObject onButton = null, offButton = null;
     [SerializeField] private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
     [SerializeField] private Material activeMaterial = null, inactiveMaterial = null;
-    public delegate void ButtonPressedEvent(bool isOn);
-    public ButtonPressedEvent OnButtonPressed;
+    private bool currentValue = false;
+    public bool CurrentValue
+    {
+        get
+        {
+            return currentValue;
+        }
+        set
+        {
+            if (null != onButtonRenderer)
+                onButtonRenderer.material = value ? activeMaterial : inactiveMaterial;
+            if (null != offButtonRenderer)
+                offButtonRenderer.material = value ? inactiveMaterial : activeMaterial;
+            currentValue = value;
+        }
+    }
     private void Awake()
     {
         onButtonRenderer = onButtonRenderer ?? onButton.GetComponent<MeshRenderer>();
@@ -21,22 +35,12 @@ public class OnOffButtons : MonoBehaviour
         onButton.OnSelectSuccess -= PressedOnButton;
         offButton.OnSelectSuccess -= PressedOffButton;
     }
-    public bool SetValue(bool value)
-    {
-        if (null != onButtonRenderer)
-            onButtonRenderer.material = value ? activeMaterial : inactiveMaterial;
-        if (null != offButtonRenderer)
-            offButtonRenderer.material = value ? inactiveMaterial : activeMaterial;
-        return value;
-    }
     private void PressedOnButton()
     {
-        if (null != OnButtonPressed)
-            OnButtonPressed(SetValue(true));
+        CurrentValue = true;
     }
     private void PressedOffButton()
     {
-        if (null != OnButtonPressed)
-            OnButtonPressed(SetValue(false));
+        CurrentValue = false;
     }
 }

@@ -8,7 +8,7 @@ public class bonusTimeTextUpdater : MonoBehaviour
     private TextMeshProUGUI element;
     private Animator myAnimator;
 
-    private void Start()
+    private void Awake()
     {
         element = gameObject.GetComponent<TextMeshProUGUI>();
         myAnimator = gameObject.GetComponent<Animator>();

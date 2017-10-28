@@ -23,6 +23,7 @@ public abstract class SelectedObject : MonoBehaviour
     private bool selectsoundplayed = false;
     public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.UpdateReticleFill(0.0f); } }
     public bool tooltipOnly = false;
+    protected float WaitTime { get { return waitTime; } }
     protected void Awake()
     {
         if (tooltipOnly)

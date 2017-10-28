@@ -39,7 +39,7 @@ public class RingScoreScript : MonoBehaviour
         pColSoundEffects = GameManager.player.GetComponent<playerCollisionSoundEffects>();
         pArrowHandler = GameManager.player.GetComponent<PlayerArrowHandler>();
         rp = GetComponent<RingProperties>();
-        bonusTimeText = GameManager.player.GetComponentInChildren<bonusTimeTextUpdater>();
+        bonusTimeText = GameManager.player.GetComponentsInChildren<bonusTimeTextUpdater>(true)[0];
         hitEffect = GetComponentInChildren<ParticleSystem>();
         respawnScript = GameManager.player.GetComponent<PlayerRespawn>();
 
