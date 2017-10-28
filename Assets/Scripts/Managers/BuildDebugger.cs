@@ -1,5 +1,4 @@
-﻿#define DEBUGGER
-public class BuildDebugger : UnityEngine.MonoBehaviour
+﻿public class BuildDebugger : UnityEngine.MonoBehaviour
 {
     public static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
     public static string GetHierarchyName(UnityEngine.GameObject pGobjGameObject)
@@ -44,6 +43,15 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
         }
 #endif
     }
+    public static bool WASD
+    {
+#if DEBUGGER
+        get { return stcBoolWasd; }
+        private set { stcBoolWasd = value; UnityEngine.Debug.Log("F10: WASD controls are turned " + (value ? "on." : "off.")); }
+#else
+        get { return false; }
+#endif
+    }
 #if DEBUGGER
     private const int cstIntMaxNumLines = 20;
     private const int cstIntMaxLineLength = 45;
@@ -57,7 +65,8 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
     private static bool stcBoolFileOpen = false;
     private const string cstStrDozDig = "0123456789xe";
     private static float stcFloatWarningTimer = 0.0f;
-    public static string Dozenal(ulong i)
+    private static bool stcBoolWasd = false;
+    private static string Dozenal(ulong i)
     {
         if (0ul == i)
             return "0";
@@ -193,6 +202,8 @@ public class BuildDebugger : UnityEngine.MonoBehaviour
             UnityEngine.Input.GetKey(KeyInputManager.XBOX_A) &&
             UnityEngine.Input.GetKeyDown(KeyInputManager.XBOX_LB)))
             stcGobjTextObject.SetActive(!stcGobjTextObject.activeSelf);
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F10))
+            WASD = !WASD;
 #endif
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
             UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + ".png");

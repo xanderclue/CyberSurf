@@ -189,8 +189,18 @@ public class PlayerGameplayController : MonoBehaviour
     {
         yield return new WaitForFixedUpdate();
 
-        pitch = playerRigidbody.rotation.eulerAngles.x + Input.GetAxis("LVertical") * movementVariables.pitchSensitivity;
-        yaw = playerRigidbody.rotation.eulerAngles.y + Input.GetAxis("LHorizontal") * movementVariables.yawSensitivity;
+#if DEBUGGER
+        if (BuildDebugger.WASD)
+        {
+            pitch = playerRigidbody.rotation.eulerAngles.x + Input.GetAxis("LVerticalWASD") * movementVariables.pitchSensitivity;
+            yaw = playerRigidbody.rotation.eulerAngles.y + Input.GetAxis("LHorizontalWASD") * movementVariables.yawSensitivity;
+        }
+        else
+#endif
+        {
+            pitch = playerRigidbody.rotation.eulerAngles.x + Input.GetAxis("LVertical") * movementVariables.pitchSensitivity;
+            yaw = playerRigidbody.rotation.eulerAngles.y + Input.GetAxis("LHorizontal") * movementVariables.yawSensitivity;
+        }
 
         //pitch rests at 0 degrees
         //when descending pitch travels in a positive direction (from 0 to 360)

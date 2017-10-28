@@ -151,8 +151,18 @@ public class PlayerMenuController : MonoBehaviour
 
         if (!menuMovementIsLocked)
         {
-            playerRB.AddRelativeForce(0.0f, 0.0f, Input.GetAxis("LVertical") * controllerForwardSpeed);
-            playerRB.AddRelativeTorque(0.0f, Input.GetAxis("LHorizontal") * controllerTurnSpeed, 0.0f);
+#if DEBUGGER
+            if (BuildDebugger.WASD)
+            {
+                playerRB.AddRelativeForce(0.0f, 0.0f, Input.GetAxis("LVerticalWASD") * controllerForwardSpeed);
+                playerRB.AddRelativeTorque(0.0f, Input.GetAxis("LHorizontalWASD") * controllerTurnSpeed, 0.0f);
+            }
+            else
+#endif
+            {
+                playerRB.AddRelativeForce(0.0f, 0.0f, Input.GetAxis("LVertical") * controllerForwardSpeed);
+                playerRB.AddRelativeTorque(0.0f, Input.GetAxis("LHorizontal") * controllerTurnSpeed, 0.0f);
+            }
         }
 
         StartCoroutine(ControllerCoroutine());

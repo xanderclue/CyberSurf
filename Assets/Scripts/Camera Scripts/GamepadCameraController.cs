@@ -19,7 +19,7 @@ public class GamepadCameraController : MonoBehaviour
     float timeSinceLastCameraMove = 0f;
     bool realigning = false;
 
-    void Start ()
+    void Start()
     {
         cameraContainerTransform = GetComponent<Transform>();
         playerRB = GameManager.player.GetComponent<Rigidbody>();
@@ -43,8 +43,19 @@ public class GamepadCameraController : MonoBehaviour
     {
         ThirdPersonCameraAlign();
 
-        float cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * thirdPersonCameraSpeed * Time.deltaTime;
-        float cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontal") * thirdPersonCameraSpeed * Time.deltaTime;
+        float cameraPitch, cameraYaw;
+#if DEBUGGER
+        if (BuildDebugger.WASD)
+        {
+            cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVerticalWASD") * thirdPersonCameraSpeed * Time.deltaTime;
+            cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontalWASD") * thirdPersonCameraSpeed * Time.deltaTime;
+        }
+        else
+#endif
+        {
+            cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * thirdPersonCameraSpeed * Time.deltaTime;
+            cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontal") * thirdPersonCameraSpeed * Time.deltaTime;
+        }
 
         //make the pitch not go above 80 degrees, and not go below 335 degrees
         cameraPitch = Quaternion.Euler(new Vector3(cameraPitch, 0f, 0f)).eulerAngles.x;
@@ -70,8 +81,19 @@ public class GamepadCameraController : MonoBehaviour
 
     void FirstPersonCameraMove()
     {
-        float cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * firstPersonCameraSpeed * Time.deltaTime;
-        float cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontal") * firstPersonCameraSpeed * Time.deltaTime;
+        float cameraPitch, cameraYaw;
+#if DEBUGGER
+        if (BuildDebugger.WASD)
+        {
+            cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVerticalWASD") * firstPersonCameraSpeed * Time.deltaTime;
+            cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontalWASD") * firstPersonCameraSpeed * Time.deltaTime;
+        }
+        else
+#endif
+        {
+            cameraPitch = cameraContainerTransform.eulerAngles.x + -Input.GetAxis("RVertical") * firstPersonCameraSpeed * Time.deltaTime;
+            cameraYaw = cameraContainerTransform.eulerAngles.y + Input.GetAxis("RHorizontal") * firstPersonCameraSpeed * Time.deltaTime;
+        }
 
         cameraContainerTransform.rotation = (Quaternion.Euler(new Vector3(cameraPitch, cameraYaw, 0.0f)));
     }
@@ -86,7 +108,12 @@ public class GamepadCameraController : MonoBehaviour
     {
         if (!realigning)
         {
+#if DEBUGGER
+            if ((BuildDebugger.WASD && Input.GetAxis("RVerticalWASD") == 0f && Input.GetAxis("RHorizontalWASD") == 0f) ||
+            (!BuildDebugger.WASD && Input.GetAxis("RVertical") == 0f && Input.GetAxis("RHorizontal") == 0f))
+#else
             if (Input.GetAxis("RVertical") == 0f && Input.GetAxis("RHorizontal") == 0f)
+#endif
                 timeSinceLastCameraMove += Time.deltaTime;
             else
                 timeSinceLastCameraMove = 0f;
@@ -98,13 +125,18 @@ public class GamepadCameraController : MonoBehaviour
         else
         {
             //make sure the player isn't trying to move the camera about
-            if (Input.GetAxis("RVertical") != 0f || Input.GetAxis("RHorizontal") != 0f)
+#if DEBUGGER
+            if ((BuildDebugger.WASD && Input.GetAxis("RVerticalWASD") == 0f && Input.GetAxis("RHorizontalWASD") == 0f) ||
+            (!BuildDebugger.WASD && Input.GetAxis("RVertical") == 0f && Input.GetAxis("RHorizontal") == 0f))
+#else
+            if (Input.GetAxis("RVertical") == 0f && Input.GetAxis("RHorizontal") == 0f)
+#endif
+                ReAlignCamera(2f);
+            else
             {
                 realigning = false;
                 timeSinceLastCameraMove = 0f;
             }
-            else
-                ReAlignCamera(2f);
         }
     }
 
