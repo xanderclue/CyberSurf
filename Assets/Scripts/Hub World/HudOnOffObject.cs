@@ -3,14 +3,15 @@ public class HudOnOffObject : MonoBehaviour
 {
     public HudMenuTab.HudMenuOption menuOption = HudMenuTab.HudMenuOption.OverallHud;
     public EventSelectedObject onButton = null, offButton = null;
+    [SerializeField] private bool defaultOnOffValue = true;
+    [SerializeField] private Material activeMaterial = null, inactiveMaterial = null;
     private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
-    [SerializeField]
-    private bool defaultOnOffValue = true;
-    private bool tempOnOffValue;
+    private bool tempOnOffValue = false;
+    private TextElementControllerScript textElementController = null;
+    public delegate void ValueChangedEvent();
+    public event ValueChangedEvent OnValueChanged;
     public bool IsOn { get { return tempOnOffValue; } }
-    [SerializeField]
-    private Material activeMaterial = null, inactiveMaterial = null;
-    private void Start()
+    protected void Start()
     {
         if (null == inactiveMaterial)
             if (null != HudMenuTab.inactiveMaterial)
@@ -57,22 +58,19 @@ public class HudOnOffObject : MonoBehaviour
     public void TurnOn()
     {
         tempOnOffValue = true;
-        if (null != OnValueChanged)
-            OnValueChanged();
+        OnValueChanged?.Invoke();
     }
     public void TurnOff()
     {
         tempOnOffValue = false;
-        if (null != OnValueChanged)
-            OnValueChanged();
+        OnValueChanged?.Invoke();
     }
     public void DefaultValue()
     {
         if (tempOnOffValue != defaultOnOffValue)
         {
             tempOnOffValue = defaultOnOffValue;
-            if (null != OnValueChanged)
-                OnValueChanged();
+            OnValueChanged?.Invoke();
         }
     }
     public void ResetValue()
@@ -80,22 +78,19 @@ public class HudOnOffObject : MonoBehaviour
         if (tempOnOffValue != ActualValue)
         {
             tempOnOffValue = ActualValue;
-            if (null != OnValueChanged)
-                OnValueChanged();
+            OnValueChanged?.Invoke();
         }
     }
     public void ConfirmValue()
     {
         ActualValue = tempOnOffValue;
     }
-    public delegate void ValueChangedEvent();
-    public ValueChangedEvent OnValueChanged;
-    private TextElementControllerScript textElementController = null;
     private bool ActualValue
     {
         get
         {
-            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            if (null == textElementController)
+                textElementController = GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             switch (menuOption)
             {
                 case HudMenuTab.HudMenuOption.OverallHud:
@@ -125,7 +120,8 @@ public class HudOnOffObject : MonoBehaviour
         }
         set
         {
-            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            if (null == textElementController)
+                textElementController = GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             switch (menuOption)
             {
                 case HudMenuTab.HudMenuOption.OverallHud:

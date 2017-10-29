@@ -1,27 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class CanyonRockRotator : MonoBehaviour
 {
-    Rigidbody rockRigidBody;
-
-    [SerializeField] float angularVelocityLimit = 10f;
-    [SerializeField] float xTorqueAmount = 10f;
-    [SerializeField] float yTorqueAmount = 10f;
-    [SerializeField] float zTorqueAmount = 10f;
-
-    Vector3 torqueVector;
-
-	void Start ()
+    [SerializeField] private float angularVelocityLimit = 10.0f, xTorqueAmount = 10.0f, yTorqueAmount = 10.0f, zTorqueAmount = 10.0f;
+    private Rigidbody rockRigidBody = null;
+    private void Start()
     {
         rockRigidBody = GetComponent<Rigidbody>();
-        torqueVector = new Vector3(xTorqueAmount, yTorqueAmount, zTorqueAmount);
-	}
-
+    }
     private void FixedUpdate()
     {
         if (rockRigidBody.angularVelocity.magnitude < angularVelocityLimit)
-            rockRigidBody.AddTorque(torqueVector);
+            rockRigidBody.AddTorque(xTorqueAmount, yTorqueAmount, zTorqueAmount);
     }
 }

@@ -1,18 +1,11 @@
 ﻿using UnityEngine;
-//using UnityEditor;
-
 public class EnterMainMenuButton : SelectedObject
 {
-    [SerializeField]
-    private GameObject menuBox = null;
-    [SerializeField]
-    private Transform lockTransform = null;
-    [SerializeField]
-    private MainMenu menuSystem = null;
-    [SerializeField]
-    private Material hoverMat = null;
-    [SerializeField]
-    private Material noHoverMat = null;
+    [SerializeField] private GameObject menuBox = null;
+    [SerializeField] private Transform lockTransform = null;
+    [SerializeField] private MainMenu menuSystem = null;
+    [SerializeField] private Material hoverMat = null, noHoverMat = null;
+    [SerializeField, Tooltip("degrees per second")] private float rotationSpeed = 111.0f;
     private MeshRenderer meshRenderer = null;
     new private void Start()
     {
@@ -26,14 +19,11 @@ public class EnterMainMenuButton : SelectedObject
             hoverMat = noHoverMat;
         meshRenderer.material = noHoverMat;
     }
-    [SerializeField, Tooltip("degrees per second")]
-    private float rotationSpeed = 111.0f;
     new private void Update()
     {
         base.Update();
         gameObject.transform.Rotate(0.0f, Time.deltaTime * rotationSpeed, 0.0f);
     }
-
     protected override void SelectedFunction()
     {
         base.SelectedFunction();
@@ -44,19 +34,17 @@ public class EnterMainMenuButton : SelectedObject
         base.DeselectedFunction();
         meshRenderer.material = noHoverMat;
     }
-    public override void SuccessFunction()
+    protected override void SuccessFunction()
     {
         if (null != menuBox && null != menuSystem)
         {
             respawnAndDespawnSphere.SphereState = false;
             menuBox.SetActive(true);
-            if (null != lockTransform)
-                GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(lockTransform.position, lockTransform.rotation);
-            else
-                GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(GameManager.player.transform.position, GameManager.player.transform.rotation);
+            if (null == lockTransform)
+                lockTransform = GameManager.player.transform;
+            GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(lockTransform.position, lockTransform.rotation);
             menuSystem.mainTab.EnableButtons();
             gameObject.SetActive(false);
-            //menuBox.GetComponent<Animator>().SetTrigger("Opened");
         }
     }
 }

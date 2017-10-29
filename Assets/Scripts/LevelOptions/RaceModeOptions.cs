@@ -2,17 +2,10 @@
 using TMPro;
 public class RaceModeOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton leftButton = null, rightButton = null;
-    [SerializeField]
-    private TextMeshPro raceModeText = null;
-    [SerializeField]
-    private GameModes defaultMode = GameModes.Continuous;
-    private GameModes tempMode;
-    new private void Start()
-    {
-        base.Start();
-    }
+    [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField] private TextMeshPro raceModeText = null;
+    [SerializeField] private GameModes defaultMode = GameModes.Continuous;
+    private GameModes tempMode = GameModes.Continuous;
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;

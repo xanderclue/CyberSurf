@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
-
 public class MainMenu : MonoBehaviour
 {
     private const float BACK_LOCAL_Z_POS = 0.5f;
     private const float FRONT_LOCAL_Z_POS = -0.5f;
     private static readonly Vector3 TABS_BACK_LOCAL_POS = new Vector3(0.0f, 0.0f, BACK_LOCAL_Z_POS);
     private static readonly Vector3 TABS_FRONT_LOCAL_POS = new Vector3(0.0f, 0.0f, FRONT_LOCAL_Z_POS);
-    [SerializeField]
-    private SelectedObject backButton = null;
-    private Vector3 backButtonBackPos, backButtonFrontPos;
-    public MenuTab mainTab;
+    [SerializeField] private SelectedObject backButton = null;
+    public MenuTab mainTab = null;
+    [SerializeField] private GameObject menuBox = null;
     public delegate void GoBackEvent();
-    public GoBackEvent OnBackButtonPressed, OnMenuExit;
+    public event GoBackEvent OnBackButtonPressed, OnMenuExit;
     public delegate void SwitchTabsEvent(MenuTab menuTab);
-    public SwitchTabsEvent OnSwitchTabs;
-    private MenuTab currTab, prevTab;
-    [SerializeField]
-    private GameObject menuBox = null;
+    public event SwitchTabsEvent OnSwitchTabs;
+    private Vector3 backButtonBackPos, backButtonFrontPos;
+    private MenuTab currTab = null, prevTab = null;
     private float transitionTimer = 0.0f;
+    public void InvokeOnBackButtonPressed() { OnBackButtonPressed?.Invoke(); }
+    public void InvokeOnMenuExit() { OnMenuExit?.Invoke(); }
+    public void InvokeOnSwitchTabs(MenuTab menuTab) { OnSwitchTabs?.Invoke(menuTab); }
     private void Start()
     {
         try { menuBox.SetActive(false); }
@@ -33,10 +33,7 @@ public class MainMenu : MonoBehaviour
         mainTab.gameObject.SetActive(true);
         backButton.gameObject.SetActive(false);
     }
-    enum TransitionState
-    {
-        SwitchingToTab, SwitchingToMain, OnMain, OnTab
-    }
+    private enum TransitionState { SwitchingToTab, SwitchingToMain, OnMain, OnTab }
     private TransitionState currState = TransitionState.OnMain;
     private void GoBack()
     {

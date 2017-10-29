@@ -1,16 +1,9 @@
-﻿//using UnityEngine;
-using Phidgets;
+﻿using Phidgets;
 using Phidgets.Events;
-
 public class MotorData
 {
-    private MotorControl motorControl;
-
-    public MotorControl MotorDevice
-    {
-        get { return motorControl; }
-    }
-
+    private MotorControl motorControl = null;
+    public MotorControl MotorDevice { get { return motorControl; } }
     public MotorData()
     {
         try
@@ -20,31 +13,21 @@ public class MotorData
         }
         catch { }
     }
-
     public void Open()
     {
         if (motorControl != null)
-        {
             if (!motorControl.Attached)
             {
-                //interfaceKit.waitForAttachment(1000);
-
                 motorControl.Attach += new AttachEventHandler(motorControl_Attach);
                 motorControl.Detach += new DetachEventHandler(motorControl_Detach);
                 motorControl.Error += new ErrorEventHandler(motorControl_Error);
-
                 motorControl.open(); //310019
-                //motorControl.waitForAttachment(50);
             }
             else
                 UnityEngine.Debug.Log("already open");
-        }
         else
-        {
             UnityEngine.Debug.LogWarning("Could not find the phidgets motor controller or drivers");
-        }
     }
-
     public void Close()
     {
         if (null != motorControl)
@@ -53,41 +36,12 @@ public class MotorData
             motorControl.Detach -= motorControl_Detach;
             motorControl.Error -= motorControl_Error;
         }
-        //		MonoBehaviour.print (motorControl.motors [0].Velocity);
-        //		
-        //		motorControl.motors [0].Velocity = 100f;
-        //
-        //		MonoBehaviour.print (motorControl.motors [0].Velocity);
-        //MonoBehaviour.print (motorControl);
-        if (motorControl != null && motorControl.Attached)
+        if (motorControl?.Attached ?? false)
         {
-            //MonoBehaviour.print ("Trying close");
-            //run any events in the message queue - otherwise close will hang if there are any outstanding events
-            //Application.DoEvents();
-
-            //			for (int i = 0; i < motorControl.motors.Count; i++)
-            //			{
-            //				motorControl.motors[i].Velocity = 0.0f; // Turn off the fan! 										
-            //			}
-            //			foreach (MotorControlMotor motor in motorControl.motors)
-            //			{
-            //				motor.Velocity = 0;
-            //			}
-
-            //When the application is being terminated, close the Phidget
-            //	       	motorControl.Attach -= motorControl_Attach;
-            //	        motorControl.Detach -= motorControl_Detach;
-            //	        motorControl.Error -= motorControl_Error;
-
-            for (int i = 0; i < motorControl.motors.Count; i++)
-            {
-                //motorControl.motors[i].Acceleration = 6250.00; // max acceleration
+            for (int i = 0; i < motorControl.motors.Count; ++i)
                 motorControl.motors[i].Velocity = 0.0f;
-            }
-
             try
             {
-                //System.Threading.Thread.Sleep(2000);
                 motorControl.close();
                 motorControl = null;
             }
@@ -97,29 +51,19 @@ public class MotorData
             }
         }
     }
-
-    //attach event handler
-    void motorControl_Attach(object sender, AttachEventArgs e)
+    private void motorControl_Attach(object sender, AttachEventArgs e)
     {
-        //MotorControl attached = (MotorControl)sender;
-        //motorControl.open();
-
-        //attached.DataRate = 100; 
-
-        for (int i = 0; i < motorControl.motors.Count; i++)
+        for (int i = 0; i < motorControl.motors.Count; ++i)
         {
-            motorControl.motors[i].Acceleration = 6250.00f; // max acceleration
-            motorControl.motors[i].Velocity = 0.00f;
+            motorControl.motors[i].Acceleration = 6250.0f;
+            motorControl.motors[i].Velocity = 0.0f;
         }
     }
-    //attach event handler
-    void motorControl_Detach(object sender, DetachEventArgs e)
+    private void motorControl_Detach(object sender, DetachEventArgs e)
     {
         motorControl = null;
     }
-
-    //attach event handler
-    void motorControl_Error(object sender, ErrorEventArgs e)
+    private void motorControl_Error(object sender, ErrorEventArgs e)
     {
         UnityEngine.Debug.LogWarning("Phidgets display error: " + e.ToString());
     }

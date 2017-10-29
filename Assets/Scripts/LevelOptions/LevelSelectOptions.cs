@@ -3,25 +3,16 @@ using UnityEngine.UI;
 using TMPro;
 public class LevelSelectOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton leftButton = null, rightButton = null;
-    [SerializeField]
-    private TextMeshPro levelNameText = null;
-    [SerializeField]
-    private Image levelImage = null;
-    [Space, Header("Level Images")]
-    [SerializeField]
-    private Sprite canyonImage = null;
-    [SerializeField]
-    private Sprite multiEnrironmentImage = null;
-    [SerializeField]
-    private Sprite backyardRacetrackImage = null;
+    [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField] private TextMeshPro levelNameText = null;
+    [SerializeField] private Image levelImage = null;
+    [Space, Header("Level Images")] [SerializeField] private Sprite canyonImage = null;
+    [SerializeField] private Sprite multiEnrironmentImage = null;
+    [SerializeField] private Sprite backyardRacetrackImage = null;
     private enum Level { Canyon, MultiEnvironment, BackyardRacetrack, NumLevels }
-    [SerializeField]
-    private Level defaultLevel = Level.Canyon;
+    [SerializeField] private Level defaultLevel = Level.Canyon;
     private Level tempLevel;
-    [SerializeField]
-    private WorldPortalProperties portal = null;
+    [SerializeField] private WorldPortalProperties portal = null;
     public const int LevelBuildOffset = 2; // build index of the first level
     new private void Start()
     {
@@ -29,8 +20,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
         if (null == portal)
         {
             Debug.LogWarning("Missing LevelSelectOptions.portal.. Will attempt to find a world portal");
-            try { portal = FindObjectOfType<WorldPortalText>().GetComponent<WorldPortalProperties>(); }
-            catch { portal = FindObjectOfType<WorldPortalProperties>(); }
+            portal = FindObjectOfType<WorldPortalText>()?.GetComponent<WorldPortalProperties>() ?? FindObjectOfType<WorldPortalProperties>();
             if (null == portal)
                 Debug.LogWarning("LevelSelectOptions cannot find portal");
         }

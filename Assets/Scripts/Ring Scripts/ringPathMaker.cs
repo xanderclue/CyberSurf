@@ -1,27 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
 public class ringPathMaker : MonoBehaviour
 {
-    bool drawLine = true;
-    //needs to be at least 4
-    [SerializeField]
-    Stack<Vector3> controlPointsStack = new Stack<Vector3>();
-
-    CatmullRomSplineDrawn pathDrawer = new CatmullRomSplineDrawn();
-
-    LineRenderer myself;
-
-    //line or loop
-    public bool isLooping = false;
-
-    #region EventStuff
+    [SerializeField] private Stack<Vector3> controlPointsStack = new Stack<Vector3>();
+    private bool drawLine = true;
+    private CatmullRomSplineDrawn pathDrawer = new CatmullRomSplineDrawn();
     private void TogglePath(bool isOn)
     {
         drawLine = isOn;
     }
-    private void Awake()
+    private void OnEnable()
     {
         EventManager.OnSetRingPath += TogglePath;
     }
@@ -29,33 +17,19 @@ public class ringPathMaker : MonoBehaviour
     {
         EventManager.OnSetRingPath -= TogglePath;
     }
-
-    #endregion
-
-
-    //sets up array before we even do the catmull stuff, then does the actual drawing once at the very end
-    public void init(Transform[] array)
+    public void Init(Transform[] array)
     {
-        if (myself == null)
-            myself = GetComponentInChildren<LineRenderer>();
-
+        LineRenderer myself = GetComponentInChildren<LineRenderer>();
         if (drawLine)
         {
-            //push back the first ring in the array 
-            //twice because we dont want to do looping
             controlPointsStack.Push(array[0].position);
             controlPointsStack.Push(array[0].position);
-            int firstDuplicate = 0;
+            int firstDuplicate = 0, duplicateNum = 0, lastRing = 0;
             bool foundDuplicate = false;
-            int duplicateNum = 0;
-            int lastRing = 0;
-
-            RingProperties theRing = array[0].GetComponent<RingProperties>();
-            //loop through the arary pushing back every ring that isnt tagged dupicate
-            //if it is a dulicate find one of the rings and only push back that one
-            for (int i = 1; i < array.Length; i++)
+            RingProperties theRing;
+            for (int i = 1; i < array.Length; ++i)
             {
-                theRing = array[i].gameObject.GetComponent<RingProperties>();
+                theRing = array[i].GetComponent<RingProperties>();
                 if (theRing.DuplicatePosition)
                 {
                     if (!foundDuplicate)
@@ -84,14 +58,9 @@ public class ringPathMaker : MonoBehaviour
                 }
             }
             controlPointsStack.Push(array[lastRing].position);
-
-            //actual drawing stuff
-            Vector3[] finalPoints = pathDrawer.makePath(controlPointsStack.ToArray());
-
+            Vector3[] finalPoints = pathDrawer.MakePath(controlPointsStack.ToArray());
             myself.positionCount = finalPoints.Length;
             myself.SetPositions(finalPoints);
-            //myself.useWorldSpace = true;
         }
     }
-
 }

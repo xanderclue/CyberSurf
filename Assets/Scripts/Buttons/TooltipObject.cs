@@ -1,14 +1,10 @@
 ﻿using UnityEngine;
 public class TooltipObject : MonoBehaviour
 {
-    [SerializeField, LabelOverride("Parent")]
-    private bool m_isParent = false;
-    [SerializeField, LabelOverride("Disabled")]
-    private bool m_isDisabled = false;
-    [SerializeField, LabelOverride("Grab from Parent")]
-    private bool m_grabTextFromParent = false;
-    [Multiline, SerializeField]
-    private string m_tooltipText = "";
+    [SerializeField, LabelOverride("Parent")] private bool m_isParent = false;
+    [SerializeField, LabelOverride("Disabled")] private bool m_isDisabled = false;
+    [SerializeField, LabelOverride("Grab from Parent")] private bool m_grabTextFromParent = false;
+    [Multiline, SerializeField] private string m_tooltipText = "";
     private void Awake()
     {
         if (m_grabTextFromParent)
@@ -32,9 +28,9 @@ public class TooltipObject : MonoBehaviour
         }
         else
         {
-            gameObject.layer = LayerMask.NameToLayer(SelectedObject.LAYERNAME);
-            Collider theCollider = 0 != GetComponents<Collider>().Length ? gameObject.GetComponent<Collider>() : gameObject.AddComponent<BoxCollider>();
-            SelectedObject selectedObject = gameObject.GetComponent<SelectedObject>();
+            gameObject.layer = SelectedObject.Selectable_Layer;
+            Collider theCollider = 0 != GetComponents<Collider>().Length ? GetComponent<Collider>() : gameObject.AddComponent<BoxCollider>();
+            SelectedObject selectedObject = GetComponent<SelectedObject>();
             if (null == selectedObject)
             {
                 selectedObject = gameObject.AddComponent<EventSelectedObject>();

@@ -1,40 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class boardSelectedEffectController : MonoBehaviour
 {
-    BoardStandProperties[] boardEffects;
-    BoardManager boardManager;
-	void Start ()
+    private BoardStandProperties[] boardEffects = null;
+    private BoardManager boardManager = null;
+    private void Start()
     {
-        boardEffects = gameObject.GetComponentsInChildren<BoardStandProperties>();
+        boardEffects = GetComponentsInChildren<BoardStandProperties>();
         boardManager = GameManager.instance.boardScript;
         EventManager.OnCallBoardMenuEffects();
     }
-
     private void OnEnable()
     {
-        EventManager.OnUpdateBoardMenuEffects += setActiveBoard;
+        EventManager.OnUpdateBoardMenuEffects += SetActiveBoard;
     }
-
     private void OnDisable()
     {
-        EventManager.OnUpdateBoardMenuEffects -= setActiveBoard;
+        EventManager.OnUpdateBoardMenuEffects -= SetActiveBoard;
     }
-
-    void setActiveBoard()
+    private void SetActiveBoard()
     {
-        for (int i = 0; i < boardEffects.Length; i++)
-        {
-            if (boardEffects[i].boardType == boardManager.currentBoardSelection)
-            {
-                boardEffects[i].GetComponentInChildren<ParticleSystem>().Play();
-            }
+        foreach (BoardStandProperties boardEffect in boardEffects)
+            if (boardEffect.boardType == boardManager.currentBoardSelection)
+                boardEffect.GetComponentInChildren<ParticleSystem>().Play();
             else
-            {
-                boardEffects[i].GetComponentInChildren<ParticleSystem>().Stop();
-            }
-        }
+                boardEffect.GetComponentInChildren<ParticleSystem>().Stop();
     }
 }

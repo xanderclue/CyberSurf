@@ -1,60 +1,40 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 public class ExitPortalScript : MonoBehaviour
 {
-    GameObject theFadeObj;
-
-    System.Type boxCollider;
-    PlayerMenuController pmc;
-
+    private Renderer theFadeObj = null;
+    private static readonly System.Type boxCollider = typeof(CapsuleCollider);
+    private PlayerMenuController pmc = null;
+    private const float fadeTime = 0.8f;
     private void Start()
     {
-        boxCollider = typeof(UnityEngine.CapsuleCollider);
         pmc = GameManager.player.GetComponent<PlayerMenuController>();
-        theFadeObj = GameManager.player.GetComponentInChildren<counterRotater>().gameObject;
+        theFadeObj = GameManager.player.GetComponentInChildren<counterRotater>().GetComponent<Renderer>();
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetType() == boxCollider && other.gameObject.tag == "Board")
+        if (boxCollider == other.GetType() && "Board" == other.gameObject.tag)
         {
             pmc.ToggleMenuMovement(true);
-
             StartCoroutine(ExitGameCoroutine());
         }
     }
-
-    IEnumerator ExitGameCoroutine()
+    private IEnumerator ExitGameCoroutine()
     {
-        float timeIntoFade = 0f;
-        float fadeTime = 0.8f;
-        float alpha = 0f;
-
+        float timeIntoFade = 0.0f;
         while (timeIntoFade < fadeTime)
         {
             timeIntoFade += Time.deltaTime;
-
-            alpha = timeIntoFade / fadeTime;
-            alpha = Mathf.Clamp01(alpha);
-
-            theFadeObj.GetComponent<Renderer>().material.SetFloat("_AlphaValue", alpha);
-
+            theFadeObj.material.SetFloat("_AlphaValue", Mathf.Clamp01(timeIntoFade / fadeTime));
             yield return null;
         }
-
-        SaveLoader.save();
+        SaveLoader.Save();
         Application.Quit();
-
-        //in case we're in the editor
         if (Application.isEditor)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.0f);
             pmc.ToggleMenuMovement(false);
-            theFadeObj.GetComponent<Renderer>().material.SetFloat("_AlphaValue", 0f);
+            theFadeObj.material.SetFloat("_AlphaValue", 0.0f);
         }
     }
-
 }

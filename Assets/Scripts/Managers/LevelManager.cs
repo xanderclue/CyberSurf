@@ -1,123 +1,69 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
-//use our LevelManger to initialize any objects that carry from one scene to the next
 public class LevelManager : MonoBehaviour
 {
     [HideInInspector] public ManagerClasses.GameState gameState;
-
-    GameManager gameManager;
-    ScreenFade screenFade;
-
-    GameObject player;
-    Transform playerTransform;
-    PlayerMenuController menuController;
-
-    //for transitions
-    [HideInInspector] public int nextScene;
-    //[HideInInspector] public bool HudOnOff = true;
+    private GameManager gameManager = null;
+    private ScreenFade screenFade = null;
+    private GameObject player = null;
+    private PlayerMenuController menuController = null;
+    [HideInInspector] public int nextScene = 0;
     [HideInInspector] public bool RingPathIsOn = true;
-
-    //stores each player spawn point at each different level
-    public Transform[] spawnPoints;
-
+    public Transform[] spawnPoints = null;
     public void SetupLevelManager(ManagerClasses.GameState s, GameObject p, GameManager g)
     {
         player = p;
-        playerTransform = p.GetComponent<Transform>();
         gameState = s;
         gameManager = g;
         menuController = p.GetComponent<PlayerMenuController>();
         screenFade = p.GetComponentInChildren<ScreenFade>();
     }
-
-    ////for debugging
-    //void OnLevelLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    Debug.Log("Scene changed to: " + scene.name);
-    //}
-
-    public void DoSceneTransition(int sceneIndex)
+    private void DoSceneTransition(int sceneIndex)
     {
         nextScene = sceneIndex;
         EventManager.OnTriggerSelectionLock(true);
         player.GetComponentInChildren<effectController>().disableAllEffects();
         screenFade.StartTransitionFade();
     }
-
-    public void UndoSceneTransitionLocks(Scene scene, LoadSceneMode mode)
+    private void UndoSceneTransitionLocks(Scene scene, LoadSceneMode mode)
     {
-        //set our gameState based off of our scene build index
-        switch (scene.buildIndex)
+        if (scene.buildIndex >= LevelSelectOptions.LevelBuildOffset)
         {
-            case 0: //Starting area
-                menuController.ToggleMenuMovement(true);
-                EventManager.OnSetHudOnOff(false);
-                gameState.currentState = GameStates.HubWorld;
-                break;
-            case 1: // HubWorld
-                //if the last game mode wasn't free mode, unlock movement
-                if (gameManager.lastPortalBuildIndex != -1)
-                    menuController.ToggleMenuMovement(true);
-
-                EventManager.OnSetHudOnOff(false);
-                gameState.currentState = GameStates.HubWorld;
-                gameManager.scoreScript.score = 0;
-                gameManager.scoreScript.ringHitCount = 0;
-                gameManager.scoreScript.firstPortal = true;
-                break;
-            default:
-                EventManager.OnSetHudOnOff(true);
-                applyGamemodeChanges();
-                gameState.currentState = GameStates.GamePlay;
-                break;
+            EventManager.OnSetHudOnOff(true);
+            ApplyGamemodeChanges();
+            gameState.currentState = GameStates.GamePlay;
         }
-
-        playerTransform.SetPositionAndRotation(spawnPoints[scene.buildIndex].position, spawnPoints[scene.buildIndex].rotation);
-
+        else
+        {
+            if (gameManager.lastPortalBuildIndex != -1)
+                menuController.ToggleMenuMovement(true);
+            EventManager.OnSetHudOnOff(false);
+            gameState.currentState = GameStates.HubWorld;
+            gameManager.scoreScript.score = 0;
+            gameManager.scoreScript.ringHitCount = 0;
+            gameManager.scoreScript.firstPortal = true;
+        }
+        player.transform.SetPositionAndRotation(spawnPoints[scene.buildIndex].position, spawnPoints[scene.buildIndex].rotation);
         EventManager.OnTriggerSelectionLock(false);
     }
-
-    void applyGamemodeChanges()
+    private void ApplyGamemodeChanges()
     {
-        switch (gameManager.gameMode.currentMode)
+        if (GameModes.Free == gameManager.gameMode.currentMode)
         {
-            case GameModes.Continuous:
-
-                EventManager.OnCallSetRingPath(RingPathIsOn);
-                break;
-            case GameModes.Cursed:
-
-                EventManager.OnCallSetRingPath(RingPathIsOn);
-                break;
-            case GameModes.Free:
-                gameManager.lastPortalBuildIndex = -1;
-                EventManager.OnCallSetRingPath(false);
-                break;
-            case GameModes.Race:
-
-                EventManager.OnCallSetRingPath(RingPathIsOn);
-                break;
-            default:
-                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
-                break;
+            gameManager.lastPortalBuildIndex = -1;
+            EventManager.OnCallSetRingPath(false);
         }
+        else
+            EventManager.OnCallSetRingPath(RingPathIsOn);
     }
-
-    public void OnEnable()
+    private void OnEnable()
     {
         EventManager.OnTransition += DoSceneTransition;
         SceneManager.sceneLoaded += UndoSceneTransitionLocks;
-        //SceneManager.sceneLoaded += OnLevelLoaded;
     }
-
-    public void OnDisable()
+    private void OnDisable()
     {
         EventManager.OnTransition -= DoSceneTransition;
         SceneManager.sceneLoaded -= UndoSceneTransitionLocks;
-        //SceneManager.sceneLoaded -= OnLevelLoaded;
     }
-
 }

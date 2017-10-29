@@ -7,10 +7,7 @@ public class OnOffButtons : MonoBehaviour
     private bool currentValue = false;
     public bool CurrentValue
     {
-        get
-        {
-            return currentValue;
-        }
+        get { return currentValue; }
         set
         {
             if (null != onButtonRenderer)

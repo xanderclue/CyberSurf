@@ -1,38 +1,21 @@
 ﻿using UnityEngine;
-
 public class RingScoreScript : MonoBehaviour
 {
     [System.Serializable]
-    public class ScoreMultipliers
-    {
-        public float speedMultiplier;
-        public float consecutiveMultiplier;
-        public float consecutiveIncreaseAmount;
-
-        public ScoreMultipliers(float sMul, float crMul, float crInAmt) { speedMultiplier = sMul; consecutiveMultiplier = crMul; consecutiveIncreaseAmount = crInAmt; }
-    }
-
-    //static ring effect settings
-    public static ScoreMultipliers multipliers = new ScoreMultipliers(1.5f, 1f, 0.25f);
-    static int prevPositionInOrder;
-    static int prevConsecutiveCount;
-    static int consecutiveCount;
-    static bool effectsStopped;
-
-    playerCollisionSoundEffects pColSoundEffects;
-    PlayerArrowHandler pArrowHandler;
-    ScoreManager scoreManager;
-
-    RingProperties rp;
+    private class ScoreMultipliers
+    { public float speedMultiplier = 1.5f, consecutiveMultiplier = 1.0f, consecutiveIncreaseAmount = 0.25f; }
     private static readonly System.Type capsuleType = typeof(CapsuleCollider);
-
-    float originalCrInAmt;
-
-    bonusTimeTextUpdater bonusTimeText;
-    ParticleSystem hitEffect;
-
-    PlayerRespawn respawnScript;
-
+    private static ScoreMultipliers multipliers = new ScoreMultipliers();
+    private static int prevPositionInOrder = -1, prevConsecutiveCount = 0, consecutiveCount = 0;
+    private static bool effectsStopped = true;
+    private playerCollisionSoundEffects pColSoundEffects = null;
+    private PlayerArrowHandler pArrowHandler = null;
+    private ScoreManager scoreManager = null;
+    private RingProperties rp = null;
+    private float originalCrInAmt = 0.25f;
+    private bonusTimeTextUpdater bonusTimeText = null;
+    private ParticleSystem hitEffect = null;
+    private PlayerRespawn respawnScript = null;
     private void Start()
     {
         scoreManager = GameManager.instance.scoreScript;
@@ -42,72 +25,45 @@ public class RingScoreScript : MonoBehaviour
         bonusTimeText = GameManager.player.GetComponentsInChildren<bonusTimeTextUpdater>(true)[0];
         hitEffect = GetComponentInChildren<ParticleSystem>();
         respawnScript = GameManager.player.GetComponent<PlayerRespawn>();
-
-        //set our prevRingInOrder to -1, so we don't apply a consecutive score multiplier for the very first ring we go through in a scene
         prevPositionInOrder = -1;
         consecutiveCount = 0;
         effectsStopped = true;
-
         originalCrInAmt = multipliers.consecutiveIncreaseAmount;
     }
-
-    void IncreaseScore()
+    private void IncreaseScore()
     {
         float totalMultiplier = 1.0f;
-
         if (prevPositionInOrder + 1 == rp.positionInOrder)
         {
-            //use our consecutive multiplier if this ring comes immediately after the previous one
             totalMultiplier += multipliers.consecutiveMultiplier;
-
-            //then increase by our increase amount
             multipliers.consecutiveMultiplier += multipliers.consecutiveIncreaseAmount;
-
             ++consecutiveCount;
         }
         else
         {
-            //otherwise, reset the consecutiveMultiplier
             multipliers.consecutiveMultiplier = originalCrInAmt;
             consecutiveCount = prevConsecutiveCount = 0;
-
             if (!effectsStopped)
             {
                 effectsStopped = true;
                 EventManager.StopRingPulse();
             }
         }
-
         scoreManager.score += (int)(scoreManager.baseScorePerRing * totalMultiplier);
         scoreManager.score_multiplier = totalMultiplier;
-        //print("Score is now: " + scoreManager.score);
     }
-
-    void UpdateRingEffects()
+    private void UpdateRingEffects()
     {
         if (consecutiveCount > prevConsecutiveCount)
         {
-            switch (consecutiveCount)
+            if (effectsStopped && 3 == consecutiveCount)
             {
-                case 3:
-                    if (effectsStopped)
-                    {
-                        effectsStopped = false;
-                        EventManager.StartRingPulse();
-                    }
-                    break;
-                case 5:
-                    break;
-                case 10:
-                    break;
-                default:
-                    break;
+                effectsStopped = false;
+                EventManager.StartRingPulse();
             }
-
             prevConsecutiveCount = consecutiveCount;
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (!respawnScript.IsRespawning && capsuleType == other.GetType() && "Player" == other.tag)
@@ -116,45 +72,31 @@ public class RingScoreScript : MonoBehaviour
 
             if (rp.positionInOrder > prevPositionInOrder)
             {
-                //update our scoreManager values
                 scoreManager.prevRingBonusTime = rp.bonusTime;
                 scoreManager.prevRingTransform = rp.transform;
                 ++scoreManager.ringHitCount;
-
-                if (GameManager.instance.gameMode.currentMode == GameModes.Cursed)
+                if (GameModes.Cursed == GameManager.instance.gameMode.currentMode)
                 {
                     GameManager.instance.roundTimer.IncreaseTimeLeft(rp.bonusTime);
                     bonusTimeText.play((rp.bonusTime).ToString("n2"));
                 }
-
                 IncreaseScore();
                 UpdateRingEffects();
                 pColSoundEffects.PlayRingClip(gameObject);
-
                 if (null != hitEffect)
                 {
-                    //Debug.Log("Hit a Ring");
                     hitEffect.Play();
-                    //MeshRenderer tmp = hitEffect.GetComponentInParent<MeshRenderer>();
-                    hitEffect.GetComponentInParent<MeshRenderer>().gameObject.GetComponent<Renderer>().enabled = false;
+                    hitEffect.GetComponentInParent<MeshRenderer>().enabled = false;
                 }
-                else
-                    print("HIT EFFECT NULL");
-
                 prevPositionInOrder = rp.positionInOrder;
             }
-
             if (rp.lastRingInScene)
             {
-                scoreManager.levelEnd();
-
-                //update our scoreManager values
-                scoreManager.prevRingBonusTime = 0f;
+                scoreManager.LevelEnd();
+                scoreManager.prevRingBonusTime = 0.0f;
                 scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
                 scoreManager.ringHitCount = 0;
-
                 prevPositionInOrder = -1;
-
                 EventManager.OnTriggerTransition(rp.nextScene);
             }
         }
