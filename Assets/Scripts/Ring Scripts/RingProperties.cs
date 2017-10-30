@@ -6,6 +6,7 @@ public class RingProperties : MonoBehaviour
     public float bonusTime = 0.0f;
     public bool lastRingInScene = false;
     public int nextScene = 1;
+    public int laps = 0;
     public bool DuplicatePosition { get { return duplicatePosition; } }
     private void Awake()
     {
@@ -32,6 +33,13 @@ public class RingProperties : MonoBehaviour
                 basePMV = boardManager.GamepadBoardSelect(BoardType.MachII);
             if (BoardType.MachII != boardManager.currentBoardSelection)
                 bonusTime *= (basePMV.minSpeed + basePMV.restingAcceleration + basePMV.maxSpeed) / (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed);
+        }
+        else if (GameModes.Race == GameManager.instance.gameMode.currentMode)
+        {
+            if (laps < 3)
+            {
+                lastRingInScene = false;
+            }
         }
     }
 }
