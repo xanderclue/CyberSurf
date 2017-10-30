@@ -13,11 +13,7 @@ public class TooltipObject : MonoBehaviour
             if (theParents.Length > 1)
                 m_tooltipText = theParents[1].m_tooltipText;
             else
-            {
-                SelectedObject theOtherParent = GetComponentInParent<SelectedObject>();
-                if (null != theOtherParent)
-                    m_tooltipText = theOtherParent.tooltipText;
-            }
+                m_tooltipText = GetComponentInParent<SelectedObject>().Null()?.tooltipText ?? m_tooltipText;
         }
         if (m_isParent)
         {

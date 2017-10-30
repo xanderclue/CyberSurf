@@ -44,7 +44,6 @@ public class TooltipTextScript : MonoBehaviour
     }
     private void Update()
     {
-        if (bugFixTimer > 0.0f)
-            bugFixTimer -= Time.deltaTime;
+        bugFixTimer -= Time.deltaTime;
     }
 }

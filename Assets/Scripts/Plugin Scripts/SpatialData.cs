@@ -5,16 +5,7 @@ using Spatial_full;
 using System;
 public class SpatialData
 {
-    public Spatial device;
-    public SpatialData()
-    {
-        try
-        {
-            device = new Spatial();
-            Open();
-        }
-        catch { }
-    }
+    public Spatial device = null;
     private double pitchAngleStart = -1000.0;
     public double pitchAngle = 0.0, rollAngle = 0.0;
     private double[] lastMsCount = { 0.0, 0.0, 0.0 };
@@ -25,14 +16,20 @@ public class SpatialData
     private double lastBearing = 0.0;
     private const double ambientMagneticField = 0.57142, ambientGravity = 1.0;
     private double fixedDeltaTime = 0.0;
-    public void Open()
+    public const float WaitForAttach = 0.5f;
+    public SpatialData()
     {
-        if (null != device)
+        try
         {
-            device.open();
-            device.Attach += new AttachEventHandler(spatial_Attach);
-            device.SpatialData += new SpatialDataEventHandler(spatial_SpatialData);
+            device = new Spatial();
+            if (null != device)
+            {
+                device.open();
+                device.Attach += new AttachEventHandler(spatial_Attach);
+                device.SpatialData += new SpatialDataEventHandler(spatial_SpatialData);
+            }
         }
+        catch (Exception e) { UnityEngine.Debug.Log(e.Message); device = null; }
     }
     public void Close()
     {

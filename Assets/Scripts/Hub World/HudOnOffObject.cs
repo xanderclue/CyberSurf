@@ -13,16 +13,12 @@ public class HudOnOffObject : MonoBehaviour
     public bool IsOn { get { return tempOnOffValue; } }
     protected void Start()
     {
-        if (null == inactiveMaterial)
-            if (null != HudMenuTab.inactiveMaterial)
-                inactiveMaterial = HudMenuTab.inactiveMaterial;
-            else
-                HudMenuTab.inactiveMaterial = inactiveMaterial = (defaultOnOffValue ? offButtonRenderer : onButtonRenderer).material;
-        if (null == activeMaterial)
-            if (null != HudMenuTab.activeMaterial)
-                activeMaterial = HudMenuTab.activeMaterial;
-            else
-                HudMenuTab.activeMaterial = activeMaterial = (defaultOnOffValue ? onButtonRenderer : offButtonRenderer).material;
+        inactiveMaterial = inactiveMaterial ??
+            HudMenuTab.inactiveMaterial ??
+            (HudMenuTab.inactiveMaterial = (defaultOnOffValue ? offButtonRenderer : onButtonRenderer).material);
+        activeMaterial = activeMaterial ??
+            HudMenuTab.activeMaterial ??
+            (HudMenuTab.activeMaterial = (defaultOnOffValue ? onButtonRenderer : offButtonRenderer).material);
         UpdateButtonDisplay();
     }
     protected void Awake()

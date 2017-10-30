@@ -20,22 +20,16 @@ public class EyeRayCaster : MonoBehaviour
             if (canSelect)
             {
                 SelectedObject selected = hit.collider.GetComponent<SelectedObject>();
-                if (null != selected)
-                {
-                    curObj = selected.gameObject;
-                    selected.Selected(reticleScript);
-                }
-                else
-                {
+                if (null == selected)
                     Debug.LogWarning("Missing SelectedObject script on object in the " + SelectedObject.LAYERNAME + " layer. (" + BuildDebugger.GetHierarchyName(hit.collider.gameObject) + ")");
-                    curObj = null;
-                }
+                curObj = selected?.gameObject;
+                selected?.Selected(reticleScript);
             }
         }
         else
             curObj = null;
-        if (preObj != null && preObj != curObj)
-            preObj.GetComponent<SelectedObject>().Deselected();
+        if (preObj != curObj)
+            preObj?.GetComponent<SelectedObject>().Deselected();
     }
     private void SetSelectionLock(bool locked)
     {

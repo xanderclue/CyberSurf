@@ -22,7 +22,7 @@ public class PlayerFanController : MonoBehaviour
     private IEnumerator DetectFanCoroutine()
     {
         motor = new MotorData();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(MotorData.WaitForAttach);
         motorCount = motor.MotorDevice?.motors.Count ?? motorCount;
         if (motorCount > 0)
             StartCoroutine(FanCoroutine());

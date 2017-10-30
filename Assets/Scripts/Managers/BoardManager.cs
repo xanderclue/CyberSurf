@@ -31,12 +31,10 @@ public class BoardManager : MonoBehaviour
     private IEnumerator DetectGyroCoroutine()
     {
         gyro = new SpatialData();
-        yield return new WaitForSeconds(0.1f);
-        if (gyro.device?.Attached ?? false)
-            gamepadEnabled = false;
-        else
+        yield return new WaitForSeconds(SpatialData.WaitForAttach);
+        gamepadEnabled = !(gyro.device?.Attached ?? false);
+        if (gamepadEnabled)
         {
-            gamepadEnabled = true;
             gyro.Close();
             gyro = null;
         }

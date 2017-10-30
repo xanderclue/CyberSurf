@@ -3,7 +3,7 @@ public class invertCollision : MonoBehaviour
 {
     private void Start()
     {
-        Mesh mesh = GetComponent<MeshFilter>()?.mesh;
+        Mesh mesh = GetComponent<MeshFilter>().Null()?.mesh;
         if (null != mesh)
         {
             Vector3[] normals = mesh.normals;
