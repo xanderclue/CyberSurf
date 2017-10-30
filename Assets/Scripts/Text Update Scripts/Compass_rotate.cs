@@ -7,7 +7,7 @@ using TMPro;
 
 public class Compass_rotate : MonoBehaviour {
 
-    public Transform thingToLookAt;
+    public Vector3 thingToLookAt;
     //public RingProperties[] sortedRings;
     //[SerializeField] float angle;
     GameObject player;
@@ -29,6 +29,7 @@ public class Compass_rotate : MonoBehaviour {
     {
         player = GameManager.player;
         myself = GetComponent<Slider>();
+        thingToLookAt = new Vector3(0, 0, 0);
         //element = gameObject.GetComponent<TextMeshPro>();
     }
     private void Update()
@@ -38,7 +39,7 @@ public class Compass_rotate : MonoBehaviour {
         {
 
 
-            Vector3 direction = thingToLookAt.position - player.transform.position;
+            Vector3 direction = thingToLookAt - player.transform.position;
 
 
             angle = Vector3.SignedAngle(player.transform.forward, direction, Vector3.up);
@@ -72,10 +73,10 @@ public class Compass_rotate : MonoBehaviour {
 
             Debug.DrawRay(player.transform.position, player.transform.forward * 100, Color.blue);
         }
-        else
+       /* else
         {
             thingToLookAt = GameObject.Find("True North").GetComponent<Transform>();
-        }
+        }*/
     }
     
 }
