@@ -4,29 +4,25 @@ public class MotorData
 {
     private MotorControl motorControl = null;
     public MotorControl MotorDevice { get { return motorControl; } }
+    public const float WaitForAttach = SpatialData.WaitForAttach;
     public MotorData()
     {
         try
         {
             motorControl = new MotorControl();
-            Open();
-        }
-        catch { }
-    }
-    public void Open()
-    {
-        if (motorControl != null)
-            if (!motorControl.Attached)
+            if (null == motorControl)
+                UnityEngine.Debug.LogWarning("Could not find the phidgets motor controller or drivers");
+            else if (motorControl.Attached)
+                UnityEngine.Debug.Log("already open");
+            else
             {
                 motorControl.Attach += new AttachEventHandler(motorControl_Attach);
                 motorControl.Detach += new DetachEventHandler(motorControl_Detach);
                 motorControl.Error += new ErrorEventHandler(motorControl_Error);
                 motorControl.open(); //310019
             }
-            else
-                UnityEngine.Debug.Log("already open");
-        else
-            UnityEngine.Debug.LogWarning("Could not find the phidgets motor controller or drivers");
+        }
+        catch (System.Exception e) { UnityEngine.Debug.Log(e.Message); motorControl = null; }
     }
     public void Close()
     {

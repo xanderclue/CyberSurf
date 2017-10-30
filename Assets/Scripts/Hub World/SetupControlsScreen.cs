@@ -13,7 +13,7 @@ public class SetupControlsScreen : MonoBehaviour
     }
     private IEnumerator WaitForDetection()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SpatialData.WaitForAttach);
         if (GameManager.instance.boardScript.gamepadEnabled)
             if (UnityEngine.VR.VRDevice.isPresent)
                 ImageObject.sprite = controlsImages[0];

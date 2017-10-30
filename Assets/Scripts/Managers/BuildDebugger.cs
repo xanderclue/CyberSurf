@@ -163,8 +163,7 @@
         {
             stcGobjTextObject = stcCompTextmesh.gameObject;
             stcGobjTextObject.SetActive(false);
-            if (null != stcImageWarningIcon)
-                stcImageWarningIcon.gameObject.SetActive(false);
+            stcImageWarningIcon?.gameObject.SetActive(false);
         }
         else enabled = false;
     }
@@ -238,3 +237,4 @@ public class SteamAppId
     }
 }
 #endif
+public static class NullChecker { public static T Null<T>(this T obj) where T : UnityEngine.Object { if (null == obj) return null; return obj; } }

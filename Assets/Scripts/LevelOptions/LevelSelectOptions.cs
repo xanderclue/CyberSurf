@@ -20,7 +20,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
         if (null == portal)
         {
             Debug.LogWarning("Missing LevelSelectOptions.portal.. Will attempt to find a world portal");
-            portal = FindObjectOfType<WorldPortalText>()?.GetComponent<WorldPortalProperties>() ?? FindObjectOfType<WorldPortalProperties>();
+            portal = FindObjectOfType<WorldPortalText>().Null()?.GetComponent<WorldPortalProperties>().Null() ?? FindObjectOfType<WorldPortalProperties>();
             if (null == portal)
                 Debug.LogWarning("LevelSelectOptions cannot find portal");
         }

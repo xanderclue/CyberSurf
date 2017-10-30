@@ -51,7 +51,7 @@ public class PlayerArrowHandler : MonoBehaviour
         }
         if (theRing.lastRingInScene)
         {
-            if (arrowScript != null)
+            if (null != arrowScript)
                 arrowScript.currentlyLookingAt = -1;
             prevPositionInOrder = 0;
         }

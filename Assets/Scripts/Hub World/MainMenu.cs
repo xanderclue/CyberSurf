@@ -26,8 +26,7 @@ public class MainMenu : MonoBehaviour
         OnBackButtonPressed += GoBack;
         OnMenuExit += OnExit;
         OnSwitchTabs += SwitchTab;
-        if (null != backButton)
-            backButtonBackPos = backButtonFrontPos = backButton.transform.localPosition;
+        backButtonBackPos = backButtonFrontPos = backButton?.transform.localPosition ?? Vector3.zero;
         backButtonBackPos.z = BACK_LOCAL_Z_POS;
         backButtonFrontPos.z = FRONT_LOCAL_Z_POS;
         mainTab.gameObject.SetActive(true);
@@ -49,8 +48,7 @@ public class MainMenu : MonoBehaviour
     private void OnExit()
     {
         GameManager.player.GetComponent<PlayerMenuController>().UnlockPlayerPosition();
-        if (null != menuBox)
-            menuBox.SetActive(false);
+        menuBox?.SetActive(false);
         if (TransitionState.SwitchingToTab == currState || TransitionState.OnTab == currState)
         {
             prevTab = currTab;

@@ -38,8 +38,7 @@ public class PagesMenuTab : MenuTab
     }
     private void UpdateText()
     {
-        if (null != pageText)
-            pageText.SetText((currPage + 1).ToString() + "/" + pages.Length.ToString());
+        pageText?.SetText((currPage + 1).ToString() + "/" + pages.Length.ToString());
     }
     private void NextPage()
     {

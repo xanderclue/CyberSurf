@@ -50,8 +50,7 @@ public abstract class SelectedObject : MonoBehaviour
             DeselectedFunction();
             if (!tooltipOnly)
             {
-                if (null != theReticle)
-                    theReticle.UpdateReticleFill(0.0f);
+                theReticle?.UpdateReticleFill(0.0f);
                 isSelected = false;
                 timeWaited = 0;
                 delayTime = 0;
