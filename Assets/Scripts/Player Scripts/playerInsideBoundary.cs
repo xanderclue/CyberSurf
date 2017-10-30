@@ -1,24 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class playerInsideBoundary : MonoBehaviour
 {
-    PlayerRespawn playerRespawnScript;
-    ScoreManager scoreScript;
-
+    private PlayerRespawn playerRespawnScript = null;
+    private ScoreManager scoreScript = null;
     private void Start()
     {
-        playerRespawnScript = gameObject.GetComponent<PlayerRespawn>();
+        playerRespawnScript = GetComponent<PlayerRespawn>();
         scoreScript = GameManager.instance.scoreScript;
     }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Boundary")
-        {
+        if ("Boundary" == collision.gameObject.tag)
             playerRespawnScript.RespawnPlayer(scoreScript.prevRingTransform, 5.0f + scoreScript.prevRingBonusTime);
-        }
     }
-
 }

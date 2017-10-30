@@ -1,17 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 public class reticle : MonoBehaviour
 {
-    //image object for the selection radial(required to function for radial bar)
-    [SerializeField] Image selectionRadial;
-
-    [SerializeField] Image reticleCenter;
-
-    void OnLevelLoaded(Scene scene, LoadSceneMode mode)
+    [SerializeField] private Image selectionRadial = null, reticleCenter = null;
+    private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex != 1)
+        if (1 != scene.buildIndex)
         {
             if (selectionRadial.IsActive())
             {
@@ -19,27 +14,20 @@ public class reticle : MonoBehaviour
                 reticleCenter.gameObject.SetActive(false);
             }
         }
-        else
+        else if (!selectionRadial.IsActive())
         {
-            if (!selectionRadial.IsActive())
-            {
-                selectionRadial.gameObject.SetActive(true);
-                reticleCenter.gameObject.SetActive(true);
-            }
+            selectionRadial.gameObject.SetActive(true);
+            reticleCenter.gameObject.SetActive(true);
         }
     }
-
-
     public void UpdateReticleFill(float ratioOfTimePassed)
     {
         selectionRadial.fillAmount = ratioOfTimePassed;
     }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnLevelLoaded;
     }
-
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnLevelLoaded;

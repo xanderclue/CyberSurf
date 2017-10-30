@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
-
 public class keepPlayerStill : MonoBehaviour
 {
     public static bool tutorialOn;
-    void Start()
+    private void Start()
     {
         tutorialOn = true;
-        Rigidbody player = gameObject.GetComponent<Rigidbody>();
-        GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(player.gameObject.transform.position, player.gameObject.transform.rotation);
+        Rigidbody playerRB = GetComponent<Rigidbody>();
+        GameManager.player.GetComponent<PlayerMenuController>().LockPlayerToPosition(playerRB.transform.position, playerRB.transform.rotation);
     }
-
-    void Update()
+    private void Update()
     {
         if (!tutorialOn)
         {
             GameManager.player.GetComponent<PlayerMenuController>().UnlockPlayerPosition();
-            enabled = false;
+            Destroy(this);
         }
     }
 }

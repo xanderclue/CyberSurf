@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
-
 public class startupSplashScreenPlayer : MonoBehaviour
 {
-    [SerializeField] private GameObject[] splashScreens;
+    [SerializeField] private GameObject[] splashScreens = null;
     [SerializeField] private float timeToPlayScreen = 8.0f;
-    [SerializeField] private GameObject tutorialObject;
-    [SerializeField] private EventSelectedObject ConfirmButton;
-    [SerializeField] private EventSelectedObject NextButton;
-    [SerializeField] private EventSelectedObject SkipButton;
+    [SerializeField] private GameObject tutorialObject = null;
+    [SerializeField] private EventSelectedObject ConfirmButton = null;
+    [SerializeField] private EventSelectedObject NextButton = null;
+    [SerializeField] private EventSelectedObject SkipButton = null;
     private static float timePlayingCurrent = 0.0f;
     private static int currentScreen = 0;
-
     private void Start()
     {
         if (currentScreen < splashScreens.Length)
@@ -53,13 +51,12 @@ public class startupSplashScreenPlayer : MonoBehaviour
             NextButton.gameObject.SetActive(false);
             SkipButton.gameObject.SetActive(false);
         }
-        else if(currentScreen == splashScreens.Length - 1)
+        else if (currentScreen == splashScreens.Length - 1)
         {
             ConfirmButton.gameObject.SetActive(false);
             NextButton.gameObject.SetActive(true);
             SkipButton.gameObject.SetActive(false);
             timePlayingCurrent = 0;
-
         }
         else if (currentScreen < splashScreens.Length)
         {
@@ -76,7 +73,6 @@ public class startupSplashScreenPlayer : MonoBehaviour
                 timePlayingCurrent = 0.0f;
             }
         }
-        
         else
         {
             keepPlayerStill.tutorialOn = false;

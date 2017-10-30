@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class BoardStandSelectBoard : SelectedObject
 {
     [SerializeField] private Color emissionColor = Color.black;
@@ -31,7 +30,7 @@ public class BoardStandSelectBoard : SelectedObject
         base.DeselectedFunction();
         renderMat.SetColor("_EmissionColor", Color.black);
     }
-    public override void SuccessFunction()
+    protected override void SuccessFunction()
     {
         StartAnimation();
     }

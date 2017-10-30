@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class AudioLevels : MonoBehaviour
 {
     private static AudioLevels instance = null;
@@ -14,45 +13,33 @@ public class AudioLevels : MonoBehaviour
         }
     }
     public delegate void SettingChangedEvent();
-    public SettingChangedEvent OnBgmVolumeChange, OnSfxVolumeChange, OnEnvVolumeChange;
+    public event SettingChangedEvent OnBgmVolumeChange, OnSfxVolumeChange, OnEnvVolumeChange;
     private float bgmVolume = 1.0f, sfxVolume = 1.0f, envVolume = 1.0f;
     public float BgmVolume
     {
-        get
-        {
-            return bgmVolume;
-        }
+        get { return bgmVolume; }
         set
         {
             bgmVolume = Mathf.Clamp01(value);
-            if (null != OnBgmVolumeChange)
-                OnBgmVolumeChange();
+            OnBgmVolumeChange?.Invoke();
         }
     }
     public float SfxVolume
     {
-        get
-        {
-            return sfxVolume;
-        }
+        get { return sfxVolume; }
         set
         {
             sfxVolume = Mathf.Clamp01(value);
-            if (null != OnSfxVolumeChange)
-                OnSfxVolumeChange();
+            OnSfxVolumeChange?.Invoke();
         }
     }
     public float EnvVolume
     {
-        get
-        {
-            return envVolume;
-        }
+        get { return envVolume; }
         set
         {
             envVolume = Mathf.Clamp01(value);
-            if (null != OnEnvVolumeChange)
-                OnEnvVolumeChange();
+            OnEnvVolumeChange?.Invoke();
         }
     }
     private void Awake()
@@ -70,12 +57,9 @@ public class AudioLevels : MonoBehaviour
         GameSettings.GetFloat("BgmVolume", ref bgmVolume);
         GameSettings.GetFloat("SfxVolume", ref sfxVolume);
         GameSettings.GetFloat("EnvVolume", ref envVolume);
-        if (null != OnBgmVolumeChange)
-            OnBgmVolumeChange();
-        if (null != OnSfxVolumeChange)
-            OnSfxVolumeChange();
-        if (null != OnEnvVolumeChange)
-            OnEnvVolumeChange();
+        OnBgmVolumeChange?.Invoke();
+        OnSfxVolumeChange?.Invoke();
+        OnEnvVolumeChange?.Invoke();
     }
     private void OnDisable()
     {
@@ -86,8 +70,5 @@ public class AudioLevels : MonoBehaviour
             GameSettings.SetFloat("EnvVolume", envVolume);
         }
     }
-    private void OnApplicationQuit()
-    {
-        applicationRunning = false;
-    }
+    private void OnApplicationQuit() { applicationRunning = false; }
 }

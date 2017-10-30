@@ -1,38 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class dimSpotlight : MonoBehaviour
 {
-    Light spotlight;
-    float currentTime;
-    float timeToPlay;
-     
-    void Start()
+    private Light spotlight = null;
+    private float currentTime = 0.0f;
+    private const float timeToPlay = 15.0f;
+    private void Start()
     {
-        timeToPlay = 15.0f;
         currentTime = 0.0f;
-        spotlight = this.gameObject.GetComponent<Light>();
+        spotlight = GetComponent<Light>();
     }
-
-
-    void Update()
+    private void Update()
     {
-        if (keepPlayerStill.tutorialOn == false)
+        currentTime += Time.deltaTime;
+        if (keepPlayerStill.tutorialOn)
         {
-
-            currentTime += Time.deltaTime;
-            spotlight.intensity = Mathf.Lerp(spotlight.intensity, 0.0f, currentTime / timeToPlay);
+            spotlight.intensity = Mathf.Lerp(spotlight.intensity, 50.0f, currentTime / timeToPlay);
+            if (50.0f == spotlight.intensity)
+                currentTime = 0.0f;
         }
         else
-        {
-            currentTime += Time.deltaTime;
-            spotlight.intensity = Mathf.Lerp(spotlight.intensity, 50.0f, currentTime / timeToPlay);
-            if (spotlight.intensity == 50)
-            {
-                currentTime = 0.0f;
-            }
-        }
-
+            spotlight.intensity = Mathf.Lerp(spotlight.intensity, 0.0f, currentTime / timeToPlay);
     }
 }

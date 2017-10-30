@@ -1,10 +1,9 @@
 ﻿public class LevelMenuButton : SelectedObject
 {
     public delegate void ButtonPressEvent();
-    public ButtonPressEvent OnButtonPressed;
-    public override void SuccessFunction()
+    public event ButtonPressEvent OnButtonPressed;
+    protected override void SuccessFunction()
     {
-        if (null != OnButtonPressed)
-            OnButtonPressed();
+        OnButtonPressed?.Invoke();
     }
 }

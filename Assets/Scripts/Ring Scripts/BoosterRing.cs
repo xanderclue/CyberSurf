@@ -1,21 +1,16 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class BoosterRing : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer arrowRenderer;
-    [SerializeField] private Transform directionTransform;
-    [SerializeField] private float boostAmount = 3.0f;
-    [SerializeField] private float boostLength = 0.25f;
+    [SerializeField] private MeshRenderer arrowRenderer = null;
+    [SerializeField] private Transform directionTransform = null;
+    [SerializeField] private float boostAmount = 3.0f, boostLength = 0.25f;
     private float timeIntoBoost = 0.0f;
-    private Rigidbody rb;
-
+    private Rigidbody rb = null;
     private void Start()
     {
         arrowRenderer.enabled = false;
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if ("Player" == other.tag)
@@ -24,8 +19,7 @@ public class BoosterRing : MonoBehaviour
             StartCoroutine(BoostCoroutine());
         }
     }
-
-    IEnumerator BoostCoroutine()
+    private IEnumerator BoostCoroutine()
     {
         while (timeIntoBoost < boostLength)
         {

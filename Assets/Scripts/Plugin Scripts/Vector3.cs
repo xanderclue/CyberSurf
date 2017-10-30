@@ -1,6 +1,6 @@
 namespace Spatial_full
 {
-    class SpVector3
+    public class SpVector3
     {
         public double X, Y, Z;
         public SpVector3(double x, double y, double z)

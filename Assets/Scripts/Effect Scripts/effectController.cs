@@ -1,27 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public enum particleEffectTypesEnum { rain, snow, crash, sandDust, other }
-
 public class effectController : MonoBehaviour
 {
-    public ParticleSystem[] triggerParticleEffects;
-
-    public ParticleSystem dustField;
-    int particleType = 0;
+    [SerializeField] private ParticleSystem[] triggerParticleEffects = null;
+    [SerializeField] private ParticleSystem dustField = null;
+    private int particleType = 0;
+    private const int particleLayer = 9;
+    public ParticleSystem[] TriggerParticleEffects { get { return triggerParticleEffects; } }
+    public ParticleSystem DustField { get { return dustField; } }
     public ParticleSystem getParticleToDo()
     {
-        if (particleType == 0)
-            return triggerParticleEffects[0];
-        else
-            return triggerParticleEffects[1];
-
-
-
+        return triggerParticleEffects[particleType];
     }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += dustFieldActivation;
@@ -30,80 +21,54 @@ public class effectController : MonoBehaviour
     {
         SceneManager.sceneLoaded -= dustFieldActivation;
     }
-
-
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
         disableAllEffects();
     }
-
-    void dustFieldActivation(Scene scene, LoadSceneMode loadMode)
+    private void dustFieldActivation(Scene scene, LoadSceneMode loadMode)
     {
-
-        switch (SceneManager.GetActiveScene().buildIndex)
-        {
-            case 0:
-                dustField.Stop();
-                break;
-            case 1:
-                dustField.Stop();
-                break;
-            default:
-                dustField.Play();
-                //dustField.Pause();
-                break;
-        }
+        if (SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset)
+            dustField.Play();
+        else
+            dustField.Stop();
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (particleLayer == other.gameObject.layer)
         {
-            particleEffectTypesEnum theEffect = other.gameObject.GetComponent<effectZoneProperties>().myEffect;
+            particleEffectTypesEnum theEffect = other.GetComponent<effectZoneProperties>().myEffect;
             switch (theEffect)
             {
                 case particleEffectTypesEnum.rain:
-                    {
-                        triggerParticleEffects[0].Play();
-                        particleType = 0;
-                    }
+                    triggerParticleEffects[0].Play();
+                    particleType = 0;
                     break;
                 case particleEffectTypesEnum.snow:
-                    {
-                        triggerParticleEffects[1].Play();
-                        particleType = 1;
-                    }
+                    triggerParticleEffects[1].Play();
+                    particleType = 1;
                     break;
-
                 case particleEffectTypesEnum.sandDust:
                     triggerParticleEffects[3].Play();
                     break;
                 case particleEffectTypesEnum.other:
-                    for (int i = 0; i < triggerParticleEffects.Length; i++)
-                    {
-                        triggerParticleEffects[i].Play();
-                    }
+                    foreach (ParticleSystem triggerParticleEffect in triggerParticleEffects)
+                        triggerParticleEffect.Play();
                     break;
                 default:
                     break;
             }
         }
     }
-
     public void disableAllEffects()
     {
-        for (int i = 0; i < triggerParticleEffects.Length; i++)
-        {
-            triggerParticleEffects[i].Stop();
-        }
+        foreach (ParticleSystem triggerParticleEffect in triggerParticleEffects)
+            triggerParticleEffect.Stop();
     }
-
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (particleLayer == other.gameObject.layer)
         {
-            particleEffectTypesEnum theEffect = other.gameObject.GetComponent<effectZoneProperties>().myEffect;
+            particleEffectTypesEnum theEffect = other.GetComponent<effectZoneProperties>().myEffect;
             switch (theEffect)
             {
                 case particleEffectTypesEnum.rain:
@@ -116,10 +81,8 @@ public class effectController : MonoBehaviour
                     triggerParticleEffects[3].Stop();
                     break;
                 case particleEffectTypesEnum.other:
-                    for (int i = 0; i < triggerParticleEffects.Length; i++)
-                    {
-                        triggerParticleEffects[i].Stop();
-                    }
+                    foreach (ParticleSystem triggerParticleEffect in triggerParticleEffects)
+                        triggerParticleEffect.Stop();
                     break;
                 default:
                     break;

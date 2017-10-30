@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 public class LevelMenuButtons : LevelMenuObjectGroup
 {
-    [SerializeField]
-    TopScoreDisplay topScoreDisplay;
-
-    [SerializeField]
-    private LevelMenuButton confirmButton = null, defaultButton = null, exitButton = null;
-
+    [SerializeField] private TopScoreDisplay topScoreDisplay;
+    [SerializeField] private LevelMenuButton confirmButton = null, defaultButton = null, exitButton = null;
     private void OnEnable()
     {
         confirmButton.OnButtonPressed += ButtonConfirmFunction;

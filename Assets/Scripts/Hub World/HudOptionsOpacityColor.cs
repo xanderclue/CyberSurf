@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using TMPro;
-
 public class HudOptionsOpacityColor : MonoBehaviour
 {
     public delegate void ValueChangedEvent();
-    public ValueChangedEvent OnValueChanged;
+    public event ValueChangedEvent OnValueChanged;
     [SerializeField] private EventSelectedObject opacityMinusButton = null, opacityPlusButton = null;
     [SerializeField] private EventSelectedObject colorPreviousButton = null, colorNextButton = null;
     [SerializeField] private TextMeshPro opacityPercentageText = null;
@@ -60,7 +59,6 @@ public class HudOptionsOpacityColor : MonoBehaviour
         if (GetIndexOf(ActualColor) < 0)
             ActualColor = DefaultColor;
     }
-
     private void OnEnable()
     {
         opacityMinusButton.OnSelectSuccess += OpacityMinusFunction;
@@ -68,7 +66,6 @@ public class HudOptionsOpacityColor : MonoBehaviour
         colorPreviousButton.OnSelectSuccess += ColorPreviousFunction;
         colorNextButton.OnSelectSuccess += ColorNextFunction;
     }
-
     private void OnDisable()
     {
         opacityMinusButton.OnSelectSuccess -= OpacityMinusFunction;
@@ -76,7 +73,6 @@ public class HudOptionsOpacityColor : MonoBehaviour
         colorPreviousButton.OnSelectSuccess -= ColorPreviousFunction;
         colorNextButton.OnSelectSuccess -= ColorNextFunction;
     }
-
     private void ColorNextFunction()
     {
         ++tempColorIndex;
@@ -84,7 +80,6 @@ public class HudOptionsOpacityColor : MonoBehaviour
             tempColorIndex = 0;
         UpdateDisplay();
     }
-
     private void ColorPreviousFunction()
     {
         --tempColorIndex;
@@ -92,27 +87,22 @@ public class HudOptionsOpacityColor : MonoBehaviour
             tempColorIndex = colors.Length - 1;
         UpdateDisplay();
     }
-
     private void OpacityPlusFunction()
     {
         tempOpacity = Mathf.Clamp01(tempOpacity + opacityIncrement);
         UpdateDisplay();
     }
-
     private void OpacityMinusFunction()
     {
         tempOpacity = Mathf.Clamp01(tempOpacity - opacityIncrement);
         UpdateDisplay();
     }
-
     private void UpdateDisplay()
     {
         colorPreview.color = ColorPreviewValue;
         opacityPercentageText.SetText(Mathf.RoundToInt(tempOpacity * 100.0f).ToString() + "%");
-        if (null != OnValueChanged)
-            OnValueChanged();
+        OnValueChanged?.Invoke();
     }
-
     private int GetIndexOf(Color obj)
     {
         for (int i = 0; i < colors.Length; ++i)
@@ -123,7 +113,6 @@ public class HudOptionsOpacityColor : MonoBehaviour
         }
         return -1;
     }
-
     public void ResetValue()
     {
         tempColorIndex = GetIndexOf(ActualColor);

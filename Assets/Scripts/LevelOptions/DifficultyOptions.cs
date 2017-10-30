@@ -2,12 +2,9 @@
 using TMPro;
 public class DifficultyOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton leftButton = null, rightButton = null;
-    [SerializeField]
-    private TextMeshPro difficultyText = null;
-    [SerializeField]
-    private GameDifficulties defaultDifficulty = GameDifficulties.Normal;
+    [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField] private TextMeshPro difficultyText = null;
+    [SerializeField] private GameDifficulties defaultDifficulty = GameDifficulties.Normal;
     private GameDifficulties tempDifficulty;
     private void OnEnable()
     {

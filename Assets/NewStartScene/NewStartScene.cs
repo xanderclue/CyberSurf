@@ -1,1 +1,10 @@
-﻿public class NewStartScene : UnityEngine.MonoBehaviour { private void Awake() { BuildDebugger.InitDebugger(); UnityEngine.SceneManagement.SceneManager.LoadScene(1); } }
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+public class NewStartScene : MonoBehaviour
+{
+    private void Awake()
+    {
+        BuildDebugger.InitDebugger();
+        SceneManager.LoadScene(1);
+    }
+}

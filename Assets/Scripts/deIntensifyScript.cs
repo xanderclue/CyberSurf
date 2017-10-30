@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
-
 public class deIntensifyScript : MonoBehaviour
 {
     private const float timeToMove = 15.0f;
-    private Material bluLight, betterLight;
+    private Material bluLight = null, betterLight = null;
     private float currentTime = 0.0f;
-
-    void Start()
+    private void Start()
     {
-        betterLight = gameObject.GetComponent<Renderer>().material;
+        betterLight = GetComponent<Renderer>().material;
         bluLight = Resources.Load("lambert1") as Material;
     }
-
-    void Update()
+    private void Update()
     {
         if (!keepPlayerStill.tutorialOn)
         {

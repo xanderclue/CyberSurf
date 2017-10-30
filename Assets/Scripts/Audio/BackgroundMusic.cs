@@ -1,29 +1,26 @@
 ﻿using UnityEngine;
 public class BackgroundMusic : MonoBehaviour
 {
-    [HideInInspector]
-    public AudioSource audioSource = null;
+    private AudioSource audioSource = null;
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Music");
-        if (objs.Length > 1 && objs[0].GetComponent<BackgroundMusic>().audioSource.clip.name == objs[1].GetComponent<BackgroundMusic>().audioSource.clip.name)
+        if (objs.Length > 1)
         {
-            Destroy(gameObject);
+            if (objs[0].GetComponent<AudioSource>().clip.name == objs[1].GetComponent<AudioSource>().clip.name)
+                Destroy(gameObject);
+            else
+            {
+                Destroy(objs[0]);
+                DontDestroyOnLoad(audioSource);
+            }
         }
-        else if (objs.Length > 1 && objs[0].GetComponent<BackgroundMusic>().audioSource.clip.name != objs[1].GetComponent<BackgroundMusic>().audioSource.clip.name)
-        {
-            Destroy(objs[0]);
-        }
-        DontDestroyOnLoad(audioSource);
-    }
-    private void Start()
-    {
-        UpdateVolume();
     }
     private void OnEnable()
     {
         AudioLevels.Instance.OnBgmVolumeChange += UpdateVolume;
+        UpdateVolume();
     }
     private void OnDisable()
     {

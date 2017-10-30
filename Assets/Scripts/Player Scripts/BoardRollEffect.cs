@@ -1,140 +1,89 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class BoardRollEffect : MonoBehaviour
 {
-    Transform boardTransform;
-    Rigidbody playerRB;
-
-    int currScene;
-    float zRotation;
-    float prevYRotation;
-    bool isMoving;
-    float xRotation;
-    float forwardSpeed;
-
+    private Rigidbody playerRB = null;
+    private int currScene = 1;
+    private float zRotation = 0.0f, prevYRotation = 0.0f, xRotation = 0.0f, forwardSpeed = 0.0f;
+    [SerializeField] private PitchRollEffectVariables variables = null;
     [System.Serializable]
     public class PitchRollEffectVariables
     {
-        [Header("Roll")]
-        public float rollIncreaseRate = 1.2f;
+        [Header("Roll")] public float rollIncreaseRate = 1.2f;
         public float rollDecreaseRate = 0.1f;
-        public float maxRollDegree = 25f;
-
-        [Header("Pitch")]
-        public float pitchIncreaseRate = 1f;
+        public float maxRollDegree = 25.0f;
+        [Header("Pitch")] public float pitchIncreaseRate = 1.0f;
         public float pitchDecreaseRate = 0.5f;
-        public float maxPitchDegree = 20f;
+        public float maxPitchDegree = 20.0f;
     }
-
-    [SerializeField]
-    PitchRollEffectVariables variables;
-
-    void LevelSelectionUnlocked(bool locked)
+    private void LevelSelectionUnlocked(bool locked)
     {
-        if (locked == false)
+        if (!locked)
         {
             StopAllCoroutines();
-
-            if (boardTransform == null)
-                boardTransform = GetComponent<Transform>();
-
-            if (playerRB == null)
+            if (null == playerRB)
                 playerRB = GetComponentInParent<Rigidbody>();
-
-            //reset our zRotation and prevYRotation once level manager has updated the player position
-            zRotation = 0f;
-            prevYRotation = boardTransform.eulerAngles.y;
-
-            //reset our xRotation and prevXRotation as well
-            xRotation = 0f;
-
+            zRotation = 0.0f;
+            prevYRotation = transform.eulerAngles.y;
+            xRotation = 0.0f;
             StartCoroutine(BoardRollCoroutine());
         }
     }
-
-    void RollEffect()
+    private void RollEffect()
     {
-        //no reason to do any calculations if there was no difference between rotations
-        if (prevYRotation != boardTransform.eulerAngles.y)
+        if (prevYRotation != transform.eulerAngles.y)
         {
-            zRotation += Mathf.DeltaAngle(boardTransform.eulerAngles.y, prevYRotation) * variables.rollIncreaseRate;
-            //print("Z ROT: " + zRotation);
-
-            //clamp our rotation to our maxRollDegree
+            zRotation += Mathf.DeltaAngle(transform.eulerAngles.y, prevYRotation) * variables.rollIncreaseRate;
             zRotation = Mathf.Clamp(zRotation, -variables.maxRollDegree, variables.maxRollDegree);
-
-            //don't forget to update our prevYRotation
-            prevYRotation = boardTransform.eulerAngles.y;
+            prevYRotation = transform.eulerAngles.y;
         }
-
-        //only update our zRotation if there is a rotation to update
-        if (zRotation != 0f)
+        if (0.0f != zRotation)
         {
-            //lerp to 0 based off of our rollDecreaseRate
-            zRotation = Mathf.Lerp(zRotation, 0f, variables.rollDecreaseRate);
-
-            //set our rotation to 0 if we're within tolerance
+            zRotation = Mathf.Lerp(zRotation, 0.0f, variables.rollDecreaseRate);
             if (zRotation < 0.1f && zRotation > -0.1f)
-                zRotation = 0f;
-
-            boardTransform.rotation = Quaternion.Euler(boardTransform.eulerAngles.x, boardTransform.eulerAngles.y, zRotation);
+                zRotation = 0.0f;
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
         }
     }
-
-    void PitchEffect()
-    {      
-        //only do our pitch effect if we are in start or main menu scenes
-        if (currScene == 0 || currScene == 1)
+    private void PitchEffect()
+    {
+        if (currScene < LevelSelectOptions.LevelBuildOffset)
         {
-            forwardSpeed = boardTransform.InverseTransformDirection(playerRB.velocity).z;
-            //print("FORWARD SPEED: " + forwardSpeed);
-
-            if (!(forwardSpeed < 0.1f && forwardSpeed > -0.1f))
+            forwardSpeed = transform.InverseTransformDirection(playerRB.velocity).z;
+            if (forwardSpeed >= 0.1f || forwardSpeed <= -0.1f)
             {
                 xRotation += forwardSpeed * variables.pitchIncreaseRate;
                 xRotation = Mathf.Clamp(xRotation, -variables.maxPitchDegree, variables.maxPitchDegree);
             }
-
-            if (xRotation != 0f)
+            if (0.0f != xRotation)
             {
-                xRotation = Mathf.Lerp(xRotation, 0f, variables.pitchDecreaseRate);
-
+                xRotation = Mathf.Lerp(xRotation, 0.0f, variables.pitchDecreaseRate);
                 if (xRotation < 0.1f && xRotation > -0.1f)
-                    xRotation = 0f;
-
-                boardTransform.rotation = Quaternion.Euler(xRotation, boardTransform.eulerAngles.y, boardTransform.eulerAngles.z);
+                    xRotation = 0.0f;
+                transform.rotation = Quaternion.Euler(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
             }
         }
     }
-
-    IEnumerator BoardRollCoroutine()
+    private IEnumerator BoardRollCoroutine()
     {
         yield return new WaitForFixedUpdate();
-
         RollEffect();
         PitchEffect();
-
         StartCoroutine(BoardRollCoroutine());
     }
-
-    void OnLevelLoaded(Scene scene, LoadSceneMode mode)
+    private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
         currScene = SceneManager.GetActiveScene().buildIndex;
     }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnLevelLoaded;
         EventManager.OnSelectionLock += LevelSelectionUnlocked;
     }
-
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnLevelLoaded;
         EventManager.OnSelectionLock -= LevelSelectionUnlocked;
     }
-
 }

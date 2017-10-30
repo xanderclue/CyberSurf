@@ -1,6 +1,6 @@
 namespace Spatial_full
 {
-    class Matrix3x3
+    public class Matrix3x3
     {
         public double[,] matrix = new double[3, 3];
         public Matrix3x3(
