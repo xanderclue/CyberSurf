@@ -7,7 +7,7 @@
         {
             if (null == stcStrlistLines)
                 stcStrlistLines = new System.Collections.Generic.List<string>();
-            string lStrTimeStamp = Xander.Debugging.Helper.TimeStamp;
+            string lStrTimeStamp = Xander.Debugging.Helper.DozenalTimeStamp;
             string logpath = LogFilePath(lStrTimeStamp);
             string logError = "Unknown Error";
             try { stcSwWriter = new System.IO.StreamWriter(logpath, true); } catch (System.Exception e) { stcSwWriter = null; logError = e.Message; }
@@ -29,7 +29,6 @@
     {
 #if DEBUGGER
         get { return stcBoolWasd; }
-        private set { stcBoolWasd = value; UnityEngine.Debug.Log("F10: WASD controls are turned " + (value ? "on." : "off.")); }
 #else
         get { return false; }
 #endif
@@ -49,11 +48,11 @@
     private static bool stcBoolWasd = false;
     private static string LogFilePath(string pStrTimeStamp)
     {
-        return UnityEngine.Application.persistentDataPath + "/log" + pStrTimeStamp.Substring(0, 8) + ".txt";
+        return UnityEngine.Application.persistentDataPath + "/log" + pStrTimeStamp.Substring(0, 7) + ".txt";
     }
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
-        string lStrTimeStamp = Xander.Debugging.Helper.TimeStamp;
+        string lStrTimeStamp = Xander.Debugging.Helper.DozenalTimeStamp;
         WriteLine(pEnmLogType.ToString() + " << " + pStrLogMessage);
         if (UnityEngine.LogType.Log != pEnmLogType)
         {
@@ -85,7 +84,7 @@
         {
             stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
                 "Time: " + pStrTimeStamp +
-                " @" + Xander.Debugging.Helper.Dozenal(stcUlongFrameCounter) +
+                " @" + Xander.Dozenal.DozenalStrings.Dozenal(stcUlongFrameCounter) +
                 "\nLog Message: \"" + pStrLogMessage + "\"\n");
             if (null == pStrStackTrace || "" == pStrStackTrace)
                 stcSwWriter.Write("NO STACK TRACE\n\n");
@@ -117,7 +116,7 @@
         }
         if (null == stcStrlistLines)
             stcStrlistLines = new System.Collections.Generic.List<string>();
-        pStrLine = Xander.Debugging.Helper.Dozenal(stcUlongLineCounter) + ": " + pStrLine;
+        pStrLine = Xander.Dozenal.DozenalStrings.Dozenal(stcUlongLineCounter) + ": " + pStrLine;
         ++stcUlongLineCounter;
         stcStrlistLines.Add(pStrLine);
         if (stcStrlistLines.Count > cstIntMaxNumLines)
@@ -175,9 +174,16 @@
             UnityEngine.Input.GetKeyDown(KeyInputManager.XBOX_LB)))
             stcGobjTextObject.SetActive(!stcGobjTextObject.activeSelf);
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F10))
-            WASD = !WASD;
+            UnityEngine.Debug.Log("F10: WASD controls are turned " + ((stcBoolWasd = !stcBoolWasd) ? "on." : "off."));
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F12) &&
+            (UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift) ||
+            UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift)))
+        {
+            UnityEngine.Debug.Log("Shift+F12: all GameSettings will be deleted" + Xander.Debugging.DebugExtensions.Info(this), this);
+            GameSettings.ResetAll();
+        }
 #endif
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
-            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + Xander.Debugging.Helper.TimeStamp + ".png");
+            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + Xander.Debugging.Helper.DozenalTimeStamp + ".png");
     }
 }

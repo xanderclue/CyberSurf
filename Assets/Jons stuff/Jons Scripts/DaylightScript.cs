@@ -1,126 +1,88 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Xander.Debugging;
 public class DaylightScript : MonoBehaviour
 {
     public enum TimeOfDay { Noon, Afternoon, Evening, Midnight, Morning, NumTimesOfDay }
-    [SerializeField]
-    GameObject sun = null;
-    
-    Material ogSkybox;
-    ParticleSystem stars;
-     int currentScene;
+    [SerializeField] private GameObject sun = null;
+    private Material ogSkybox = null;
+    private ParticleSystem.MainModule stars;
+    private int currentScene = -1;
     public static TimeOfDay currentTimeOfDay = TimeOfDay.Noon;
-
     private void Start()
     {
-        sun = GameObject.FindGameObjectWithTag("sun");
-        
+        if (null == sun)
+            sun = GameObject.FindGameObjectWithTag("sun");
         ogSkybox = RenderSettings.skybox;
-        stars = GameObject.FindGameObjectWithTag("stars").GetComponent<ParticleSystem>();
-
+        stars = GameObject.FindGameObjectWithTag("stars").GetComponent<ParticleSystem>().main;
     }
-
-
-
-    private void lookForTime()
+    private void OnEnable()
     {
-        if (currentScene > 1)
+        currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.sceneLoaded += GetCurrentScene;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= GetCurrentScene;
+    }
+    private void GetCurrentScene(Scene scene, LoadSceneMode mode)
+    {
+        currentScene = scene.buildIndex;
+    }
+    private void Update()
+    {
+        if (currentScene >= LevelSelectOptions.LevelBuildOffset)
         {
-            ParticleSystem.MainModule starsMain = stars.main;
-            //for those with skybox, uses skybox to light up scene instead of color 
             switch (currentTimeOfDay)
             {
-                //noon
                 case TimeOfDay.Noon:
                     {
+                        sun.transform.localRotation = Quaternion.Euler(73.0f, 0.0f, 0.0f);
                         sun.SetActive(true);
-                        Vector3 highNoon = new Vector3(73f, 0, 0);
-                        sun.transform.localRotation = Quaternion.Euler(highNoon);
-                        starsMain.maxParticles = 1;
-                     //sets ambient light to cheese
-                        RenderSettings.ambientLight = new Color(1.0f, 1.0f, 0.5f); 
-                      //can change skybox
-                          RenderSettings.skybox = ogSkybox;
-
+                        stars.maxParticles = 1;
+                        RenderSettings.ambientLight = new Color(1.0f, 1.0f, 0.5f);
+                        RenderSettings.skybox = ogSkybox;
                     }
                     break;
-                    //afternoon
                 case TimeOfDay.Afternoon:
                     {
+                        sun.transform.localRotation = Quaternion.Euler(120.0f, 0.0f, 0.0f);
                         sun.SetActive(true);
-                        Vector3 afterNoon = new Vector3(120f, 0, 0);
-                        starsMain.maxParticles = 1;
-
+                        stars.maxParticles = 1;
                         RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
-                       
-                        sun.transform.localRotation = Quaternion.Euler(afterNoon);
-
-                       RenderSettings.skybox = ogSkybox;
-
+                        RenderSettings.skybox = ogSkybox;
                     }
                     break;
-                    //evening
                 case TimeOfDay.Evening:
                     {
+                        sun.transform.localRotation = Quaternion.Euler(166.24f, 0.0f, 0.0f);
                         sun.SetActive(true);
-                        //180.6
-                        Vector3 evening = new Vector3(166.24f, 0, 0);
-                        starsMain.maxParticles = 1;
-
-                        //ambient 0.257
+                        stars.maxParticles = 1;
                         RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f);
-                        sun.transform.localRotation = Quaternion.Euler(evening);
-
-                          RenderSettings.skybox = ogSkybox;
-
+                        RenderSettings.skybox = ogSkybox;
                     }
                     break;
-                    //night
                 case TimeOfDay.Midnight:
                     {
                         sun.SetActive(false);
-                          RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
-                       // RenderSettings.ambientLight = new Color(1f, 1f, 1f);
-
-                        starsMain.maxParticles = 2000;
-
+                        stars.maxParticles = 2000;
+                        RenderSettings.ambientLight = Color.gray;
                         RenderSettings.skybox = null;
                     }
                     break;
-                    //morning
                 case TimeOfDay.Morning:
                     {
+                        sun.transform.localRotation = Quaternion.Euler(36.0f, 0.0f, 0.0f);
                         sun.SetActive(true);
-                        Vector3 morning = new Vector3(36f, 0, 0);
-                        starsMain.maxParticles = 1;
-                        RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
+                        stars.maxParticles = 1;
+                        RenderSettings.ambientLight = Color.gray;
                         RenderSettings.skybox = ogSkybox;
-                        sun.transform.localRotation = Quaternion.Euler(morning);
-
-
                     }
                     break;
                 default:
-                    {
-                        Debug.Log("bad");
-                    }
+                    Debug.LogWarning("bad" + this.Info(), this);
                     break;
             }
         }
-
-    }
- 
-    // Update is called once per frame
-    void Update()
-    {
-        currentScene = SceneManager.GetActiveScene().buildIndex;
-
-        lookForTime();
-       
-
-
     }
 }
