@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.Debugging;
 public class TimerTextUpdateScript : MonoBehaviour
 {
     private ManagerClasses.RoundTimer roundTimer = null;
@@ -42,7 +43,7 @@ public class TimerTextUpdateScript : MonoBehaviour
                 textToWrite = " " + roundTimer.TimeInLevel.ToString("n2") + " ";
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 textToWrite = "TIMER BROKE";
                 break;
         }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Xander.Debugging;
+using Xander.NullConversion;
 public class RingSetupScript : MonoBehaviour
 {
     [SerializeField] private GameObject[] ringDifficultyParents = null;
@@ -16,7 +18,7 @@ public class RingSetupScript : MonoBehaviour
         difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
         roundTimer = GameManager.instance.roundTimer;
         foreach (GameObject item in ringDifficultyParents)
-            item?.SetActive(false);
+            item.ConvertNull()?.SetActive(false);
         ringDifficultyParents[(int)difficulty].SetActive(true);
         List<RingProperties> ringList = new List<RingProperties>();
         RingProperties[] rings = GetComponentsInChildren<RingProperties>();
@@ -66,7 +68,7 @@ public class RingSetupScript : MonoBehaviour
                 arrowScript.currentlyLookingAt = rings.Count - 1;
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
     }

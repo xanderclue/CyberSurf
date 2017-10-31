@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using Xander.Debugging;
+using Xander.NullConversion;
 public abstract class SelectedObject : MonoBehaviour
 {
     [Multiline] public string tooltipText = "";
@@ -50,7 +52,7 @@ public abstract class SelectedObject : MonoBehaviour
             DeselectedFunction();
             if (!tooltipOnly)
             {
-                theReticle?.UpdateReticleFill(0.0f);
+                theReticle.ConvertNull()?.UpdateReticleFill(0.0f);
                 isSelected = false;
                 timeWaited = 0;
                 delayTime = 0;
@@ -91,12 +93,12 @@ public abstract class SelectedObject : MonoBehaviour
     {
         if (Selectable_Layer != gameObject.layer)
         {
-            Debug.LogWarning("A SelectedObject is not in " + LAYERNAME + " layer. (\"" + BuildDebugger.GetHierarchyName(gameObject) + "\") Changing layer from " +
-                LayerMask.LayerToName(gameObject.layer) + " (" + gameObject.layer + ") to " + LAYERNAME + " (" + Selectable_Layer + ")");
+            Debug.LogWarning("A SelectedObject is not in " + LAYERNAME + " layer. (\"" + gameObject.HierarchyPath() + "\") Changing layer from " +
+                LayerMask.LayerToName(gameObject.layer) + " (" + gameObject.layer + ") to " + LAYERNAME + " (" + Selectable_Layer + ")" + this.Info(), this);
             gameObject.layer = Selectable_Layer;
         }
         if (null == GetComponent<Collider>())
-            Debug.LogWarning("A SelectedObject script is attached to an object that does not have a Collider component. (\"" + BuildDebugger.GetHierarchyName(gameObject) + "\")");
+            Debug.LogWarning("A SelectedObject script is attached to an object that does not have a Collider component. (\"" + gameObject.HierarchyPath() + "\")" + this.Info(), this);
         if (!tooltipOnly)
         {
             successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");

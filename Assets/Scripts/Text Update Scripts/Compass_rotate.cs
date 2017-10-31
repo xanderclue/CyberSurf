@@ -6,7 +6,6 @@ public class Compass_rotate : MonoBehaviour
     private Transform player = null;
     private Slider myself = null;
     private float angle = 0.0f, pointPosition = 0.5f;
-    private int currentlyLookingAt = -1;
     private void Start()
     {
         player = GameManager.player.transform;

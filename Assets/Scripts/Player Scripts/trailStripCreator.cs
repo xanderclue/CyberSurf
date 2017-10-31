@@ -53,9 +53,7 @@ public class trailStripCreator : MonoBehaviour
             cookieTransforms = new Transform[numberOfPoints];
             for (int i = 0; i < numberOfPoints; ++i)
             {
-                GameObject go = Instantiate(cookiePrefab);
-                DontDestroyOnLoad(go);
-                go.transform.parent = GameManager.player.transform;
+                GameObject go = Instantiate(cookiePrefab, GameManager.player.transform);
                 cookieRenderers[i] = go.GetComponent<MeshRenderer>();
                 cookieTransforms[i] = go.transform;
                 cookieRenderers[i].enabled = false;

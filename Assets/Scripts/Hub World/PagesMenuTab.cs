@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.NullConversion;
 public class PagesMenuTab : MenuTab
 {
     [SerializeField] private GameObject[] pages = null;
@@ -38,7 +39,7 @@ public class PagesMenuTab : MenuTab
     }
     private void UpdateText()
     {
-        pageText?.SetText((currPage + 1).ToString() + "/" + pages.Length.ToString());
+        pageText.ConvertNull()?.SetText((currPage + 1).ToString() + "/" + pages.Length.ToString());
     }
     private void NextPage()
     {

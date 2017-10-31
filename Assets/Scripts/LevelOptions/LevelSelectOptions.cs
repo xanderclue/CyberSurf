@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Xander.NullConversion;
+using Xander.Debugging;
 public class LevelSelectOptions : LevelMenuObjectGroup
 {
     [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
@@ -19,10 +21,10 @@ public class LevelSelectOptions : LevelMenuObjectGroup
         base.Start();
         if (null == portal)
         {
-            Debug.LogWarning("Missing LevelSelectOptions.portal.. Will attempt to find a world portal");
-            portal = FindObjectOfType<WorldPortalText>().Null()?.GetComponent<WorldPortalProperties>().Null() ?? FindObjectOfType<WorldPortalProperties>();
+            Debug.LogWarning("Missing LevelSelectOptions.portal.. Will attempt to find a world portal" + this.Info(), this);
+            portal = FindObjectOfType<WorldPortalText>().ConvertNull()?.GetNullConvertedComponent<WorldPortalProperties>() ?? FindObjectOfType<WorldPortalProperties>();
             if (null == portal)
-                Debug.LogWarning("LevelSelectOptions cannot find portal");
+                Debug.LogWarning("LevelSelectOptions cannot find portal" + this.Info(), this);
         }
     }
     private void OnEnable()
@@ -65,7 +67,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
                 levelImage.sprite = backyardRacetrackImage;
                 break;
             default:
-                Debug.LogWarning("Switch statement on Level enum tempLevel in LevelSelectOptions.cs is missing case for Level." + tempLevel.ToString());
+                Debug.LogWarning("Switch statement on Level enum tempLevel in LevelSelectOptions.cs is missing case for Level." + tempLevel.ToString() + this.Info(), this);
                 break;
         }
     }
