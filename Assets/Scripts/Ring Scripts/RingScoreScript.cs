@@ -92,12 +92,32 @@ public class RingScoreScript : MonoBehaviour
             }
             if (rp.lastRingInScene)
             {
-                scoreManager.LevelEnd();
-                scoreManager.prevRingBonusTime = 0.0f;
-                scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
-                scoreManager.ringHitCount = 0;
-                prevPositionInOrder = -1;
-                EventManager.OnTriggerTransition(rp.nextScene);
+                if (GameModes.Race != GameManager.instance.gameMode.currentMode)
+                {
+                    scoreManager.LevelEnd();
+                    scoreManager.prevRingBonusTime = 0.0f;
+                    scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
+                    scoreManager.ringHitCount = 0;
+                    prevPositionInOrder = -1;
+                    EventManager.OnTriggerTransition(rp.nextScene);
+                }
+                else
+                {
+                    if (rp.laps == 3)
+                    {
+                        scoreManager.LevelEnd();
+                        scoreManager.prevRingBonusTime = 0.0f;
+                        scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
+                        scoreManager.ringHitCount = 0;
+                        prevPositionInOrder = -1;
+                        EventManager.OnTriggerTransition(rp.nextScene);
+                    }
+                    else
+                    {
+                        rp.laps += 1;
+                    }
+                }
+                
             }
         }
     }

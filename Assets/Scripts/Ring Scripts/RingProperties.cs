@@ -34,9 +34,12 @@ public class RingProperties : MonoBehaviour
             if (BoardType.MachII != boardManager.currentBoardSelection)
                 bonusTime *= (basePMV.minSpeed + basePMV.restingAcceleration + basePMV.maxSpeed) / (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed);
         }
-        else if (GameModes.Race == GameManager.instance.gameMode.currentMode && laps < 3)
+        else if (GameModes.Race == GameManager.instance.gameMode.currentMode)
         {
-        //lastRingInScene = false;
+            if (nextScene != 1)
+            {
+                gameObject.SetActive(false);
+            }
     }
     }
 }
