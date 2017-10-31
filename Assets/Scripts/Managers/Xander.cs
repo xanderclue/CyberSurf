@@ -23,7 +23,15 @@
         public static class Helper
         {
             public static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
-            public static string Dozenal(ulong i)
+            public static string DozenalTimeStamp { get { return Dozenal.DozenalStrings.Dozenal(System.DateTime.Now); } }
+        }
+    }
+    namespace Dozenal
+    {
+        public static class DozenalStrings
+        {
+            private const string cstStrDozDig = "0123456789xe";
+            public static string Dozenal(this ulong i)
             {
                 if (0ul == i)
                     return "0";
@@ -35,7 +43,24 @@
                 }
                 return rv;
             }
-            private const string cstStrDozDig = "0123456789xe";
+            public static string Dozenal(this int i)
+            {
+                if (0 == i)
+                    return "0";
+                string rv = "";
+                while (0 != i)
+                {
+                    rv = cstStrDozDig[i % 12] + rv;
+                    i /= 12;
+                }
+                return rv;
+            }
+            public static string Dozenal(this System.DateTime time)
+            {
+                return time.Year.Dozenal().PadLeft(4, '0') + (time.Month - 1).Dozenal().PadLeft(1, '0') + (time.Day - 1).Dozenal().PadLeft(2, '0') +
+                    time.Hour.Dozenal().PadLeft(2, '0') + time.Minute.Dozenal().PadLeft(2, '0') + time.Second.Dozenal().PadLeft(2, '0') +
+                    ((int)System.Math.Round(1.728 * time.Millisecond)).Dozenal().PadLeft(3, '0');
+            }
         }
     }
     namespace NullConversion
