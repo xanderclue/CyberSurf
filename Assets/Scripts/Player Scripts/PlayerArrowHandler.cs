@@ -31,7 +31,13 @@ public class PlayerArrowHandler : MonoBehaviour
             {
                 rp = arrowScript.sortedRings[arrowScript.currentlyLookingAt];
                 if (!rp.lastRingInScene && rp.positionInOrder <= theRing.positionInOrder)
+                {
                     ++arrowScript.currentlyLookingAt;
+                    if (arrowScript.currentlyLookingAt >= arrowScript.sortedRings.Length)
+                    {
+                        arrowScript.currentlyLookingAt = 0;
+                    }
+                }
                 else
                     break;
             }

@@ -69,6 +69,7 @@ public class RingSetupScript : MonoBehaviour
                 break;
             case GameModes.Race:
                 arrowScript.currentlyLookingAt = 1;
+                
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"" + this.Info(), this);
