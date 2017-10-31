@@ -120,6 +120,9 @@ public class ScoreManager : MonoBehaviour
                 break;
             case GameModes.Free:
                 break;
+            case GameModes.Race:
+                Debug.Log("To add, Race Case ScoreManager");
+                break;
             default:
                 Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
@@ -193,6 +196,9 @@ public class ScoreManager : MonoBehaviour
                 break;
             case GameModes.Cursed:
                 respawnEnabled = true;
+                break;
+            case GameModes.Race:
+                respawnEnabled = false;
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);

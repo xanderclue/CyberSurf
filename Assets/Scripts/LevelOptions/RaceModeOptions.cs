@@ -76,6 +76,9 @@ public class RaceModeOptions : LevelMenuObjectGroup
                 LevelMenuScript.mirrorTrackOptions.DisableGroup();
                 LevelMenuScript.reverseTrackOptions.DisableGroup();
                 break;
+            case GameModes.Race:
+                Debug.Log("To add race case RaceModeOptions");
+                break;
             default:
                 Debug.LogWarning("Switch statement on GameModes enum tempMode in RaceModeOptions.cs is missing case for GameModes." + tempMode.ToString() + this.Info(), this);
                 break;

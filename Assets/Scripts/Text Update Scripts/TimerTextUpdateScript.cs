@@ -42,6 +42,9 @@ public class TimerTextUpdateScript : MonoBehaviour
             case GameModes.Free:
                 textToWrite = " " + roundTimer.TimeInLevel.ToString("n2") + " ";
                 break;
+            case GameModes.Race:
+                textToWrite = " " + roundTimer.TimeInLevel.ToString("n2") + " ";
+                break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 textToWrite = "TIMER BROKE";
