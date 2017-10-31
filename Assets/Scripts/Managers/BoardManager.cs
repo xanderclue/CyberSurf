@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Xander.Debugging;
 public enum BoardType { Original, MachI, MachII, MachIII, Custom }
 public class BoardManager : MonoBehaviour
 {
@@ -139,7 +140,7 @@ public class BoardManager : MonoBehaviour
                 pmv = customGamepadMovementVariables;
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + boardType.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + boardType.ToString("F") + "\"" + this.Info(), this);
                 pmv = customGamepadMovementVariables;
                 break;
         }
@@ -226,7 +227,7 @@ public class BoardManager : MonoBehaviour
                 pmv = customGyroMovementVariables;
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + currentBoardSelection.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + currentBoardSelection.ToString("F") + "\"" + this.Info(), this);
                 pmv = customGyroMovementVariables;
                 break;
         }

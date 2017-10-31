@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using Xander.BoolConversion;
 public static class GameSettings
 {
     public static bool SetBool(string key, bool value)
     {
-        PlayerPrefs.SetInt(key + "_BOOL", value ? 1 : 0);
+        PlayerPrefs.SetInt(key + "_BOOL", value.Int());
         return value;
     }
-    public static bool GetBool(string key, bool defaultValue = false) { return SetBool(key, 0 != PlayerPrefs.GetInt(key + "_BOOL", defaultValue ? 1 : 0)); }
+    public static bool GetBool(string key, bool defaultValue = false) { return SetBool(key, PlayerPrefs.GetInt(key + "_BOOL", defaultValue.Int()).Bool()); }
     public static bool GetBool(string key, ref bool value) { return value = GetBool(key, value); }
     public static void ResetBool(string key)
     {

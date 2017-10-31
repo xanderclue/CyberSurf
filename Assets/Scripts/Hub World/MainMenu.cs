@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using Xander.Debugging;
+using Xander.NullConversion;
 public class MainMenu : MonoBehaviour
 {
     private const float BACK_LOCAL_Z_POS = 0.5f;
@@ -21,12 +23,12 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         try { menuBox.SetActive(false); }
-        catch { Debug.LogWarning("MenuBox missing"); }
+        catch { Debug.LogWarning("MenuBox missing" + this.Info(), this); }
         currTab = prevTab = mainTab;
         OnBackButtonPressed += GoBack;
         OnMenuExit += OnExit;
         OnSwitchTabs += SwitchTab;
-        backButtonBackPos = backButtonFrontPos = backButton?.transform.localPosition ?? Vector3.zero;
+        backButtonBackPos = backButtonFrontPos = backButton.ConvertNull()?.transform.localPosition ?? Vector3.zero;
         backButtonBackPos.z = BACK_LOCAL_Z_POS;
         backButtonFrontPos.z = FRONT_LOCAL_Z_POS;
         mainTab.gameObject.SetActive(true);
@@ -48,7 +50,7 @@ public class MainMenu : MonoBehaviour
     private void OnExit()
     {
         GameManager.player.GetComponent<PlayerMenuController>().UnlockPlayerPosition();
-        menuBox?.SetActive(false);
+        menuBox.ConvertNull()?.SetActive(false);
         if (TransitionState.SwitchingToTab == currState || TransitionState.OnTab == currState)
         {
             prevTab = currTab;

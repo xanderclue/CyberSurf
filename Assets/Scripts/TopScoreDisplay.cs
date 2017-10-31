@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.Debugging;
 public class TopScoreDisplay : MonoBehaviour
 {
     private int currentLevel = LevelSelectOptions.LevelBuildOffset;
@@ -61,7 +62,7 @@ public class TopScoreDisplay : MonoBehaviour
                 }
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + gameMode.currentMode.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
         for (int i = 0; i < highScoreTMPS.Length; ++i)

@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using Xander.Debugging;
+using Xander.NullConversion;
 public class EyeRayCaster : MonoBehaviour
 {
     [SerializeField] private bool canSelect = true;
@@ -19,9 +21,9 @@ public class EyeRayCaster : MonoBehaviour
         {
             if (canSelect)
             {
-                SelectedObject selected = hit.collider.GetComponent<SelectedObject>();
+                SelectedObject selected = hit.collider.GetNullConvertedComponent<SelectedObject>();
                 if (null == selected)
-                    Debug.LogWarning("Missing SelectedObject script on object in the " + SelectedObject.LAYERNAME + " layer. (" + BuildDebugger.GetHierarchyName(hit.collider.gameObject) + ")");
+                    Debug.LogWarning("Missing SelectedObject script on object in the " + SelectedObject.LAYERNAME + " layer. (" + hit.collider.gameObject.HierarchyPath() + ")" + this.Info(), this);
                 curObj = selected?.gameObject;
                 selected?.Selected(reticleScript);
             }
@@ -29,12 +31,12 @@ public class EyeRayCaster : MonoBehaviour
         else
             curObj = null;
         if (preObj != curObj)
-            preObj?.GetComponent<SelectedObject>().Deselected();
+            preObj.ConvertNull()?.GetComponent<SelectedObject>().Deselected();
     }
     private void SetSelectionLock(bool locked)
     {
         canSelect = !locked;
-        curObj?.GetComponent<SelectedObject>().Deselected();
+        curObj.ConvertNull()?.GetComponent<SelectedObject>().Deselected();
     }
     private void OnEnable()
     {

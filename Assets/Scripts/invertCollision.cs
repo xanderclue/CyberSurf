@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Xander.NullConversion;
 public class invertCollision : MonoBehaviour
 {
     private void Start()
     {
-        Mesh mesh = GetComponent<MeshFilter>().Null()?.mesh;
+        Mesh mesh = GetComponent<MeshFilter>().ConvertNull()?.mesh;
         if (null != mesh)
         {
             Vector3[] normals = mesh.normals;

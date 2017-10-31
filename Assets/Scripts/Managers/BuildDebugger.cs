@@ -1,23 +1,5 @@
 ﻿public class BuildDebugger : UnityEngine.MonoBehaviour
 {
-    public static string TimeStamp { get { return System.DateTime.Now.ToString("yyyyMMddHHmmssfff"); } }
-    public static string GetHierarchyName(UnityEngine.GameObject pGobjGameObject)
-    {
-#if DEBUGGER
-        string lStrRetVal = "";
-        for (UnityEngine.Transform lTfmTransform = pGobjGameObject.transform; null != lTfmTransform; lTfmTransform = lTfmTransform.parent)
-            lStrRetVal = lTfmTransform.gameObject.name + "." + lStrRetVal;
-        return lStrRetVal.Substring(0, lStrRetVal.Length - 1);
-#else
-        return pGobjGameObject.name;
-#endif
-    }
-#if DEBUGGER
-    private static string LogFilePath(string pStrTimeStamp)
-    {
-        return UnityEngine.Application.persistentDataPath + "/log" + pStrTimeStamp.Substring(0, 8) + ".txt";
-    }
-#endif
     public static void InitDebugger()
     {
 #if DEBUGGER
@@ -25,7 +7,7 @@
         {
             if (null == stcStrlistLines)
                 stcStrlistLines = new System.Collections.Generic.List<string>();
-            string lStrTimeStamp = TimeStamp;
+            string lStrTimeStamp = Xander.Debugging.Helper.TimeStamp;
             string logpath = LogFilePath(lStrTimeStamp);
             string logError = "Unknown Error";
             try { stcSwWriter = new System.IO.StreamWriter(logpath, true); } catch (System.Exception e) { stcSwWriter = null; logError = e.Message; }
@@ -63,24 +45,15 @@
     private static ulong stcUlongLineCounter = 0ul, stcUlongFrameCounter = 0ul;
     private static bool stcBoolDebuggerInited = false;
     private static bool stcBoolFileOpen = false;
-    private const string cstStrDozDig = "0123456789xe";
     private static float stcFloatWarningTimer = 0.0f;
     private static bool stcBoolWasd = false;
-    private static string Dozenal(ulong i)
+    private static string LogFilePath(string pStrTimeStamp)
     {
-        if (0ul == i)
-            return "0";
-        string rv = "";
-        while (0ul != i)
-        {
-            rv = cstStrDozDig[(int)(i % 12ul)] + rv;
-            i /= 12ul;
-        }
-        return rv;
+        return UnityEngine.Application.persistentDataPath + "/log" + pStrTimeStamp.Substring(0, 8) + ".txt";
     }
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
-        string lStrTimeStamp = TimeStamp;
+        string lStrTimeStamp = Xander.Debugging.Helper.TimeStamp;
         WriteLine(pEnmLogType.ToString() + " << " + pStrLogMessage);
         if (UnityEngine.LogType.Log != pEnmLogType)
         {
@@ -112,7 +85,7 @@
         {
             stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
                 "Time: " + pStrTimeStamp +
-                " @" + Dozenal(stcUlongFrameCounter) +
+                " @" + Xander.Debugging.Helper.Dozenal(stcUlongFrameCounter) +
                 "\nLog Message: \"" + pStrLogMessage + "\"\n");
             if (null == pStrStackTrace || "" == pStrStackTrace)
                 stcSwWriter.Write("NO STACK TRACE\n\n");
@@ -144,7 +117,7 @@
         }
         if (null == stcStrlistLines)
             stcStrlistLines = new System.Collections.Generic.List<string>();
-        pStrLine = Dozenal(stcUlongLineCounter) + ": " + pStrLine;
+        pStrLine = Xander.Debugging.Helper.Dozenal(stcUlongLineCounter) + ": " + pStrLine;
         ++stcUlongLineCounter;
         stcStrlistLines.Add(pStrLine);
         if (stcStrlistLines.Count > cstIntMaxNumLines)
@@ -163,7 +136,7 @@
         {
             stcGobjTextObject = stcCompTextmesh.gameObject;
             stcGobjTextObject.SetActive(false);
-            stcImageWarningIcon?.gameObject.SetActive(false);
+            Xander.NullConversion.NullConverter.ConvertNull(stcImageWarningIcon)?.gameObject.SetActive(false);
         }
         else enabled = false;
     }
@@ -205,36 +178,6 @@
             WASD = !WASD;
 #endif
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
-            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + TimeStamp + ".png");
+            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + Xander.Debugging.Helper.TimeStamp + ".png");
     }
 }
-public class LabelOverride : UnityEngine.PropertyAttribute
-{
-    public string mStrLabel;
-    public LabelOverride(string pStrLabel) { mStrLabel = pStrLabel; }
-#if UNITY_EDITOR
-    [UnityEditor.CustomPropertyDrawer(typeof(LabelOverride))]
-    public class ThisPropertyDrawer : UnityEditor.PropertyDrawer
-    {
-        public override void OnGUI(UnityEngine.Rect pSctPosRect, UnityEditor.SerializedProperty pClProp, UnityEngine.GUIContent pClLabel)
-        {
-            pClLabel.text = ((LabelOverride)attribute).mStrLabel;
-            UnityEditor.EditorGUI.PropertyField(pSctPosRect, pClProp, pClLabel);
-        }
-    }
-#endif
-}
-#if UNITY_EDITOR
-[UnityEditor.InitializeOnLoad]
-public class SteamAppId
-{
-    public const int cstIntSteamAppId = 735810;
-    static SteamAppId()
-    {
-        System.IO.StreamWriter lSwSteamAppIdFile = new System.IO.StreamWriter(UnityEngine.Application.dataPath + "/../steam_appid.txt", false);
-        lSwSteamAppIdFile.Write(cstIntSteamAppId);
-        lSwSteamAppIdFile.Close();
-    }
-}
-#endif
-public static class NullChecker { public static T Null<T>(this T obj) where T : UnityEngine.Object { if (null == obj) return null; return obj; } }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Xander.NullConversion;
 public class OnOffButtons : MonoBehaviour
 {
     [SerializeField] private EventSelectedObject onButton = null, offButton = null;
@@ -19,8 +20,8 @@ public class OnOffButtons : MonoBehaviour
     }
     private void Awake()
     {
-        onButtonRenderer = onButtonRenderer ?? onButton.GetComponent<MeshRenderer>();
-        offButtonRenderer = offButtonRenderer ?? offButton.GetComponent<MeshRenderer>();
+        onButtonRenderer = onButtonRenderer.ConvertNull() ?? onButton.GetComponent<MeshRenderer>();
+        offButtonRenderer = offButtonRenderer.ConvertNull() ?? offButton.GetComponent<MeshRenderer>();
     }
     private void OnEnable()
     {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.Debugging;
 public class lastScoreDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshPro scoreDisplay = null, timeDisplay = null;
@@ -60,10 +61,10 @@ public class lastScoreDisplay : MonoBehaviour
                 }
                 break;
             case GameModes.Free:
-                Debug.Log("Free Mode shouldn't display anything");
+                Debug.Log("Free Mode shouldn't display anything" + this.Info(), this);
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
         scoreDisplay.SetText("Score: " + lastScore);

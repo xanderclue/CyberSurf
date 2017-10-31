@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.Debugging;
 public class RaceModeOptions : LevelMenuObjectGroup
 {
     [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
@@ -76,7 +77,7 @@ public class RaceModeOptions : LevelMenuObjectGroup
                 LevelMenuScript.reverseTrackOptions.DisableGroup();
                 break;
             default:
-                Debug.LogWarning("Switch statement on GameModes enum tempMode in RaceModeOptions.cs is missing case for GameModes." + tempMode.ToString());
+                Debug.LogWarning("Switch statement on GameModes enum tempMode in RaceModeOptions.cs is missing case for GameModes." + tempMode.ToString() + this.Info(), this);
                 break;
         }
     }

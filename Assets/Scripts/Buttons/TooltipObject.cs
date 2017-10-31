@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Xander.NullConversion;
 public class TooltipObject : MonoBehaviour
 {
     [SerializeField, LabelOverride("Parent")] private bool m_isParent = false;
@@ -13,7 +14,7 @@ public class TooltipObject : MonoBehaviour
             if (theParents.Length > 1)
                 m_tooltipText = theParents[1].m_tooltipText;
             else
-                m_tooltipText = GetComponentInParent<SelectedObject>().Null()?.tooltipText ?? m_tooltipText;
+                m_tooltipText = GetComponentInParent<SelectedObject>().ConvertNull()?.tooltipText ?? m_tooltipText;
         }
         if (m_isParent)
         {

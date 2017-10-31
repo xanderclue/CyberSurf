@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Xander.Debugging;
 public class HudOnOffObject : MonoBehaviour
 {
     public HudMenuTab.HudMenuOption menuOption = HudMenuTab.HudMenuOption.OverallHud;
@@ -110,7 +111,7 @@ public class HudOnOffObject : MonoBehaviour
                 case HudMenuTab.HudMenuOption.Compass:
                     return textElementController.hudElementsControl.compassBool;
                 default:
-                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
+                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"" + this.Info(), this);
                     return defaultOnOffValue;
             }
         }
@@ -157,7 +158,7 @@ public class HudOnOffObject : MonoBehaviour
                     textElementController.setCompass(value);
                     break;
                 default:
-                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
+                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"" + this.Info(), this);
                     break;
             }
         }

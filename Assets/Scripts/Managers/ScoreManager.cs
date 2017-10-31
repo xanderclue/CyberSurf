@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Xander.Debugging;
 public class ScoreManager : MonoBehaviour
 {
     public struct scoreStruct
@@ -120,7 +121,7 @@ public class ScoreManager : MonoBehaviour
             case GameModes.Free:
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
     }
@@ -194,7 +195,7 @@ public class ScoreManager : MonoBehaviour
                 respawnEnabled = true;
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
     }

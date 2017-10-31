@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.Debugging;
 public class TimeOfDayOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton leftButton = null, rightButton = null;
-    [SerializeField]
-    private TextMeshPro timeOfDayText = null;
-    [SerializeField]
-    private DaylightScript.TimeOfDay defaultTimeOfDay = DaylightScript.TimeOfDay.Evening;
+    [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField] private TextMeshPro timeOfDayText = null;
+    [SerializeField] private DaylightScript.TimeOfDay defaultTimeOfDay = DaylightScript.TimeOfDay.Evening;
     private DaylightScript.TimeOfDay tempTimeOfDay;
 
     private void OnEnable()
@@ -55,7 +53,7 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
                 timeOfDayText.SetText("9:00 AM (Morning)");
                 break;
             default:
-                Debug.LogWarning("Switch statement on TimeOfDay enum tempTimeOfDay in TimeOfDayOptions.cs is missing case for TimeOfDay." + tempTimeOfDay.ToString());
+                Debug.LogWarning("Switch statement on TimeOfDay enum tempTimeOfDay in TimeOfDayOptions.cs is missing case for TimeOfDay." + tempTimeOfDay.ToString() + this.Info(), this);
                 break;
         }
     }

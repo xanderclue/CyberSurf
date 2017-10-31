@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.NullConversion;
 public class HudOptionsOpacityColor : MonoBehaviour
 {
     public delegate void ValueChangedEvent();
@@ -18,14 +19,14 @@ public class HudOptionsOpacityColor : MonoBehaviour
     {
         get
         {
-            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            textElementController = textElementController.ConvertNull() ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             Color ret = textElementController.HudColor;
             ret.a = 0.5f;
             return ret;
         }
         set
         {
-            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            textElementController = textElementController.ConvertNull() ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             Color ret = value;
             ret.a = textElementController.HudColor.a;
             textElementController.HudColor = ret;
@@ -35,12 +36,12 @@ public class HudOptionsOpacityColor : MonoBehaviour
     {
         get
         {
-            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            textElementController = textElementController.ConvertNull() ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             return textElementController.HudColor.a;
         }
         set
         {
-            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            textElementController = textElementController.ConvertNull() ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             Color ret = textElementController.HudColor;
             ret.a = value;
             textElementController.HudColor = ret;

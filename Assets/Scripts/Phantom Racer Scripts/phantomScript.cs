@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Xander.Debugging;
 public class phantomScript : MonoBehaviour
 {
     private ScoreManager.scoreStruct scoreInfo;
@@ -35,7 +36,7 @@ public class phantomScript : MonoBehaviour
             case GameModes.Free:
                 break;
             default:
-                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
     }
