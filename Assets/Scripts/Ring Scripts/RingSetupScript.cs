@@ -67,6 +67,9 @@ public class RingSetupScript : MonoBehaviour
                     rings[i].gameObject.SetActive(false);
                 arrowScript.currentlyLookingAt = rings.Count - 1;
                 break;
+            case GameModes.Race:
+                arrowScript.currentlyLookingAt = 1;
+                break;
             default:
                 Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"" + this.Info(), this);
                 break;

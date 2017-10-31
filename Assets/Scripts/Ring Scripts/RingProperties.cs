@@ -35,6 +35,8 @@ public class RingProperties : MonoBehaviour
                 bonusTime *= (basePMV.minSpeed + basePMV.restingAcceleration + basePMV.maxSpeed) / (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed);
         }
         else if (GameModes.Race == GameManager.instance.gameMode.currentMode && laps < 3)
-            lastRingInScene = false;
+        {
+        //lastRingInScene = false;
+    }
     }
 }

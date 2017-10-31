@@ -61,6 +61,9 @@ public class TopScoreDisplay : MonoBehaviour
                     names[i] = "NOBODY";
                 }
                 break;
+            case GameModes.Race:
+                Debug.Log("To Add race case TopScoreDisplay");
+                break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
