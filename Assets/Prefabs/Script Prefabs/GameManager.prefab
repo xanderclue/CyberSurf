@@ -110,7 +110,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: 0
-  HudOnOff: 1
   RingPathIsOn: 1
   spawnPoints:
   - {fileID: 4881730755261842, guid: 78108ad417a03bf4b9700cbcc7a91532, type: 2}
@@ -118,6 +117,15 @@ MonoBehaviour:
   - {fileID: 4923439312365110, guid: 9c474a05a00b572428207505219c88fc, type: 2}
   - {fileID: 4149465853147846, guid: be26e2ad07343a64b813e1142cac51b0, type: 2}
   - {fileID: 4676205217432368, guid: 2fe5e1c891ffae74785867e35ccfab3f, type: 2}
+  - {fileID: 4923439312365110, guid: a65b9dbf071be3c4aa6be9e7f07faa54, type: 2}
+  - {fileID: 4149465853147846, guid: 2ca1433722cefa04785dbbec63f8c0ec, type: 2}
+  - {fileID: 4676205217432368, guid: b7f0ad8fdd712194a9b2ce22305d00db, type: 2}
+  - {fileID: 4923439312365110, guid: 5e6f4dc6f225fad43a7916d33e721ad8, type: 2}
+  - {fileID: 4149465853147846, guid: 5e230903e6e412d4790a2036991b1f5a, type: 2}
+  - {fileID: 4676205217432368, guid: d6d6896fc89ab744fafef1cb8c5e7466, type: 2}
+  - {fileID: 4923439312365110, guid: 7dd7fd6bdff33e543ab22c70aca0ae8d, type: 2}
+  - {fileID: 4149465853147846, guid: 009159edc9d31c044a86d705eff642a7, type: 2}
+  - {fileID: 4676205217432368, guid: 6c55c8b89c6694d4ba8aa13750b9283d, type: 2}
 --- !u!114 &114412701324416950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,15 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a384b4ce3f8e70f4c9c5fe944c6fc666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastMode: 0
   lastPortalBuildIndex: 0
-  lastBuildIndex: -1
   playerPrefab: {fileID: 1888161922960542, guid: cd6996909900ff44cac341d9483ba297,
     type: 2}
   scoreScript: {fileID: 0}
   levelScript: {fileID: 0}
   boardScript: {fileID: 0}
-  keyInputScript: {fileID: 0}
   disableVignette: 0
 --- !u!114 &114829543247464576
 MonoBehaviour:
@@ -164,12 +169,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curFilledCont: -1
-  firstPortal: 1
-  currentName: 000000000000
-  baseScorePerRing: 100
   ringHitCount: 0
   score: 0
-  prevRingBonusTime: 0
-  prevRingTransform: {fileID: 0}
-  score_multiplier: 0
+  firstPortal: 1
   respawnEnabled: 0
+  currentName: 000000000000
+  baseScorePerRing: 100
+  prevRingBonusTime: 0
+  score_multiplier: 0
+  prevRingTransform: {fileID: 0}

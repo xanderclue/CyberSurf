@@ -55,7 +55,10 @@ public class ScreenFade : MonoBehaviour
             yield return null;
         }
         lastBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        asyncOp = SceneManager.LoadSceneAsync(GameManager.instance.levelScript.nextScene, LoadSceneMode.Single);
+        int nextScene = GameManager.instance.levelScript.nextScene;
+        if (nextScene >= LevelSelectOptions.LevelBuildOffset)
+            nextScene += LevelSelectOptions.GetLevelOffset;
+        asyncOp = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
         asyncOp.allowSceneActivation = true;
     }
     private void UpdateAlpha(bool fadingOut)

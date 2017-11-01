@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 9d9a9e466ecd7fd49ac8e1c96f8c5d4b, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 135369210}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -178,11 +178,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &17672512 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 174710804}
 --- !u!1001 &29647604
 Prefab:
   m_ObjectHideFlags: 0
@@ -1875,10 +1870,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7117ac8df6ebca94bb00bb995c0f72a8, type: 2}
   m_IsPrefabParent: 0
@@ -2881,11 +2872,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &425941038 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 655048640}
 --- !u!1001 &463776901
 Prefab:
   m_ObjectHideFlags: 0
@@ -4985,11 +4971,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
-        type: 2}
-      propertyPath: portaleffect
-      value: 
-      objectReference: {fileID: 425941038}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
@@ -5696,11 +5677,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &810945768 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 244371409}
 --- !u!1001 &811905900
 Prefab:
   m_ObjectHideFlags: 0
@@ -5772,11 +5748,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
-        type: 2}
-      propertyPath: portaleffect
-      value: 
-      objectReference: {fileID: 810945768}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
@@ -15552,11 +15523,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
-        type: 2}
-      propertyPath: portaleffect
-      value: 
-      objectReference: {fileID: 17672512}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
@@ -16139,10 +16105,6 @@ Prefab:
       value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d7529dbbe0695b548894f30b31c202ba, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: d7529dbbe0695b548894f30b31c202ba, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

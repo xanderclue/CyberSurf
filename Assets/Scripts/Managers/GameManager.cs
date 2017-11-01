@@ -32,12 +32,16 @@ public class GameManager : MonoBehaviour
         GameSettings.GetBool("RingPath", ref levelScript.RingPathIsOn);
         GameSettings.GetBool("Respawn", ref scoreScript.respawnEnabled);
         GameSettings.GetBool("DebugSpeed", ref boardScript.debugSpeedEnabled);
+        GameSettings.GetBool("MirrorMode", ref LevelManager.mirrorMode);
+        GameSettings.GetBool("ReverseMode", ref LevelManager.reverseMode);
     }
     private void OnDisable()
     {
         GameSettings.SetBool("RingPath", levelScript.RingPathIsOn);
         GameSettings.SetBool("Respawn", scoreScript.respawnEnabled);
         GameSettings.SetBool("DebugSpeed", boardScript.debugSpeedEnabled);
+        GameSettings.SetBool("MirrorMode", LevelManager.mirrorMode);
+        GameSettings.SetBool("ReverseMode", LevelManager.reverseMode);
         GameSettings.SetEnum("GameDifficulty", gameDifficulty.currentDifficulty);
         GameSettings.SetEnum("GameMode", gameMode.currentMode);
     }
