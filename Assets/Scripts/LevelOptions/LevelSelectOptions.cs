@@ -15,7 +15,29 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     [SerializeField] private Level defaultLevel = Level.Canyon;
     private Level tempLevel;
     [SerializeField] private WorldPortalProperties portal = null;
-    public const int LevelBuildOffset = 2; // build index of the first level
+    public const int LevelBuildOffset = 2;
+    public const int LevelCount = (int)(Level.NumLevels);
+    public const int MirroredOffset = LevelCount;
+    public const int MirroredBuildOffset = LevelBuildOffset + MirroredOffset;
+    public const int ReversedOffset = MirroredOffset + LevelCount;
+    public const int ReversedBuildOffset = LevelBuildOffset + ReversedOffset;
+    public const int MirroredReversedOffset = ReversedOffset + LevelCount;
+    public const int MirroredReversedBuildOffset = LevelBuildOffset + MirroredReversedOffset;
+    public static int GetLevelOffset
+    {
+        get
+        {
+            if (LevelManager.mirrorMode)
+                if (LevelManager.reverseMode)
+                    return MirroredReversedOffset;
+                else
+                    return MirroredOffset;
+            else if (LevelManager.reverseMode)
+                return ReversedOffset;
+            return 0;
+        }
+    }
+    public static int GetBuildOffset { get { return LevelBuildOffset + GetLevelOffset; } }
     new private void Start()
     {
         base.Start();
