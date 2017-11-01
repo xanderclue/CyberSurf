@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 public class MirrorTrackOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton onButton = null, offButton = null;
-    [SerializeField]
-    private Material activeMaterial = null;
-    private Material inactiveMaterial = null;
+    [SerializeField] private LevelMenuButton onButton = null, offButton = null;
+    [SerializeField] private Material activeMaterial = null;
     [SerializeField] private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
-    [SerializeField]
-    private bool defaultValue = false;
-    private bool tempValue;
+    [SerializeField] private bool defaultValue = false;
+    private Material inactiveMaterial = null;
+    private bool tempValue = false;
     private static bool ActualValue { get; set; } // replace with game's value
     new private void Start()
     {

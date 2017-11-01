@@ -1,20 +1,16 @@
 ﻿using UnityEngine;
-
 public class ExitMainMenuButton : SelectedObject
 {
-    [SerializeField]
-    EnterMainMenuButton enterMenuObject = null;
+    [SerializeField] private EnterMainMenuButton enterMenuObject = null;
     new private void Start()
     {
         base.Start();
         if (null == enterMenuObject)
             enterMenuObject = FindObjectOfType<EnterMainMenuButton>();
     }
-
-    public override void SuccessFunction()
+    protected override void SuccessFunction()
     {
-        if (null != GetComponentInParent<MainMenu>().OnMenuExit)
-            GetComponentInParent<MainMenu>().OnMenuExit();
+        GetComponentInParent<MainMenu>().InvokeOnMenuExit();
         respawnAndDespawnSphere.SphereState = true;
         enterMenuObject.gameObject.SetActive(true);
     }

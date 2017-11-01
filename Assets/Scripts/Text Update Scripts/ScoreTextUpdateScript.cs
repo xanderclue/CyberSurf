@@ -1,23 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
-
-public class ScoreTextUpdateScript : MonoBehaviour {
-
-    GameManager manager;
-    TextMeshProUGUI element;
-
-    void Start()
+public class ScoreTextUpdateScript : MonoBehaviour
+{
+    private ScoreManager manager = null;
+    private TextMeshProUGUI element = null;
+    private void Start()
     {
-        manager = GameManager.instance;
-        element = gameObject.GetComponent<TextMeshProUGUI>();
-
+        manager = GameManager.instance.scoreScript;
+        element = GetComponent<TextMeshProUGUI>();
     }
-
-    void Update()
+    private void Update()
     {
-        string textToWrite = " " + manager.scoreScript.score + " ";
-        element.SetText(textToWrite);
+        element.SetText(" " + manager.score + " ");
     }
 }

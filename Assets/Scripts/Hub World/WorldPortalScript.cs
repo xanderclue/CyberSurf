@@ -1,39 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
+﻿using UnityEngine;
 public class WorldPortalScript : MonoBehaviour
 {
-    [SerializeField] bool isDemoMode = false;
-
-    System.Type boxCollider;
-    PlayerMenuController pmc;
-
-    ManagerClasses.GameMode gameMode;
-
+    [SerializeField] private bool isDemoMode = false;
+    private static readonly System.Type boxCollider = typeof(CapsuleCollider);
+    private PlayerMenuController pmc = null;
+    private ManagerClasses.GameMode gameMode = null;
     private void Start()
     {
-        boxCollider = typeof(UnityEngine.CapsuleCollider);
         pmc = GameManager.player.GetComponent<PlayerMenuController>();
         gameMode = GameManager.instance.gameMode;
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetType() == boxCollider && other.gameObject.tag == "Board")
+        if (boxCollider == other.GetType() && "Board" == other.gameObject.tag)
         {
             if (isDemoMode)
-            {
-                if (gameMode.currentMode != GameModes.Continuous)
-                    gameMode.currentMode = GameModes.Continuous;
-            }
-
+                gameMode.currentMode = GameModes.Continuous;
             int level = GetComponentInParent<WorldPortalProperties>().SceneIndex;
             GameManager gameManager = GameManager.instance;
             gameManager.lastPortalBuildIndex = level;
-            gameManager.lastMode = gameManager.gameMode.currentMode;
-
             EventManager.OnTriggerTransition(level);
             pmc.ToggleMenuMovement(true);
         }

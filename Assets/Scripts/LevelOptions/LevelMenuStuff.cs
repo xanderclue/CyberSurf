@@ -13,43 +13,11 @@ public class LevelMenuStuff : MonoBehaviour
     public TimeOfDayOptions timeOfDayOptions = null;
     public MirrorTrackOptions mirrorTrackOptions = null;
     public ReverseTrackOptions reverseTrackOptions = null;
-    [SerializeField]
-    private Transform lockTransform = null;
-    [SerializeField]
-    private float sinkDuration = 0.45f;
+    [SerializeField] private Transform lockTransform = null;
+    [SerializeField] private float sinkDuration = 0.45f;
     public float SinkDuration { get { return sinkDuration; } }
-
     private void Start()
     {
-        if (null == menuBox)
-            for (int i = 0; i < transform.childCount; ++i)
-                if ("MenuBox" == transform.GetChild(i).name)
-                {
-                    menuBox = transform.GetChild(i).gameObject;
-                    break;
-                }
-        if (null == enterLevelOptions)
-            enterLevelOptions = GetComponentInChildren<EnterLevelOptionsButton>();
-        if (null == levelMenuButtons)
-            levelMenuButtons = GetComponentInChildren<LevelMenuButtons>();
-        if (null == levelSelectOptions)
-            levelSelectOptions = GetComponentInChildren<LevelSelectOptions>();
-        if (null == raceModeOptions)
-            raceModeOptions = GetComponentInChildren<RaceModeOptions>();
-        if (null == lapsOptions)
-            lapsOptions = GetComponentInChildren<LapsOptions>();
-        if (null == aiOptions)
-            aiOptions = GetComponentInChildren<AiOptions>();
-        if (null == difficultyOptions)
-            difficultyOptions = GetComponentInChildren<DifficultyOptions>();
-        if (null == weatherOptions)
-            weatherOptions = GetComponentInChildren<WeatherOptions>();
-        if (null == timeOfDayOptions)
-            timeOfDayOptions = GetComponentInChildren<TimeOfDayOptions>();
-        if (null == mirrorTrackOptions)
-            mirrorTrackOptions = GetComponentInChildren<MirrorTrackOptions>();
-        if (null == reverseTrackOptions)
-            reverseTrackOptions = GetComponentInChildren<ReverseTrackOptions>();
         menuBox.SetActive(false);
         enterLevelOptions.gameObject.SetActive(true);
     }

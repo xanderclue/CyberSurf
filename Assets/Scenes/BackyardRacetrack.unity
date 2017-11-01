@@ -442,10 +442,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &87054539 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: 9eb5603aaad096f47b2b5fbb650b12e8, type: 3}
-  m_PrefabInternal: {fileID: 592991371}
 --- !u!1001 &113066623
 Prefab:
   m_ObjectHideFlags: 0
@@ -6442,7 +6438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad43c54289f24747a4427313774cf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
 --- !u!1001 &438738253
 Prefab:
   m_ObjectHideFlags: 0
@@ -6865,34 +6860,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4810886142740776, guid: f9618c21302b20d47b791363cc3f2e21,
     type: 2}
   m_PrefabInternal: {fileID: 502072979}
---- !u!1 &525062897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 525062898}
-  m_Layer: 0
-  m_Name: True North
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &525062898
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 525062897}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.71, y: 2.9215646, z: 1.3149593}
-  m_LocalScale: {x: 0.016666668, y: 0.016666668, z: 0.016666668}
-  m_Children: []
-  m_Father: {fileID: 87054539}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &541668061
 Prefab:
   m_ObjectHideFlags: 0

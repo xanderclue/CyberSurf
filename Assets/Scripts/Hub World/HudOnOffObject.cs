@@ -1,27 +1,25 @@
 ﻿using UnityEngine;
+using Xander.Debugging;
 public class HudOnOffObject : MonoBehaviour
 {
     public HudMenuTab.HudMenuOption menuOption = HudMenuTab.HudMenuOption.OverallHud;
     public EventSelectedObject onButton = null, offButton = null;
+    [SerializeField] private bool defaultOnOffValue = true;
+    [SerializeField] private Material activeMaterial = null, inactiveMaterial = null;
     private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
-    [SerializeField]
-    private bool defaultOnOffValue = true;
-    private bool tempOnOffValue;
+    private bool tempOnOffValue = false;
+    private TextElementControllerScript textElementController = null;
+    public delegate void ValueChangedEvent();
+    public event ValueChangedEvent OnValueChanged;
     public bool IsOn { get { return tempOnOffValue; } }
-    [SerializeField]
-    private Material activeMaterial = null, inactiveMaterial = null;
-    private void Start()
+    protected void Start()
     {
-        if (null == inactiveMaterial)
-            if (null != HudMenuTab.inactiveMaterial)
-                inactiveMaterial = HudMenuTab.inactiveMaterial;
-            else
-                HudMenuTab.inactiveMaterial = inactiveMaterial = (defaultOnOffValue ? offButtonRenderer : onButtonRenderer).material;
-        if (null == activeMaterial)
-            if (null != HudMenuTab.activeMaterial)
-                activeMaterial = HudMenuTab.activeMaterial;
-            else
-                HudMenuTab.activeMaterial = activeMaterial = (defaultOnOffValue ? onButtonRenderer : offButtonRenderer).material;
+        inactiveMaterial = inactiveMaterial ??
+            HudMenuTab.inactiveMaterial ??
+            (HudMenuTab.inactiveMaterial = (defaultOnOffValue ? offButtonRenderer : onButtonRenderer).material);
+        activeMaterial = activeMaterial ??
+            HudMenuTab.activeMaterial ??
+            (HudMenuTab.activeMaterial = (defaultOnOffValue ? onButtonRenderer : offButtonRenderer).material);
         UpdateButtonDisplay();
     }
     protected void Awake()
@@ -57,22 +55,19 @@ public class HudOnOffObject : MonoBehaviour
     public void TurnOn()
     {
         tempOnOffValue = true;
-        if (null != OnValueChanged)
-            OnValueChanged();
+        OnValueChanged?.Invoke();
     }
     public void TurnOff()
     {
         tempOnOffValue = false;
-        if (null != OnValueChanged)
-            OnValueChanged();
+        OnValueChanged?.Invoke();
     }
     public void DefaultValue()
     {
         if (tempOnOffValue != defaultOnOffValue)
         {
             tempOnOffValue = defaultOnOffValue;
-            if (null != OnValueChanged)
-                OnValueChanged();
+            OnValueChanged?.Invoke();
         }
     }
     public void ResetValue()
@@ -80,22 +75,19 @@ public class HudOnOffObject : MonoBehaviour
         if (tempOnOffValue != ActualValue)
         {
             tempOnOffValue = ActualValue;
-            if (null != OnValueChanged)
-                OnValueChanged();
+            OnValueChanged?.Invoke();
         }
     }
     public void ConfirmValue()
     {
         ActualValue = tempOnOffValue;
     }
-    public delegate void ValueChangedEvent();
-    public ValueChangedEvent OnValueChanged;
-    private TextElementControllerScript textElementController = null;
     private bool ActualValue
     {
         get
         {
-            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            if (null == textElementController)
+                textElementController = GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             switch (menuOption)
             {
                 case HudMenuTab.HudMenuOption.OverallHud:
@@ -119,13 +111,14 @@ public class HudOnOffObject : MonoBehaviour
                 case HudMenuTab.HudMenuOption.Compass:
                     return textElementController.hudElementsControl.compassBool;
                 default:
-                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
+                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"" + this.Info(), this);
                     return defaultOnOffValue;
             }
         }
         set
         {
-            textElementController = textElementController ?? GameManager.player.GetComponentInChildren<TextElementControllerScript>();
+            if (null == textElementController)
+                textElementController = GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             switch (menuOption)
             {
                 case HudMenuTab.HudMenuOption.OverallHud:
@@ -165,7 +158,7 @@ public class HudOnOffObject : MonoBehaviour
                     textElementController.setCompass(value);
                     break;
                 default:
-                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"");
+                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"" + this.Info(), this);
                     break;
             }
         }

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-
 public class TooltipTextScript : MonoBehaviour
 {
     private delegate void UpdateTooltipEvent(string str);
-    private static UpdateTooltipEvent OnUpdateTooltip;
-    TMPro.TextMeshProUGUI textMesh = null;
-    public static void SetText(string str = null)
+    private static event UpdateTooltipEvent OnUpdateTooltip;
+    private TMPro.TextMeshProUGUI textMesh = null;
+    private float bugFixTimer = 0.0f;
+    private const float bugFixTime = 0.1f;
+    public static void SetText(string str)
     {
-        if (null != OnUpdateTooltip)
-            OnUpdateTooltip(str);
+        OnUpdateTooltip?.Invoke(str);
     }
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class TooltipTextScript : MonoBehaviour
     {
         OnUpdateTooltip -= UpdateTooltip;
     }
-    void UpdateTooltip(string str)
+    private void UpdateTooltip(string str)
     {
         if (null != textMesh)
         {
@@ -32,22 +32,18 @@ public class TooltipTextScript : MonoBehaviour
             {
                 textMesh.SetText("");
                 textMesh.enabled = false;
-                bugfixwait = true;
+                bugFixTimer = bugFixTime;
             }
-            else if (!bugfixwait)
+            else if (bugFixTimer <= 0.0f)
             {
                 textMesh.enabled = true;
                 textMesh.SetText(str);
-                bugfixwait = true;
+                bugFixTimer = bugFixTime;
             }
         }
     }
-    float bugfixtimer = 0.0f;
-    const float bugfixtime = 0.1f;
-    bool bugfixwait { get { return bugfixtimer > 0.0f; } set { bugfixtimer = value ? bugfixtime : 0.0f; } }
     private void Update()
     {
-        if (bugfixwait)
-            bugfixtimer -= Time.deltaTime;
+        bugFixTimer -= Time.deltaTime;
     }
 }

@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.NullConversion;
 public class PagesMenuTab : MenuTab
 {
     [SerializeField] private GameObject[] pages = null;
     [SerializeField] private EventSelectedObject previousButton = null;
     [SerializeField] private EventSelectedObject nextButton = null;
     [SerializeField, LabelOverride("Page Number")] private TextMeshPro pageText = null;
-    private int currPage = 0;
     [SerializeField] private bool dontLoop = false;
+    private int currPage = 0;
     public delegate void PageChangeEvent();
-    public PageChangeEvent OnPageChanged;
+    public event PageChangeEvent OnPageChanged;
     new private void Awake()
     {
         base.Awake();
@@ -28,8 +29,7 @@ public class PagesMenuTab : MenuTab
         previousButton.OnSelectSuccess += PrevPage;
         nextButton.OnSelectSuccess += NextPage;
         OnPageChanged += UpdateText;
-        if (null != OnPageChanged)
-            OnPageChanged();
+        OnPageChanged?.Invoke();
     }
     private void OnDisable()
     {
@@ -39,8 +39,7 @@ public class PagesMenuTab : MenuTab
     }
     private void UpdateText()
     {
-        if (null != pageText)
-            pageText.SetText((currPage + 1).ToString() + "/" + pages.Length.ToString());
+        pageText.ConvertNull()?.SetText((currPage + 1).ToString() + "/" + pages.Length.ToString());
     }
     private void NextPage()
     {
@@ -49,8 +48,7 @@ public class PagesMenuTab : MenuTab
         if (currPage >= pages.Length)
             currPage = dontLoop ? pages.Length - 1 : 0;
         pages[currPage].SetActive(true);
-        if (null != OnPageChanged)
-            OnPageChanged();
+        OnPageChanged?.Invoke();
     }
     private void PrevPage()
     {
@@ -59,7 +57,6 @@ public class PagesMenuTab : MenuTab
         if (currPage < 0)
             currPage = dontLoop ? 0 : pages.Length - 1;
         pages[currPage].SetActive(true);
-        if (null != OnPageChanged)
-            OnPageChanged();
+        OnPageChanged?.Invoke();
     }
 }

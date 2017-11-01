@@ -1,22 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
-
 public class RingCountTextUpdate : MonoBehaviour
 {
-    GameManager manager;
-    TextMeshProUGUI element;
-
-	// Use this for initialization
-	void Start () {
-        manager = GameManager.instance;
-        element = gameObject.GetComponent<TextMeshProUGUI>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        string textToWrite = " " + manager.scoreScript.ringHitCount + " ";
-        element.SetText(textToWrite);
-	}
+    private ScoreManager manager = null;
+    private TextMeshProUGUI element = null;
+    private void Start()
+    {
+        manager = GameManager.instance.scoreScript;
+        element = GetComponent<TextMeshProUGUI>();
+    }
+    private void Update()
+    {
+        element.SetText(" " + manager.ringHitCount + " ");
+    }
 }

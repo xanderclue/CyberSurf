@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-
 public class MutatorAnchor : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         GetComponent<MeshRenderer>().enabled = false;
+        Destroy(this);
     }
 }

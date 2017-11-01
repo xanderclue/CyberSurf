@@ -1,21 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Xander.Debugging;
 public class phantomScript : MonoBehaviour
 {
-    ScoreManager.scoreStruct scoreInfo;
-    int currentPos = 0;
-
-    GameManager gameManager;
-
-	// Use this for initialization
-	void Start ()
+    private ScoreManager.scoreStruct scoreInfo;
+    private int currentPos = 0;
+    private void Start()
     {
         int level = SceneManager.GetActiveScene().buildIndex;
-        gameManager = GameManager.instance;
-
+        GameManager gameManager = GameManager.instance;
         switch (GameManager.instance.gameMode.currentMode)
         {
             case GameModes.Continuous:
@@ -28,9 +21,7 @@ public class phantomScript : MonoBehaviour
                         break;
                     }
                 }
-                //scoreInfo = contScores[0].levels[level];
                 break;
-
             case GameModes.Cursed:
                 ScoreManager.levelCurseScores[] levelScores = gameManager.scoreScript.topCurseScores;
                 for (int i = 0; i < levelScores[level].curseScores.Length; i++)
@@ -41,29 +32,26 @@ public class phantomScript : MonoBehaviour
                         break;
                     }
                 }
-                //scoreInfo = levelScores[level].curseScores[0];
                 break;
-
             case GameModes.Free:
                 break;
+            case GameModes.Race:
+                Debug.Log("To add, Race Case PhantomScript");
+                break;
             default:
-                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"");
+                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+    }
+    void FixedUpdate()
     {
-        if (scoreInfo.positions != null)
+        if (null != scoreInfo.positions)
         {
             gameObject.transform.position = scoreInfo.positions[currentPos];
             gameObject.transform.rotation = scoreInfo.rotations[currentPos];
-            currentPos++;
+            ++currentPos;
             if (currentPos >= scoreInfo.positions.Length)
-            {
                 currentPos = 0;
-            }
         }
-	}
+    }
 }

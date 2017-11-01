@@ -1,22 +1,19 @@
 ﻿public class EventSelectedObject : SelectedObject
 {
     public delegate void SelectedObjectEvent();
-    public SelectedObjectEvent OnSelected, OnDeselected, OnSelectSuccess;
+    public event SelectedObjectEvent OnSelected, OnDeselected, OnSelectSuccess;
     protected override void DeselectedFunction()
     {
         base.DeselectedFunction();
-        if (null != OnDeselected)
-            OnDeselected();
+        OnDeselected?.Invoke();
     }
     protected override void SelectedFunction()
     {
         base.SelectedFunction();
-        if (null != OnSelected)
-            OnSelected();
+        OnSelected?.Invoke();
     }
-    public override void SuccessFunction()
+    protected override void SuccessFunction()
     {
-        if (null != OnSelectSuccess)
-            OnSelectSuccess();
+        OnSelectSuccess?.Invoke();
     }
 }

@@ -1,15 +1,9 @@
 ﻿using UnityEngine;
-
 public class EnterLevelOptionsButton : SelectedObject
 {
-    [SerializeField]
-    private LevelMenuStuff levelMenuScript = null;
-    [SerializeField, Tooltip("degrees per second")]
-    private float rotationSpeed = 111.0f;
-    [SerializeField]
-    private Material hoverMat = null;
-    [SerializeField]
-    private Material noHoverMat = null;
+    [SerializeField] private LevelMenuStuff levelMenuScript = null;
+    [SerializeField, Tooltip("degrees per second")] private float rotationSpeed = 111.0f;
+    [SerializeField] private Material hoverMat = null, noHoverMat = null;
     private MeshRenderer meshRenderer = null;
     new private void Start()
     {
@@ -38,7 +32,7 @@ public class EnterLevelOptionsButton : SelectedObject
         base.DeselectedFunction();
         meshRenderer.material = noHoverMat;
     }
-    public override void SuccessFunction()
+    protected override void SuccessFunction()
     {
         levelMenuScript.EnterMenu();
     }

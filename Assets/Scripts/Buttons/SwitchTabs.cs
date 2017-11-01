@@ -1,16 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class SwitchTabs : SelectedObject
 {
-    [SerializeField]
-    private MenuTab menuTab = null;
-
-    public override void SuccessFunction()
+    [SerializeField] private MenuTab menuTab = null;
+    protected override void SuccessFunction()
     {
         if (null != menuTab)
-            if (null != GetComponentInParent<MainMenu>().OnSwitchTabs)
-                GetComponentInParent<MainMenu>().OnSwitchTabs(menuTab);
+            GetComponentInParent<MainMenu>().InvokeOnSwitchTabs(menuTab);
     }
 }

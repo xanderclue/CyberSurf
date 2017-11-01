@@ -105,8 +105,10 @@ public class TextElementControllerScript : MonoBehaviour
                 break;
             case GameModes.Continuous:
             case GameModes.Free:
+            case GameModes.Race:
                 bonusTimeText.SetActive(false);
                 break;
+            
             default:
                 Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"");
                 break;

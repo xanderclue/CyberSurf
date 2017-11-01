@@ -1,18 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using Xander.NullConversion;
 public class crashEffectPlayer : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject hitObject = collision.gameObject;
-        MeshRenderer theMesh = hitObject.GetComponent<MeshRenderer>();
-        if (theMesh)
+        Material texture = collision.gameObject.GetNullConvertedComponent<MeshRenderer>()?.material;
+        if (null != texture)
         {
-            Material texture = theMesh.material;
-            effectController effects = gameObject.GetComponentInChildren<effectController>();
-            ParticleSystem particleEffect = effects.triggerParticleEffects[(int)particleEffectTypesEnum.crash];
+            ParticleSystem particleEffect = GetComponentInChildren<effectController>().TriggerParticleEffects[(int)particleEffectTypesEnum.crash];
             particleEffect.GetComponent<Renderer>().material = texture;
             particleEffect.GetComponent<Renderer>().materials[1] = texture;
             particleEffect.Play();

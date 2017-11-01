@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-
 public class LevelMenuObjectGroup : MonoBehaviour
 {
-    [SerializeField]
-    private LevelMenuStuff levelMenuScript = null;
+    [SerializeField] private LevelMenuStuff levelMenuScript = null;
     protected LevelMenuStuff LevelMenuScript { get { return levelMenuScript; } }
     private Vector3 activeLocalPosition, inactiveLocalPosition;
     private float tVal = 1.0f;
@@ -28,10 +26,7 @@ public class LevelMenuObjectGroup : MonoBehaviour
             button.IsDisabled = true;
     }
     protected void Update()
-    {
-        tVal = Mathf.Clamp01(tVal += (groupEnabled ? Time.deltaTime : -Time.deltaTime) / levelMenuScript.SinkDuration);
-        transform.localPosition = Vector3.Lerp(inactiveLocalPosition, activeLocalPosition, tVal);
-    }
+    { transform.localPosition = Vector3.Lerp(inactiveLocalPosition, activeLocalPosition, tVal = Mathf.Clamp01(tVal += (groupEnabled ? Time.deltaTime : -Time.deltaTime) / levelMenuScript.SinkDuration)); }
     public virtual void ConfirmOptions() { }
     public virtual void ResetOptions() { }
     public virtual void DefaultOptions() { }

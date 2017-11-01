@@ -1,28 +1,28 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using Xander.Debugging;
+using Xander.NullConversion;
 public abstract class SelectedObject : MonoBehaviour
 {
-    [Multiline]
-    public string tooltipText = "";
-    [SerializeField, Tooltip("\"Time To Wait\": How long it takes for the reticle to fill up (measured in FixedUpdate ticks)")]
-    private int timeToWait = 50;
-    private int timeWaited = 0;
-    private bool isSelected = false;
-    protected AudioClip successSound;
-    protected AudioClip selectedSound;
+    [Multiline] public string tooltipText = "";
+    [SerializeField, Tooltip("\"Time To Wait\": How long it takes for the reticle to fill up (measured in FixedUpdate ticks)")] private int timeToWait = 50;
+    [SerializeField, Tooltip("\"Delay\": How long to stare at the button before it registers that you want to select it (measured in FixedUpdate ticks) [-1 sets it to default 20]")] private int delay = DEFAULT_DELAY;
+    [SerializeField, Tooltip("\"Wait Time\": How long to wait before it can select again while staring at the button (measured in seconds)")] private float waitTime = 1.5f;
+    private int timeWaited = 0, delayTime = 0;
+    protected AudioClip successSound = null;
+    protected AudioClip selectedSound = null;
     private const int DEFAULT_DELAY = 20;
-    [SerializeField, Tooltip("\"Delay\": How long to stare at the button before it registers that you want to select it (measured in FixedUpdate ticks) [-1 sets it to default 20]")]
-    private int delay = DEFAULT_DELAY;
-    private int delayTime = 0;
     private float waitTimer = 0.0f;
-    [SerializeField, Tooltip("\"Wait Time\": How long to wait before it can select again while staring at the button (measured in seconds)")]
-    private float waitTime = 1.5f;
     private bool CanSelect { get { return waitTimer <= 0.0f; } set { waitTimer = value ? 0.0f : waitTime; } }
-    private bool isDisabled = false;
-    private bool selectsoundplayed = false;
-    public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.UpdateReticleFill(0.0f); } }
+    private bool isSelected = false, isDisabled = false, selectsoundplayed = false;
     public bool tooltipOnly = false;
+    public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.UpdateReticleFill(0.0f); } }
+    protected float WaitTime { get { return waitTime; } }
+    private reticle theReticle = null;
+    public const string LAYERNAME = "Selectable";
+    public static int Selectable_Layer { get { return LayerMask.NameToLayer(LAYERNAME); } }
+    protected virtual void SelectedFunction() { }
+    protected virtual void DeselectedFunction() { }
+    protected abstract void SuccessFunction();
     protected void Awake()
     {
         if (tooltipOnly)
@@ -30,52 +30,36 @@ public abstract class SelectedObject : MonoBehaviour
         else if (delay < 0)
             delay = DEFAULT_DELAY;
     }
-
-    //object to update for reticle
-    private reticle theReticle;
-
-    //grabs the reticle object to show timer status
     public void Selected(reticle grabbedReticle)
     {
-        if (!enabled) return;
-        if (!CanSelect || isDisabled)
-            return;
-        if (gameObject.activeSelf)
-            TooltipTextScript.SetText(tooltipText);
-        SelectedFunction();
-        if (!tooltipOnly)
+        if (enabled && CanSelect && !isDisabled)
         {
-            theReticle = grabbedReticle;
-            isSelected = true;
+            if (gameObject.activeSelf)
+                TooltipTextScript.SetText(tooltipText);
+            SelectedFunction();
+            if (!tooltipOnly)
+            {
+                theReticle = grabbedReticle;
+                isSelected = true;
+            }
         }
     }
-
-    //What the class actually does with the object while selected(if applicable)
-    protected virtual void SelectedFunction() { }
-
-    //deals with leftovers from selecting the object when you look away
     public void Deselected()
     {
         TooltipTextScript.SetText("");
-        if (!enabled) return;
-        DeselectedFunction();
-        if (!tooltipOnly)
+        if (enabled)
         {
-            if (null != theReticle)
-                theReticle.UpdateReticleFill(0.0f);
-            isSelected = false;
-            timeWaited = 0;
-            delayTime = 0;
-            CanSelect = true;
+            DeselectedFunction();
+            if (!tooltipOnly)
+            {
+                theReticle.ConvertNull()?.UpdateReticleFill(0.0f);
+                isSelected = false;
+                timeWaited = 0;
+                delayTime = 0;
+                CanSelect = true;
+            }
         }
     }
-
-    //Cleans up what the class actually does(if applicable)
-    protected virtual void DeselectedFunction() { }
-
-    //what the class actually does when select is successful, inherited class must fill this out
-    public abstract void SuccessFunction();
-
     protected void FixedUpdate()
     {
         if (tooltipOnly)
@@ -91,14 +75,11 @@ public abstract class SelectedObject : MonoBehaviour
                 CanSelect = false;
                 theReticle.UpdateReticleFill(0.0f);
                 timeWaited = 0;
-                if (isActiveAndEnabled)
-                {
-                    if (null != successSound)
-                        AudioSource.PlayClipAtPoint(successSound, transform.position, AudioLevels.Instance.SfxVolume);
-                }
+                if (isActiveAndEnabled && null != successSound)
+                    AudioSource.PlayClipAtPoint(successSound, transform.position, AudioLevels.Instance.SfxVolume);
             }
             theReticle.UpdateReticleFill((float)timeWaited / timeToWait);
-            if (selectsoundplayed == false && timeWaited >= 2)
+            if (!selectsoundplayed && timeWaited >= 2)
             {
                 if (null != selectedSound)
                     AudioSource.PlayClipAtPoint(selectedSound, transform.position, AudioLevels.Instance.SfxVolume);
@@ -106,28 +87,24 @@ public abstract class SelectedObject : MonoBehaviour
             }
         }
         else
-        {
             selectsoundplayed = false;
-        }
     }
-    public static string LAYERNAME { get { return "Selectable"; } }
     protected void Start()
     {
-        if (gameObject.layer != LayerMask.NameToLayer(LAYERNAME))
+        if (Selectable_Layer != gameObject.layer)
         {
-            Debug.LogWarning("A SelectedObject is not in " + LAYERNAME + " layer. (\"" + BuildDebugger.GetHierarchyName(gameObject) + "\") Changing layer from " +
-                LayerMask.LayerToName(gameObject.layer) + " (" + gameObject.layer + ") to " + LAYERNAME + " (" + LayerMask.NameToLayer(LAYERNAME) + ")");
-            gameObject.layer = LayerMask.NameToLayer(LAYERNAME);
+            Debug.LogWarning("A SelectedObject is not in " + LAYERNAME + " layer. (\"" + gameObject.HierarchyPath() + "\") Changing layer from " +
+                LayerMask.LayerToName(gameObject.layer) + " (" + gameObject.layer + ") to " + LAYERNAME + " (" + Selectable_Layer + ")" + this.Info(), this);
+            gameObject.layer = Selectable_Layer;
         }
         if (null == GetComponent<Collider>())
-            Debug.LogWarning("A SelectedObject script is attached to an object that does not have a Collider component. (\"" + BuildDebugger.GetHierarchyName(gameObject) + "\")");
+            Debug.LogWarning("A SelectedObject script is attached to an object that does not have a Collider component. (\"" + gameObject.HierarchyPath() + "\")" + this.Info(), this);
         if (!tooltipOnly)
         {
             successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
             selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
         }
     }
-
     protected void Update()
     {
         if (!tooltipOnly)

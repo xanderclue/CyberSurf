@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class MenuTab : MonoBehaviour
 {
     private SelectedObject[] buttons;

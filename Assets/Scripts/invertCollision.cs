@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
-
+using Xander.NullConversion;
 public class invertCollision : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
-        MeshFilter filter = GetComponent<MeshFilter>();
-
-        if (null != filter)
+        Mesh mesh = GetComponent<MeshFilter>().ConvertNull()?.mesh;
+        if (null != mesh)
         {
-            Mesh mesh = filter.mesh;
-
             Vector3[] normals = mesh.normals;
             for (int i = 0; i < normals.Length; ++i)
             {
@@ -28,8 +25,7 @@ public class invertCollision : MonoBehaviour
                 }
                 mesh.SetTriangles(triangles, m);
             }
-
-            gameObject.GetComponent<MeshCollider>().sharedMesh = filter.mesh;
+            GetComponent<MeshCollider>().sharedMesh = GetComponent<MeshFilter>().mesh;
         }
         Destroy(this);
     }

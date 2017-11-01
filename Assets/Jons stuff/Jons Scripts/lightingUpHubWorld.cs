@@ -1,24 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class lightingUpHubWorld : MonoBehaviour
 {
-
-    float timeToMove;
-    float currentTime;
-
-    void Start()
+    private const float timeToMove = 20.0f;
+    private float currentTime = 0.0f;
+    private void Start()
     {
         currentTime = 0.0f;
-        timeToMove = 20.0f;
         RenderSettings.fog = true;
     }
-
-
-    void Update()
+    private void Update()
     {
-        if (keepPlayerStill.tutorialOn == false)
+        if (!keepPlayerStill.tutorialOn)
         {
             if (currentTime <= timeToMove)
             {

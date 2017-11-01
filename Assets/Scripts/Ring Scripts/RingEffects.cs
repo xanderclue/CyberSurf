@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class RingEffects : MonoBehaviour
 {
-    private Animator anim;
+    private Animator anim = null;
     private static readonly int pulseHash = Animator.StringToHash("PulseActive");
     private void Start()
     {

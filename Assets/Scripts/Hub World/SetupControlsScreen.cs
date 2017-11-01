@@ -1,23 +1,19 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class SetupControlsScreen : MonoBehaviour
 {
-    private BoardManager boardManager;
-    [SerializeField] private Sprite loadingImage;
-    [SerializeField] private Sprite[] controlsImages;
-    [SerializeField] private Image ImageObject;
-
-    void Start()
+    [SerializeField] private Sprite loadingImage = null;
+    [SerializeField] private Sprite[] controlsImages = null;
+    [SerializeField] private Image ImageObject = null;
+    private void Start()
     {
         ImageObject.sprite = loadingImage;
         StartCoroutine(WaitForDetection());
     }
-
-    IEnumerator WaitForDetection()
+    private IEnumerator WaitForDetection()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SpatialData.WaitForAttach);
         if (GameManager.instance.boardScript.gamepadEnabled)
             if (UnityEngine.VR.VRDevice.isPresent)
                 ImageObject.sprite = controlsImages[0];

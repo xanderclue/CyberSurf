@@ -1,18 +1,12 @@
 ﻿using UnityEngine;
 using TMPro;
+using Xander.Debugging;
 public class RaceModeOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton leftButton = null, rightButton = null;
-    [SerializeField]
-    private TextMeshPro raceModeText = null;
-    [SerializeField]
-    private GameModes defaultMode = GameModes.Continuous;
-    private GameModes tempMode;
-    new private void Start()
-    {
-        base.Start();
-    }
+    [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField] private TextMeshPro raceModeText = null;
+    [SerializeField] private GameModes defaultMode = GameModes.Continuous;
+    private GameModes tempMode = GameModes.Continuous;
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;
@@ -82,8 +76,11 @@ public class RaceModeOptions : LevelMenuObjectGroup
                 LevelMenuScript.mirrorTrackOptions.DisableGroup();
                 LevelMenuScript.reverseTrackOptions.DisableGroup();
                 break;
+            case GameModes.Race:
+                Debug.Log("To add race case RaceModeOptions");
+                break;
             default:
-                Debug.LogWarning("Switch statement on GameModes enum tempMode in RaceModeOptions.cs is missing case for GameModes." + tempMode.ToString());
+                Debug.LogWarning("Switch statement on GameModes enum tempMode in RaceModeOptions.cs is missing case for GameModes." + tempMode.ToString() + this.Info(), this);
                 break;
         }
     }

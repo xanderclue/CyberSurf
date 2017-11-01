@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using TMPro;
-
 public class WorldPortalText : MonoBehaviour
 {
     [SerializeField] private WorldPortalProperties properties = null;
     [SerializeField] private TextMeshPro theName = null;
-    [SerializeField] private Texture[] portalViews;
-    [SerializeField] private Renderer portalRenderer;
+    [SerializeField] private Texture[] portalViews = null;
+    [SerializeField] private Renderer portalRenderer = null;
     private void OnEnable()
     {
         properties.OnSceneIndexChanged += UpdateText;
