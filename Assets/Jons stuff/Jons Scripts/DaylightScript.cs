@@ -14,6 +14,7 @@ public class DaylightScript : MonoBehaviour
         if (null == sun)
             sun = GameObject.FindGameObjectWithTag("sun");
         ogSkybox = RenderSettings.skybox;
+
         stars = GameObject.FindGameObjectWithTag("stars").GetComponent<ParticleSystem>().main;
     }
     private void OnEnable()
@@ -60,6 +61,7 @@ public class DaylightScript : MonoBehaviour
                         stars.maxParticles = 1;
                         RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f);
                         RenderSettings.skybox = ogSkybox;
+                        RenderSettings.skybox.SetFloat("_Exposure", Mathf.Sin(Time.deltaTime * Mathf.Deg2Rad * 100) + 1);
                     }
                     break;
                 case TimeOfDay.Midnight:
@@ -68,6 +70,7 @@ public class DaylightScript : MonoBehaviour
                         stars.maxParticles = 2000;
                         RenderSettings.ambientLight = Color.gray;
                         RenderSettings.skybox = null;
+
                     }
                     break;
                 case TimeOfDay.Morning:
