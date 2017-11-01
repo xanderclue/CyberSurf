@@ -7,7 +7,6 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     [SerializeField] private bool defaultValue = false;
     private Material inactiveMaterial = null;
     private bool tempValue = false;
-    private static bool ActualValue { get; set; } // replace with game's value
     new private void Start()
     {
         base.Start();
@@ -26,18 +25,6 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     {
         onButton.OnButtonPressed -= ButtonOnFunction;
         offButton.OnButtonPressed -= ButtonOffFunction;
-    }
-    public override void EnableGroup()
-    {
-        base.EnableGroup();
-        onButton.enabled = true;
-        offButton.enabled = true;
-    }
-    public override void DisableGroup()
-    {
-        base.DisableGroup();
-        onButton.enabled = false;
-        offButton.enabled = false;
     }
     private void ButtonOnFunction()
     {
@@ -65,7 +52,7 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        ActualValue = tempValue;
+        LevelManager.mirrorMode = tempValue;
     }
     public override void DefaultOptions()
     {
@@ -76,7 +63,7 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempValue = ActualValue;
+        tempValue = LevelManager.mirrorMode;
         UpdateDisplay();
     }
 }

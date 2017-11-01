@@ -6,7 +6,7 @@ public class reticle : MonoBehaviour
     [SerializeField] private Image selectionRadial = null, reticleCenter = null;
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (1 != scene.buildIndex)
+        if (scene.buildIndex >= LevelSelectOptions.LevelBuildOffset)
         {
             if (selectionRadial.IsActive())
             {
