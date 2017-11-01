@@ -59,22 +59,16 @@ public class RaceModeOptions : LevelMenuObjectGroup
                 LevelMenuScript.lapsOptions.DisableGroup();
                 LevelMenuScript.aiOptions.EnableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
-                LevelMenuScript.mirrorTrackOptions.DisableGroup();
-                LevelMenuScript.reverseTrackOptions.DisableGroup();
                 break;
             case GameModes.Cursed:
                 LevelMenuScript.lapsOptions.EnableGroup();
                 LevelMenuScript.aiOptions.DisableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
-                LevelMenuScript.mirrorTrackOptions.EnableGroup();
-                LevelMenuScript.reverseTrackOptions.EnableGroup();
                 break;
             case GameModes.Free:
                 LevelMenuScript.lapsOptions.DisableGroup();
                 LevelMenuScript.aiOptions.DisableGroup();
                 LevelMenuScript.difficultyOptions.DisableGroup();
-                LevelMenuScript.mirrorTrackOptions.DisableGroup();
-                LevelMenuScript.reverseTrackOptions.DisableGroup();
                 break;
             case GameModes.Race:
                 Debug.Log("To add race case RaceModeOptions");

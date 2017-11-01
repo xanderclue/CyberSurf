@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     [HideInInspector] public int nextScene = 0;
     [HideInInspector] public bool RingPathIsOn = true;
     public Transform[] spawnPoints = null;
+    public static bool mirrorMode = false;
+    public static bool reverseMode = false;
     public void SetupLevelManager(ManagerClasses.GameState s, GameObject p, GameManager g)
     {
         player = p;
