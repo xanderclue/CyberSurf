@@ -178,6 +178,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &17672512 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 174710804}
 --- !u!1001 &29647604
 Prefab:
   m_ObjectHideFlags: 0
@@ -1870,6 +1875,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7117ac8df6ebca94bb00bb995c0f72a8, type: 2}
   m_IsPrefabParent: 0
@@ -2872,6 +2881,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &425941038 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 655048640}
 --- !u!1001 &463776901
 Prefab:
   m_ObjectHideFlags: 0
@@ -4971,6 +4985,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: portaleffect
+      value: 
+      objectReference: {fileID: 425941038}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
@@ -5677,6 +5696,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &810945768 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 244371409}
 --- !u!1001 &811905900
 Prefab:
   m_ObjectHideFlags: 0
@@ -5748,6 +5772,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: portaleffect
+      value: 
+      objectReference: {fileID: 810945768}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
@@ -15523,6 +15552,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: portaleffect
+      value: 
+      objectReference: {fileID: 17672512}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
   m_IsPrefabParent: 0
