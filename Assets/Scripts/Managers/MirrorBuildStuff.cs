@@ -50,6 +50,7 @@ public class MirrorBuildStuff : ScriptableWizard
     }
     private Scene InitMirrorScene()
     {
+        EditorSceneManager.MarkAllScenesDirty();
         EditorSceneManager.SaveOpenScenes();
         string currentSceneFullPath = Application.dataPath + source.Substring(source.IndexOfAny("/\\".ToCharArray()));
         string mirrorSceneFullPath = Application.dataPath + destination.Substring(destination.IndexOfAny("/\\".ToCharArray()));
@@ -117,6 +118,7 @@ public class MirrorBuildStuff : ScriptableWizard
     {
         EditorSceneManager.MarkSceneDirty(scene);
         EditorSceneManager.SaveOpenScenes();
-        EditorSceneManager.OpenScene(source, OpenSceneMode.Single);
+        EditorSceneManager.MarkSceneDirty(EditorSceneManager.OpenScene(source, OpenSceneMode.Single));
+        EditorSceneManager.SaveOpenScenes();
     }
 }

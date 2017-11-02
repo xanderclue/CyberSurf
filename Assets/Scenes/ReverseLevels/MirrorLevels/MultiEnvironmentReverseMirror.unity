@@ -4377,6 +4377,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: portaleffect
+      value: 
+      objectReference: {fileID: 918233913}
     - target: {fileID: 65365810412193378, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
         type: 2}
       propertyPath: m_Size.x
@@ -5230,6 +5235,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: portaleffect
+      value: 
+      objectReference: {fileID: 1987514052}
     - target: {fileID: 65365810412193378, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
         type: 2}
       propertyPath: m_Size.x
@@ -8412,6 +8422,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7117ac8df6ebca94bb00bb995c0f72a8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1286523175 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1619620446868294, guid: 7117ac8df6ebca94bb00bb995c0f72a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1286523174}
 --- !u!1001 &1289772646
 Prefab:
   m_ObjectHideFlags: 0
@@ -11697,6 +11712,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114726246599098708, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
+        type: 2}
+      propertyPath: portaleffect
+      value: 
+      objectReference: {fileID: 1286523175}
     - target: {fileID: 65365810412193378, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
         type: 2}
       propertyPath: m_Size.x
