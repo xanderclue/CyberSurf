@@ -41,23 +41,31 @@ public class MirrorBuildStuff : ScriptableWizard
     }
     private void OnWizardCreate()
     {
-        if (SceneManager.GetActiveScene().isDirty)
-            EditorSceneManager.SaveOpenScenes();
-        if (null == spawnPrefab)
-            return;
+        if (null != spawnPrefab)
+        {
+            Scene mirrorScene = InitMirrorScene();
+            InvertBoxColliders(MirrorRootObjects(mirrorScene));
+            SaveMirrorScene(mirrorScene);
+        }
+    }
+    private Scene InitMirrorScene()
+    {
+        EditorSceneManager.SaveOpenScenes();
         string currentSceneFullPath = Application.dataPath + source.Substring(source.IndexOfAny("/\\".ToCharArray()));
         string mirrorSceneFullPath = Application.dataPath + destination.Substring(destination.IndexOfAny("/\\".ToCharArray()));
         System.IO.File.Copy(currentSceneFullPath, mirrorSceneFullPath, true);
         EditorSceneManager.OpenScene(destination, OpenSceneMode.Single);
-        Scene mirrorScene = SceneManager.GetActiveScene();
+        return SceneManager.GetActiveScene();
+    }
+    private GameObject[] MirrorRootObjects(Scene scene)
+    {
         Transform go = new GameObject("TEMPMIRRORROOT").transform;
         go.parent = null;
         go.localPosition = spawnPrefab.localPosition;
         go.localRotation = spawnPrefab.localRotation;
         go.localScale = spawnPrefab.localScale;
-        mirrorScene.GetRootGameObjects();
         List<Transform> rootTransforms = new List<Transform>();
-        GameObject[] rootObjects = mirrorScene.GetRootGameObjects();
+        GameObject[] rootObjects = scene.GetRootGameObjects();
         foreach (GameObject rootObject in rootObjects)
             if (rootObject.transform != go)
                 rootTransforms.Add(rootObject.transform);
@@ -69,7 +77,45 @@ public class MirrorBuildStuff : ScriptableWizard
         foreach (Transform rootTransform in rootTransforms)
             rootTransform.parent = null;
         DestroyImmediate(go.gameObject);
-        EditorSceneManager.MarkSceneDirty(mirrorScene);
+        return scene.GetRootGameObjects();
+    }
+    private Queue<Transform> GetTransforms(GameObject[] gameObjects)
+    {
+        Queue<Transform> transforms = new Queue<Transform>();
+        foreach (GameObject rootObject in gameObjects)
+            transforms.Enqueue(rootObject.transform);
+        return transforms;
+    }
+    private List<BoxCollider> GetBoxColliders(GameObject[] gameObjects)
+    {
+        Queue<Transform> transforms = GetTransforms(gameObjects);
+        List<BoxCollider> boxColliders = new List<BoxCollider>();
+        Transform tmpT = null;
+        BoxCollider tmpBc = null;
+        while (transforms.Count > 0)
+        {
+            tmpT = transforms.Dequeue();
+            for (int i = 0; i < tmpT.childCount; ++i)
+                transforms.Enqueue(tmpT.GetChild(i));
+            if (null != (tmpBc = tmpT.GetComponent<BoxCollider>()))
+                boxColliders.Add(tmpBc);
+        }
+        return boxColliders;
+    }
+    private void InvertBoxColliders(GameObject[] gameObjects)
+    {
+        List<BoxCollider> boxColliders = GetBoxColliders(gameObjects);
+        Vector3 tmpV3 = Vector3.zero;
+        foreach (BoxCollider boxCollider in boxColliders)
+        {
+            tmpV3 = boxCollider.size;
+            tmpV3.x = -tmpV3.x;
+            boxCollider.size = tmpV3;
+        }
+    }
+    private void SaveMirrorScene(Scene scene)
+    {
+        EditorSceneManager.MarkSceneDirty(scene);
         EditorSceneManager.SaveOpenScenes();
         EditorSceneManager.OpenScene(source, OpenSceneMode.Single);
     }
