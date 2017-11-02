@@ -86,7 +86,7 @@ public class closeScoreSplashScreen : SelectedObject
                 Debug.Log("Free Mode shouldn't display anything" + this.Info(), this);
                 break;
             case GameModes.Race:
-                Debug.Log("To add Race Case");
+                Debug.Log("To add Race Case closeScoreSplashScreen");
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);

@@ -11,12 +11,14 @@ public class speedBarUpdater : MonoBehaviour
     {
         fillUpBar = GetComponentsInParent<Image>()[1];
         player = GetComponentInParent<Rigidbody>();
+        fillUpBar.color = gameObject.GetComponent<Image>().color;
     }
     private void OnEnable()
     {
         moveVars = GetComponentInParent<PlayerGameplayController>().movementVariables;
         maxValue = moveVars.maxSpeed;
         minValue = moveVars.minSpeed;
+        
     }
     private void Update()
     {
