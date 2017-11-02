@@ -11,7 +11,6 @@ public class speedBarUpdater : MonoBehaviour
     {
         fillUpBar = GetComponentsInParent<Image>()[1];
         player = GetComponentInParent<Rigidbody>();
-        fillUpBar.color = gameObject.GetComponent<Image>().color;
     }
     private void OnEnable()
     {
@@ -19,9 +18,11 @@ public class speedBarUpdater : MonoBehaviour
         maxValue = moveVars.maxSpeed;
         minValue = moveVars.minSpeed;
         
+
     }
     private void Update()
     {
+        fillUpBar.color = gameObject.GetComponent<Image>().color;
         currentValue = player.velocity.magnitude;
         if (prevValue != currentValue)
             fillUpBar.fillAmount = (currentValue - minValue) / (maxValue - minValue);
