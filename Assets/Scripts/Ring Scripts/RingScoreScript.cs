@@ -108,19 +108,20 @@ public class RingScoreScript : MonoBehaviour
                 }
                 else
                 {
-                    if (rp.laps == 1)
+                    if (rp.laptext.curr_lap == rp.laptext.max_lap)
                     {
                         scoreManager.LevelEnd();
                         scoreManager.prevRingBonusTime = 0.0f;
                         scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
                         scoreManager.ringHitCount = 0;
                         prevPositionInOrder = -1;
+                        rp.laptext.curr_lap = 1;
                         EventManager.OnTriggerTransition(rp.nextScene);
                     }
                     else
                     {
-                        rp.laps += 1;
-                        if (rp.laps == 1)
+                        rp.laptext.curr_lap += 1;
+                        if (rp.laptext.curr_lap == rp.laptext.max_lap)
                         {
                             portaleffect.SetActive(true);
                         }

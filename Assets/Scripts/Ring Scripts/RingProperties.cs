@@ -6,10 +6,11 @@ public class RingProperties : MonoBehaviour
     public float bonusTime = 0.0f;
     public bool lastRingInScene = false;
     public int nextScene = 1;
-    public int laps = 0;
+    public Lap_Text_script laptext = null;
     public bool DuplicatePosition { get { return duplicatePosition; } }
     private void Awake()
     {
+        laptext = GameObject.FindObjectOfType<Lap_Text_script>();
         if (duplicatePosition)
         {
             RingProperties[] rps = GetComponentsInChildren<RingProperties>();
