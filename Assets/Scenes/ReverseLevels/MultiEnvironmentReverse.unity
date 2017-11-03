@@ -5294,6 +5294,10 @@ Prefab:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: m_TagString
+      value: cloud
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
   m_IsPrefabParent: 0
