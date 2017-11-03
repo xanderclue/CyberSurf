@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class TextElementControllerScript : MonoBehaviour
 {
@@ -49,7 +51,6 @@ public class TextElementControllerScript : MonoBehaviour
     public void setArrow(bool isOn) { hudElementsControl.arrowBool = GameSettings.SetBool("HudArrow", isOn); }
     public void setSpeed(bool isOn) { hudElementsControl.speedBool = GameSettings.SetBool("HudSpeed", isOn); }
     public void setSpeedBar(bool isOn) { hudElementsControl.speedBarBool = GameSettings.SetBool("HudSpeedBar", isOn); }
-    //need add
     public void setBestLap(bool isOn) { hudElementsControl.bestlapBool = GameSettings.SetBool("HudBestLap", isOn); }
     public void setCheckpoint_time(bool isOn) { hudElementsControl.checkpoint_timeBool = GameSettings.SetBool("HudCheckpointTime", isOn); }
     public void setTimeDifference(bool isOn) { hudElementsControl.time_differenceBool = GameSettings.SetBool("HudTimeDifference", isOn); }
@@ -96,6 +97,19 @@ public class TextElementControllerScript : MonoBehaviour
 
         speedText.SetActive(hudElementsControl.speedBool);
         speedBar.SetActive(hudElementsControl.speedBarBool);
+
+        timerText.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        scoreText.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        scoreMulti.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        bestlap_time.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        checkpoint_time.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        time_difference.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        player_list.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        current_lap_time.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        position_text.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        lap_text.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        speedText.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
+        speedBar.GetComponent<Image>().color = HUD_Color;
 
 
         switch (GameManager.instance.gameMode.currentMode)

@@ -8,7 +8,7 @@ public class SpeedUpdate : MonoBehaviour
     {
         playerRB = GetComponentInParent<Rigidbody>();
         element = GetComponent<TextMeshProUGUI>();
-        element.color = Color.magenta;
+        //element.color = Color.magenta;
     }
     private void Update()
     {

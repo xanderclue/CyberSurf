@@ -63,6 +63,13 @@
             }
         }
     }
+    namespace ObjectManagement
+    {
+        public static class ObjectManager
+        {
+
+        }
+    }
     namespace NullConversion
     {
         public static class NullConverter
@@ -83,19 +90,6 @@
             { return obj.GetComponentInParent<T>().ConvertNull(); }
         }
     }
-#if UNITY_EDITOR
-    [UnityEditor.InitializeOnLoad]
-    public class SteamAppId
-    {
-        public const int cstIntSteamAppId = 735810;
-        static SteamAppId()
-        {
-            System.IO.StreamWriter lSwSteamAppIdFile = new System.IO.StreamWriter(UnityEngine.Application.dataPath + "/../steam_appid.txt", false);
-            lSwSteamAppIdFile.Write(cstIntSteamAppId);
-            lSwSteamAppIdFile.Close();
-        }
-    }
-#endif
     namespace BoolConversion
     {
         public static class BoolConverter
@@ -145,3 +139,19 @@ public class LabelOverrideAttribute : UnityEngine.PropertyAttribute
     }
 #endif
 }
+#if UNITY_EDITOR
+namespace Xander.Steam
+{
+    [UnityEditor.InitializeOnLoad]
+    public class SteamAppId
+    {
+        public const int cstIntSteamAppId = 735810;
+        static SteamAppId()
+        {
+            System.IO.StreamWriter lSwSteamAppIdFile = new System.IO.StreamWriter(UnityEngine.Application.dataPath + "/../steam_appid.txt", false);
+            lSwSteamAppIdFile.Write(cstIntSteamAppId);
+            lSwSteamAppIdFile.Close();
+        }
+    }
+}
+#endif
