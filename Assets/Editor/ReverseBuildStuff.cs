@@ -69,12 +69,19 @@ public class ReverseBuildStuff : ScriptableWizard
                 rings.Add(ringProperty);
         return rings;
     }
+    private class RingPropertiesPositionInOrderComparer : IComparer<RingProperties> { public int Compare(RingProperties x, RingProperties y) { return x.positionInOrder - y.positionInOrder; } }
     private RingProperties[] ListToSortedArray(List<RingProperties> rings)
     {
-        int minPosition, maxPosition;
-        GetPositionRange(rings, out minPosition, out maxPosition);
-        // TODO : Sort rings from Min to Max and fix duplicates and gaps
-        return rings.ToArray();
+        RingProperties[] ringArr = rings.ToArray();
+        System.Array.Sort(ringArr, new RingPropertiesPositionInOrderComparer());
+        SerializedObject so = null;
+        for (int i = 0; i < ringArr.Length; ++i)
+        {
+            so = new SerializedObject(ringArr[i]);
+            so.FindProperty("positionInOrder").intValue = i + 1;
+            so.ApplyModifiedProperties();
+        }
+        return ringArr;
     }
     private RingProperties[] ReversePositionOrder(List<RingProperties> rings)
     {
