@@ -80,8 +80,15 @@ public class ReverseBuildStuff : ScriptableWizard
     {
         int minPosition, maxPosition;
         GetPositionRange(rings, out minPosition, out maxPosition);
+        SerializedObject so = null;
+        SerializedProperty sp = null;
         foreach (RingProperties ring in rings)
-            ring.positionInOrder = minPosition + maxPosition - ring.positionInOrder;
+        {
+            so = new SerializedObject(ring);
+            sp = so.FindProperty("positionInOrder");
+            sp.intValue = minPosition + maxPosition - sp.intValue;
+            so.ApplyModifiedProperties();
+        }
         return ListToSortedArray(rings);
     }
     private void GetPositionRange(List<RingProperties> rings, out int minPosition, out int maxPosition)
