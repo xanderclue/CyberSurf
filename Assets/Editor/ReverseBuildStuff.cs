@@ -3,9 +3,11 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.Assertions;
+
 public class ReverseBuildStuff : ScriptableWizard
 {
-    public Transform spawnPrefab = null;
+    public Transform spawnPrefab = null, reverseSpawnPrefab = null;
     public string source = "", destination = "";
     [MenuItem("Cybersurf Tools/Create Reversed Scene...")]
     private static void ProcessReverse()
@@ -19,9 +21,12 @@ public class ReverseBuildStuff : ScriptableWizard
         ReverseBuildStuff wizard = DisplayWizard<ReverseBuildStuff>("Create Reversed Scene", "Create Scene");
         wizard.source = activeScene.path;
         wizard.destination = reverseScenePath;
-        string[] prefabSearch = AssetDatabase.FindAssets(activeScene.name + "Spawn");
-        if (null != prefabSearch && prefabSearch.Length > 0)
-            wizard.spawnPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(prefabSearch[0])).transform;
+        GameObject prefabSearch = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/SpawnPoints/" + activeScene.name + "Spawn.prefab");
+        if (null != prefabSearch)
+            wizard.spawnPrefab = prefabSearch.transform;
+        prefabSearch = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/SpawnPoints/Reverse/" + activeScene.name + "ReverseSpawn.prefab");
+        if (null != prefabSearch)
+            wizard.reverseSpawnPrefab = prefabSearch.transform;
         wizard.OnWizardUpdate();
     }
     public void OnWizardUpdate()
@@ -110,13 +115,102 @@ public class ReverseBuildStuff : ScriptableWizard
                 minPosition = ring.positionInOrder;
         }
     }
-    private void ProcessLastRings(RingProperties[] sortedRings)
+    private void DecrementAllPositions(RingProperties[] rings)
     {
-        // TODO
+        SerializedObject so = null;
+        foreach (RingProperties ring in rings)
+        {
+            so = new SerializedObject(ring);
+            --so.FindProperty("positionInOrder").intValue;
+            so.ApplyModifiedProperties();
+        }
+    }
+    private Vector3 ProcessRingEnds(RingProperties[] sortedRings)
+    {
+        RingProperties exitRing = null, nextRing = null, startRing = null;
+        startRing = sortedRings[sortedRings.Length - 1];
+        exitRing = sortedRings[0];
+        nextRing = sortedRings[1];
+        if (1 == nextRing.nextScene)
+        {
+            exitRing = nextRing;
+            nextRing = sortedRings[0];
+        }
+        bool ogAssertRaise = Assert.raiseExceptions;
+        Assert.raiseExceptions = true;
+        try
+        {
+            Assert.IsTrue(nextRing.lastRingInScene);
+            Assert.IsTrue(exitRing.lastRingInScene);
+            Assert.IsFalse(startRing.lastRingInScene);
+            Assert.AreEqual(1, exitRing.nextScene);
+            Assert.AreNotEqual(1, nextRing.nextScene);
+        }
+        catch
+        {
+            Debug.LogError("Reverse scene setup has failed to finish processing rings. Rings may " +
+                "not have been setup correctly. Make sure rings have correct position numbers " +
+                "and that the last two rings (Next and Exit rings) are properly setup for scene " +
+                "transitions. Both rings should have lastRingInScene set to true, and all other " +
+                "rings should have it set to false. The nextScene field for the Next ring should " +
+                "be set to a scene number that isn't the hub world, and the nextScene field for " +
+                "the Exit ring should only be set for the hub world. Be sure to check the ring " +
+                "setups for all difficulty levels.");
+            return spawnPrefab.position + spawnPrefab.forward;
+        }
+        finally
+        {
+            Assert.raiseExceptions = ogAssertRaise;
+        }
+        SerializedObject exitRingSO = null, nextRingSO = null, startRingSO = null;
+        exitRingSO = new SerializedObject(exitRing);
+        nextRingSO = new SerializedObject(nextRing);
+        startRingSO = new SerializedObject(startRing);
+        exitRingSO.FindProperty("positionInOrder").intValue = startRingSO.FindProperty("positionInOrder").intValue + 1;
+        nextRingSO.FindProperty("positionInOrder").intValue = exitRingSO.FindProperty("positionInOrder").intValue - 1;
+        startRingSO.FindProperty("positionInOrder").intValue = 2;
+        exitRingSO.ApplyModifiedProperties();
+        nextRingSO.ApplyModifiedProperties();
+        startRingSO.ApplyModifiedProperties();
+        DecrementAllPositions(sortedRings);
+        MoveExitRings(exitRing.transform, nextRing.transform, startRing.transform);
+        return startRing.transform.position;
+    }
+    private void MoveExitRings(Transform exitRing, Transform nextRing, Transform startRing)
+    {
+        bool ogAssertRaise = Assert.raiseExceptions;
+        Assert.raiseExceptions = true;
+        try
+        {
+            Assert.AreEqual(exitRing.parent, nextRing.parent);
+            Assert.AreEqual(nextRing.parent, startRing.parent);
+        }
+        catch { Debug.LogError("start/next/exit rings of the same difficulty must be have the same immediate parent"); return; }
+        finally { Assert.raiseExceptions = ogAssertRaise; }
+        exitRing.parent = nextRing;
+        Vector3 position = startRing.position, localScale = startRing.localScale;
+        Quaternion rotation = startRing.rotation;
+        startRing.position = nextRing.position;
+        startRing.rotation = nextRing.rotation;
+        startRing.localScale = nextRing.localScale;
+        nextRing.position = position;
+        nextRing.rotation = rotation;
+        exitRing.parent = nextRing.parent;
+        nextRing.localScale = localScale;
+    }
+    private void PointSpawnAtStart(Vector3 ringPosition)
+    {
+        if (null != reverseSpawnPrefab)
+        {
+            reverseSpawnPrefab.LookAt(ringPosition, Vector3.up);
+            Vector3 euler = reverseSpawnPrefab.eulerAngles;
+            euler.z = euler.x = 0.0f;
+            reverseSpawnPrefab.eulerAngles = euler;
+        }
     }
     private void ReverseRingPath(GameObject ringParent)
     {
-        ProcessLastRings(ReversePositionOrder(GetRings(ringParent)));
+        PointSpawnAtStart(ProcessRingEnds(ReversePositionOrder(GetRings(ringParent))));
     }
     private void ReverseRingPaths(Scene scene)
     {

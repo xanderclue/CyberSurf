@@ -19,9 +19,9 @@ public class MirrorBuildStuff : ScriptableWizard
         MirrorBuildStuff wizard = DisplayWizard<MirrorBuildStuff>("Create Mirrored Scene", "Create Scene");
         wizard.source = activeScene.path;
         wizard.destination = mirrorScenePath;
-        string[] prefabSearch = AssetDatabase.FindAssets(activeScene.name + "Spawn");
-        if (null != prefabSearch && prefabSearch.Length > 0)
-            wizard.spawnPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(prefabSearch[0])).transform;
+        GameObject prefabSearch = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/SpawnPoints/" + activeScene.name + "Spawn.prefab");
+        if (null != prefabSearch)
+            wizard.spawnPrefab = prefabSearch.transform;
         wizard.OnWizardUpdate();
     }
     public void OnWizardUpdate()
