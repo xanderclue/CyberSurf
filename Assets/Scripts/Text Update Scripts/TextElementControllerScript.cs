@@ -21,6 +21,7 @@ public class TextElementControllerScript : MonoBehaviour
     private GameObject current_lap_time;
     private GameObject position_text;
     private GameObject lap_text;
+    public GameObject Compass_Display;
     [SerializeField] private Color HUD_Color;
     public Color HudColor { get { return HUD_Color; } set { HUD_Color = GameSettings.SetColor("HudColor", value); } }
 
@@ -94,9 +95,9 @@ public class TextElementControllerScript : MonoBehaviour
         current_lap_time.SetActive(hudElementsControl.current_lap_timeBool);
         position_text.SetActive(hudElementsControl.positionBool);
         lap_text.SetActive(hudElementsControl.lapBool);
-
         speedText.SetActive(hudElementsControl.speedBool);
         speedBar.SetActive(hudElementsControl.speedBarBool);
+        Compass_Display.SetActive(hudElementsControl.compassBool);
 
         timerText.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
         scoreText.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
@@ -110,6 +111,8 @@ public class TextElementControllerScript : MonoBehaviour
         lap_text.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
         speedText.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
         speedBar.GetComponent<Image>().color = HUD_Color;
+        Compass_Display.GetComponent<TextMeshPro>().faceColor = HUD_Color;
+        Compass_Display.GetComponentInParent<Image>().color = HUD_Color;
 
 
         switch (GameManager.instance.gameMode.currentMode)
@@ -148,6 +151,7 @@ public class TextElementControllerScript : MonoBehaviour
             arrow[i].SetActive(false);
         speedText.SetActive(false);
         speedBar.SetActive(false);
+        Compass_Display.SetActive(false);
     }
 
 
@@ -178,6 +182,7 @@ public class TextElementControllerScript : MonoBehaviour
         //arrow = GetComponentInChildren<arrowPointAtUpdater>().get;
         speedText = GetComponentInChildren<SpeedUpdate>().gameObject;
         speedBar = GetComponentInChildren<speedBarUpdater>().gameObject;
+        Compass_Display = GetComponentInChildren<Compass_rotate>().gameObject;
 
         GetPlayerPrefs();
 
