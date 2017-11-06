@@ -94,7 +94,7 @@ public class TextElementControllerScript : MonoBehaviour
         player_list.SetActive(hudElementsControl.player_listBool);
         current_lap_time.SetActive(hudElementsControl.current_lap_timeBool);
         position_text.SetActive(hudElementsControl.positionBool);
-        lap_text.SetActive(hudElementsControl.lapBool);
+        lap_text.GetComponent<TextMeshProUGUI>().enabled = hudElementsControl.lapBool;
         speedText.SetActive(hudElementsControl.speedBool);
         speedBar.SetActive(hudElementsControl.speedBarBool);
         Compass_Display.SetActive(hudElementsControl.compassBool);
@@ -122,6 +122,8 @@ public class TextElementControllerScript : MonoBehaviour
                 break;
             case GameModes.Continuous:
             case GameModes.Free:
+                bonusTimeText.SetActive(false);
+                break;
             case GameModes.Race:
                 bonusTimeText.SetActive(false);
                 break;
@@ -146,7 +148,8 @@ public class TextElementControllerScript : MonoBehaviour
         player_list.SetActive(false);
         current_lap_time.SetActive(false);
         position_text.SetActive(false);
-        lap_text.SetActive(false);
+        lap_text.SetActive(true);
+        lap_text.GetComponent<TextMeshProUGUI>().enabled = false;
         for (int i = 0; i < arrow.Length; ++i)
             arrow[i].SetActive(false);
         speedText.SetActive(false);

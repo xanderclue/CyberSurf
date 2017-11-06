@@ -9,7 +9,7 @@ private void Start()
 {
     element = GetComponent<TextMeshProUGUI>();
         curr_lap = 1;
-        max_lap = 2;
+        max_lap = 0;
 }
 private void Update()
 {

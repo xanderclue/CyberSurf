@@ -13,6 +13,10 @@ public class LapsOptions : LevelMenuObjectGroup
     new private void Start()
     {
         base.Start();
+        if (GameObject.FindObjectOfType<Lap_Text_script>().max_lap == 0)
+        {
+            GameObject.FindObjectOfType<Lap_Text_script>().max_lap = defaultValue;
+        }
         if (ActualValue < 1)
             ActualValue = 1;
     }
@@ -69,5 +73,6 @@ public class LapsOptions : LevelMenuObjectGroup
     private void UpdateDisplay()
     {
         lapsText.SetText(tempValue.ToString());
+        GameObject.FindObjectOfType<Lap_Text_script>().max_lap = tempValue;
     }
 }
