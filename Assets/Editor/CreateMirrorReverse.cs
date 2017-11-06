@@ -1,75 +1,74 @@
-﻿using System.IO;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
-using UnityEngine.Assertions;
-using MirrorReverseHelperClasses;
-public class CreateMirrorReverse
+﻿namespace MirrorReverseHelperClasses
 {
-    public string sceneName = "";
-    private string
-        originalScenePath = "", reverseScenePath = "", mirrorScenePath = "", reverseMirrorScenePath = "",
-        originalSpawnPath = "", reverseSpawnPath = "", mirrorSpawnPath = "", reverseMirrorSpawnPath = "";
-    public void CreateScenes()
+    using System.IO;
+    using System.Collections.Generic;
+    using UnityEditor;
+    using UnityEngine;
+    using UnityEditor.SceneManagement;
+    using UnityEngine.SceneManagement;
+    using UnityEngine.Assertions;
+    public class CreateMirrorReverse
     {
-        GetAllPaths();
-        EditorSceneManager.OpenScene(originalScenePath, OpenSceneMode.Single);
-        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-        EditorSceneManager.SaveOpenScenes();
-        CreateReverseScene();
-        CreateMirrorScene();
-        CreateReverseMirrorScene();
-        AssetDatabase.Refresh();
-        AssetDatabase.SaveAssets();
-        EditorSceneManager.OpenScene(originalScenePath, OpenSceneMode.Single);
+        private string sceneName = "",
+            originalScenePath = "", reverseScenePath = "", mirrorScenePath = "", reverseMirrorScenePath = "",
+            originalSpawnPath = "", reverseSpawnPath = "", mirrorSpawnPath = "", reverseMirrorSpawnPath = "";
+        public CreateMirrorReverse(string scene) { sceneName = scene; }
+        public void CreateScenes()
+        {
+            GetAllPaths();
+            EditorSceneManager.OpenScene(originalScenePath, OpenSceneMode.Single);
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            EditorSceneManager.SaveOpenScenes();
+            CreateReverseScene();
+            CreateMirrorScene();
+            CreateReverseMirrorScene();
+            AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+            EditorSceneManager.OpenScene(originalScenePath, OpenSceneMode.Single);
+        }
+        private void GetAllPaths()
+        {
+            originalScenePath = string.Format("Assets/Scenes/{0}.unity", sceneName);
+            reverseScenePath = string.Format("Assets/Scenes/ReverseLevels/{0}Reverse.unity", sceneName);
+            mirrorScenePath = string.Format("Assets/Scenes/MirrorLevels/{0}Mirror.unity", sceneName);
+            reverseMirrorScenePath = string.Format("Assets/Scenes/ReverseLevels/MirrorLevels/{0}ReverseMirror.unity", sceneName);
+            originalSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/{0}Spawn.prefab", sceneName);
+            reverseSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/ReverseLevels/{0}ReverseSpawn.prefab", sceneName);
+            mirrorSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/MirrorLevels/{0}MirrorSpawn.prefab", sceneName);
+            reverseMirrorSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/ReverseLevels/MirrorLevels/{0}ReverseMirrorSpawn.prefab", sceneName);
+        }
+        private void CreateReverseScene()
+        {
+            Directory.CreateDirectory(reverseScenePath.GetFullPath().GetDirectory());
+            File.Copy(originalScenePath.GetFullPath(), reverseScenePath.GetFullPath(), true);
+            Directory.CreateDirectory(reverseSpawnPath.GetFullPath().GetDirectory());
+            File.Copy(originalSpawnPath.GetFullPath(), reverseSpawnPath.GetFullPath(), true);
+            AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+            ReverseHelper.NewReverseScene(reverseScenePath, reverseSpawnPath);
+        }
+        private void CreateMirrorScene()
+        {
+            Directory.CreateDirectory(mirrorScenePath.GetFullPath().GetDirectory());
+            File.Copy(originalScenePath.GetFullPath(), mirrorScenePath.GetFullPath(), true);
+            Directory.CreateDirectory(mirrorSpawnPath.GetFullPath().GetDirectory());
+            File.Copy(originalSpawnPath.GetFullPath(), mirrorSpawnPath.GetFullPath(), true);
+            AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+            MirrorHelper.NewMirrorScene(mirrorScenePath, mirrorSpawnPath);
+        }
+        private void CreateReverseMirrorScene()
+        {
+            Directory.CreateDirectory(reverseMirrorScenePath.GetFullPath().GetDirectory());
+            File.Copy(reverseScenePath.GetFullPath(), reverseMirrorScenePath.GetFullPath(), true);
+            Directory.CreateDirectory(reverseMirrorSpawnPath.GetFullPath().GetDirectory());
+            File.Copy(reverseSpawnPath.GetFullPath(), reverseMirrorSpawnPath.GetFullPath(), true);
+            AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+            MirrorHelper.NewMirrorScene(reverseMirrorScenePath, reverseMirrorSpawnPath);
+        }
     }
-    private void GetAllPaths()
-    {
-        originalScenePath = string.Format("Assets/Scenes/{0}.unity", sceneName);
-        reverseScenePath = string.Format("Assets/Scenes/ReverseLevels/{0}Reverse.unity", sceneName);
-        mirrorScenePath = string.Format("Assets/Scenes/MirrorLevels/{0}Mirror.unity", sceneName);
-        reverseMirrorScenePath = string.Format("Assets/Scenes/ReverseLevels/MirrorLevels/{0}ReverseMirror.unity", sceneName);
-        originalSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/{0}Spawn.prefab", sceneName);
-        reverseSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/ReverseLevels/{0}ReverseSpawn.prefab", sceneName);
-        mirrorSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/MirrorLevels/{0}MirrorSpawn.prefab", sceneName);
-        reverseMirrorSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/ReverseLevels/MirrorLevels/{0}ReverseMirrorSpawn.prefab", sceneName);
-    }
-    private void CreateReverseScene()
-    {
-        Directory.CreateDirectory(reverseScenePath.GetFullPath().GetDirectory());
-        File.Copy(originalScenePath.GetFullPath(), reverseScenePath.GetFullPath(), true);
-        Directory.CreateDirectory(reverseSpawnPath.GetFullPath().GetDirectory());
-        File.Copy(originalSpawnPath.GetFullPath(), reverseSpawnPath.GetFullPath(), true);
-        AssetDatabase.Refresh();
-        AssetDatabase.SaveAssets();
-        ReverseHelper.NewReverseScene(reverseScenePath, reverseSpawnPath);
-    }
-    private void CreateMirrorScene()
-    {
-        Directory.CreateDirectory(mirrorScenePath.GetFullPath().GetDirectory());
-        File.Copy(originalScenePath.GetFullPath(), mirrorScenePath.GetFullPath(), true);
-        Directory.CreateDirectory(mirrorSpawnPath.GetFullPath().GetDirectory());
-        File.Copy(originalSpawnPath.GetFullPath(), mirrorSpawnPath.GetFullPath(), true);
-        AssetDatabase.Refresh();
-        AssetDatabase.SaveAssets();
-        MirrorHelper.NewMirrorScene(mirrorScenePath, mirrorSpawnPath);
-    }
-    private void CreateReverseMirrorScene()
-    {
-        Directory.CreateDirectory(reverseMirrorScenePath.GetFullPath().GetDirectory());
-        File.Copy(reverseScenePath.GetFullPath(), reverseMirrorScenePath.GetFullPath(), true);
-        Directory.CreateDirectory(reverseMirrorSpawnPath.GetFullPath().GetDirectory());
-        File.Copy(reverseSpawnPath.GetFullPath(), reverseMirrorSpawnPath.GetFullPath(), true);
-        AssetDatabase.Refresh();
-        AssetDatabase.SaveAssets();
-        MirrorHelper.NewMirrorScene(reverseMirrorScenePath, reverseMirrorSpawnPath);
-    }
-}
-namespace MirrorReverseHelperClasses
-{
-    public static class FilePathHelper
+    public static class FilePathHelperExtensions
     {
         public static string GetFullPath(this string path)
         { return Application.dataPath + path.Substring(6); }
@@ -389,6 +388,71 @@ namespace MirrorReverseHelperClasses
             foreach (GameObject rootObject in gameObjects)
                 transforms.Enqueue(rootObject.transform);
             return transforms;
+        }
+    }
+    public static class TransformCleaner
+    {
+        public static void CleanTransforms()
+        {
+            EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
+            Scene scene;
+            Queue<Transform> transforms = new Queue<Transform>();
+            GameObject[] rootObjects;
+            Transform transform;
+            string originalScenePath = SceneManager.GetActiveScene().path;
+            EditorSceneManager.MarkAllScenesDirty();
+            EditorSceneManager.SaveOpenScenes();
+            int i, j;
+            for (i = LevelSelectOptions.MirroredBuildOffset; i < buildScenes.Length; ++i)
+            {
+                EditorSceneManager.OpenScene(buildScenes[i].path, OpenSceneMode.Single);
+                scene = SceneManager.GetActiveScene();
+                rootObjects = scene.GetRootGameObjects();
+                foreach (GameObject rootObject in rootObjects)
+                    transforms.Enqueue(rootObject.transform);
+                while (transforms.Count > 0)
+                {
+                    transform = transforms.Dequeue();
+                    for (j = 0; j < transform.childCount; ++j)
+                        transforms.Enqueue(transform.GetChild(j));
+                    CleanTransform(transform);
+                }
+                EditorSceneManager.MarkAllScenesDirty();
+                EditorSceneManager.SaveOpenScenes();
+            }
+            EditorSceneManager.OpenScene(originalScenePath, OpenSceneMode.Single);
+        }
+        private static Vector3 CleanVector(Vector3 dirty)
+        {
+            Vector3 clean = dirty;
+            clean.x = CleanFloat(clean.x);
+            clean.y = CleanFloat(clean.y);
+            clean.z = CleanFloat(clean.z);
+            return clean;
+        }
+        private const float epsilon = 0.0000001f;
+        private static float CleanFloat(float dirty)
+        {
+            float clean = dirty;
+            float round = Mathf.Round(clean);
+            if (Mathf.Abs(clean - round) < epsilon)
+                clean = round;
+            return clean;
+        }
+        private static void CleanTransform(Transform transform)
+        {
+            Quaternion rotation = transform.localRotation;
+            Vector3 position = transform.localPosition;
+            Vector3 scale = transform.localScale;
+            Vector3 euler = rotation.eulerAngles;
+            euler = CleanVector(euler);
+            rotation = Quaternion.identity;
+            rotation = Quaternion.Euler(euler);
+            transform.localRotation = rotation;
+            position = CleanVector(position);
+            scale = CleanVector(scale);
+            transform.localPosition = position;
+            transform.localScale = scale;
         }
     }
 }

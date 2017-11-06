@@ -6,13 +6,13 @@ using UnityEngine;
 public class weatherSetup : MonoBehaviour {
 
     private GameObject rainSystem;
-    private GameObject player;
+    //private GameObject player;
     private GameObject rain;
     private GameObject snow;
     private GameObject cloud;
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         rain = GameObject.FindGameObjectWithTag("rain");
         snow = GameObject.FindGameObjectWithTag("snow");
         cloud = GameObject.FindGameObjectWithTag("cloud");
