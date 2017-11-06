@@ -4,7 +4,7 @@ using Xander.Debugging;
 public class DaylightScript : MonoBehaviour
 {
     public enum TimeOfDay { Noon, Afternoon, Evening, Midnight, Morning, NumTimesOfDay }
-    [SerializeField] private GameObject sun = null;
+    [SerializeField] private Light sun = null;
     private Material ogSkybox = null;
     private ParticleSystem.MainModule stars;
     private int currentScene = -1;
@@ -12,7 +12,7 @@ public class DaylightScript : MonoBehaviour
     private void Start()
     {
         if (null == sun)
-            sun = GameObject.FindGameObjectWithTag("sun");
+            sun = GameObject.FindGameObjectWithTag("sun").GetComponent<Light>();
         ogSkybox = RenderSettings.skybox;
 
         stars = GameObject.FindGameObjectWithTag("stars").GetComponent<ParticleSystem>().main;
@@ -38,10 +38,13 @@ public class DaylightScript : MonoBehaviour
             {
                 case TimeOfDay.Noon:
                     {
+                        sun = GameObject.FindGameObjectWithTag("sun").GetComponent<Light>();
+                        RenderSettings.sun = sun;
                         sun.transform.localRotation = Quaternion.Euler(73.0f, 0.0f, 0.0f);
-                        sun.SetActive(true);
+                       // sun.SetActive(true);
+                        sun.enabled = true;
                         stars.maxParticles = 1;
-                        RenderSettings.ambientLight = new Color(1.0f, 1.0f, 0.5f);
+                        RenderSettings.ambientLight = new Color(.75f, .75f, .75f);
                         RenderSettings.skybox = ogSkybox;
                         RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1.0f);
 
@@ -49,8 +52,13 @@ public class DaylightScript : MonoBehaviour
                     break;
                 case TimeOfDay.Afternoon:
                     {
+                        sun = GameObject.FindGameObjectWithTag("sun").GetComponent<Light>();
+                        RenderSettings.sun = sun;
+
                         sun.transform.localRotation = Quaternion.Euler(120.0f, 0.0f, 0.0f);
-                        sun.SetActive(true);
+                        //sun.SetActive(true);
+                        sun.enabled = true;
+
                         stars.maxParticles = 1;
                         RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.5f);
                         RenderSettings.skybox = ogSkybox;
@@ -60,20 +68,31 @@ public class DaylightScript : MonoBehaviour
                     break;
                 case TimeOfDay.Evening:
                     {
+
+                        sun = GameObject.FindGameObjectWithTag("eveningSun").GetComponent<Light>();
+                        RenderSettings.sun = sun;
+
                         sun.transform.localRotation = Quaternion.Euler(166.24f, 0.0f, 0.0f);
-                        sun.SetActive(true);
+                        // sun.SetActive(true);
+                        //sun.enabled = true;
+
                         stars.maxParticles = 1;
                         RenderSettings.ambientLight = new Color(1.0f, 0.75f, 1.0f);
                         RenderSettings.skybox = ogSkybox;
                           RenderSettings.skybox.SetFloat("_Exposure", Mathf.Sin(Time.deltaTime * Mathf.Deg2Rad * 100) + 1);
                         RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1.25f);
+                        
                         //  RenderSettings.skybox.SetFloat("_Exposure", 1000);
 
                     }
                     break;
                 case TimeOfDay.Midnight:
                     {
-                        sun.SetActive(false);
+                        // sun.SetActive(false);
+                        sun = GameObject.FindGameObjectWithTag("sun").GetComponent<Light>();
+                        RenderSettings.sun = sun;
+
+                        sun.enabled = false;
                         stars.maxParticles = 2000;
                         RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.75f);
                         RenderSettings.skybox = null;
@@ -82,8 +101,12 @@ public class DaylightScript : MonoBehaviour
                     break;
                 case TimeOfDay.Morning:
                     {
+                        sun = GameObject.FindGameObjectWithTag("sun").GetComponent<Light>();
+                        RenderSettings.sun = sun;
+
                         sun.transform.localRotation = Quaternion.Euler(36.0f, 0.0f, 0.0f);
-                        sun.SetActive(true);
+                        //  sun.SetActive(true);
+                        sun.enabled = true;
                         stars.maxParticles = 1;
                         RenderSettings.skybox = ogSkybox;
                         RenderSettings.ambientLight = new Color(1.0f, 1.0f, 1.0f);
