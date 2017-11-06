@@ -32,12 +32,12 @@ public class CreateMirrorReverse : ScriptableWizard
         else
             isValid = true;
     }
-    private void OnWizardCreate()
+    public void OnWizardCreate()
     {
+        GetAllPaths();
         EditorSceneManager.OpenScene(originalScenePath, OpenSceneMode.Single);
         EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         EditorSceneManager.SaveOpenScenes();
-        GetAllPaths();
         CreateReverseScene();
         CreateMirrorScene();
         CreateReverseMirrorScene();
@@ -64,7 +64,7 @@ public class CreateMirrorReverse : ScriptableWizard
         File.Copy(originalSpawnPath.GetFullPath(), reverseSpawnPath.GetFullPath(), true);
         AssetDatabase.Refresh();
         AssetDatabase.SaveAssets();
-        ReverseHelper.ReverseScene(reverseScenePath, reverseSpawnPath);
+        ReverseHelper.NewReverseScene(reverseScenePath, reverseSpawnPath);
     }
     private void CreateMirrorScene()
     {
@@ -74,7 +74,7 @@ public class CreateMirrorReverse : ScriptableWizard
         File.Copy(originalSpawnPath.GetFullPath(), mirrorSpawnPath.GetFullPath(), true);
         AssetDatabase.Refresh();
         AssetDatabase.SaveAssets();
-        MirrorHelper.MirrorScene(mirrorScenePath, mirrorSpawnPath);
+        MirrorHelper.NewMirrorScene(mirrorScenePath, mirrorSpawnPath);
     }
     private void CreateReverseMirrorScene()
     {
@@ -84,7 +84,7 @@ public class CreateMirrorReverse : ScriptableWizard
         File.Copy(reverseSpawnPath.GetFullPath(), reverseMirrorSpawnPath.GetFullPath(), true);
         AssetDatabase.Refresh();
         AssetDatabase.SaveAssets();
-        MirrorHelper.MirrorScene(reverseMirrorScenePath, reverseMirrorSpawnPath);
+        MirrorHelper.NewMirrorScene(reverseMirrorScenePath, reverseMirrorSpawnPath);
     }
 }
 namespace MirrorReverseHelperClasses
@@ -124,7 +124,7 @@ namespace MirrorReverseHelperClasses
             scene = inScene;
             spawn = inSpawn;
         }
-        public static void ReverseScene(string scenePath, string spawnPath)
+        public static void NewReverseScene(string scenePath, string spawnPath)
         {
             EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
             Scene reverseScene = SceneManager.GetActiveScene();
@@ -325,7 +325,7 @@ namespace MirrorReverseHelperClasses
             scene = inScene;
             spawn = inSpawn;
         }
-        public static void MirrorScene(string scenePath, string spawnPath)
+        public static void NewMirrorScene(string scenePath, string spawnPath)
         {
             EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
             Scene mirrorScene = SceneManager.GetActiveScene();
