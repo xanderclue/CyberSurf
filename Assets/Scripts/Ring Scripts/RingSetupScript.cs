@@ -11,6 +11,7 @@ public class RingSetupScript : MonoBehaviour
     private GameModes mode;
     private GameDifficulties difficulty;
     private ManagerClasses.RoundTimer roundTimer = null;
+    public GameObject GetRingDifficultyParent(GameDifficulties gameDifficulty) { return ringDifficultyParents[(int)gameDifficulty]; }
     private void Start()
     {
         arrowScript = GameManager.player.GetComponentInChildren<arrowPointAtUpdater>();
@@ -69,7 +70,7 @@ public class RingSetupScript : MonoBehaviour
                 break;
             case GameModes.Race:
                 arrowScript.currentlyLookingAt = 1;
-                
+
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"" + this.Info(), this);

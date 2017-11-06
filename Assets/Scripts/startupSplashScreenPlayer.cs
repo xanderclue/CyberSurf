@@ -55,6 +55,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
         {
             ConfirmButton.gameObject.SetActive(false);
             NextButton.gameObject.SetActive(true);
+            NextButton.gameObject.transform.position = new Vector3(-0.04239172f, 1.39f, -3.217f);
             SkipButton.gameObject.SetActive(false);
             timePlayingCurrent = 0;
         }

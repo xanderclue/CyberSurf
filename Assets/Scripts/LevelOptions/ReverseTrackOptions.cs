@@ -2,19 +2,15 @@
 public class ReverseTrackOptions : LevelMenuObjectGroup
 {
     [SerializeField] private LevelMenuButton onButton = null, offButton = null;
-    [SerializeField] private Material activeMaterial = null;
+    [SerializeField] private Material activeMaterial = null, inactiveMaterial = null;
     [SerializeField] private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
     [SerializeField] private bool defaultValue = false;
-    private Material inactiveMaterial = null;
     private bool tempValue = false;
     new private void Start()
     {
         base.Start();
         onButtonRenderer = onButton.GetComponent<MeshRenderer>();
         offButtonRenderer = offButton.GetComponent<MeshRenderer>();
-        inactiveMaterial = onButtonRenderer.material;
-        if (null == activeMaterial)
-            activeMaterial = inactiveMaterial;
     }
     private void OnEnable()
     {

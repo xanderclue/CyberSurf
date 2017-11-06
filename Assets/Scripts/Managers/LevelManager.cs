@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
+    public enum Level { Canyon, MultiEnvironment, BackyardRacetrack, NumLevels }
     [HideInInspector] public ManagerClasses.GameState gameState;
     private GameManager gameManager = null;
     private ScreenFade screenFade = null;
