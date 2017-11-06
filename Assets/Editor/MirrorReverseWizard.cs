@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 using MirrorReverseHelperClasses;
 using System.IO;
 using UnityEditor.SceneManagement;
-using UnityEngine;
 public class MirrorReverseWizard : ScriptableWizard
 {
     public string[] scenes = null;
@@ -24,11 +23,9 @@ public class MirrorReverseWizard : ScriptableWizard
     {
         string originalScene = SceneManager.GetActiveScene().path;
         foreach (string scene in scenes)
-        {
-            CreateMirrorReverse mirrorReverse = new CreateMirrorReverse { sceneName = scene };
-            mirrorReverse.CreateScenes();
-        }
+            new CreateMirrorReverse(scene).CreateScenes();
         EditorSceneManager.OpenScene(originalScene, OpenSceneMode.Single);
+        TransformCleaner.CleanTransforms();
     }
     private void OnWizardUpdate()
     {

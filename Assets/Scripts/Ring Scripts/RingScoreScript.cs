@@ -71,7 +71,7 @@ public class RingScoreScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!respawnScript.IsRespawning && capsuleType == other.GetType() && "Player" == other.tag)
+        if (null != respawnScript && !respawnScript.IsRespawning && capsuleType == other.GetType() && "Player" == other.tag)
         {
             pArrowHandler.UpdatePlayerHUDPointer(rp);
 
@@ -127,7 +127,6 @@ public class RingScoreScript : MonoBehaviour
                         }
                     }
                 }
-                
             }
         }
     }
