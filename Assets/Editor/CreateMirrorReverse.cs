@@ -16,7 +16,7 @@ public class CreateMirrorReverse : ScriptableWizard
     private static void ProcessMirrorReverse()
     {
         CreateMirrorReverse wizard = DisplayWizard<CreateMirrorReverse>("Create Mirror and Reverse Scenes", "Create Scenes");
-        wizard.sceneName = SceneManager.GetActiveScene().path.GetFileName().RemoveFileExtension();
+        wizard.sceneName = SceneManager.GetActiveScene().name;
         wizard.OnWizardUpdate();
     }
     private void OnWizardUpdate()
@@ -92,21 +92,24 @@ namespace MirrorReverseHelperClasses
     public static class FilePathHelper
     {
         public static string GetFullPath(this string path)
-        {
-            return Application.dataPath + path.Substring(6);
-        }
+        { return Application.dataPath + path.Substring(6); }
         public static string GetDirectory(this string path)
-        {
-            return path.Substring(0, path.LastIndexOfAny(@"/\".ToCharArray()));
-        }
+        { return path.Substring(0, path.LastIndexOfAny(@"/\".ToCharArray())); }
         public static string GetFileName(this string path)
-        {
-            return path.Substring(path.LastIndexOfAny(@"/\".ToCharArray()) + 1);
-        }
+        { return path.Substring(path.LastIndexOfAny(@"/\".ToCharArray()) + 1); }
         public static string RemoveFileExtension(this string path)
-        {
-            return path.Substring(0, path.LastIndexOf('.'));
-        }
+        { return path.Substring(0, path.LastIndexOf('.')); }
+    }
+    public static class AssertionExtensions
+    {
+        public static void AssertTrue(this bool value)
+        { Assert.IsTrue(value); }
+        public static void AssertFalse(this bool value)
+        { Assert.IsFalse(value); }
+        public static void AssertEqual<T>(this T value, T other)
+        { Assert.AreEqual(other, value); }
+        public static void AssertNotEqual<T>(this T value, T other)
+        { Assert.AreNotEqual(other, value); }
     }
     public class ReverseHelper
     {
@@ -115,7 +118,8 @@ namespace MirrorReverseHelperClasses
         private List<RingProperties> theRings = null;
         private RingProperties[] sortedRings = null;
         private Vector3 startRingPosition = Vector3.zero;
-        public ReverseHelper(Scene inScene, GameObject inSpawn)
+        private SerializedObject so = null;
+        private ReverseHelper(Scene inScene, GameObject inSpawn)
         {
             scene = inScene;
             spawn = inSpawn;
@@ -123,8 +127,9 @@ namespace MirrorReverseHelperClasses
         public static void ReverseScene(string scenePath, string spawnPath)
         {
             EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+            Scene reverseScene = SceneManager.GetActiveScene();
             GameObject reverseSpawn = AssetDatabase.LoadAssetAtPath<GameObject>(spawnPath);
-            new ReverseHelper(SceneManager.GetActiveScene(), reverseSpawn).ReverseScene();
+            new ReverseHelper(reverseScene, reverseSpawn).ReverseScene();
         }
         private void ReverseScene()
         {
@@ -176,7 +181,6 @@ namespace MirrorReverseHelperClasses
         {
             sortedRings = theRings.ToArray();
             System.Array.Sort(sortedRings, new RingPropertiesPositionInOrderComparer());
-            SerializedObject so = null;
             for (int i = 0; i < sortedRings.Length; ++i)
             {
                 so = new SerializedObject(sortedRings[i]);
@@ -188,7 +192,6 @@ namespace MirrorReverseHelperClasses
         {
             int minPosition, maxPosition;
             GetPositionRange(out minPosition, out maxPosition);
-            SerializedObject so = null;
             SerializedProperty sp = null;
             foreach (RingProperties ring in theRings)
             {
@@ -212,7 +215,6 @@ namespace MirrorReverseHelperClasses
         }
         private void DecrementAllPositions()
         {
-            SerializedObject so = null;
             foreach (RingProperties ring in sortedRings)
             {
                 so = new SerializedObject(ring);
@@ -235,11 +237,11 @@ namespace MirrorReverseHelperClasses
             Assert.raiseExceptions = true;
             try
             {
-                Assert.IsTrue(nextRing.lastRingInScene);
-                Assert.IsTrue(exitRing.lastRingInScene);
-                Assert.IsFalse(startRing.lastRingInScene);
-                Assert.AreEqual(1, exitRing.nextScene);
-                Assert.AreNotEqual(1, nextRing.nextScene);
+                nextRing.lastRingInScene.AssertTrue();
+                exitRing.lastRingInScene.AssertTrue();
+                startRing.lastRingInScene.AssertFalse();
+                exitRing.nextScene.AssertEqual(1);
+                nextRing.nextScene.AssertNotEqual(1);
             }
             catch
             {
@@ -259,13 +261,13 @@ namespace MirrorReverseHelperClasses
             }
             SerializedObject exitRingSO = null, nextRingSO = null, startRingSO = null;
             exitRingSO = new SerializedObject(exitRing);
-            nextRingSO = new SerializedObject(nextRing);
             startRingSO = new SerializedObject(startRing);
             exitRingSO.FindProperty("positionInOrder").intValue = startRingSO.FindProperty("positionInOrder").intValue + 1;
-            nextRingSO.FindProperty("positionInOrder").intValue = exitRingSO.FindProperty("positionInOrder").intValue - 1;
-            startRingSO.FindProperty("positionInOrder").intValue = 2;
             exitRingSO.ApplyModifiedProperties();
+            nextRingSO = new SerializedObject(nextRing);
+            nextRingSO.FindProperty("positionInOrder").intValue = exitRingSO.FindProperty("positionInOrder").intValue - 1;
             nextRingSO.ApplyModifiedProperties();
+            startRingSO.FindProperty("positionInOrder").intValue = 2;
             startRingSO.ApplyModifiedProperties();
             DecrementAllPositions();
             MoveExitRings(exitRing.transform, nextRing.transform, startRing.transform);
@@ -277,8 +279,8 @@ namespace MirrorReverseHelperClasses
             Assert.raiseExceptions = true;
             try
             {
-                Assert.AreEqual(exitRing.parent, nextRing.parent);
-                Assert.AreEqual(nextRing.parent, startRing.parent);
+                nextRing.parent.AssertEqual(exitRing.parent);
+                startRing.parent.AssertEqual(nextRing.parent);
             }
             catch { Debug.LogError("start/next/exit rings of the same difficulty must be have the same immediate parent"); return; }
             finally { Assert.raiseExceptions = ogAssertRaise; }
@@ -293,7 +295,7 @@ namespace MirrorReverseHelperClasses
             exitRing.parent = nextRing.parent;
             nextRing.localScale = localScale;
         }
-        private void PointSpawnAtStart()
+        private void SetSpawnPoint()
         {
             spawn.transform.LookAt(startRingPosition, Vector3.up);
             spawn.transform.eulerAngles = new Vector3(0.0f, spawn.transform.eulerAngles.y, 0.0f);
@@ -304,20 +306,21 @@ namespace MirrorReverseHelperClasses
             ReversePositionOrder();
             GetSortedRings();
             ProcessRingEnds();
-            PointSpawnAtStart();
+            SetSpawnPoint();
         }
         private void ReverseRingPaths()
         {
             RingSetupScript ringParent = FindRingSetupScript();
-            for (GameDifficulties gameDifficulty = 0; GameDifficulties.GameDifficultiesSize != gameDifficulty; ++gameDifficulty)
-                ReverseRingPath(ringParent.GetRingDifficultyParent(gameDifficulty));
+            if (null != ringParent)
+                for (GameDifficulties gameDifficulty = 0; GameDifficulties.GameDifficultiesSize != gameDifficulty; ++gameDifficulty)
+                    ReverseRingPath(ringParent.GetRingDifficultyParent(gameDifficulty));
         }
     }
     public class MirrorHelper
     {
         private Scene scene;
         private GameObject spawn = null;
-        public MirrorHelper(Scene inScene, GameObject inSpawn)
+        private MirrorHelper(Scene inScene, GameObject inSpawn)
         {
             scene = inScene;
             spawn = inSpawn;
@@ -325,8 +328,9 @@ namespace MirrorReverseHelperClasses
         public static void MirrorScene(string scenePath, string spawnPath)
         {
             EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+            Scene mirrorScene = SceneManager.GetActiveScene();
             GameObject mirrorSpawn = AssetDatabase.LoadAssetAtPath<GameObject>(spawnPath);
-            new MirrorHelper(SceneManager.GetActiveScene(), mirrorSpawn).MirrorScene();
+            new MirrorHelper(mirrorScene, mirrorSpawn).MirrorScene();
         }
         private void MirrorScene()
         {
@@ -350,16 +354,15 @@ namespace MirrorReverseHelperClasses
         }
         private void MirrorRootObjects()
         {
+            List<Transform> rootTransforms = new List<Transform>();
+            GameObject[] rootObjects = scene.GetRootGameObjects();
+            foreach (GameObject rootObject in rootObjects)
+                rootTransforms.Add(rootObject.transform);
             Transform go = new GameObject("TEMPMIRRORROOT").transform;
             go.parent = null;
             go.localPosition = spawn.transform.localPosition;
             go.localRotation = spawn.transform.localRotation;
             go.localScale = spawn.transform.localScale;
-            List<Transform> rootTransforms = new List<Transform>();
-            GameObject[] rootObjects = scene.GetRootGameObjects();
-            foreach (GameObject rootObject in rootObjects)
-                if (rootObject.transform != go)
-                    rootTransforms.Add(rootObject.transform);
             foreach (Transform rootTransform in rootTransforms)
                 rootTransform.parent = go;
             Vector3 theScale = go.localScale;
@@ -372,7 +375,7 @@ namespace MirrorReverseHelperClasses
         private void InvertBoxColliders()
         {
             List<BoxCollider> boxColliders = GetBoxColliders();
-            Vector3 tmpV3 = Vector3.zero;
+            Vector3 tmpV3;
             foreach (BoxCollider boxCollider in boxColliders)
             {
                 tmpV3 = boxCollider.size;
@@ -384,8 +387,8 @@ namespace MirrorReverseHelperClasses
         {
             Queue<Transform> transforms = GetRootTransforms();
             List<BoxCollider> boxColliders = new List<BoxCollider>();
-            Transform tmpT = null;
-            BoxCollider tmpBc = null;
+            Transform tmpT;
+            BoxCollider tmpBc;
             while (transforms.Count > 0)
             {
                 tmpT = transforms.Dequeue();
