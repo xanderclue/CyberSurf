@@ -278,6 +278,7 @@
         }
         private void SetSpawnPoint()
         {
+            spawn.transform.position = new Vector3(spawn.transform.position.x, startRingPosition.y, spawn.transform.position.z);
             spawn.transform.LookAt(startRingPosition, Vector3.up);
             spawn.transform.eulerAngles = new Vector3(0.0f, spawn.transform.eulerAngles.y, 0.0f);
         }
