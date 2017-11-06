@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Xander.BoolConversion;
+using static Xander.BoolConversion.BoolConverter;
 public static class GameSettings
 {
     #region BOOL

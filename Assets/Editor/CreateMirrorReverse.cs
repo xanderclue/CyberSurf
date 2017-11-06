@@ -1,12 +1,13 @@
 ﻿namespace MirrorReverseHelperClasses
 {
-    using System.IO;
     using System.Collections.Generic;
     using UnityEditor;
     using UnityEngine;
     using UnityEditor.SceneManagement;
     using UnityEngine.SceneManagement;
-    using UnityEngine.Assertions;
+    using static System.IO.Directory;
+    using static System.IO.File;
+    using static UnityEngine.Assertions.Assert;
     public class CreateMirrorReverse
     {
         private string sceneName = "",
@@ -39,30 +40,30 @@
         }
         private void CreateReverseScene()
         {
-            Directory.CreateDirectory(reverseScenePath.GetFullPath().GetDirectory());
-            File.Copy(originalScenePath.GetFullPath(), reverseScenePath.GetFullPath(), true);
-            Directory.CreateDirectory(reverseSpawnPath.GetFullPath().GetDirectory());
-            File.Copy(originalSpawnPath.GetFullPath(), reverseSpawnPath.GetFullPath(), true);
+            CreateDirectory(reverseScenePath.GetFullPath().GetDirectory());
+            Copy(originalScenePath.GetFullPath(), reverseScenePath.GetFullPath(), true);
+            CreateDirectory(reverseSpawnPath.GetFullPath().GetDirectory());
+            Copy(originalSpawnPath.GetFullPath(), reverseSpawnPath.GetFullPath(), true);
             AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
             ReverseHelper.NewReverseScene(reverseScenePath, reverseSpawnPath);
         }
         private void CreateMirrorScene()
         {
-            Directory.CreateDirectory(mirrorScenePath.GetFullPath().GetDirectory());
-            File.Copy(originalScenePath.GetFullPath(), mirrorScenePath.GetFullPath(), true);
-            Directory.CreateDirectory(mirrorSpawnPath.GetFullPath().GetDirectory());
-            File.Copy(originalSpawnPath.GetFullPath(), mirrorSpawnPath.GetFullPath(), true);
+            CreateDirectory(mirrorScenePath.GetFullPath().GetDirectory());
+            Copy(originalScenePath.GetFullPath(), mirrorScenePath.GetFullPath(), true);
+            CreateDirectory(mirrorSpawnPath.GetFullPath().GetDirectory());
+            Copy(originalSpawnPath.GetFullPath(), mirrorSpawnPath.GetFullPath(), true);
             AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
             MirrorHelper.NewMirrorScene(mirrorScenePath, mirrorSpawnPath);
         }
         private void CreateReverseMirrorScene()
         {
-            Directory.CreateDirectory(reverseMirrorScenePath.GetFullPath().GetDirectory());
-            File.Copy(reverseScenePath.GetFullPath(), reverseMirrorScenePath.GetFullPath(), true);
-            Directory.CreateDirectory(reverseMirrorSpawnPath.GetFullPath().GetDirectory());
-            File.Copy(reverseSpawnPath.GetFullPath(), reverseMirrorSpawnPath.GetFullPath(), true);
+            CreateDirectory(reverseMirrorScenePath.GetFullPath().GetDirectory());
+            Copy(reverseScenePath.GetFullPath(), reverseMirrorScenePath.GetFullPath(), true);
+            CreateDirectory(reverseMirrorSpawnPath.GetFullPath().GetDirectory());
+            Copy(reverseSpawnPath.GetFullPath(), reverseMirrorSpawnPath.GetFullPath(), true);
             AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
             MirrorHelper.NewMirrorScene(reverseMirrorScenePath, reverseMirrorSpawnPath);
@@ -70,27 +71,18 @@
     }
     public static class FilePathHelperExtensions
     {
-        public static string GetFullPath(this string path)
-        { return Application.dataPath + path.Substring(6); }
-        public static string GetDirectory(this string path)
-        { return path.Substring(0, path.LastIndexOfAny(@"/\".ToCharArray())); }
-        public static string GetSceneName(this string path)
-        { return path.GetFileName().RemoveFileExtension(); }
-        public static string GetFileName(this string path)
-        { return path.Substring(path.LastIndexOfAny(@"/\".ToCharArray()) + 1); }
-        public static string RemoveFileExtension(this string path)
-        { return path.Substring(0, path.LastIndexOf('.')); }
+        public static string GetFullPath(this string path) => Application.dataPath + path.Substring(6);
+        public static string GetDirectory(this string path) => path.Substring(0, path.LastIndexOfAny(@"/\".ToCharArray()));
+        public static string GetSceneName(this string path) => path.GetFileName().RemoveFileExtension();
+        public static string GetFileName(this string path) => path.Substring(path.LastIndexOfAny(@"/\".ToCharArray()) + 1);
+        public static string RemoveFileExtension(this string path) => path.Substring(0, path.LastIndexOf('.'));
     }
     public static class AssertionExtensions
     {
-        public static void AssertTrue(this bool value)
-        { Assert.IsTrue(value); }
-        public static void AssertFalse(this bool value)
-        { Assert.IsFalse(value); }
-        public static void AssertEqual<T>(this T value, T other)
-        { Assert.AreEqual(other, value); }
-        public static void AssertNotEqual<T>(this T value, T other)
-        { Assert.AreNotEqual(other, value); }
+        public static void AssertTrue(this bool value) => IsTrue(value);
+        public static void AssertFalse(this bool value) => IsFalse(value);
+        public static void AssertEqual<T>(this T value, T other) => AreEqual(other, value);
+        public static void AssertNotEqual<T>(this T value, T other) => AreNotEqual(other, value);
     }
     public class ReverseHelper
     {
@@ -153,10 +145,7 @@
         }
         private class RingPropertiesPositionInOrderComparer : IComparer<RingProperties>
         {
-            public int Compare(RingProperties x, RingProperties y)
-            {
-                return x.positionInOrder - y.positionInOrder;
-            }
+            public int Compare(RingProperties x, RingProperties y) => x.positionInOrder - y.positionInOrder;
         }
         private void GetSortedRings()
         {
@@ -214,8 +203,8 @@
                 exitRing = nextRing;
                 nextRing = sortedRings[0];
             }
-            bool ogAssertRaise = Assert.raiseExceptions;
-            Assert.raiseExceptions = true;
+            bool ogAssertRaise = raiseExceptions;
+            raiseExceptions = true;
             try
             {
                 nextRing.lastRingInScene.AssertTrue();
@@ -238,7 +227,7 @@
             }
             finally
             {
-                Assert.raiseExceptions = ogAssertRaise;
+                raiseExceptions = ogAssertRaise;
             }
             SerializedObject exitRingSO = null, nextRingSO = null, startRingSO = null;
             exitRingSO = new SerializedObject(exitRing);
@@ -256,15 +245,15 @@
         }
         private void MoveExitRings(Transform exitRing, Transform nextRing, Transform startRing)
         {
-            bool ogAssertRaise = Assert.raiseExceptions;
-            Assert.raiseExceptions = true;
+            bool ogAssertRaise = raiseExceptions;
+            raiseExceptions = true;
             try
             {
                 nextRing.parent.AssertEqual(exitRing.parent);
                 startRing.parent.AssertEqual(nextRing.parent);
             }
             catch { Debug.LogError("start/next/exit rings of the same difficulty must be have the same immediate parent"); return; }
-            finally { Assert.raiseExceptions = ogAssertRaise; }
+            finally { raiseExceptions = ogAssertRaise; }
             exitRing.parent = nextRing;
             Vector3 position = startRing.position, localScale = startRing.localScale;
             Quaternion rotation = startRing.rotation;

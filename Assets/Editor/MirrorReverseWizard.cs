@@ -1,27 +1,26 @@
 ﻿using UnityEditor;
-using UnityEngine.SceneManagement;
-using MirrorReverseHelperClasses;
-using System.IO;
 using UnityEditor.SceneManagement;
+using MirrorReverseHelperClasses;
+using static System.IO.File;
+using static UnityEngine.SceneManagement.SceneManager;
+using static LevelManager;
 public class MirrorReverseWizard : ScriptableWizard
 {
     public string[] scenes = null;
     [MenuItem("Cybersurf Tools/Create Mirror and Reverse Levels...")]
-    private static void InitMirrorReverseWizard()
-    {
+    private static void InitMirrorReverseWizard() =>
         DisplayWizard<MirrorReverseWizard>("Create Mirrored and Reversed Levels", "Create Levels").SetupList();
-    }
     private void SetupList()
     {
         EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
-        scenes = new string[(int)LevelManager.Level.NumLevels];
-        for (LevelManager.Level i = 0; LevelManager.Level.NumLevels != i; ++i)
+        scenes = new string[(int)Level.NumLevels];
+        for (Level i = 0; Level.NumLevels != i; ++i)
             scenes[(int)i] = buildScenes[(int)i + LevelSelectOptions.LevelBuildOffset].path.GetSceneName();
         OnWizardUpdate();
     }
     private void OnWizardCreate()
     {
-        string originalScene = SceneManager.GetActiveScene().path;
+        string originalScene = GetActiveScene().path;
         foreach (string scene in scenes)
             new CreateMirrorReverse(scene).CreateScenes();
         EditorSceneManager.OpenScene(originalScene, OpenSceneMode.Single);
@@ -43,12 +42,12 @@ public class MirrorReverseWizard : ScriptableWizard
                 }
                 string originalScenePath = $"Assets/Scenes/{scene}.unity";
                 string originalSpawnPath = $"Assets/Prefabs/SpawnPoints/{scene}Spawn.prefab";
-                if (!File.Exists(originalScenePath.GetFullPath()))
+                if (!Exists(originalScenePath.GetFullPath()))
                 {
                     errorString = $"Cannot find {scene} scene @ " + originalScenePath;
                     break;
                 }
-                else if (!File.Exists(originalSpawnPath.GetFullPath()))
+                else if (!Exists(originalSpawnPath.GetFullPath()))
                 {
                     errorString = $"Cannot find {scene} spawn point @ " + originalSpawnPath;
                     break;
