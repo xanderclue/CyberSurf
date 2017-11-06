@@ -71,7 +71,9 @@ public class RaceModeOptions : LevelMenuObjectGroup
                 LevelMenuScript.difficultyOptions.DisableGroup();
                 break;
             case GameModes.Race:
-                Debug.Log("To add race case RaceModeOptions");
+                LevelMenuScript.lapsOptions.EnableGroup();
+                LevelMenuScript.aiOptions.EnableGroup();
+                LevelMenuScript.difficultyOptions.EnableGroup();
                 break;
             default:
                 Debug.LogWarning("Switch statement on GameModes enum tempMode in RaceModeOptions.cs is missing case for GameModes." + tempMode.ToString() + this.Info(), this);
