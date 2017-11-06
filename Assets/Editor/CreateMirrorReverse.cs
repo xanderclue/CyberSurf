@@ -28,14 +28,14 @@
         }
         private void GetAllPaths()
         {
-            originalScenePath = string.Format("Assets/Scenes/{0}.unity", sceneName);
-            reverseScenePath = string.Format("Assets/Scenes/ReverseLevels/{0}Reverse.unity", sceneName);
-            mirrorScenePath = string.Format("Assets/Scenes/MirrorLevels/{0}Mirror.unity", sceneName);
-            reverseMirrorScenePath = string.Format("Assets/Scenes/ReverseLevels/MirrorLevels/{0}ReverseMirror.unity", sceneName);
-            originalSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/{0}Spawn.prefab", sceneName);
-            reverseSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/ReverseLevels/{0}ReverseSpawn.prefab", sceneName);
-            mirrorSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/MirrorLevels/{0}MirrorSpawn.prefab", sceneName);
-            reverseMirrorSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/ReverseLevels/MirrorLevels/{0}ReverseMirrorSpawn.prefab", sceneName);
+            originalScenePath = $"Assets/Scenes/{sceneName}.unity";
+            reverseScenePath = $"Assets/Scenes/ReverseLevels/{sceneName}Reverse.unity";
+            mirrorScenePath = $"Assets/Scenes/MirrorLevels/{sceneName}Mirror.unity";
+            reverseMirrorScenePath = $"Assets/Scenes/ReverseLevels/MirrorLevels/{sceneName}ReverseMirror.unity";
+            originalSpawnPath = $"Assets/Prefabs/SpawnPoints/{sceneName}Spawn.prefab";
+            reverseSpawnPath = $"Assets/Prefabs/SpawnPoints/ReverseLevels/{sceneName}ReverseSpawn.prefab";
+            mirrorSpawnPath = $"Assets/Prefabs/SpawnPoints/MirrorLevels/{sceneName}MirrorSpawn.prefab";
+            reverseMirrorSpawnPath = $"Assets/Prefabs/SpawnPoints/ReverseLevels/MirrorLevels/{sceneName}ReverseMirrorSpawn.prefab";
         }
         private void CreateReverseScene()
         {

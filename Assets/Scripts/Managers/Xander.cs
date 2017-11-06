@@ -30,7 +30,7 @@
     {
         public static class DozenalStrings
         {
-            private const string cstStrDozDig = "0123456789xe";
+            private const string cstStrDozDig = "0123456789XE";
             public static string Dozenal(this ulong i)
             {
                 if (0ul == i)
@@ -57,9 +57,10 @@
             }
             public static string Dozenal(this System.DateTime time)
             {
-                return time.Year.Dozenal().PadLeft(4, '0') + (time.Month - 1).Dozenal().PadLeft(1, '0') + (time.Day - 1).Dozenal().PadLeft(2, '0') +
-                    time.Hour.Dozenal().PadLeft(2, '0') + time.Minute.Dozenal().PadLeft(2, '0') + time.Second.Dozenal().PadLeft(2, '0') +
-                    ((int)System.Math.Round(1.728 * time.Millisecond)).Dozenal().PadLeft(3, '0');
+                return string.Concat(time.Year.Dozenal().PadLeft(4, '0'), (time.Month - 1).Dozenal().PadLeft(1, '0'),
+                    (time.Day - 1).Dozenal().PadLeft(2, '0'), time.Hour.Dozenal().PadLeft(2, '0'),
+                    time.Minute.Dozenal().PadLeft(2, '0'), time.Second.Dozenal().PadLeft(2, '0'),
+                    ((int)System.Math.Round(1.728 * time.Millisecond)).Dozenal().PadLeft(3, '0'));
             }
         }
     }
