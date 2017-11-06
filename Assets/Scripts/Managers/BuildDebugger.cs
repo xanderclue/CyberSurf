@@ -3,6 +3,7 @@
     public static void InitDebugger()
     {
 #if DEBUGGER
+        System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
         if (!stcBoolDebuggerInited)
         {
             if (null == stcStrlistLines)
@@ -17,7 +18,7 @@
                 stcSwWriter.Write("<BEGIN>\n\n");
             }
             else
-                UnityEngine.Debug.LogWarning("Failed to open log file: (" + logpath + ") [" + logError + "]");
+                UnityEngine.Debug.LogWarning($"Failed to open log file: ({logpath}) [{logError}]");
             stcBoolDebuggerInited = true;
             WriteLine("Log Startup: " + lStrTimeStamp);
             WriteToErrorLog("INIT LOG", logpath + "\n", UnityEngine.LogType.Log, lStrTimeStamp);
@@ -82,10 +83,10 @@
     {
         if (stcBoolFileOpen)
         {
-            stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() + "!!]\n" +
-                "Time: " + pStrTimeStamp +
-                " @" + Xander.Dozenal.DozenalStrings.Dozenal(stcUlongFrameCounter) +
-                "\nLog Message: \"" + pStrLogMessage + "\"\n");
+            stcSwWriter.Write("[!!" + pEnmLogType.ToString().ToUpper() +
+                $"!!]\nTime: {pStrTimeStamp} @" +
+                Xander.Dozenal.DozenalStrings.Dozenal(stcUlongFrameCounter) +
+                $"\nLog Message: \"{pStrLogMessage}\"\n");
             if (null == pStrStackTrace || "" == pStrStackTrace)
                 stcSwWriter.Write("NO STACK TRACE\n\n");
             else
@@ -184,6 +185,6 @@
         }
 #endif
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
-            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + "/Cybersurf_" + Xander.Debugging.Helper.DozenalTimeStamp + ".png");
+            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + $"/Cybersurf_{Xander.Debugging.Helper.DozenalTimeStamp}.png");
     }
 }

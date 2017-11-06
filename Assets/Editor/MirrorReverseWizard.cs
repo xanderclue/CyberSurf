@@ -32,7 +32,7 @@ public class MirrorReverseWizard : ScriptableWizard
         isValid = false;
         errorString = "";
         if (null == scenes || scenes.Length < 1)
-            errorString = "No scenes selected";
+            errorString = "Scene list empty";
         else
             foreach (string scene in scenes)
             {
@@ -41,16 +41,16 @@ public class MirrorReverseWizard : ScriptableWizard
                     errorString = "Empty scene name";
                     break;
                 }
-                string originalScenePath = string.Format("Assets/Scenes/{0}.unity", scene);
-                string originalSpawnPath = string.Format("Assets/Prefabs/SpawnPoints/{0}Spawn.prefab", scene);
+                string originalScenePath = $"Assets/Scenes/{scene}.unity";
+                string originalSpawnPath = $"Assets/Prefabs/SpawnPoints/{scene}Spawn.prefab";
                 if (!File.Exists(originalScenePath.GetFullPath()))
                 {
-                    errorString = string.Format("Cannot find {0} scene @ {1}", scene, originalScenePath);
+                    errorString = $"Cannot find {scene} scene @ " + originalScenePath;
                     break;
                 }
                 else if (!File.Exists(originalSpawnPath.GetFullPath()))
                 {
-                    errorString = string.Format("Cannot find {0} spawn point @ {1}", scene, originalSpawnPath);
+                    errorString = $"Cannot find {scene} spawn point @ " + originalSpawnPath;
                     break;
                 }
             }
