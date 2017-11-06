@@ -9,31 +9,31 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1691313789425048}
+  m_RootGameObject: {fileID: 1559251828666342}
   m_IsPrefabParent: 1
---- !u!1 &1691313789425048
+--- !u!1 &1559251828666342
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4149465853147846}
+  - component: {fileID: 4923439312365110}
   m_Layer: 0
-  m_Name: MultiEnvironmentSpawnMirror
+  m_Name: CanyonMirrorSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4149465853147846
+--- !u!4 &4923439312365110
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1691313789425048}
-  m_LocalRotation: {x: -0, y: 0.57952327, z: -0, w: 0.8149558}
-  m_LocalPosition: {x: 30.1, y: 53.1, z: 34.6}
+  m_GameObject: {fileID: 1559251828666342}
+  m_LocalRotation: {x: -0, y: 0.9110561, z: -0, w: -0.41228253}
+  m_LocalPosition: {x: 246.59016, y: 159.1, z: 740.8794}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
