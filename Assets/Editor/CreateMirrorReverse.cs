@@ -41,6 +41,8 @@ public class CreateMirrorReverse : ScriptableWizard
         CreateReverseScene();
         CreateMirrorScene();
         CreateReverseMirrorScene();
+        AssetDatabase.Refresh();
+        AssetDatabase.SaveAssets();
         EditorSceneManager.OpenScene(originalScenePath, OpenSceneMode.Single);
     }
     private void GetAllPaths()
@@ -56,20 +58,32 @@ public class CreateMirrorReverse : ScriptableWizard
     }
     private void CreateReverseScene()
     {
+        Directory.CreateDirectory(reverseScenePath.GetFullPath().GetDirectory());
         File.Copy(originalScenePath.GetFullPath(), reverseScenePath.GetFullPath(), true);
+        Directory.CreateDirectory(reverseSpawnPath.GetFullPath().GetDirectory());
         File.Copy(originalSpawnPath.GetFullPath(), reverseSpawnPath.GetFullPath(), true);
+        AssetDatabase.Refresh();
+        AssetDatabase.SaveAssets();
         ReverseHelper.ReverseScene(reverseScenePath, reverseSpawnPath);
     }
     private void CreateMirrorScene()
     {
+        Directory.CreateDirectory(mirrorScenePath.GetFullPath().GetDirectory());
         File.Copy(originalScenePath.GetFullPath(), mirrorScenePath.GetFullPath(), true);
+        Directory.CreateDirectory(mirrorSpawnPath.GetFullPath().GetDirectory());
         File.Copy(originalSpawnPath.GetFullPath(), mirrorSpawnPath.GetFullPath(), true);
+        AssetDatabase.Refresh();
+        AssetDatabase.SaveAssets();
         MirrorHelper.MirrorScene(mirrorScenePath, mirrorSpawnPath);
     }
     private void CreateReverseMirrorScene()
     {
+        Directory.CreateDirectory(reverseMirrorScenePath.GetFullPath().GetDirectory());
         File.Copy(reverseScenePath.GetFullPath(), reverseMirrorScenePath.GetFullPath(), true);
+        Directory.CreateDirectory(reverseMirrorSpawnPath.GetFullPath().GetDirectory());
         File.Copy(reverseSpawnPath.GetFullPath(), reverseMirrorSpawnPath.GetFullPath(), true);
+        AssetDatabase.Refresh();
+        AssetDatabase.SaveAssets();
         MirrorHelper.MirrorScene(reverseMirrorScenePath, reverseMirrorSpawnPath);
     }
 }
@@ -80,6 +94,10 @@ namespace MirrorReverseHelperClasses
         public static string GetFullPath(this string path)
         {
             return Application.dataPath + path.Substring(6);
+        }
+        public static string GetDirectory(this string path)
+        {
+            return path.Substring(0, path.LastIndexOfAny(@"/\".ToCharArray()));
         }
         public static string GetFileName(this string path)
         {
@@ -124,6 +142,7 @@ namespace MirrorReverseHelperClasses
         private void SaveSpawn()
         {
             EditorUtility.SetDirty(spawn);
+            AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
         }
         private RingSetupScript FindRingSetupScript()
@@ -326,6 +345,7 @@ namespace MirrorReverseHelperClasses
         private void SaveSpawn()
         {
             EditorUtility.SetDirty(spawn);
+            AssetDatabase.Refresh();
             AssetDatabase.SaveAssets();
         }
         private void MirrorRootObjects()
