@@ -11,12 +11,11 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     [Space, Header("Level Images")] [SerializeField] private Sprite canyonImage = null;
     [SerializeField] private Sprite multiEnrironmentImage = null;
     [SerializeField] private Sprite backyardRacetrackImage = null;
-    private enum Level { Canyon, MultiEnvironment, BackyardRacetrack, NumLevels }
-    [SerializeField] private Level defaultLevel = Level.Canyon;
-    private Level tempLevel;
+    [SerializeField] private LevelManager.Level defaultLevel = LevelManager.Level.Canyon;
+    private LevelManager.Level tempLevel;
     [SerializeField] private WorldPortalProperties portal = null;
     public const int LevelBuildOffset = 2;
-    public const int LevelCount = (int)(Level.NumLevels);
+    public const int LevelCount = (int)(LevelManager.Level.NumLevels);
     public const int MirroredOffset = LevelCount;
     public const int MirroredBuildOffset = LevelBuildOffset + MirroredOffset;
     public const int ReversedOffset = MirroredOffset + LevelCount;
@@ -62,7 +61,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     private void ButtonLeftFunction()
     {
         if (0 == tempLevel)
-            tempLevel = Level.NumLevels - 1;
+            tempLevel = LevelManager.Level.NumLevels - 1;
         else
             --tempLevel;
         UpdateDisplay();
@@ -70,7 +69,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     private void ButtonRightFunction()
     {
         ++tempLevel;
-        if (Level.NumLevels == tempLevel)
+        if (LevelManager.Level.NumLevels == tempLevel)
             tempLevel = 0;
         UpdateDisplay();
     }
@@ -79,13 +78,13 @@ public class LevelSelectOptions : LevelMenuObjectGroup
         levelNameText.SetText(tempLevel.ToString());
         switch (tempLevel)
         {
-            case Level.Canyon:
+            case LevelManager.Level.Canyon:
                 levelImage.sprite = canyonImage;
                 break;
-            case Level.MultiEnvironment:
+            case LevelManager.Level.MultiEnvironment:
                 levelImage.sprite = multiEnrironmentImage;
                 break;
-            case Level.BackyardRacetrack:
+            case LevelManager.Level.BackyardRacetrack:
                 levelImage.sprite = backyardRacetrackImage;
                 break;
             default:
@@ -107,7 +106,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempLevel = (Level)(portal.SceneIndex - LevelBuildOffset);
+        tempLevel = (LevelManager.Level)(portal.SceneIndex - LevelBuildOffset);
         UpdateDisplay();
     }
 }

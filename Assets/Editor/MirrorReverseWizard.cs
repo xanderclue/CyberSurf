@@ -3,23 +3,21 @@ using UnityEngine.SceneManagement;
 using MirrorReverseHelperClasses;
 using System.IO;
 using UnityEditor.SceneManagement;
-public class CreateMirrorReverseMultiple : ScriptableWizard
+using UnityEngine;
+public class MirrorReverseWizard : ScriptableWizard
 {
     public string[] scenes = null;
-    [MenuItem("Cybersurf Tools/Create Multiple Mirror and Reverse...")]
-    private static void ProcessMirrorReverse()
+    [MenuItem("Cybersurf Tools/Create Mirror and Reverse Levels...")]
+    private static void InitMirrorReverseWizard()
     {
-        CreateMirrorReverseMultiple wizard = DisplayWizard<CreateMirrorReverseMultiple>("Create Multiple Mirror and Reverse Scenes", "Create Scenes", "Get Default Levels");
-        wizard.scenes = new string[1];
-        wizard.scenes[0] = SceneManager.GetActiveScene().name;
-        wizard.OnWizardUpdate();
+        DisplayWizard<MirrorReverseWizard>("Create Mirrored and Reversed Levels", "Create Levels").SetupList();
     }
-    private void OnWizardOtherButton()
+    private void SetupList()
     {
-        scenes = new string[3];
-        scenes[0] = "Canyon";
-        scenes[1] = "MultiEnvironment";
-        scenes[2] = "BackyardRacetrack";
+        EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
+        scenes = new string[(int)LevelManager.Level.NumLevels];
+        for (LevelManager.Level i = 0; LevelManager.Level.NumLevels != i; ++i)
+            scenes[(int)i] = buildScenes[(int)i + LevelSelectOptions.LevelBuildOffset].path.GetSceneName();
         OnWizardUpdate();
     }
     private void OnWizardCreate()
@@ -27,9 +25,8 @@ public class CreateMirrorReverseMultiple : ScriptableWizard
         string originalScene = SceneManager.GetActiveScene().path;
         foreach (string scene in scenes)
         {
-            CreateMirrorReverse wizard = CreateInstance<CreateMirrorReverse>();
-            wizard.sceneName = scene;
-            wizard.OnWizardCreate();
+            CreateMirrorReverse mirrorReverse = new CreateMirrorReverse { sceneName = scene };
+            mirrorReverse.CreateScenes();
         }
         EditorSceneManager.OpenScene(originalScene, OpenSceneMode.Single);
     }
