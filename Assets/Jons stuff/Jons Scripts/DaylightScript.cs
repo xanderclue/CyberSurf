@@ -94,7 +94,7 @@ public class DaylightScript : MonoBehaviour
 
                         sun.enabled = false;
                         stars.maxParticles = 2000;
-                        RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.75f);
+                        RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.65f);
                         RenderSettings.skybox = null;
 
                     }
