@@ -91,7 +91,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149153619803234}
-  m_LocalRotation: {x: -0, y: 0.14302325, z: -0, w: 0.9897194}
+  m_LocalRotation: {x: 0, y: 0.14302324, z: 0, w: 0.98971933}
   m_LocalPosition: {x: -14.70771, y: 0, z: -105.0071}
   m_LocalScale: {x: 10.366081, y: 10.48179, z: 0.110710025}
   m_Children:
@@ -105,7 +105,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932639107155412}
-  m_LocalRotation: {x: -0, y: -0.6163596, z: -0, w: 0.78746486}
+  m_LocalRotation: {x: 0, y: 0.6163597, z: 0, w: -0.78746474}
   m_LocalPosition: {x: 297.4, y: 160.6, z: 694.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -120,7 +120,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1023738302741386}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3.75, z: 3.75}
   m_Children: []
@@ -133,7 +133,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1283819874552938}
-  m_LocalRotation: {x: 0.017186223, y: -0.61011827, z: -0.17887683, w: 0.77166283}
+  m_LocalRotation: {x: -0.017186366, y: 0.610118, z: 0.17887704, w: -0.77166295}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -309,10 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6231c84729b2d4897aab01dcc5a256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0}
-  invis: {r: 0, g: 0, b: 0, a: 0}
-  obj: {fileID: 0}
-  howFarToFade: 0
 --- !u!114 &114165219284145858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,10 +325,7 @@ MonoBehaviour:
   bonusTime: 0.9143598
   lastRingInScene: 1
   nextScene: 3
-  timeBonusOriginal: 10
-  timeBonusMachI: 8
-  timeBonusMachII: 0
-  timeBonusMachIII: -4
+  laptext: {fileID: 0}
 --- !u!114 &114546232394384060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -355,6 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9afb91fcb52950489f433bb4501df36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portaleffect: {fileID: 0}
 --- !u!198 &198037739579386500
 ParticleSystem:
   m_ObjectHideFlags: 1

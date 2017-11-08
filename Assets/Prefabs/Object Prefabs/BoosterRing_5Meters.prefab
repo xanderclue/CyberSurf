@@ -74,7 +74,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1800093164489270}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.25, z: 1.25}
   m_Children: []
@@ -87,7 +87,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1186704024045266}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9afb91fcb52950489f433bb4501df36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portaleffect: {fileID: 0}
 --- !u!114 &114951374197431932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,3 +321,4 @@ MonoBehaviour:
   bonusTime: 0
   lastRingInScene: 0
   nextScene: 1
+  laptext: {fileID: 0}

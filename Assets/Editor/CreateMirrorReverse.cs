@@ -413,6 +413,27 @@
     }
     public static class TransformCleaner
     {
+        [MenuItem("Cybersurf Tools/CleanIt")]
+        public static void CleanTransformsActiveScene()
+        {
+            int i;
+            Queue<Transform> transforms = new Queue<Transform>();
+            Transform transform;
+            EditorSceneManager.MarkAllScenesDirty();
+            EditorSceneManager.SaveOpenScenes();
+            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+            foreach (GameObject rootObject in rootObjects)
+                transforms.Enqueue(rootObject.transform);
+            while (transforms.Count > 0)
+            {
+                transform = transforms.Dequeue();
+                for (i = 0; i < transform.childCount; ++i)
+                    transforms.Enqueue(transform.GetChild(i));
+                CleanTransform(transform);
+            }
+            EditorSceneManager.MarkAllScenesDirty();
+            EditorSceneManager.SaveOpenScenes();
+        }
         public static void CleanTransforms()
         {
             EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
@@ -451,13 +472,26 @@
             clean.z = CleanFloat(clean.z);
             return clean;
         }
-        private const float epsilon = 0.0000001f;
+        private const float epsilon = 0.000001f;
         private static float CleanFloat(float dirty)
         {
             float clean = dirty;
-            float round = Mathf.Round(clean);
+            float round = Mathf.RoundToInt(clean);
             if (Mathf.Abs(clean - round) < epsilon)
                 clean = round;
+            return clean;
+        }
+        private static Quaternion CleanQuaternion(Quaternion dirty)
+        {
+            Quaternion clean = dirty;
+            Vector3 euler = clean.eulerAngles;
+            euler = CleanVector(euler);
+            clean = Quaternion.identity;
+            clean = Quaternion.Euler(euler);
+            clean.x = CleanFloat(clean.x);
+            clean.y = CleanFloat(clean.y);
+            clean.z = CleanFloat(clean.z);
+            clean.w = CleanFloat(clean.w);
             return clean;
         }
         private static void CleanTransform(Transform transform)
@@ -465,10 +499,8 @@
             Quaternion rotation = transform.localRotation;
             Vector3 position = transform.localPosition;
             Vector3 scale = transform.localScale;
-            Vector3 euler = rotation.eulerAngles;
-            euler = CleanVector(euler);
-            rotation = Quaternion.identity;
-            rotation = Quaternion.Euler(euler);
+            rotation = CleanQuaternion(rotation);
+            transform.localEulerAngles = rotation.eulerAngles;
             transform.localRotation = rotation;
             position = CleanVector(position);
             scale = CleanVector(scale);
