@@ -6,7 +6,7 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
 {
     [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField] private TextMeshPro timeOfDayText = null;
-    [SerializeField] private TimeOfDay defaultTimeOfDay = TimeOfDay.Evening;
+    [SerializeField] private TimeOfDay defaultTimeOfDay = TimeOfDay.Day;
     private TimeOfDay tempTimeOfDay;
     private void OnEnable()
     {
@@ -37,20 +37,11 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
     {
         switch (tempTimeOfDay)
         {
-            case TimeOfDay.Noon:
-                timeOfDayText.SetText("12:00 PM (Noon)");
+            case TimeOfDay.Day:
+                timeOfDayText.SetText("Day");
                 break;
-            case TimeOfDay.Afternoon:
-                timeOfDayText.SetText("4:20 PM (Afternoon)");
-                break;
-            case TimeOfDay.Evening:
-                timeOfDayText.SetText("8:17 PM (Evening)");
-                break;
-            case TimeOfDay.Midnight:
-                timeOfDayText.SetText("12:00 AM (Midnight)");
-                break;
-            case TimeOfDay.Morning:
-                timeOfDayText.SetText("9:00 AM (Morning)");
+            case TimeOfDay.Night:
+                timeOfDayText.SetText("Night");
                 break;
             default:
                 Debug.LogWarning("Switch statement on TimeOfDay enum tempTimeOfDay in TimeOfDayOptions.cs is missing case for TimeOfDay." + tempTimeOfDay.ToString() + this.Info(), this);
