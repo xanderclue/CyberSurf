@@ -6,7 +6,7 @@ public class HudOnOffObject : MonoBehaviour
     public EventSelectedObject onButton = null, offButton = null;
     [SerializeField] private bool defaultOnOffValue = true;
     [SerializeField] private Material activeMaterial = null, inactiveMaterial = null;
-    private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
+    [SerializeField] private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
     private bool tempOnOffValue = false;
     private TextElementControllerScript textElementController = null;
     public delegate void ValueChangedEvent();
@@ -21,11 +21,6 @@ public class HudOnOffObject : MonoBehaviour
             HudMenuTab.activeMaterial ??
             (HudMenuTab.activeMaterial = (defaultOnOffValue ? onButtonRenderer : offButtonRenderer).material);
         UpdateButtonDisplay();
-    }
-    protected void Awake()
-    {
-        onButtonRenderer = onButton.GetComponent<MeshRenderer>();
-        offButtonRenderer = offButton.GetComponent<MeshRenderer>();
     }
     protected void OnEnable()
     {
