@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.VR;
 using UnityEngine.SceneManagement;
+using static KeyInputManager.VR;
 public class GamepadCameraController : MonoBehaviour
 {
     [SerializeField, Range(10.0f, 100.0f)] private float firstPersonCameraSpeed = 60.0f;
@@ -20,12 +20,12 @@ public class GamepadCameraController : MonoBehaviour
         thirdPersonCamera = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
         playerTransform = GameManager.player.GetComponent<Transform>();
         thirdPersonTranslation = thirdPersonCamera.ThirdPersonAnchor.position - thirdPersonCamera.FirstPersonAnchor.position;
-        if (!VRDevice.isPresent)
+        if (!VRPresent)
             StartCoroutine(CameraControllerCoroutine());
     }
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (!VRDevice.isPresent)
+        if (!VRPresent)
             cameraContainerTransform.eulerAngles = playerRB.transform.eulerAngles;
     }
     private void ThirdPersonCameraMove()
