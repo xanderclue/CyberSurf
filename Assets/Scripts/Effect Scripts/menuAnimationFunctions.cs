@@ -10,6 +10,6 @@ public class menuAnimationFunctions : MonoBehaviour
     }
     public void setRandomOffset()
     {
-        GetComponent<Renderer>().material.SetTextureOffset("_EffectsLayer1DistMask", new Vector2(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)));
+        GetComponent<Renderer>().material.SetTextureOffset("_EffectsLayer1DistMask", new Vector2(Random.value, Random.value));
     }
 }
