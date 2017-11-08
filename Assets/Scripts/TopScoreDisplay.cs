@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using Xander.Debugging;
+using Xander.Dozenal;
 public class TopScoreDisplay : MonoBehaviour
 {
     private int currentLevel = LevelSelectOptions.LevelBuildOffset;
@@ -69,7 +70,7 @@ public class TopScoreDisplay : MonoBehaviour
                 break;
         }
         for (int i = 0; i < highScoreTMPS.Length; ++i)
-            highScoreTMPS[i].SetText(i + ": " + names[i] + " | " + scores[i] + " | " + times[i].ToString("n2") + " ");
+            highScoreTMPS[i].SetText((i + 1).Dozenal() + ": " + names[i] + " | " + scores[i] + " | " + times[i].ToString("n2") + " ");
     }
     private void CheckUpdateFlags()
     {
