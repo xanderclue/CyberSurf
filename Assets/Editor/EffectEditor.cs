@@ -105,8 +105,5 @@ public class EffectEditor : MaterialEditor
         property.floatValue = toggle ? 1.0f : 0.0f;
         return toggle;
     }
-    private static string EffectName(int layer, string property)
-    {
-        return string.Format("_EffectsLayer{0}{1}", layer.ToString(), property);
-    }
+    private static string EffectName(int layer, string property) => $"_EffectsLayer{layer}{property}";
 }

@@ -11,7 +11,7 @@ public class RingSetupScript : MonoBehaviour
     private GameModes mode;
     private GameDifficulties difficulty;
     private ManagerClasses.RoundTimer roundTimer = null;
-    public GameObject GetRingDifficultyParent(GameDifficulties gameDifficulty) { return ringDifficultyParents[(int)gameDifficulty]; }
+    public GameObject GetRingDifficultyParent(GameDifficulties gameDifficulty) => ringDifficultyParents[(int)gameDifficulty];
     private void Start()
     {
         arrowScript = GameManager.player.GetComponentInChildren<arrowPointAtUpdater>();

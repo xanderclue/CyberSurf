@@ -2,6 +2,13 @@
 {
     namespace Debugging
     {
+        public static class LineNumbers
+        {
+            public static string GetPathHere(
+                [System.Runtime.CompilerServices.CallerFilePath] string file = "",
+                [System.Runtime.CompilerServices.CallerLineNumber] int line = 0) =>
+                $"{file}:{line}";
+        }
         public static class DebugExtensions
         {
             public static string HierarchyPath(this UnityEngine.GameObject pGobjGameObject)
@@ -11,14 +18,8 @@
                     lStrRetVal = lTfmTransform.gameObject.name + '.' + lStrRetVal;
                 return lStrRetVal.Substring(0, lStrRetVal.Length - 1);
             }
-            public static string Info<T>(this T comp) where T : UnityEngine.Component
-            {
-                return " (" +
-                    comp.gameObject.HierarchyPath() + ")[" +
-                    comp.gameObject.GetInstanceID() + "]::(" +
-                    comp.GetType().FullName + ")[" +
-                    comp.GetInstanceID() + "].";
-            }
+            public static string Info<T>(this T comp) where T : UnityEngine.Component =>
+                $" ({comp.gameObject.HierarchyPath()})[{comp.gameObject.GetInstanceID()}]::({comp.GetType().FullName})[{comp.GetInstanceID()}].";
         }
         public static class Helper
         {
@@ -45,28 +46,15 @@
             }
             public static string Dozenal(this int i)
             {
-                if (0 == i)
-                    return "0";
-                string rv = "";
-                while (0 != i)
-                {
-                    rv = cstStrDozDig[i % 12] + rv;
-                    i /= 12;
-                }
-                return rv;
+                if (i < 0)
+                    return "-" + Dozenal((ulong)(-i));
+                return Dozenal((ulong)i);
             }
             public static string Dozenal(this System.DateTime time) =>
                 string.Concat(time.Year.Dozenal().PadLeft(4, '0'), (time.Month - 1).Dozenal().PadLeft(1, '0'),
                     (time.Day - 1).Dozenal().PadLeft(2, '0'), time.Hour.Dozenal().PadLeft(2, '0'),
                     time.Minute.Dozenal().PadLeft(2, '0'), time.Second.Dozenal().PadLeft(2, '0'),
                     ((int)System.Math.Round(1.728 * time.Millisecond)).Dozenal().PadLeft(3, '0'));
-        }
-    }
-    namespace ObjectManagement
-    {
-        public static class ObjectManager
-        {
-
         }
     }
     namespace NullConversion

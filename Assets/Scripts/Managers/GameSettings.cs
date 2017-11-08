@@ -8,14 +8,14 @@ public static class GameSettings
         PlayerPrefs.SetInt(key + "_BOOL", value.Int());
         return value;
     }
-    public static bool GetBool(string key, bool defaultValue = false) { return SetBool(key, PlayerPrefs.GetInt(key + "_BOOL", defaultValue.Int()).Bool()); }
-    public static bool GetBool(string key, ref bool value) { return value = GetBool(key, value); }
+    public static bool GetBool(string key, bool defaultValue = false) => SetBool(key, PlayerPrefs.GetInt(key + "_BOOL", defaultValue.Int()).Bool());
+    public static bool GetBool(string key, ref bool value) => value = GetBool(key, value);
     public static void ResetBool(string key)
     {
         key += "_BOOL";
         if (PlayerPrefs.HasKey(key)) PlayerPrefs.DeleteKey(key);
     }
-    public static bool HasBool(string key) { return PlayerPrefs.HasKey(key + "_BOOL"); }
+    public static bool HasBool(string key) => PlayerPrefs.HasKey(key + "_BOOL");
     #endregion
     #region INT
     public static int SetInt(string key, int value)
@@ -23,14 +23,14 @@ public static class GameSettings
         PlayerPrefs.SetInt(key + "_INT", value);
         return value;
     }
-    public static int GetInt(string key, int defaultValue = 0) { return SetInt(key, PlayerPrefs.GetInt(key + "_INT", defaultValue)); }
-    public static int GetInt(string key, ref int value) { return value = GetInt(key, value); }
+    public static int GetInt(string key, int defaultValue = 0) => SetInt(key, PlayerPrefs.GetInt(key + "_INT", defaultValue));
+    public static int GetInt(string key, ref int value) => value = GetInt(key, value);
     public static void ResetInt(string key)
     {
         key += "_INT";
         if (PlayerPrefs.HasKey(key)) PlayerPrefs.DeleteKey(key);
     }
-    public static bool HasInt(string key) { return PlayerPrefs.HasKey(key + "_INT"); }
+    public static bool HasInt(string key) => PlayerPrefs.HasKey(key + "_INT");
     #endregion
     #region UINT
     public static uint SetUint(string key, uint value)
@@ -38,14 +38,14 @@ public static class GameSettings
         PlayerPrefs.SetInt(key + "_UINT", (int)value);
         return value;
     }
-    public static uint GetUint(string key, uint defaultValue = 0u) { return SetUint(key, (uint)PlayerPrefs.GetInt(key + "_UINT", (int)defaultValue)); }
-    public static uint GetUint(string key, ref uint value) { return value = GetUint(key, value); }
+    public static uint GetUint(string key, uint defaultValue = 0u) => SetUint(key, (uint)PlayerPrefs.GetInt(key + "_UINT", (int)defaultValue));
+    public static uint GetUint(string key, ref uint value) => value = GetUint(key, value);
     public static void ResetUint(string key)
     {
         key += "_UINT";
         if (PlayerPrefs.HasKey(key)) PlayerPrefs.DeleteKey(key);
     }
-    public static bool HasUint(string key) { return PlayerPrefs.HasKey(key + "_UINT"); }
+    public static bool HasUint(string key) => PlayerPrefs.HasKey(key + "_UINT");
     #endregion
     #region FLOAT
     public static float SetFloat(string key, float value)
@@ -53,14 +53,14 @@ public static class GameSettings
         PlayerPrefs.SetFloat(key + "_FLOAT", value);
         return value;
     }
-    public static float GetFloat(string key, float defaultValue = 0.0f) { return SetFloat(key, PlayerPrefs.GetFloat(key + "_FLOAT", defaultValue)); }
-    public static float GetFloat(string key, ref float value) { return value = GetFloat(key, value); }
+    public static float GetFloat(string key, float defaultValue = 0.0f) => SetFloat(key, PlayerPrefs.GetFloat(key + "_FLOAT", defaultValue));
+    public static float GetFloat(string key, ref float value) => value = GetFloat(key, value);
     public static void ResetFloat(string key)
     {
         key += "_FLOAT";
         if (PlayerPrefs.HasKey(key)) PlayerPrefs.DeleteKey(key);
     }
-    public static bool HasFloat(string key) { return PlayerPrefs.HasKey(key + "_FLOAT"); }
+    public static bool HasFloat(string key) => PlayerPrefs.HasKey(key + "_FLOAT");
     #endregion
     #region STRING
     public static string SetString(string key, string value)
@@ -68,14 +68,14 @@ public static class GameSettings
         PlayerPrefs.SetString(key + "_STRING", value);
         return value;
     }
-    public static string GetString(string key, string defaultValue = "") { return SetString(key, PlayerPrefs.GetString(key + "_STRING", defaultValue)); }
-    public static string GetString(string key, ref string value) { return value = GetString(key, value); }
+    public static string GetString(string key, string defaultValue = "") => SetString(key, PlayerPrefs.GetString(key + "_STRING", defaultValue));
+    public static string GetString(string key, ref string value) => value = GetString(key, value);
     public static void ResetString(string key)
     {
         key += "_STRING";
         if (PlayerPrefs.HasKey(key)) PlayerPrefs.DeleteKey(key);
     }
-    public static bool HasString(string key) { return PlayerPrefs.HasKey(key + "_STRING"); }
+    public static bool HasString(string key) => PlayerPrefs.HasKey(key + "_STRING");
     #endregion
     #region CHAR
     public static char SetChar(string key, char value)
@@ -83,14 +83,14 @@ public static class GameSettings
         PlayerPrefs.SetInt(key + "_CHAR", value);
         return value;
     }
-    public static char GetChar(string key, char defaultValue = '\0') { return SetChar(key, (char)PlayerPrefs.GetInt(key + "_CHAR", defaultValue)); }
-    public static char GetChar(string key, ref char value) { return value = GetChar(key, value); }
+    public static char GetChar(string key, char defaultValue = '\0') => SetChar(key, (char)PlayerPrefs.GetInt(key + "_CHAR", defaultValue));
+    public static char GetChar(string key, ref char value) => value = GetChar(key, value);
     public static void ResetChar(string key)
     {
         key += "_CHAR";
         if (PlayerPrefs.HasKey(key)) PlayerPrefs.DeleteKey(key);
     }
-    public static bool HasChar(string key) { return PlayerPrefs.HasKey(key + "_CHAR"); }
+    public static bool HasChar(string key) => PlayerPrefs.HasKey(key + "_CHAR");
     #endregion
     #region COLOR
     public static Color SetColor(string key, Color value)
@@ -111,8 +111,8 @@ public static class GameSettings
         ret.a = PlayerPrefs.GetFloat(key + "_COLOR_A", defaultValue.a);
         return SetColor(key, ret);
     }
-    public static Color GetColor(string key) { return GetColor(key, Color.clear); }
-    public static Color GetColor(string key, ref Color value) { return value = GetColor(key, value); }
+    public static Color GetColor(string key) => GetColor(key, Color.clear);
+    public static Color GetColor(string key, ref Color value) => value = GetColor(key, value);
     public static void ResetColor(string key)
     {
         key += "_COLOR_";
@@ -184,8 +184,8 @@ public static class GameSettings
         ret.w = PlayerPrefs.GetFloat(key + "_VECTOR4_W", defaultValue.w);
         return SetVector4(key, ret);
     }
-    public static Vector4 GetVector4(string key) { return GetVector4(key, Vector4.zero); }
-    public static Vector4 GetVector4(string key, ref Vector4 value) { return value = GetVector4(key, value); }
+    public static Vector4 GetVector4(string key) => GetVector4(key, Vector4.zero);
+    public static Vector4 GetVector4(string key, ref Vector4 value) => value = GetVector4(key, value);
     public static void ResetVector4(string key)
     {
         key += "_VECTOR4_";
@@ -221,8 +221,8 @@ public static class GameSettings
         ret.z = PlayerPrefs.GetFloat(key + "_VECTOR3_Z", defaultValue.z);
         return SetVector3(key, ret);
     }
-    public static Vector3 GetVector3(string key) { return GetVector3(key, Vector3.zero); }
-    public static Vector3 GetVector3(string key, ref Vector3 value) { return value = GetVector3(key, value); }
+    public static Vector3 GetVector3(string key) => GetVector3(key, Vector3.zero);
+    public static Vector3 GetVector3(string key, ref Vector3 value) => value = GetVector3(key, value);
     public static void ResetVector3(string key)
     {
         key += "_VECTOR3_";
@@ -254,8 +254,8 @@ public static class GameSettings
         ret.y = PlayerPrefs.GetFloat(key + "_VECTOR2_Y", defaultValue.y);
         return SetVector2(key, ret);
     }
-    public static Vector2 GetVector2(string key) { return GetVector2(key, Vector2.zero); }
-    public static Vector2 GetVector2(string key, ref Vector2 value) { return value = GetVector2(key, value); }
+    public static Vector2 GetVector2(string key) => GetVector2(key, Vector2.zero);
+    public static Vector2 GetVector2(string key, ref Vector2 value) => value = GetVector2(key, value);
     public static void ResetVector2(string key)
     {
         key += "_VECTOR2_";
@@ -289,8 +289,8 @@ public static class GameSettings
         ret.w = PlayerPrefs.GetFloat(key + "_QUATERNION_W", defaultValue.w);
         return SetQuaternion(key, ret);
     }
-    public static Quaternion GetQuaternion(string key) { return GetQuaternion(key, Quaternion.identity); }
-    public static Quaternion GetQuaternion(string key, ref Quaternion value) { return value = GetQuaternion(key, value); }
+    public static Quaternion GetQuaternion(string key) => GetQuaternion(key, Quaternion.identity);
+    public static Quaternion GetQuaternion(string key, ref Quaternion value) => value = GetQuaternion(key, value);
     public static void ResetQuaternion(string key)
     {
         key += "_QUATERNION_";

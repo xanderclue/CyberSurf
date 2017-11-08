@@ -2,20 +2,11 @@
 using TMPro;
 public class AiOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton plusButton = null, minusButton = null;
-    [SerializeField]
-    private TextMeshPro aiText = null;
-    [SerializeField]
-    private int defaultValue = 0;
+    [SerializeField] private LevelMenuButton plusButton = null, minusButton = null;
+    [SerializeField] private TextMeshPro aiText = null;
+    [SerializeField] private int defaultValue = 0;
     private int tempValue;
-    private static int ActualValue { get; set; } // replace with game's value
-    new private void Start()
-    {
-        base.Start();
-        if (ActualValue < 0)
-            ActualValue = 0;
-    }
+    private static int ActualValue { get; set; } = 0;
     private void OnEnable()
     {
         plusButton.OnButtonPressed += ButtonPlusFunction;
