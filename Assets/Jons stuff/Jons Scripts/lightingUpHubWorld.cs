@@ -3,6 +3,7 @@ public class lightingUpHubWorld : MonoBehaviour
 {
     private const float timeToMove = 20.0f;
     private float currentTime = 0.0f;
+    private void Awake() => RenderSettings.fogDensity = 0.2f;
     private void Start()
     {
         currentTime = 0.0f;
