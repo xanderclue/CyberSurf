@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool disableVignette = false;
     private void Awake()
     {
+        Application.runInBackground = true;
         if (null == instance)
             instance = this;
         if (this == instance)
@@ -60,7 +61,6 @@ public class GameManager : MonoBehaviour
         levelScript.SetupLevelManager(gameState, player, instance);
         scoreScript.SetupScoreManager();
         GetComponent<KeyInputManager>().SetupKeyInputManager(gameState);
-        Application.runInBackground = true;
     }
-    private void OnDestroy() { GameSettings.Save(); }
+    private void OnDestroy() => GameSettings.Save();
 }
