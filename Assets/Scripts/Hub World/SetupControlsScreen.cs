@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static KeyInputManager.VR;
 public class SetupControlsScreen : MonoBehaviour
 {
     [SerializeField] private Sprite loadingImage = null;
@@ -15,7 +16,7 @@ public class SetupControlsScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(SpatialData.WaitForAttach);
         if (GameManager.instance.boardScript.gamepadEnabled)
-            if (UnityEngine.VR.VRDevice.isPresent)
+            if (VRPresent)
                 ImageObject.sprite = controlsImages[0];
             else
                 ImageObject.sprite = controlsImages[2];

@@ -8,6 +8,7 @@
     using static System.IO.Directory;
     using static System.IO.File;
     using static UnityEngine.Assertions.Assert;
+    using TMPro;
     public class CreateMirrorReverse
     {
         private string sceneName = "",
@@ -92,6 +93,7 @@
         private RingProperties[] sortedRings = null;
         private Vector3 startRingPosition = Vector3.zero;
         private SerializedObject so = null;
+        private const string nameofPositionInOrder = nameof(RingProperties.positionInOrder);
         private ReverseHelper(Scene inScene, GameObject inSpawn)
         {
             scene = inScene;
@@ -154,7 +156,7 @@
             for (int i = 0; i < sortedRings.Length; ++i)
             {
                 so = new SerializedObject(sortedRings[i]);
-                so.FindProperty("positionInOrder").intValue = i + 1;
+                so.FindProperty(nameofPositionInOrder).intValue = i + 1;
                 so.ApplyModifiedProperties();
             }
         }
@@ -166,7 +168,7 @@
             foreach (RingProperties ring in theRings)
             {
                 so = new SerializedObject(ring);
-                sp = so.FindProperty("positionInOrder");
+                sp = so.FindProperty(nameofPositionInOrder);
                 sp.intValue = minPosition + maxPosition - sp.intValue;
                 so.ApplyModifiedProperties();
             }
@@ -188,7 +190,7 @@
             foreach (RingProperties ring in sortedRings)
             {
                 so = new SerializedObject(ring);
-                --so.FindProperty("positionInOrder").intValue;
+                --so.FindProperty(nameofPositionInOrder).intValue;
                 so.ApplyModifiedProperties();
             }
         }
@@ -232,12 +234,12 @@
             SerializedObject exitRingSO = null, nextRingSO = null, startRingSO = null;
             exitRingSO = new SerializedObject(exitRing);
             startRingSO = new SerializedObject(startRing);
-            exitRingSO.FindProperty("positionInOrder").intValue = startRingSO.FindProperty("positionInOrder").intValue + 1;
+            exitRingSO.FindProperty(nameofPositionInOrder).intValue = startRingSO.FindProperty(nameofPositionInOrder).intValue + 1;
             exitRingSO.ApplyModifiedProperties();
             nextRingSO = new SerializedObject(nextRing);
-            nextRingSO.FindProperty("positionInOrder").intValue = exitRingSO.FindProperty("positionInOrder").intValue - 1;
+            nextRingSO.FindProperty(nameofPositionInOrder).intValue = exitRingSO.FindProperty(nameofPositionInOrder).intValue - 1;
             nextRingSO.ApplyModifiedProperties();
-            startRingSO.FindProperty("positionInOrder").intValue = 2;
+            startRingSO.FindProperty(nameofPositionInOrder).intValue = 2;
             startRingSO.ApplyModifiedProperties();
             DecrementAllPositions();
             MoveExitRings(exitRing.transform, nextRing.transform, startRing.transform);
@@ -308,6 +310,7 @@
             SaveScene();
             SaveSpawn();
             MirrorRootObjects();
+            InvertTextMeshes();
             InvertBoxColliders();
             SaveScene();
             SaveSpawn();
@@ -342,6 +345,34 @@
             foreach (Transform rootTransform in rootTransforms)
                 rootTransform.parent = null;
             Object.DestroyImmediate(go.gameObject);
+        }
+        private void InvertTextMeshes()
+        {
+            List<TextMeshPro> textMeshes = GetTextMeshes();
+            Vector3 tmpV3;
+            foreach (TextMeshPro textMesh in textMeshes)
+            {
+                tmpV3 = textMesh.rectTransform.localScale;
+                tmpV3.x = -tmpV3.x;
+                textMesh.rectTransform.localScale = tmpV3;
+            }
+        }
+        private List<TextMeshPro> GetTextMeshes()
+        {
+            Queue<Transform> transforms = GetRootTransforms();
+            List<TextMeshPro> textMeshes = new List<TextMeshPro>();
+            Transform tmpT;
+            TextMeshPro tmpTm;
+            while (transforms.Count > 0)
+            {
+                tmpT = transforms.Dequeue();
+                for (int i = 0; i < tmpT.childCount; ++i)
+                    transforms.Enqueue(tmpT.GetChild(i));
+                tmpTm = tmpT.GetComponent<TextMeshPro>();
+                if (null != tmpTm)
+                    textMeshes.Add(tmpTm);
+            }
+            return textMeshes;
         }
         private void InvertBoxColliders()
         {
@@ -382,6 +413,27 @@
     }
     public static class TransformCleaner
     {
+        [MenuItem("Cybersurf Tools/CleanIt")]
+        public static void CleanTransformsActiveScene()
+        {
+            int i;
+            Queue<Transform> transforms = new Queue<Transform>();
+            Transform transform;
+            EditorSceneManager.MarkAllScenesDirty();
+            EditorSceneManager.SaveOpenScenes();
+            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+            foreach (GameObject rootObject in rootObjects)
+                transforms.Enqueue(rootObject.transform);
+            while (transforms.Count > 0)
+            {
+                transform = transforms.Dequeue();
+                for (i = 0; i < transform.childCount; ++i)
+                    transforms.Enqueue(transform.GetChild(i));
+                CleanTransform(transform);
+            }
+            EditorSceneManager.MarkAllScenesDirty();
+            EditorSceneManager.SaveOpenScenes();
+        }
         public static void CleanTransforms()
         {
             EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
@@ -420,13 +472,26 @@
             clean.z = CleanFloat(clean.z);
             return clean;
         }
-        private const float epsilon = 0.0000001f;
+        private const float epsilon = 0.000001f;
         private static float CleanFloat(float dirty)
         {
             float clean = dirty;
-            float round = Mathf.Round(clean);
+            float round = Mathf.RoundToInt(clean);
             if (Mathf.Abs(clean - round) < epsilon)
                 clean = round;
+            return clean;
+        }
+        private static Quaternion CleanQuaternion(Quaternion dirty)
+        {
+            Quaternion clean = dirty;
+            Vector3 euler = clean.eulerAngles;
+            euler = CleanVector(euler);
+            clean = Quaternion.identity;
+            clean = Quaternion.Euler(euler);
+            clean.x = CleanFloat(clean.x);
+            clean.y = CleanFloat(clean.y);
+            clean.z = CleanFloat(clean.z);
+            clean.w = CleanFloat(clean.w);
             return clean;
         }
         private static void CleanTransform(Transform transform)
@@ -434,10 +499,8 @@
             Quaternion rotation = transform.localRotation;
             Vector3 position = transform.localPosition;
             Vector3 scale = transform.localScale;
-            Vector3 euler = rotation.eulerAngles;
-            euler = CleanVector(euler);
-            rotation = Quaternion.identity;
-            rotation = Quaternion.Euler(euler);
+            rotation = CleanQuaternion(rotation);
+            transform.localEulerAngles = rotation.eulerAngles;
             transform.localRotation = rotation;
             position = CleanVector(position);
             scale = CleanVector(scale);

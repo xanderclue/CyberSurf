@@ -13,9 +13,9 @@ public static class SaveLoader
             y = ny;
             z = nz;
         }
-        public override string ToString() { return string.Format("[{0}, {1}, {2}]", x, y, z); }
-        public static implicit operator Vector3(serializableVec3 value) { return new Vector3(value.x, value.y, value.z); }
-        public static implicit operator serializableVec3(Vector3 value) { return new serializableVec3(value.x, value.y, value.z); }
+        public override string ToString() => $"[{x}, {y}, {z}]";
+        public static implicit operator Vector3(serializableVec3 value) => new Vector3(value.x, value.y, value.z);
+        public static implicit operator serializableVec3(Vector3 value) => new serializableVec3(value.x, value.y, value.z);
     }
     [System.Serializable]
     public struct serializableQuaternion
@@ -28,9 +28,9 @@ public static class SaveLoader
             z = nz;
             w = nw;
         }
-        public override string ToString() { return string.Format("[{0}, {1}, {2}, {3}]", x, y, z, w); }
-        public static implicit operator Quaternion(serializableQuaternion value) { return new Quaternion(value.x, value.y, value.z, value.w); }
-        public static implicit operator serializableQuaternion(Quaternion value) { return new serializableQuaternion(value.x, value.y, value.z, value.w); }
+        public override string ToString() => $"[{x}, {y}, {z}, {w}]";
+        public static implicit operator Quaternion(serializableQuaternion value) => new Quaternion(value.x, value.y, value.z, value.w);
+        public static implicit operator serializableQuaternion(Quaternion value) => new serializableQuaternion(value.x, value.y, value.z, value.w);
     }
     [System.Serializable]
     private struct serializableScore

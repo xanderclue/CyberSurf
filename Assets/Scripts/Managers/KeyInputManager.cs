@@ -1,8 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.VR;
+using static KeyInputManager.VR;
 public class KeyInputManager : MonoBehaviour
 {
+    public static class VR
+    {
+#if UNITY_2017_2_OR_NEWER
+        public static bool VRPresent => UnityEngine.XR.XRDevice.isPresent;
+        public static Quaternion GetHeadRotation() => UnityEngine.XR.InputTracking.GetLocalRotation(UnityEngine.XR.XRNode.Head);
+#else
+        public static bool VRPresent => UnityEngine.VR.VRDevice.isPresent;
+        public static Quaternion GetHeadRotation() => UnityEngine.VR.InputTracking.GetLocalRotation(UnityEngine.VR.VRNode.Head);
+#endif
+    }
 #if UNITY_STANDALONE_OSX
     public const KeyCode XBOX_A = KeyCode.JoystickButton16;
     public const KeyCode XBOX_X = KeyCode.JoystickButton18;
@@ -62,9 +72,9 @@ public class KeyInputManager : MonoBehaviour
         if (Input.GetKeyDown(XBOX_Y))
             thirdPersonCameraScript.UpdateThirdPersonCamera();
         #region stuff we're going to get rid of
-        if (VRDevice.isPresent && hubOnFlippedHMD && state.currentState != GameStates.HubWorld)
+        if (VRPresent && hubOnFlippedHMD && state.currentState != GameStates.HubWorld)
         {
-            flippedQuaternion = InputTracking.GetLocalRotation(VRNode.Head);
+            flippedQuaternion = GetHeadRotation();
             if (flippedQuaternion.eulerAngles.z > 150.0f && flippedQuaternion.eulerAngles.z < 210.0f && !countingDown)
             {
                 countingDown = true;

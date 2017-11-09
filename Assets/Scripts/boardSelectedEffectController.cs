@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
 public class boardSelectedEffectController : MonoBehaviour
 {
-    private BoardStandProperties[] boardEffects = null;
-    private BoardManager boardManager = null;
-    private void Start()
-    {
-        boardEffects = GetComponentsInChildren<BoardStandProperties>();
-        boardManager = GameManager.instance.boardScript;
-        EventManager.OnCallBoardMenuEffects();
-    }
+    [SerializeField] private ParticleSystem[] effects = null;
     private void OnEnable()
     {
         EventManager.OnUpdateBoardMenuEffects += SetActiveBoard;
+        SetActiveBoard();
     }
     private void OnDisable()
     {
@@ -19,10 +13,10 @@ public class boardSelectedEffectController : MonoBehaviour
     }
     private void SetActiveBoard()
     {
-        foreach (BoardStandProperties boardEffect in boardEffects)
-            if (boardEffect.boardType == boardManager.currentBoardSelection)
-                boardEffect.GetComponentInChildren<ParticleSystem>().Play();
+        for (int i = 0; i < effects.Length; ++i)
+            if (i == (int)GameManager.instance.boardScript.currentBoardSelection)
+                effects[i].Play();
             else
-                boardEffect.GetComponentInChildren<ParticleSystem>().Stop();
+                effects[i].Stop();
     }
 }

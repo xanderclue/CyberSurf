@@ -6,10 +6,7 @@ public class TooltipTextScript : MonoBehaviour
     private TMPro.TextMeshProUGUI textMesh = null;
     private float bugFixTimer = 0.0f;
     private const float bugFixTime = 0.1f;
-    public static void SetText(string str)
-    {
-        OnUpdateTooltip?.Invoke(str);
-    }
+    public static void SetText(string str) => OnUpdateTooltip?.Invoke(str);
     private void Awake()
     {
         textMesh = GetComponent<TMPro.TextMeshProUGUI>();

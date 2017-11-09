@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.VR;
 using UnityEngine.PostProcessing;
+using static KeyInputManager.VR;
 public class GameManager : MonoBehaviour
 {
     public ManagerClasses.GameState gameState = new ManagerClasses.GameState();
@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
         levelScript = GetComponent<LevelManager>();
         boardScript = GetComponent<BoardManager>();
         DontDestroyOnLoad(player = Instantiate(playerPrefab));
-        player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = VRDevice.isPresent && !disableVignette;
-        if (VRDevice.isPresent)
+        player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = VRPresent && !disableVignette;
+        if (VRPresent)
             gameDifficulty.currentDifficulty = GameDifficulties.Easy;
         GameSettings.GetEnum("GameDifficulty", ref gameDifficulty.currentDifficulty);
         GameSettings.GetEnum("GameMode", ref gameMode.currentMode);

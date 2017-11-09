@@ -6,12 +6,6 @@ public class MirrorTrackOptions : LevelMenuObjectGroup
     [SerializeField] private MeshRenderer onButtonRenderer = null, offButtonRenderer = null;
     [SerializeField] private bool defaultValue = false;
     private bool tempValue = false;
-    new private void Start()
-    {
-        base.Start();
-        onButtonRenderer = onButton.GetComponent<MeshRenderer>();
-        offButtonRenderer = offButton.GetComponent<MeshRenderer>();
-    }
     private void OnEnable()
     {
         onButton.OnButtonPressed += ButtonOnFunction;
