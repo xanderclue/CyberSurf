@@ -5,26 +5,12 @@ public class effectController : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] triggerParticleEffects = null;
     [SerializeField] private ParticleSystem dustField = null;
-    private int particleType = 0;
     private const int particleLayer = 9;
-    public ParticleSystem[] TriggerParticleEffects { get { return triggerParticleEffects; } }
-    public ParticleSystem DustField { get { return dustField; } }
-    public ParticleSystem getParticleToDo()
-    {
-        return triggerParticleEffects[particleType];
-    }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += dustFieldActivation;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= dustFieldActivation;
-    }
-    private void Start()
-    {
-        disableAllEffects();
-    }
+    public ParticleSystem[] TriggerParticleEffects => triggerParticleEffects;
+    public ParticleSystem DustField => dustField;
+    private void OnEnable() => SceneManager.sceneLoaded += dustFieldActivation;
+    private void OnDisable() => SceneManager.sceneLoaded -= dustFieldActivation;
+    private void Start() => disableAllEffects();
     private void dustFieldActivation(Scene scene, LoadSceneMode loadMode)
     {
         if (SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset)
@@ -41,11 +27,9 @@ public class effectController : MonoBehaviour
             {
                 case particleEffectTypesEnum.rain:
                     triggerParticleEffects[0].Play();
-                    particleType = 0;
                     break;
                 case particleEffectTypesEnum.snow:
                     triggerParticleEffects[1].Play();
-                    particleType = 1;
                     break;
                 case particleEffectTypesEnum.sandDust:
                     triggerParticleEffects[3].Play();

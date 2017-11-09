@@ -30,21 +30,19 @@ public class KeyInputManager : MonoBehaviour
 #endif
     [SerializeField] private float flippedTimer = 3.0f;
     [SerializeField] private bool hubOnFlippedHMD = false;
-    private ManagerClasses.GameState state;
+    private ManagerClasses.GameState state = null;
     private bool countingDown = false;
     private float timeUpsideDown = 0.0f;
+    private ThirdPersonCamera thirdPersonCameraScript = null;
+    private Transform cameraContainer = null;
     private Quaternion flippedQuaternion;
-    private ThirdPersonCamera thirdPersonCameraScript;
-    private Transform playerTransform;
-    private Transform cameraContainer;
     private Vector3 cameraContainerPositionDifference;
     public void SetupKeyInputManager(ManagerClasses.GameState s)
     {
         state = s;
         thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
-        playerTransform = GameManager.player.GetComponent<Transform>();
         cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().GetComponent<Transform>();
-        cameraContainerPositionDifference = cameraContainer.position - playerTransform.position;
+        cameraContainerPositionDifference = cameraContainer.position - GameManager.player.transform.position;
         StartCoroutine(CalibrationCoroutine());
     }
     private void Update()
@@ -71,7 +69,6 @@ public class KeyInputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(XBOX_Y))
             thirdPersonCameraScript.UpdateThirdPersonCamera();
-        #region stuff we're going to get rid of
         if (VRPresent && hubOnFlippedHMD && state.currentState != GameStates.HubWorld)
         {
             flippedQuaternion = GetHeadRotation();
@@ -93,7 +90,6 @@ public class KeyInputManager : MonoBehaviour
                 }
             }
         }
-        #endregion
     }
     private IEnumerator CalibrationCoroutine()
     {

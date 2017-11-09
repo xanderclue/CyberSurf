@@ -2,8 +2,8 @@
 {
     public static void InitDebugger()
     {
-#if DEBUGGER
         System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
+#if DEBUGGER
         if (!stcBoolDebuggerInited)
         {
             if (null == stcStrlistLines)
@@ -26,15 +26,8 @@
         }
 #endif
     }
-    public static bool WASD
-    {
 #if DEBUGGER
-        get { return stcBoolWasd; }
-#else
-        get { return false; }
-#endif
-    }
-#if DEBUGGER
+    public static bool WASD => stcBoolWasd;
     private const int cstIntMaxNumLines = 20;
     private const int cstIntMaxLineLength = 45;
     private static System.Collections.Generic.List<string> stcStrlistLines = null;
@@ -47,10 +40,7 @@
     private static bool stcBoolFileOpen = false;
     private static float stcFloatWarningTimer = 0.0f;
     private static bool stcBoolWasd = false;
-    private static string LogFilePath(string pStrTimeStamp)
-    {
-        return UnityEngine.Application.persistentDataPath + "/log" + pStrTimeStamp.Substring(0, 7) + ".txt";
-    }
+    private static string LogFilePath(string pStrTimeStamp) => UnityEngine.Application.persistentDataPath + "/log" + pStrTimeStamp.Substring(0, 7) + ".txt";
     private static void GetLog(string pStrLogMessage, string pStrStackTrace, UnityEngine.LogType pEnmLogType)
     {
         string lStrTimeStamp = Xander.Debugging.Helper.DozenalTimeStamp;
@@ -155,6 +145,8 @@
 #endif
     private void Update()
     {
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
+            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + $"/Cybersurf_{Xander.Debugging.Helper.DozenalTimeStamp}.png");
 #if DEBUGGER
         if (null != stcImageWarningIcon)
         {
@@ -184,7 +176,5 @@
             GameSettings.ResetAll();
         }
 #endif
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
-            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + $"/Cybersurf_{Xander.Debugging.Helper.DozenalTimeStamp}.png");
     }
 }
