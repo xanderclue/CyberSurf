@@ -56,8 +56,11 @@ public class KeyInputManager : MonoBehaviour
             }
             else
             {
-                SaveLoader.Save();
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
                 Application.Quit();
+#endif
             }
         }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(XBOX_BACK))
