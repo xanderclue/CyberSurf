@@ -7,6 +7,7 @@ public class ManagerLoader : MonoBehaviour
     private static bool isLoaded = false;
     private void Awake()
     {
+        Cursor.visible = false;
         if (null != destroyOnLoad)
             foreach (GameObject gObj in destroyOnLoad)
                 try { gObj.SetActive(false); Destroy(gObj); } catch { }
