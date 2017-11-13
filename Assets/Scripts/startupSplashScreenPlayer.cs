@@ -53,9 +53,9 @@ public class startupSplashScreenPlayer : MonoBehaviour
         }
         else if (currentScreen == splashScreens.Length - 1)
         {
+            NextButton.transform.position = ConfirmButton.transform.position;
             ConfirmButton.gameObject.SetActive(false);
             NextButton.gameObject.SetActive(true);
-            NextButton.gameObject.transform.position = new Vector3(-0.04239172f, 1.39f, -3.217f);
             SkipButton.gameObject.SetActive(false);
             timePlayingCurrent = 0;
         }

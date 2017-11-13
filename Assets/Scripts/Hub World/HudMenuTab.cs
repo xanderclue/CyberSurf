@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class HudMenuTab : MenuTab
 {
-    public enum HudMenuOption { OverallHud, Reticle, Speed, Timer, Score, Players, Compass, Arrow, LapCounter, Position }
+    public enum HudMenuOption { OverallHud, Reticle, Speed, Timer, ScoreDisplay, Players, Compass, Arrow, LapCounter, Position }
     [SerializeField, LabelOverride("Overall  HUD")] private HudOnOffObject overallHudOnOff = null;
     [SerializeField, LabelOverride("Reticle")] private HudOnOffObject reticleOnOff = null;
     [SerializeField, LabelOverride("Speed")] private HudOnOffObject speedOnOff = null;
