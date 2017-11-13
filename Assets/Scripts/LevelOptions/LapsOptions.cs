@@ -49,7 +49,7 @@ public class LapsOptions : LevelMenuObjectGroup
     }
     private void ButtonMinusFunction()
     {
-        if (tempValue > 0)
+        if (tempValue > 1)
             --tempValue;
         UpdateDisplay();
     }
