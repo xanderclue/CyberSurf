@@ -41,7 +41,7 @@ public class KeyInputManager : MonoBehaviour
     {
         state = s;
         thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
-        cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().GetComponent<Transform>();
+        cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().transform;
         cameraContainerPositionDifference = cameraContainer.position - GameManager.player.transform.position;
         StartCoroutine(CalibrationCoroutine());
     }

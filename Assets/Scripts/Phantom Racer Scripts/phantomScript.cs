@@ -47,8 +47,8 @@ public class phantomScript : MonoBehaviour
     {
         if (null != scoreInfo.positions)
         {
-            gameObject.transform.position = scoreInfo.positions[currentPos];
-            gameObject.transform.rotation = scoreInfo.rotations[currentPos];
+            transform.position = scoreInfo.positions[currentPos];
+            transform.rotation = scoreInfo.rotations[currentPos];
             ++currentPos;
             if (currentPos >= scoreInfo.positions.Length)
                 currentPos = 0;

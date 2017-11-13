@@ -4566,6 +4566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionRadial: {fileID: 114038238509676444}
   reticleCenter: {fileID: 114465711398145696}
+  background: {fileID: 114526837017081366}
 --- !u!114 &114578433448287022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25841,7 +25842,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

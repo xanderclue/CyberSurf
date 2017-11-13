@@ -14,7 +14,7 @@ public class positionRecorder : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        positions.Enqueue(gameObject.transform.position);
-        rotations.Enqueue(gameObject.transform.rotation);
+        positions.Enqueue(transform.position);
+        rotations.Enqueue(transform.rotation);
     }
 }

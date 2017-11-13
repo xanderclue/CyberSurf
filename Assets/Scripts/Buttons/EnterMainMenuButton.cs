@@ -22,7 +22,7 @@ public class EnterMainMenuButton : SelectedObject
     new private void Update()
     {
         base.Update();
-        gameObject.transform.Rotate(0.0f, Time.deltaTime * rotationSpeed, 0.0f);
+        transform.Rotate(0.0f, Time.deltaTime * rotationSpeed, 0.0f);
     }
     protected override void SelectedFunction()
     {
