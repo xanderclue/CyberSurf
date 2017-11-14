@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 199983809842855462}
   m_Layer: 9
   m_Name: Snow - PlaceHolder
-  m_TagString: snow
+  m_TagString: playerSnow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12208,7 +12208,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1519539285
+  randomSeed: 2126523495
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -25841,7 +25841,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
