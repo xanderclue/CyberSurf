@@ -37,7 +37,7 @@ public class RingProperties : MonoBehaviour
         }
         else if (GameModes.Race == GameManager.instance.gameMode.currentMode)
         {
-            if (nextScene != 1)
+            if (nextScene >= LevelSelectOptions.LevelBuildOffset)
             {
                 gameObject.SetActive(false);
             }
