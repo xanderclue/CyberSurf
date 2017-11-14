@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 199983809842855462}
   m_Layer: 9
   m_Name: Snow - PlaceHolder
-  m_TagString: snow
+  m_TagString: playerSnow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12334,7 +12334,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1519539285
+  randomSeed: 2126523495
   InitialModule:
     serializedVersion: 3
     enabled: 1
