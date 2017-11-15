@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using Xander.Debugging;
 public class phantomScript : MonoBehaviour
 {
-    private ScoreManager.scoreStruct scoreInfo;
+    private ScoreManager.ScoreData scoreInfo;
     private int currentPos = 0;
     private void Start()
     {
@@ -12,7 +12,7 @@ public class phantomScript : MonoBehaviour
         switch (GameManager.instance.gameMode.currentMode)
         {
             case GameModes.Continuous:
-                ScoreManager.continuousScores[] contScores = gameManager.scoreScript.topContinuousScores;
+                ScoreManager.ContinuousScores[] contScores = gameManager.scoreScript.topContinuousScores;
                 for (int i = 0; i < contScores.Length; i++)
                 {
                     if (contScores[i].difficulty == gameManager.gameDifficulty.currentDifficulty)
@@ -23,12 +23,12 @@ public class phantomScript : MonoBehaviour
                 }
                 break;
             case GameModes.Cursed:
-                ScoreManager.levelCurseScores[] levelScores = gameManager.scoreScript.topCurseScores;
-                for (int i = 0; i < levelScores[level].curseScores.Length; i++)
+                ScoreManager.CursedScores[] levelScores = gameManager.scoreScript.topCursedScores;
+                for (int i = 0; i < levelScores[level].cursedScores.Length; i++)
                 {
-                    if (levelScores[level].curseScores[i].difficulty == gameManager.gameDifficulty.currentDifficulty)
+                    if (levelScores[level].cursedScores[i].difficulty == gameManager.gameDifficulty.currentDifficulty)
                     {
-                        scoreInfo = levelScores[level].curseScores[i];
+                        scoreInfo = levelScores[level].cursedScores[i];
                         break;
                     }
                 }
@@ -47,8 +47,8 @@ public class phantomScript : MonoBehaviour
     {
         if (null != scoreInfo.positions)
         {
-            gameObject.transform.position = scoreInfo.positions[currentPos];
-            gameObject.transform.rotation = scoreInfo.rotations[currentPos];
+            transform.position = scoreInfo.positions[currentPos];
+            transform.rotation = scoreInfo.rotations[currentPos];
             ++currentPos;
             if (currentPos >= scoreInfo.positions.Length)
                 currentPos = 0;

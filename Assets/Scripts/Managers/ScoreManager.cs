@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using Xander.Debugging;
 public class ScoreManager : MonoBehaviour
 {
-    public struct scoreStruct
+    public struct ScoreData
     {
         public Vector3[] positions;
         public Quaternion[] rotations;
@@ -13,20 +13,20 @@ public class ScoreManager : MonoBehaviour
         public int score, board;
         public bool isLastScoreInput;
     }
-    public struct levelCurseScores
+    public struct CursedScores
     {
-        public scoreStruct[] curseScores;
+        public ScoreData[] cursedScores;
         public int currentAmoutFilled;
     }
-    public struct continuousScores
+    public struct ContinuousScores
     {
-        public scoreStruct[] levels;
+        public ScoreData[] levels;
         public GameDifficulties difficulty;
         public string name;
         public bool isLastScoreInput;
     }
-    public levelCurseScores[] topCurseScores = null;
-    public continuousScores[] topContinuousScores = null;
+    public CursedScores[] topCursedScores = null;
+    public ContinuousScores[] topContinuousScores = null;
     [HideInInspector] public int curFilledCont = -1, ringHitCount = 0, score = 0;
     [HideInInspector] public bool firstPortal = true, respawnEnabled = true;
     [HideInInspector] public char[] currentName = new char[3];
@@ -42,22 +42,22 @@ public class ScoreManager : MonoBehaviour
     private void InitScores()
     {
         int sceneCount = SceneManager.sceneCountInBuildSettings;
-        topCurseScores = SaveLoader.LoadCurseScores();
+        topCursedScores = SaveLoader.LoadCurseScores();
         topContinuousScores = SaveLoader.LoadContinuousScores();
-        if (null == topCurseScores)
+        if (null == topCursedScores)
         {
-            topCurseScores = new levelCurseScores[sceneCount];
+            topCursedScores = new CursedScores[sceneCount];
             for (int i = 0; i < sceneCount; ++i)
             {
-                topCurseScores[i].curseScores = new scoreStruct[10];
-                topCurseScores[i].currentAmoutFilled = 0;
+                topCursedScores[i].cursedScores = new ScoreData[10];
+                topCursedScores[i].currentAmoutFilled = 0;
             }
         }
         if (null == topContinuousScores)
         {
-            topContinuousScores = new continuousScores[10];
+            topContinuousScores = new ContinuousScores[10];
             for (int i = 0; i < 10; ++i)
-                topContinuousScores[i].levels = new scoreStruct[sceneCount];
+                topContinuousScores[i].levels = new ScoreData[sceneCount];
         }
     }
     public void SetupScoreManager()
@@ -73,7 +73,7 @@ public class ScoreManager : MonoBehaviour
     {
         positionRecorder recorder = GameManager.player.GetComponent<positionRecorder>();
         int level = SceneManager.GetActiveScene().buildIndex;
-        scoreStruct newLevelScore = new scoreStruct();
+        ScoreData newLevelScore = new ScoreData();
         switch (GameManager.instance.gameMode.currentMode)
         {
             case GameModes.Continuous:
@@ -109,14 +109,14 @@ public class ScoreManager : MonoBehaviour
                 newLevelScore.rotations = recorder.rotations.ToArray();
                 newLevelScore.isLastScoreInput = true;
                 newLevelScore.difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
-                if (topCurseScores[level].currentAmoutFilled < 10)
+                if (topCursedScores[level].currentAmoutFilled < 10)
                 {
-                    topCurseScores[level].curseScores[topCurseScores[level].currentAmoutFilled] = newLevelScore;
-                    ++topCurseScores[level].currentAmoutFilled;
+                    topCursedScores[level].cursedScores[topCursedScores[level].currentAmoutFilled] = newLevelScore;
+                    ++topCursedScores[level].currentAmoutFilled;
                 }
                 else
-                    topCurseScores[level].curseScores[9] = newLevelScore;
-                SortCurseScores(topCurseScores[level].curseScores, topCurseScores[level].currentAmoutFilled);
+                    topCursedScores[level].cursedScores[9] = newLevelScore;
+                SortCurseScores(topCursedScores[level].cursedScores, topCursedScores[level].currentAmoutFilled);
                 break;
             case GameModes.Free:
                 break;
@@ -128,10 +128,10 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
     }
-    private void SortCurseScores(scoreStruct[] scores, int arrayLength)
+    private void SortCurseScores(ScoreData[] scores, int arrayLength)
     {
         int curr = 1, comparer;
-        scoreStruct storedScore;
+        ScoreData storedScore;
         while (curr < arrayLength)
         {
             storedScore = scores[curr];
@@ -155,10 +155,10 @@ public class ScoreManager : MonoBehaviour
             ++curr;
         }
     }
-    private void SortContinuousScores(continuousScores[] array)
+    private void SortContinuousScores(ContinuousScores[] array)
     {
         int i, j, k, keyScore, cumulativeScore;
-        continuousScores key;
+        ContinuousScores key;
         for (i = 1; i < array.Length; ++i)
         {
             key = array[i];
@@ -188,22 +188,7 @@ public class ScoreManager : MonoBehaviour
         roundTimer.TimeInLevel = 0.0f;
         prevRingBonusTime = 0.0f;
         respawnCount = 0;
-        switch (GameManager.instance.gameMode.currentMode)
-        {
-            case GameModes.Continuous:
-            case GameModes.Free:
-                respawnEnabled = false;
-                break;
-            case GameModes.Cursed:
-                respawnEnabled = true;
-                break;
-            case GameModes.Race:
-                respawnEnabled = false;
-                break;
-            default:
-                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
-                break;
-        }
+        respawnEnabled = GameModes.Cursed == GameManager.instance.gameMode.currentMode;
     }
     private void Update()
     {
@@ -220,12 +205,7 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnLevelLoaded;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnLevelLoaded;
-    }
+    private void OnEnable() => SceneManager.sceneLoaded += OnLevelLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnLevelLoaded;
+    private void OnApplicationQuit() => SaveLoader.Save();
 }

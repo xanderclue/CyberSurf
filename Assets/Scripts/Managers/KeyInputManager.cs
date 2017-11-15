@@ -41,7 +41,7 @@ public class KeyInputManager : MonoBehaviour
     {
         state = s;
         thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
-        cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().GetComponent<Transform>();
+        cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().transform;
         cameraContainerPositionDifference = cameraContainer.position - GameManager.player.transform.position;
         StartCoroutine(CalibrationCoroutine());
     }
@@ -56,8 +56,11 @@ public class KeyInputManager : MonoBehaviour
             }
             else
             {
-                SaveLoader.Save();
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
                 Application.Quit();
+#endif
             }
         }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(XBOX_BACK))

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class HudMenuTab : MenuTab
 {
-    public enum HudMenuOption { OverallHud, Reticle, Speed, Timer, Score, Players, Compass, Arrow, LapCounter, Position }
+    public enum HudMenuOption { OverallHud, Reticle, Speed, Timer, ScoreDisplay, Players, Compass, Arrow, LapCounter, Position }
     [SerializeField, LabelOverride("Overall  HUD")] private HudOnOffObject overallHudOnOff = null;
     [SerializeField, LabelOverride("Reticle")] private HudOnOffObject reticleOnOff = null;
     [SerializeField, LabelOverride("Speed")] private HudOnOffObject speedOnOff = null;
@@ -20,6 +20,7 @@ public class HudMenuTab : MenuTab
     [SerializeField, LabelOverride("Inactive Material")] private Material theInactiveMaterial = null;
     public static Material activeMaterial = null;
     public static Material inactiveMaterial = null;
+    [SerializeField] private HudPreview hudPreview = null;
     new private void Awake()
     {
         base.Awake();
@@ -31,7 +32,6 @@ public class HudMenuTab : MenuTab
     private void OnEnable()
     {
         overallHudOnOff.OnValueChanged += OverallChange;
-        overallHudOnOff.OnValueChanged += UpdateHudPreview;
         reticleOnOff.OnValueChanged += UpdateHudPreview;
         speedOnOff.OnValueChanged += UpdateHudPreview;
         timerOnOff.OnValueChanged += UpdateHudPreview;
@@ -50,7 +50,6 @@ public class HudMenuTab : MenuTab
     private void OnDisable()
     {
         overallHudOnOff.OnValueChanged -= OverallChange;
-        overallHudOnOff.OnValueChanged -= UpdateHudPreview;
         reticleOnOff.OnValueChanged -= UpdateHudPreview;
         speedOnOff.OnValueChanged -= UpdateHudPreview;
         timerOnOff.OnValueChanged -= UpdateHudPreview;
@@ -68,10 +67,22 @@ public class HudMenuTab : MenuTab
     private void OverallChange()
     {
         if (overallHudOnOff.IsOn) TurnOnAll(); else TurnOffAll();
+        UpdateHudPreview();
     }
     private void UpdateHudPreview()
     {
-
+        hudPreview.reticleOnOff = reticleOnOff.IsOn;
+        hudPreview.speedOnOff = speedOnOff.IsOn;
+        hudPreview.timerOnOff = timerOnOff.IsOn;
+        hudPreview.scoreOnOff = scoreOnOff.IsOn;
+        hudPreview.playersOnOff = playersOnOff.IsOn;
+        hudPreview.compassOnOff = compassOnOff.IsOn;
+        hudPreview.arrowOnOff = arrowOnOff.IsOn;
+        hudPreview.lapCounterOnOff = lapCounterOnOff.IsOn;
+        hudPreview.positionOnOff = positionOnOff.IsOn;
+        hudPreview.color = colorAndOpacity.ColorPreviewValue;
+        hudPreview.color.a = colorAndOpacity.OpacityValue;
+        hudPreview.UpdatePreview();
     }
     public void TurnOnAll()
     {

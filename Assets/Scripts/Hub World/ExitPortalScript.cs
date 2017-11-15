@@ -28,13 +28,10 @@ public class ExitPortalScript : MonoBehaviour
             theFadeObj.material.SetFloat("_AlphaValue", Mathf.Clamp01(timeIntoFade / fadeTime));
             yield return null;
         }
-        SaveLoader.Save();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
-        if (Application.isEditor)
-        {
-            yield return new WaitForSeconds(1.0f);
-            pmc.ToggleMenuMovement(false);
-            theFadeObj.material.SetFloat("_AlphaValue", 0.0f);
-        }
+#endif
     }
 }

@@ -23,8 +23,9 @@ public class TextElementControllerScript : MonoBehaviour
     private GameObject lap_text;
     public GameObject Compass_Display;
     [SerializeField] private Color HUD_Color;
-    public Color HudColor { get { return HUD_Color; } set { HUD_Color = GameSettings.SetColor("HudColor", value); } }
-
+    public delegate void HudColorChangedEvent(Color newColor);
+    public static event HudColorChangedEvent OnHudColorChanged;
+    public Color HudColor { get { return HUD_Color; } set { GameSettings.SetColor("HudColor", HUD_Color = value); OnHudColorChanged?.Invoke(HUD_Color); } }
     public struct hudElementsBools
     {
         public bool timerBool;
@@ -127,7 +128,7 @@ public class TextElementControllerScript : MonoBehaviour
             case GameModes.Race:
                 bonusTimeText.SetActive(false);
                 break;
-            
+
             default:
                 Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"");
                 break;
@@ -213,6 +214,7 @@ public class TextElementControllerScript : MonoBehaviour
         hudElementsControl.lapBool = GameSettings.GetBool("HudLap", true);
         hudElementsControl.reticleBool = GameSettings.GetBool("HudReticle", true);
         hudElementsControl.compassBool = GameSettings.GetBool("HudCompass", true);
-        HUD_Color = GameSettings.GetColor("HudColor", HUD_Color);
+        GameSettings.GetColor("HudColor", ref HUD_Color);
+        OnHudColorChanged?.Invoke(HUD_Color);
     }
 }
