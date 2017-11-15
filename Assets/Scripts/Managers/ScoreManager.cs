@@ -43,6 +43,7 @@ public class ScoreManager : MonoBehaviour
     {
         int sceneCount = SceneManager.sceneCountInBuildSettings;
         topCursedScores = SaveLoader.LoadCurseScores();
+        Debug.Log("Load race scores");
         topContinuousScores = SaveLoader.LoadContinuousScores();
         if (null == topCursedScores)
         {

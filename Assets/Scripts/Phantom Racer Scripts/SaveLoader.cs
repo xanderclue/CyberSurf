@@ -129,6 +129,7 @@ public static class SaveLoader
                 SerializedCursedScores[] unconvertedScores = temp.cursedScores;
                 ScoreManager.CursedScores[] convertedScores = new ScoreManager.CursedScores[unconvertedScores.Length];
                 int i, j, k;
+                Debug.Log("Add Race loader");
                 for (i = 0; i < unconvertedScores.Length; ++i)
                 {
                     convertedScores[i].currentAmoutFilled = 0;
