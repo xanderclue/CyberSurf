@@ -18,6 +18,12 @@ public class ScoreManager : MonoBehaviour
         public ScoreData[] cursedScores;
         public int currentAmoutFilled;
     }
+
+    public struct RaceScores
+    {
+        public ScoreData[] racescores;
+        public int currentAmountFilled;
+    }
     public struct ContinuousScores
     {
         public ScoreData[] levels;
@@ -27,6 +33,7 @@ public class ScoreManager : MonoBehaviour
     }
     public CursedScores[] topCursedScores = null;
     public ContinuousScores[] topContinuousScores = null;
+    public RaceScores[] topRaceScores = null;
     [HideInInspector] public int curFilledCont = -1, ringHitCount = 0, score = 0;
     [HideInInspector] public bool firstPortal = true, respawnEnabled = true;
     [HideInInspector] public char[] currentName = new char[3];
@@ -43,7 +50,7 @@ public class ScoreManager : MonoBehaviour
     {
         int sceneCount = SceneManager.sceneCountInBuildSettings;
         topCursedScores = SaveLoader.LoadCurseScores();
-        Debug.Log("Load race scores");
+        topRaceScores = SaveLoader.LoadRaceScores();
         topContinuousScores = SaveLoader.LoadContinuousScores();
         if (null == topCursedScores)
         {
@@ -122,7 +129,21 @@ public class ScoreManager : MonoBehaviour
             case GameModes.Free:
                 break;
             case GameModes.Race:
-                Debug.Log("To add, Race Case ScoreManager");
+                newLevelScore.score = score;
+                newLevelScore.time = roundTimer.TimeLeft;
+                newLevelScore.board = (int)GameManager.instance.boardScript.currentBoardSelection;
+                newLevelScore.positions = recorder.positions.ToArray();
+                newLevelScore.rotations = recorder.rotations.ToArray();
+                newLevelScore.isLastScoreInput = true;
+                newLevelScore.difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+                if (topCursedScores[level].currentAmoutFilled < 10)
+                {
+                    topCursedScores[level].cursedScores[topCursedScores[level].currentAmoutFilled] = newLevelScore;
+                    ++topCursedScores[level].currentAmoutFilled;
+                }
+                else
+                    topCursedScores[level].cursedScores[9] = newLevelScore;
+                SortCurseScores(topCursedScores[level].cursedScores, topCursedScores[level].currentAmoutFilled);
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
