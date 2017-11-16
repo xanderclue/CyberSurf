@@ -34,7 +34,7 @@ public class RingScoreScript : MonoBehaviour
         consecutiveCount = 0;
         effectsStopped = true;
         originalCrInAmt = multipliers.consecutiveIncreaseAmount;
-        if (GameModes.Race == GameManager.instance.gameMode.currentMode && rp.lastRingInScene == true)
+        if ((GameModes.Race == GameManager.instance.gameMode.currentMode || GameModes.Cursed == GameManager.instance.gameMode.currentMode) && rp.lastRingInScene == true && rp.laptext.max_lap > 1)
         {
             portaleffect.SetActive(false);
         }
@@ -101,7 +101,7 @@ public class RingScoreScript : MonoBehaviour
             }
             if (rp.lastRingInScene)
             {
-                if (GameModes.Race != GameManager.instance.gameMode.currentMode)
+                if (GameModes.Race != GameManager.instance.gameMode.currentMode && GameModes.Cursed != GameManager.instance.gameMode.currentMode)
                 {
                     scoreManager.LevelEnd();
                     scoreManager.prevRingBonusTime = 0.0f;

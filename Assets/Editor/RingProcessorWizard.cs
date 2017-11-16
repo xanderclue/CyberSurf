@@ -9,7 +9,7 @@ public class RingProcessorWizard : ScriptableWizard
     public int startPositionInOrder = 1;
     [Header("Last Ring Settings")] public bool setAsLastInScene = true;
     public int nextSceneIndex = 1;
-    [Header("Drag Rings and Rotators In Desired Order Here")] public Object[] ringsToProcess = null;
+    [Header("Drag Rings and Mutators In Desired Order Here")] public Object[] ringsToProcess = null;
     private Vector3 prevPosition, currPosition;
     private int currQueuePosition = 0;
     private GameObject previousGameObject = null, currentGameObject = null;
@@ -66,7 +66,8 @@ public class RingProcessorWizard : ScriptableWizard
                 rp.lastRingInScene = true;
                 rp.nextScene = nextSceneIndex;
             }
-            rp.bonusTime = 0.0f;
+            GameObject firstGameObject = (GameObject)ringsToProcess[0];
+            rp.bonusTime = Vector3.Distance(firstGameObject.transform.position, currentGameObject.transform.position) * (timePercentModifier + 1.0f) / targetVelocity;
             rp.positionInOrder = currQueuePosition;
             UnityEditorInternal.ComponentUtility.CopyComponent(rp);
             UnityEditorInternal.ComponentUtility.PasteComponentValues(rp);
