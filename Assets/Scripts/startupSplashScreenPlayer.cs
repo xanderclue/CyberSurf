@@ -3,6 +3,8 @@ public class startupSplashScreenPlayer : MonoBehaviour
 {
     [SerializeField] private GameObject[] splashScreens = null;
     [SerializeField] private float timeToPlayScreen = 8.0f;
+    [SerializeField]
+    private GameObject backPlane = null;
     [SerializeField] private GameObject tutorialObject = null;
     [SerializeField] private EventSelectedObject ConfirmButton = null;
     [SerializeField] private EventSelectedObject NextButton = null;
@@ -54,6 +56,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
         else if (currentScreen == splashScreens.Length - 1)
         {
             ConfirmButton.gameObject.SetActive(false);
+            backPlane.SetActive(false);
             NextButton.gameObject.SetActive(true);
             NextButton.gameObject.transform.position = new Vector3(-0.04239172f, 1.39f, -3.217f);
             SkipButton.gameObject.SetActive(false);
