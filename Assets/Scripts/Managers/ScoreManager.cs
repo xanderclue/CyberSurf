@@ -22,7 +22,7 @@ public class ScoreManager : MonoBehaviour
     public struct RaceScores
     {
         public ScoreData[] racescores;
-        public int currentAmountFilled;
+        public int currentAmoutFilled;
     }
     public struct ContinuousScores
     {

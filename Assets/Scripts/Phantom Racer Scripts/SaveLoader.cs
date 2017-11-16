@@ -46,6 +46,10 @@ public static class SaveLoader
     {
         public SerializedScoreData[] cursedScores;
     }
+    private struct SerializedRaceScores
+    {
+        public SerializedScoreData[] raceScores;
+    }
     [System.Serializable]
     private struct SerializedContinuousScores
     {
@@ -58,6 +62,7 @@ public static class SaveLoader
     {
         public SerializedCursedScores[] cursedScores;
         public SerializedContinuousScores[] continuousScores;
+        public SerializedRaceScores[] raceScores;
     }
     public static void Save()
     {
@@ -218,31 +223,31 @@ public static class SaveLoader
                 CombinedScores temp;
                 FileStream file = File.Open(Application.persistentDataPath + "/scores.gd", FileMode.Open);
                 try { temp = (CombinedScores)(new BinaryFormatter().Deserialize(file)); } catch { return null; } finally { file.Close(); }
-                SerializedCursedScores[] unconvertedScores = temp.cursedScores;
-                ScoreManager.CursedScores[] convertedScores = new ScoreManager.CursedScores[unconvertedScores.Length];
+                SerializedRaceScores[] unconvertedScores = temp.raceScores;
+                ScoreManager.RaceScores[] convertedScores = new ScoreManager.RaceScores[unconvertedScores.Length];
                 int i, j, k;
                 Debug.Log("Add Race loader");
                 for (i = 0; i < unconvertedScores.Length; ++i)
                 {
                     convertedScores[i].currentAmoutFilled = 0;
-                    convertedScores[i].cursedScores = new ScoreManager.ScoreData[unconvertedScores[i].cursedScores.Length];
-                    for (j = 0; j < unconvertedScores[i].cursedScores.Length; ++j)
+                    convertedScores[i].racescores = new ScoreManager.ScoreData[unconvertedScores[i].raceScores.Length];
+                    for (j = 0; j < unconvertedScores[i].raceScores.Length; ++j)
                     {
-                        convertedScores[i].cursedScores[j].board = unconvertedScores[i].cursedScores[j].board;
-                        convertedScores[i].cursedScores[j].name = unconvertedScores[i].cursedScores[j].name;
-                        convertedScores[i].cursedScores[j].score = unconvertedScores[i].cursedScores[j].score;
-                        convertedScores[i].cursedScores[j].time = unconvertedScores[i].cursedScores[j].time;
-                        convertedScores[i].cursedScores[j].difficulty = (GameDifficulties)unconvertedScores[i].cursedScores[j].difficulty;
-                        if (0 != convertedScores[i].cursedScores[j].score)
+                        convertedScores[i].racescores[j].board = unconvertedScores[i].raceScores[j].board;
+                        convertedScores[i].racescores[j].name = unconvertedScores[i].raceScores[j].name;
+                        convertedScores[i].racescores[j].score = unconvertedScores[i].raceScores[j].score;
+                        convertedScores[i].racescores[j].time = unconvertedScores[i].raceScores[j].time;
+                        convertedScores[i].racescores[j].difficulty = (GameDifficulties)unconvertedScores[i].raceScores[j].difficulty;
+                        if (0 != convertedScores[i].racescores[j].score)
                             ++convertedScores[i].currentAmoutFilled;
-                        if (null != unconvertedScores[i].cursedScores[j].positions)
+                        if (null != unconvertedScores[i].raceScores[j].positions)
                         {
-                            convertedScores[i].cursedScores[j].positions = new Vector3[unconvertedScores[i].cursedScores[j].positions.Length];
-                            convertedScores[i].cursedScores[j].rotations = new Quaternion[unconvertedScores[i].cursedScores[j].rotations.Length];
-                            for (k = 0; k < unconvertedScores[i].cursedScores[j].positions.Length; ++k)
-                                convertedScores[i].cursedScores[j].positions[k] = unconvertedScores[i].cursedScores[j].positions[k];
-                            for (k = 0; k < unconvertedScores[i].cursedScores[j].rotations.Length; ++k)
-                                convertedScores[i].cursedScores[j].rotations[k] = unconvertedScores[i].cursedScores[j].rotations[k];
+                            convertedScores[i].racescores[j].positions = new Vector3[unconvertedScores[i].raceScores[j].positions.Length];
+                            convertedScores[i].racescores[j].rotations = new Quaternion[unconvertedScores[i].raceScores[j].rotations.Length];
+                            for (k = 0; k < unconvertedScores[i].raceScores[j].positions.Length; ++k)
+                                convertedScores[i].racescores[j].positions[k] = unconvertedScores[i].raceScores[j].positions[k];
+                            for (k = 0; k < unconvertedScores[i].raceScores[j].rotations.Length; ++k)
+                                convertedScores[i].racescores[j].rotations[k] = unconvertedScores[i].raceScores[j].rotations[k];
                         }
                     }
                 }
