@@ -4,6 +4,7 @@ using Xander.Debugging;
 using Xander.NullConversion;
 public class RingSetupScript : MonoBehaviour
 {
+    [SerializeField] private GameObject lapTrigger = null;
     [SerializeField] private GameObject[] ringDifficultyParents = null;
     private Transform[] ringTransforms = null;
     private arrowPointAtUpdater arrowScript = null;
@@ -41,6 +42,23 @@ public class RingSetupScript : MonoBehaviour
         if (null != ringTransforms)
             GetComponent<ringPathMaker>().Init(ringTransforms);
     }
+    private void RemoveNEXTRing(List<RingProperties> rings)
+    {
+        RingProperties lastRing = rings[rings.Count - 1];
+        RingProperties nextToLastRing = rings[rings.Count - 2];
+
+        if (1 != lastRing.nextScene)
+        {
+            lastRing.gameObject.SetActive(false);
+            rings.Remove(lastRing);
+        }
+        else
+        {
+            nextToLastRing.gameObject.SetActive(false);
+            rings.Remove(nextToLastRing);
+            lastRing.positionInOrder -= 1;
+        }
+    }
     private void setRingsMode(List<RingProperties> rings)
     {
         switch (mode)
@@ -49,18 +67,7 @@ public class RingSetupScript : MonoBehaviour
                 arrowScript.currentlyLookingAt = 1;
                 break;
             case GameModes.Cursed:
-                RingProperties lastRing = rings[rings.Count - 1];
-                RingProperties nextToLastRing = rings[rings.Count - 2];
-                if (1 != lastRing.nextScene)
-                {
-                    lastRing.gameObject.SetActive(false);
-                    rings.Remove(lastRing);
-                }
-                else
-                {
-                    nextToLastRing.gameObject.SetActive(false);
-                    rings.Remove(nextToLastRing);
-                }
+                RemoveNEXTRing(rings);
                 arrowScript.currentlyLookingAt = 1;
                 break;
             case GameModes.Free:
@@ -69,8 +76,10 @@ public class RingSetupScript : MonoBehaviour
                 arrowScript.currentlyLookingAt = rings.Count - 1;
                 break;
             case GameModes.Race:
+                RemoveNEXTRing(rings);
                 arrowScript.currentlyLookingAt = 1;
-
+                if (lapTrigger != null)
+                    Instantiate(lapTrigger, rings[0].GetComponent<Transform>().position, rings[0].GetComponent<Transform>().rotation);
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"" + this.Info(), this);

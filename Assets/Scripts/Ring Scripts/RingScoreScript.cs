@@ -17,6 +17,10 @@ public class RingScoreScript : MonoBehaviour
     private ParticleSystem hitEffect = null;
     private PlayerRespawn respawnScript = null;
     public GameObject portaleffect;
+    public static int PrevPositionInOrder
+    {
+        set { prevPositionInOrder = value; }
+    }
     private void Start()
     {
         scoreManager = GameManager.instance.scoreScript;
