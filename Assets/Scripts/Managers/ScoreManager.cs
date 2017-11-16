@@ -67,6 +67,16 @@ public class ScoreManager : MonoBehaviour
             for (int i = 0; i < 10; ++i)
                 topContinuousScores[i].levels = new ScoreData[sceneCount];
         }
+        if (null == topRaceScores)
+        {
+
+            topRaceScores = new RaceScores[sceneCount];
+            for (int i = 0; i < sceneCount; ++i)
+            {
+                topRaceScores[i].racescores = new ScoreData[10];
+                topRaceScores[i].currentAmoutFilled = 0;
+            }
+        }
     }
     public void SetupScoreManager()
     {

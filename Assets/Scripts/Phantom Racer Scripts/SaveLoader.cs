@@ -118,6 +118,31 @@ public static class SaveLoader
             }
         }
         #endregion
+        #region RaceScoresSaving
+        ScoreManager.RaceScores[] unconvertedRaceScores = GameManager.instance.scoreScript.topRaceScores;
+        convertedScores.raceScores = new SerializedRaceScores[unconvertedRaceScores.Length];
+        for (i = 0; i < unconvertedRaceScores.Length; ++i)
+        {
+            convertedScores.raceScores[i].raceScores = new SerializedScoreData[unconvertedRaceScores[i].racescores.Length];
+            for (j = 0; j < unconvertedRaceScores[i].racescores.Length; ++j)
+            {
+                convertedScores.raceScores[i].raceScores[j].board = unconvertedRaceScores[i].racescores[j].board;
+                convertedScores.raceScores[i].raceScores[j].name = unconvertedRaceScores[i].racescores[j].name;
+                convertedScores.raceScores[i].raceScores[j].score = unconvertedRaceScores[i].racescores[j].score;
+                convertedScores.raceScores[i].raceScores[j].time = unconvertedRaceScores[i].racescores[j].time;
+                convertedScores.raceScores[i].raceScores[j].difficulty = (int)unconvertedRaceScores[i].racescores[j].difficulty;
+                if (null != unconvertedRaceScores[i].racescores[j].positions)
+                {
+                    convertedScores.raceScores[i].raceScores[j].positions = new SerializedVector3[unconvertedRaceScores[i].racescores[j].positions.Length];
+                    convertedScores.raceScores[i].raceScores[j].rotations = new SerializedQuaternion[unconvertedRaceScores[i].racescores[j].rotations.Length];
+                    for (k = 0; k < unconvertedRaceScores[i].racescores[j].positions.Length; ++k)
+                        convertedScores.raceScores[i].raceScores[j].positions[k] = unconvertedRaceScores[i].racescores[j].positions[k];
+                    for (k = 0; k < unconvertedRaceScores[i].racescores[j].rotations.Length; ++k)
+                        convertedScores.raceScores[i].raceScores[j].rotations[k] = unconvertedRaceScores[i].racescores[j].rotations[k];
+                }
+            }
+        }
+        #endregion
         FileStream file = File.Create(Application.persistentDataPath + "/scores.gd");
         new BinaryFormatter().Serialize(file, convertedScores);
         file.Close();
