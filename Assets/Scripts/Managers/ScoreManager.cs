@@ -146,14 +146,14 @@ public class ScoreManager : MonoBehaviour
                 newLevelScore.rotations = recorder.rotations.ToArray();
                 newLevelScore.isLastScoreInput = true;
                 newLevelScore.difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
-                if (topCursedScores[level].currentAmoutFilled < 10)
+                if (topRaceScores[level].currentAmoutFilled < 10)
                 {
-                    topCursedScores[level].cursedScores[topCursedScores[level].currentAmoutFilled] = newLevelScore;
-                    ++topCursedScores[level].currentAmoutFilled;
+                    topRaceScores[level].racescores[topRaceScores[level].currentAmoutFilled] = newLevelScore;
+                    ++topRaceScores[level].currentAmoutFilled;
                 }
                 else
-                    topCursedScores[level].cursedScores[9] = newLevelScore;
-                SortCurseScores(topCursedScores[level].cursedScores, topCursedScores[level].currentAmoutFilled);
+                    topRaceScores[level].racescores[9] = newLevelScore;
+                SortRaceScores(topRaceScores[level].racescores, topRaceScores[level].currentAmoutFilled);
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
@@ -212,6 +212,33 @@ public class ScoreManager : MonoBehaviour
                     break;
             }
             array[j + 1] = key;
+        }
+    }
+    private void SortRaceScores(ScoreData[] scores, int arrayLength)
+    {
+        int curr = 1, comparer;
+        ScoreData storedScore;
+        while (curr < arrayLength)
+        {
+            storedScore = scores[curr];
+            comparer = curr - 1;
+            while (comparer >= 0)
+            {
+                if (scores[comparer].score < storedScore.score)
+                {
+                    scores[comparer + 1] = scores[comparer];
+                    --comparer;
+                }
+                else if (scores[comparer].score == storedScore.score && scores[comparer].time > storedScore.time)
+                {
+                    scores[comparer + 1] = scores[comparer];
+                    --comparer;
+                }
+                else
+                    break;
+            }
+            scores[comparer + 1] = storedScore;
+            ++curr;
         }
     }
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
