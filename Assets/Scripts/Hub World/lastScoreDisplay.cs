@@ -64,7 +64,29 @@ public class lastScoreDisplay : MonoBehaviour
                 Debug.Log("Free Mode shouldn't display anything" + this.Info(), this);
                 break;
             case GameModes.Race:
-                Debug.Log("To add, Race Case LastScoreDisplay");
+                for (i = 0; i < scoreScript.topRaceScores.Length; ++i)
+                {
+                    for (j = 0; j < scoreScript.topRaceScores[i].racescores.Length; ++j)
+                    {
+                        if (scoreScript.topRaceScores[i].racescores[j].isLastScoreInput)
+                        {
+                            lastScoreLocation = j;
+                            break;
+                        }
+                    }
+                    if (j < scoreScript.topRaceScores[i].racescores.Length - 1)
+                        break;
+                }
+                if (gameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                {
+                    lastScore = scoreScript.topRaceScores[gameManager.lastPortalBuildIndex].racescores[lastScoreLocation].score;
+                    lastTime = scoreScript.topRaceScores[gameManager.lastPortalBuildIndex].racescores[lastScoreLocation].time;
+                }
+                else
+                {
+                    lastScore = 0;
+                    lastTime = 0.0f;
+                }
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);

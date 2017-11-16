@@ -63,7 +63,12 @@ public class TopScoreDisplay : MonoBehaviour
                 }
                 break;
             case GameModes.Race:
-                Debug.Log("To Add race case TopScoreDisplay");
+                for (int i = 0; i < scoreScript.topRaceScores[currentLevel].racescores.Length; ++i)
+                {
+                    scores[i] = scoreScript.topRaceScores[currentLevel].racescores[i].score;
+                    times[i] = scoreScript.topRaceScores[currentLevel].racescores[i].time;
+                    names[i] = scoreScript.topRaceScores[currentLevel].racescores[i].name;
+                }
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
