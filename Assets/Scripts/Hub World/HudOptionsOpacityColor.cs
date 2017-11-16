@@ -116,7 +116,8 @@ public class HudOptionsOpacityColor : MonoBehaviour
     }
     public void ResetValue()
     {
-        tempColorIndex = GetIndexOf(ActualColor);
+        int currentIndex = GetIndexOf(ActualColor);
+        tempColorIndex = currentIndex < 0 ? 0 : currentIndex;
         tempOpacity = ActualOpacity;
         UpdateDisplay();
     }
