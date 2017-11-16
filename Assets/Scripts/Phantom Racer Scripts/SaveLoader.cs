@@ -46,6 +46,7 @@ public static class SaveLoader
     {
         public SerializedScoreData[] cursedScores;
     }
+    [System.Serializable]
     private struct SerializedRaceScores
     {
         public SerializedScoreData[] raceScores;
@@ -61,8 +62,9 @@ public static class SaveLoader
     private struct CombinedScores
     {
         public SerializedCursedScores[] cursedScores;
-        public SerializedContinuousScores[] continuousScores;
         public SerializedRaceScores[] raceScores;
+        public SerializedContinuousScores[] continuousScores;
+        
     }
     public static void Save()
     {
@@ -93,31 +95,6 @@ public static class SaveLoader
             }
         }
         #endregion
-        #region ContinuousScoresSaving
-        ScoreManager.ContinuousScores[] unconvertedContScores = GameManager.instance.scoreScript.topContinuousScores;
-        convertedScores.continuousScores = new SerializedContinuousScores[unconvertedContScores.Length];
-        for (i = 0; i < unconvertedContScores.Length; ++i)
-        {
-            convertedScores.continuousScores[i].levels = new SerializedScoreData[unconvertedContScores[i].levels.Length];
-            convertedScores.continuousScores[i].name = unconvertedContScores[i].name;
-            convertedScores.continuousScores[i].difficulty = (int)unconvertedContScores[i].difficulty;
-            for (j = 0; j < unconvertedContScores[i].levels.Length; ++j)
-            {
-                convertedScores.continuousScores[i].levels[j].board = unconvertedContScores[i].levels[j].board;
-                convertedScores.continuousScores[i].levels[j].score = unconvertedContScores[i].levels[j].score;
-                convertedScores.continuousScores[i].levels[j].time = unconvertedContScores[i].levels[j].time;
-                if (null != unconvertedContScores[i].levels[j].positions)
-                {
-                    convertedScores.continuousScores[i].levels[j].positions = new SerializedVector3[unconvertedContScores[i].levels[j].positions.Length];
-                    convertedScores.continuousScores[i].levels[j].rotations = new SerializedQuaternion[unconvertedContScores[i].levels[j].rotations.Length];
-                    for (k = 0; k < unconvertedContScores[i].levels[j].positions.Length; ++k)
-                        convertedScores.continuousScores[i].levels[j].positions[k] = unconvertedContScores[i].levels[j].positions[k];
-                    for (k = 0; k < unconvertedContScores[i].levels[j].rotations.Length; ++k)
-                        convertedScores.continuousScores[i].levels[j].rotations[k] = unconvertedContScores[i].levels[j].rotations[k];
-                }
-            }
-        }
-        #endregion
         #region RaceScoresSaving
         ScoreManager.RaceScores[] unconvertedRaceScores = GameManager.instance.scoreScript.topRaceScores;
         convertedScores.raceScores = new SerializedRaceScores[unconvertedRaceScores.Length];
@@ -143,6 +120,32 @@ public static class SaveLoader
             }
         }
         #endregion
+        #region ContinuousScoresSaving
+        ScoreManager.ContinuousScores[] unconvertedContScores = GameManager.instance.scoreScript.topContinuousScores;
+        convertedScores.continuousScores = new SerializedContinuousScores[unconvertedContScores.Length];
+        for (i = 0; i < unconvertedContScores.Length; ++i)
+        {
+            convertedScores.continuousScores[i].levels = new SerializedScoreData[unconvertedContScores[i].levels.Length];
+            convertedScores.continuousScores[i].name = unconvertedContScores[i].name;
+            convertedScores.continuousScores[i].difficulty = (int)unconvertedContScores[i].difficulty;
+            for (j = 0; j < unconvertedContScores[i].levels.Length; ++j)
+            {
+                convertedScores.continuousScores[i].levels[j].board = unconvertedContScores[i].levels[j].board;
+                convertedScores.continuousScores[i].levels[j].score = unconvertedContScores[i].levels[j].score;
+                convertedScores.continuousScores[i].levels[j].time = unconvertedContScores[i].levels[j].time;
+                if (null != unconvertedContScores[i].levels[j].positions)
+                {
+                    convertedScores.continuousScores[i].levels[j].positions = new SerializedVector3[unconvertedContScores[i].levels[j].positions.Length];
+                    convertedScores.continuousScores[i].levels[j].rotations = new SerializedQuaternion[unconvertedContScores[i].levels[j].rotations.Length];
+                    for (k = 0; k < unconvertedContScores[i].levels[j].positions.Length; ++k)
+                        convertedScores.continuousScores[i].levels[j].positions[k] = unconvertedContScores[i].levels[j].positions[k];
+                    for (k = 0; k < unconvertedContScores[i].levels[j].rotations.Length; ++k)
+                        convertedScores.continuousScores[i].levels[j].rotations[k] = unconvertedContScores[i].levels[j].rotations[k];
+                }
+            }
+        }
+        #endregion
+      
         FileStream file = File.Create(Application.persistentDataPath + "/scores.gd");
         new BinaryFormatter().Serialize(file, convertedScores);
         file.Close();
@@ -251,7 +254,6 @@ public static class SaveLoader
                 SerializedRaceScores[] unconvertedScores = temp.raceScores;
                 ScoreManager.RaceScores[] convertedScores = new ScoreManager.RaceScores[unconvertedScores.Length];
                 int i, j, k;
-                Debug.Log("Add Race loader");
                 for (i = 0; i < unconvertedScores.Length; ++i)
                 {
                     convertedScores[i].currentAmoutFilled = 0;
