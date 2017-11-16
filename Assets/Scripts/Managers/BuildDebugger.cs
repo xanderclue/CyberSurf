@@ -175,6 +175,11 @@
             UnityEngine.Debug.Log("Shift+F12: all GameSettings will be deleted" + Xander.Debugging.DebugExtensions.Info(this), this);
             GameSettings.ResetAll();
         }
+        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F) ||
+            (UnityEngine.Input.GetKey(UnityEngine.KeyCode.F) &&
+            (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) ||
+            UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))))
+            UnityEngine.Debug.Log("FPS: " + (1.0f / UnityEngine.Time.deltaTime));
 #endif
     }
 }

@@ -113,7 +113,7 @@ public class TextElementControllerScript : MonoBehaviour
         speedText.GetComponent<TextMeshProUGUI>().faceColor = HUD_Color;
         speedBar.GetComponent<Image>().color = HUD_Color;
         Compass_Display.GetComponent<TextMeshPro>().faceColor = HUD_Color;
-        Compass_Display.GetComponentInParent<Image>().color = HUD_Color;
+        Compass_Display.GetComponentsInParent<Image>(true)[0].color = HUD_Color;
 
 
         switch (GameManager.instance.gameMode.currentMode)
