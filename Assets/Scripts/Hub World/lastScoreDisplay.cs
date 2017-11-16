@@ -36,23 +36,23 @@ public class lastScoreDisplay : MonoBehaviour
                 }
                 break;
             case GameModes.Cursed:
-                for (i = 0; i < scoreScript.topCurseScores.Length; ++i)
+                for (i = 0; i < scoreScript.topCursedScores.Length; ++i)
                 {
-                    for (j = 0; j < scoreScript.topCurseScores[i].curseScores.Length; ++j)
+                    for (j = 0; j < scoreScript.topCursedScores[i].cursedScores.Length; ++j)
                     {
-                        if (scoreScript.topCurseScores[i].curseScores[j].isLastScoreInput)
+                        if (scoreScript.topCursedScores[i].cursedScores[j].isLastScoreInput)
                         {
                             lastScoreLocation = j;
                             break;
                         }
                     }
-                    if (j < scoreScript.topCurseScores[i].curseScores.Length - 1)
+                    if (j < scoreScript.topCursedScores[i].cursedScores.Length - 1)
                         break;
                 }
                 if (gameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
                 {
-                    lastScore = scoreScript.topCurseScores[gameManager.lastPortalBuildIndex].curseScores[lastScoreLocation].score;
-                    lastTime = scoreScript.topCurseScores[gameManager.lastPortalBuildIndex].curseScores[lastScoreLocation].time;
+                    lastScore = scoreScript.topCursedScores[gameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].score;
+                    lastTime = scoreScript.topCursedScores[gameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].time;
                 }
                 else
                 {

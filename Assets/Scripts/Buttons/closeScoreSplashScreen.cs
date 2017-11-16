@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
-using TMPro;
 using Xander.Debugging;
 public class closeScoreSplashScreen : SelectedObject
 {
-    [SerializeField] private TextMeshPro lOne = null;
-    [SerializeField] private TextMeshPro lTwo = null;
-    [SerializeField] private TextMeshPro lThree = null;
+    [SerializeField] private Name nameDisplay = null;
     [SerializeField] private GameObject panel = null;
     [SerializeField] private TopScoreDisplay topScoreDisplay = null;
     private ScoreManager scoreScript = null;
@@ -29,11 +26,7 @@ public class closeScoreSplashScreen : SelectedObject
             panel.SetActive(false);
         }
         if (0 != scoreScript.currentName[0])
-        {
-            lOne.SetText(scoreScript.currentName[0].ToString());
-            lTwo.SetText(scoreScript.currentName[1].ToString());
-            lThree.SetText(scoreScript.currentName[2].ToString());
-        }
+            nameDisplay.NameString = new string(scoreScript.currentName);
     }
     protected override void SuccessFunction()
     {
@@ -55,31 +48,33 @@ public class closeScoreSplashScreen : SelectedObject
                 }
                 if (gameManager.lastPortalBuildIndex > 1)
                 {
-                    scoreScript.topContinuousScores[lastScoreLocation].name = lOne.GetParsedText() + lTwo.GetParsedText() + lThree.GetParsedText();
-                    scoreScript.currentName[0] = lOne.GetParsedText()[0];
-                    scoreScript.currentName[1] = lTwo.GetParsedText()[0];
-                    scoreScript.currentName[2] = lThree.GetParsedText()[0];
+                    string name = nameDisplay.NameString;
+                    scoreScript.topContinuousScores[lastScoreLocation].name = name;
+                    scoreScript.currentName[0] = name[0];
+                    scoreScript.currentName[1] = name[1];
+                    scoreScript.currentName[2] = name[2];
                 }
                 break;
             case GameModes.Cursed:
-                for (i = 0; i < scoreScript.topCurseScores.Length; ++i)
+                for (i = 0; i < scoreScript.topCursedScores.Length; ++i)
                 {
-                    for (j = 0; j < scoreScript.topCurseScores[i].curseScores.Length; ++j)
-                        if (scoreScript.topCurseScores[i].curseScores[j].isLastScoreInput)
+                    for (j = 0; j < scoreScript.topCursedScores[i].cursedScores.Length; ++j)
+                        if (scoreScript.topCursedScores[i].cursedScores[j].isLastScoreInput)
                         {
                             lastScoreLocation = j;
-                            scoreScript.topCurseScores[i].curseScores[j].isLastScoreInput = false;
+                            scoreScript.topCursedScores[i].cursedScores[j].isLastScoreInput = false;
                             break;
                         }
-                    if (j < scoreScript.topCurseScores[i].curseScores.Length - 1)
+                    if (j < scoreScript.topCursedScores[i].cursedScores.Length - 1)
                         break;
                 }
                 if (gameManager.lastPortalBuildIndex > 1)
                 {
-                    scoreScript.topCurseScores[gameManager.lastPortalBuildIndex].curseScores[lastScoreLocation].name = lOne.GetParsedText() + lTwo.GetParsedText() + lThree.GetParsedText();
-                    scoreScript.currentName[0] = lOne.GetParsedText()[0];
-                    scoreScript.currentName[1] = lTwo.GetParsedText()[0];
-                    scoreScript.currentName[2] = lThree.GetParsedText()[0];
+                    string name = nameDisplay.NameString;
+                    scoreScript.topCursedScores[gameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].name = name;
+                    scoreScript.currentName[0] = name[0];
+                    scoreScript.currentName[1] = name[1];
+                    scoreScript.currentName[2] = name[2];
                 }
                 break;
             case GameModes.Free:

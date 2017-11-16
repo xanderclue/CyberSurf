@@ -47,11 +47,11 @@ public class TopScoreDisplay : MonoBehaviour
                 }
                 break;
             case GameModes.Cursed:
-                for (int i = 0; i < scoreScript.topCurseScores[currentLevel].curseScores.Length; ++i)
+                for (int i = 0; i < scoreScript.topCursedScores[currentLevel].cursedScores.Length; ++i)
                 {
-                    scores[i] = scoreScript.topCurseScores[currentLevel].curseScores[i].score;
-                    times[i] = scoreScript.topCurseScores[currentLevel].curseScores[i].time;
-                    names[i] = scoreScript.topCurseScores[currentLevel].curseScores[i].name;
+                    scores[i] = scoreScript.topCursedScores[currentLevel].cursedScores[i].score;
+                    times[i] = scoreScript.topCursedScores[currentLevel].cursedScores[i].time;
+                    names[i] = scoreScript.topCursedScores[currentLevel].cursedScores[i].name;
                 }
                 break;
             case GameModes.Free:

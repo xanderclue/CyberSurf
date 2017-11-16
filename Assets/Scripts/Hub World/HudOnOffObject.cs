@@ -91,7 +91,7 @@ public class HudOnOffObject : MonoBehaviour
                     return textElementController.hudElementsControl.speedBool;
                 case HudMenuTab.HudMenuOption.Timer:
                     return textElementController.hudElementsControl.timerBool;
-                case HudMenuTab.HudMenuOption.Score:
+                case HudMenuTab.HudMenuOption.ScoreDisplay:
                     return textElementController.hudElementsControl.scoreBool;
                 case HudMenuTab.HudMenuOption.Arrow:
                     return textElementController.hudElementsControl.arrowBool;
@@ -130,7 +130,7 @@ public class HudOnOffObject : MonoBehaviour
                     textElementController.setBestLap(value);
                     textElementController.setTimeDifference(value);
                     break;
-                case HudMenuTab.HudMenuOption.Score:
+                case HudMenuTab.HudMenuOption.ScoreDisplay:
                     textElementController.setScore(value);
                     textElementController.setScoreMulti(value);
                     break;

@@ -1,11 +1,12 @@
 using UnityEngine;
 using Steamworks;
 using Xander.Debugging;
+using Xander.NullConversion;
 [DisallowMultipleComponent]
 public class SteamManager : MonoBehaviour
 {
     private static SteamManager s_instance = null;
-    private static SteamManager Instance { get { return s_instance ?? new GameObject("SteamManager").AddComponent<SteamManager>(); } }
+    private static SteamManager Instance { get { return s_instance.ConvertNull() ?? new GameObject("SteamManager").AddComponent<SteamManager>(); } }
     private static bool s_EverInialized;
     private bool m_bInitialized;
     public static bool Initialized { get { return Instance.m_bInitialized; } }
@@ -77,7 +78,7 @@ public class SteamManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (s_instance == this)
+        if (this == s_instance)
         {
             s_instance = null;
             if (m_bInitialized)

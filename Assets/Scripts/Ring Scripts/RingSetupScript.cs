@@ -96,7 +96,7 @@ public class RingSetupScript : MonoBehaviour
     private void SetupStartBonusTime()
     {
         ManagerClasses.PlayerMovementVariables currPMV = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
-        roundTimer.TimeLeft = (3.0f * Vector3.Distance(GameManager.player.GetComponent<Transform>().position, sortedRings[0].GetComponent<Transform>().position) / (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed)) + 5.0f;
+        roundTimer.TimeLeft = (3.0f * Vector3.Distance(GameManager.player.transform.position, sortedRings[0].transform.position) / (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed)) + 5.0f;
     }
     private void OnDisable()
     {

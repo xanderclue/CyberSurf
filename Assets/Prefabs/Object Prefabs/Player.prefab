@@ -4155,7 +4155,7 @@ MonoBehaviour:
   arrow:
   - {fileID: 1215156304253862}
   - {fileID: 1361971636061022}
-  Compass_Display: {fileID: 0}
+  Compass_Display: {fileID: 1110757603945138}
   HUD_Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
 --- !u!114 &114520779886557318
 MonoBehaviour:
@@ -4566,6 +4566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionRadial: {fileID: 114038238509676444}
   reticleCenter: {fileID: 114465711398145696}
+  background: {fileID: 114526837017081366}
 --- !u!114 &114578433448287022
 MonoBehaviour:
   m_ObjectHideFlags: 1
