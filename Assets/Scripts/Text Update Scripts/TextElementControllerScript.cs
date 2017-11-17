@@ -157,7 +157,7 @@ public class TextElementControllerScript : MonoBehaviour
         lap_text = GetComponentInChildren<Lap_Text_script>().gameObject;
         speedText = GetComponentInChildren<SpeedUpdate>().gameObject;
         speedBar = GetComponentInChildren<speedBarUpdater>().gameObject;
-        Compass_Display = GetComponentInChildren<Compass_rotate>().gameObject;
+        Compass_Display = GetComponentInChildren<Compass_rotate>(true).gameObject;
         GetPlayerPrefs();
         EventManager.OnToggleHud += SetHud;
     }
