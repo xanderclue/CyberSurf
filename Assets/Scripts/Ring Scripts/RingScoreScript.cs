@@ -17,6 +17,10 @@ public class RingScoreScript : MonoBehaviour
     private ParticleSystem hitEffect = null;
     private PlayerRespawn respawnScript = null;
     public GameObject portaleffect;
+    public static int PrevPositionInOrder
+    {
+        set { prevPositionInOrder = value; }
+    }
     private void Start()
     {
         scoreManager = GameManager.instance.scoreScript;
@@ -30,7 +34,7 @@ public class RingScoreScript : MonoBehaviour
         consecutiveCount = 0;
         effectsStopped = true;
         originalCrInAmt = multipliers.consecutiveIncreaseAmount;
-        if (GameModes.Race == GameManager.instance.gameMode.currentMode && rp.lastRingInScene == true)
+        if ((GameModes.Race == GameManager.instance.gameMode.currentMode || GameModes.Cursed == GameManager.instance.gameMode.currentMode) && rp.lastRingInScene == true && rp.laptext.max_lap > 1)
         {
             portaleffect.SetActive(false);
         }
@@ -97,7 +101,7 @@ public class RingScoreScript : MonoBehaviour
             }
             if (rp.lastRingInScene)
             {
-                if (GameModes.Race != GameManager.instance.gameMode.currentMode)
+                if (GameModes.Race != GameManager.instance.gameMode.currentMode && GameModes.Cursed != GameManager.instance.gameMode.currentMode)
                 {
                     scoreManager.LevelEnd();
                     scoreManager.prevRingBonusTime = 0.0f;
