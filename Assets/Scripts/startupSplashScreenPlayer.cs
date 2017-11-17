@@ -64,7 +64,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
         }
         else if (currentScreen < splashScreens.Length)
         {
-            if (currentScreen == 3)
+            if (currentScreen == 3 || currentScreen == 4)
             {
                 backPlane.SetActive(false);
             }
