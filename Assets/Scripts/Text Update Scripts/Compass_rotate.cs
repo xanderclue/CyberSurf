@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 public class Compass_rotate : MonoBehaviour
 {
-    [SerializeField] private Vector3 thingToLookAt = Vector3.zero;
+    [SerializeField]
+    private Vector3 thingToLookAt = Vector3.zero;
     public Camera the_camera;
     //private Transform player = null;
     private Slider myself = null;

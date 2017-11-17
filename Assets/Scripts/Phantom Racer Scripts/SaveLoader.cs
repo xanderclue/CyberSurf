@@ -47,6 +47,11 @@ public static class SaveLoader
         public SerializedScoreData[] cursedScores;
     }
     [System.Serializable]
+    private struct SerializedRaceScores
+    {
+        public SerializedScoreData[] raceScores;
+    }
+    [System.Serializable]
     private struct SerializedContinuousScores
     {
         public SerializedScoreData[] levels;
@@ -57,7 +62,9 @@ public static class SaveLoader
     private struct CombinedScores
     {
         public SerializedCursedScores[] cursedScores;
+        public SerializedRaceScores[] raceScores;
         public SerializedContinuousScores[] continuousScores;
+        
     }
     public static void Save()
     {
@@ -88,6 +95,31 @@ public static class SaveLoader
             }
         }
         #endregion
+        #region RaceScoresSaving
+        ScoreManager.RaceScores[] unconvertedRaceScores = GameManager.instance.scoreScript.topRaceScores;
+        convertedScores.raceScores = new SerializedRaceScores[unconvertedRaceScores.Length];
+        for (i = 0; i < unconvertedRaceScores.Length; ++i)
+        {
+            convertedScores.raceScores[i].raceScores = new SerializedScoreData[unconvertedRaceScores[i].racescores.Length];
+            for (j = 0; j < unconvertedRaceScores[i].racescores.Length; ++j)
+            {
+                convertedScores.raceScores[i].raceScores[j].board = unconvertedRaceScores[i].racescores[j].board;
+                convertedScores.raceScores[i].raceScores[j].name = unconvertedRaceScores[i].racescores[j].name;
+                convertedScores.raceScores[i].raceScores[j].score = unconvertedRaceScores[i].racescores[j].score;
+                convertedScores.raceScores[i].raceScores[j].time = unconvertedRaceScores[i].racescores[j].time;
+                convertedScores.raceScores[i].raceScores[j].difficulty = (int)unconvertedRaceScores[i].racescores[j].difficulty;
+                if (null != unconvertedRaceScores[i].racescores[j].positions)
+                {
+                    convertedScores.raceScores[i].raceScores[j].positions = new SerializedVector3[unconvertedRaceScores[i].racescores[j].positions.Length];
+                    convertedScores.raceScores[i].raceScores[j].rotations = new SerializedQuaternion[unconvertedRaceScores[i].racescores[j].rotations.Length];
+                    for (k = 0; k < unconvertedRaceScores[i].racescores[j].positions.Length; ++k)
+                        convertedScores.raceScores[i].raceScores[j].positions[k] = unconvertedRaceScores[i].racescores[j].positions[k];
+                    for (k = 0; k < unconvertedRaceScores[i].racescores[j].rotations.Length; ++k)
+                        convertedScores.raceScores[i].raceScores[j].rotations[k] = unconvertedRaceScores[i].racescores[j].rotations[k];
+                }
+            }
+        }
+        #endregion
         #region ContinuousScoresSaving
         ScoreManager.ContinuousScores[] unconvertedContScores = GameManager.instance.scoreScript.topContinuousScores;
         convertedScores.continuousScores = new SerializedContinuousScores[unconvertedContScores.Length];
@@ -113,6 +145,7 @@ public static class SaveLoader
             }
         }
         #endregion
+      
         FileStream file = File.Create(Application.persistentDataPath + "/scores.gd");
         new BinaryFormatter().Serialize(file, convertedScores);
         file.Close();
@@ -195,6 +228,53 @@ public static class SaveLoader
                                 convertedScores[i].levels[j].positions[k] = unConvertedScores[i].levels[j].positions[k];
                             for (k = 0; k < unConvertedScores[i].levels[j].rotations.Length; ++k)
                                 convertedScores[i].levels[j].rotations[k] = unConvertedScores[i].levels[j].rotations[k];
+                        }
+                    }
+                }
+                return convertedScores;
+            }
+            else
+                return null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public static ScoreManager.RaceScores[] LoadRaceScores()
+    {
+        try
+        {
+            if (File.Exists(Application.persistentDataPath + "/scores.gd"))
+            {
+                CombinedScores temp;
+                FileStream file = File.Open(Application.persistentDataPath + "/scores.gd", FileMode.Open);
+                try { temp = (CombinedScores)(new BinaryFormatter().Deserialize(file)); } catch { return null; } finally { file.Close(); }
+                SerializedRaceScores[] unconvertedScores = temp.raceScores;
+                ScoreManager.RaceScores[] convertedScores = new ScoreManager.RaceScores[unconvertedScores.Length];
+                int i, j, k;
+                for (i = 0; i < unconvertedScores.Length; ++i)
+                {
+                    convertedScores[i].currentAmoutFilled = 0;
+                    convertedScores[i].racescores = new ScoreManager.ScoreData[unconvertedScores[i].raceScores.Length];
+                    for (j = 0; j < unconvertedScores[i].raceScores.Length; ++j)
+                    {
+                        convertedScores[i].racescores[j].board = unconvertedScores[i].raceScores[j].board;
+                        convertedScores[i].racescores[j].name = unconvertedScores[i].raceScores[j].name;
+                        convertedScores[i].racescores[j].score = unconvertedScores[i].raceScores[j].score;
+                        convertedScores[i].racescores[j].time = unconvertedScores[i].raceScores[j].time;
+                        convertedScores[i].racescores[j].difficulty = (GameDifficulties)unconvertedScores[i].raceScores[j].difficulty;
+                        if (0 != convertedScores[i].racescores[j].score)
+                            ++convertedScores[i].currentAmoutFilled;
+                        if (null != unconvertedScores[i].raceScores[j].positions)
+                        {
+                            convertedScores[i].racescores[j].positions = new Vector3[unconvertedScores[i].raceScores[j].positions.Length];
+                            convertedScores[i].racescores[j].rotations = new Quaternion[unconvertedScores[i].raceScores[j].rotations.Length];
+                            for (k = 0; k < unconvertedScores[i].raceScores[j].positions.Length; ++k)
+                                convertedScores[i].racescores[j].positions[k] = unconvertedScores[i].raceScores[j].positions[k];
+                            for (k = 0; k < unconvertedScores[i].raceScores[j].rotations.Length; ++k)
+                                convertedScores[i].racescores[j].rotations[k] = unconvertedScores[i].raceScores[j].rotations[k];
                         }
                     }
                 }
