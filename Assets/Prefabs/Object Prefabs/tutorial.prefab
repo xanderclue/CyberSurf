@@ -218,7 +218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1637817737547412
 GameObject:
   m_ObjectHideFlags: 1
@@ -252,7 +252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1674789587620732
 GameObject:
   m_ObjectHideFlags: 1
@@ -343,6 +343,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1919851006805738
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4150899067912860}
+  - component: {fileID: 33096592658638778}
+  - component: {fileID: 23914064850463344}
+  m_Layer: 0
+  m_Name: PaperDragon_Logo 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1928708459253594
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +442,19 @@ Transform:
   m_Father: {fileID: 4320252569790416}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &4150899067912860
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919851006805738}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: -0}
+  m_LocalPosition: {x: 0.43, y: -0.56, z: -1.31}
+  m_LocalScale: {x: 67.29957, y: 67.29953, z: 67.29953}
+  m_Children: []
+  m_Father: {fileID: 224598178989324554}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4188759499191634
 Transform:
   m_ObjectHideFlags: 1
@@ -436,7 +466,7 @@ Transform:
   m_LocalScale: {x: 59.20776, y: 59.207882, z: 59.207882}
   m_Children: []
   m_Father: {fileID: 224598178989324554}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4249100648570602
 Transform:
@@ -493,7 +523,7 @@ Transform:
   m_LocalScale: {x: 71.560814, y: 71.560745, z: 71.560745}
   m_Children: []
   m_Father: {fileID: 224598178989324554}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4579298513422268
 Transform:
@@ -506,7 +536,7 @@ Transform:
   m_LocalScale: {x: 63.97563, y: 63.97549, z: 63.97555}
   m_Children: []
   m_Father: {fileID: 224598178989324554}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4799788528237924
 Transform:
@@ -933,6 +963,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23914064850463344
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919851006805738}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 4f0e0301f77ac3f4890ba7c67176ec88, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23946419757546652
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -972,6 +1034,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1650700902324944}
   m_Mesh: {fileID: 4300000, guid: 441e8492077c0aa49ba9f3d78624254b, type: 3}
+--- !u!33 &33096592658638778
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919851006805738}
+  m_Mesh: {fileID: 4300000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
 --- !u!33 &33263148911733642
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1108,7 +1177,7 @@ MonoBehaviour:
   - {fileID: 1466370002816444}
   - {fileID: 1018538221330476}
   - {fileID: 1674789587620732}
-  - {fileID: 1063696915122976}
+  - {fileID: 1919851006805738}
   - {fileID: 1552747821255196}
   timeToPlayScreen: 5
   backPlane: {fileID: 1009886442653720}
@@ -2052,6 +2121,7 @@ RectTransform:
   - {fileID: 4249100648570602}
   - {fileID: 4929453995204998}
   - {fileID: 4509881799395962}
+  - {fileID: 4150899067912860}
   - {fileID: 4566682195598624}
   - {fileID: 4579298513422268}
   - {fileID: 4188759499191634}

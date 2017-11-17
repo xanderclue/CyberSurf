@@ -2628,11 +2628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b040abbb1a4d6541a5d528c7aa1f64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1481177546 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224598178989324554, guid: 7547ed20fae2c9442bfcdb47008eb161,
-    type: 2}
-  m_PrefabInternal: {fileID: 1519529041}
 --- !u!1001 &1519529041
 Prefab:
   m_ObjectHideFlags: 0
@@ -2717,11 +2712,6 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114012111191264192, guid: 7547ed20fae2c9442bfcdb47008eb161,
-        type: 2}
-      propertyPath: splashScreens.Array.data[4]
-      value: 
-      objectReference: {fileID: 2079997159}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
   m_IsPrefabParent: 0
@@ -3412,68 +3402,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4838758170761928, guid: cdda12ea811e5aa4db0e159441ff34af,
     type: 2}
   m_PrefabInternal: {fileID: 1767939716}
---- !u!1001 &1890091796
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1481177546}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4f0e0301f77ac3f4890ba7c67176ec88, type: 2}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 67.29957
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 67.29953
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 67.29953
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-  m_IsPrefabParent: 0
 --- !u!21 &1933373816
 Material:
   serializedVersion: 6
@@ -4181,10 +4109,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4320252569790416, guid: 7547ed20fae2c9442bfcdb47008eb161,
     type: 2}
   m_PrefabInternal: {fileID: 1519529041}
---- !u!1 &2079997159 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: 92d8d6b7ffca2d146af9f5b347d3fb17, type: 3}
-  m_PrefabInternal: {fileID: 1890091796}
 --- !u!21 &2083199060
 Material:
   serializedVersion: 6
