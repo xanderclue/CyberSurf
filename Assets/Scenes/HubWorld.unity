@@ -1755,6 +1755,12 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114833754981304134, guid: 7a5b0e952ba9c8c498e177c9563c2325,
+        type: 2}
+      propertyPath: cityImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e89058453ab0e44b812b7bcba6d5e47,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a5b0e952ba9c8c498e177c9563c2325, type: 2}
   m_IsPrefabParent: 0
@@ -1968,6 +1974,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 300475460}
     m_Modifications:
+    - target: {fileID: 114151157411089302, guid: 51c33a511c610114f8a899e7ee6a6014,
+        type: 2}
+      propertyPath: portalViews.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4485276280231140, guid: 51c33a511c610114f8a899e7ee6a6014, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2045,6 +2056,11 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114151157411089302, guid: 51c33a511c610114f8a899e7ee6a6014,
+        type: 2}
+      propertyPath: portalViews.Array.data[3]
+      value: 
+      objectReference: {fileID: 2800000, guid: 3e89058453ab0e44b812b7bcba6d5e47, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51c33a511c610114f8a899e7ee6a6014, type: 2}
   m_IsPrefabParent: 0
