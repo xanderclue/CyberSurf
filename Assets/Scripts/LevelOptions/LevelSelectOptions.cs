@@ -11,6 +11,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     [Space, Header("Level Images")] [SerializeField] private Sprite canyonImage = null;
     [SerializeField] private Sprite multiEnrironmentImage = null;
     [SerializeField] private Sprite backyardRacetrackImage = null;
+    [SerializeField] private Sprite computerChipImage = null;
     [SerializeField] private LevelManager.Level defaultLevel = LevelManager.Level.Canyon;
     private LevelManager.Level tempLevel;
     [SerializeField] private WorldPortalProperties portal = null;
@@ -86,6 +87,9 @@ public class LevelSelectOptions : LevelMenuObjectGroup
                 break;
             case LevelManager.Level.BackyardRacetrack:
                 levelImage.sprite = backyardRacetrackImage;
+                break;
+            case LevelManager.Level.ComputerChip:
+                levelImage.sprite = computerChipImage;
                 break;
             default:
                 Debug.LogWarning("Switch statement on Level enum tempLevel in LevelSelectOptions.cs is missing case for Level." + tempLevel.ToString() + this.Info(), this);
