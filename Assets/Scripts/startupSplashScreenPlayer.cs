@@ -13,6 +13,8 @@ public class startupSplashScreenPlayer : MonoBehaviour
     private static int currentScreen = 0;
     private void Start()
     {
+        backPlane.SetActive(false);
+
         if (currentScreen < splashScreens.Length)
         {
             for (int i = 1; i < splashScreens.Length; ++i)
@@ -45,7 +47,9 @@ public class startupSplashScreenPlayer : MonoBehaviour
     private void FixedUpdate()
     {
         for (int i = 0; i < splashScreens.Length; ++i)
+        {
             splashScreens[i].SetActive(i == currentScreen);
+        }
         if (currentScreen == 0)
         {
             respawnAndDespawnSphere.SphereState = false;
@@ -57,19 +61,13 @@ public class startupSplashScreenPlayer : MonoBehaviour
         {
             NextButton.transform.position = ConfirmButton.transform.position;
             ConfirmButton.gameObject.SetActive(false);
-            backPlane.SetActive(false);
             NextButton.gameObject.SetActive(true);
             SkipButton.gameObject.SetActive(false);
             timePlayingCurrent = 0;
         }
         else if (currentScreen < splashScreens.Length)
         {
-            if (currentScreen == 3 || currentScreen == 4)
-            {
-                backPlane.SetActive(false);
-            }
-            else
-                backPlane.SetActive(true);
+           
             ConfirmButton.gameObject.SetActive(false);
             NextButton.gameObject.SetActive(true);
             SkipButton.gameObject.SetActive(true);
