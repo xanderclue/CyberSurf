@@ -434,10 +434,9 @@
             EditorSceneManager.MarkAllScenesDirty();
             EditorSceneManager.SaveOpenScenes();
         }
-        public static void CleanTransforms()
+        public static void CleanTransforms(bool original)
         {
             EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
-            Scene scene;
             Queue<Transform> transforms = new Queue<Transform>();
             GameObject[] rootObjects;
             Transform transform;
@@ -445,11 +444,12 @@
             EditorSceneManager.MarkAllScenesDirty();
             EditorSceneManager.SaveOpenScenes();
             int i, j;
-            for (i = LevelSelectOptions.MirroredBuildOffset; i < buildScenes.Length; ++i)
+            int startLoop = original ? 0 : LevelSelectOptions.MirroredBuildOffset;
+            int endLoop = original ? LevelSelectOptions.MirroredBuildOffset : buildScenes.Length;
+            for (i = startLoop; i < endLoop; ++i)
             {
                 EditorSceneManager.OpenScene(buildScenes[i].path, OpenSceneMode.Single);
-                scene = SceneManager.GetActiveScene();
-                rootObjects = scene.GetRootGameObjects();
+                rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
                 foreach (GameObject rootObject in rootObjects)
                     transforms.Enqueue(rootObject.transform);
                 while (transforms.Count > 0)
