@@ -168,13 +168,6 @@
             stcGobjTextObject.SetActive(!stcGobjTextObject.activeSelf);
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F10))
             UnityEngine.Debug.Log("F10: WASD controls are turned " + ((stcBoolWasd = !stcBoolWasd) ? "on." : "off."));
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F12) &&
-            (UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift) ||
-            UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift)))
-        {
-            UnityEngine.Debug.Log("Shift+F12: all GameSettings will be deleted" + Xander.Debugging.DebugExtensions.Info(this), this);
-            GameSettings.ResetAll();
-        }
         if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F) ||
             (UnityEngine.Input.GetKey(UnityEngine.KeyCode.F) &&
             (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) ||

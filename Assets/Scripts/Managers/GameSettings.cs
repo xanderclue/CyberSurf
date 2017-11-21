@@ -239,6 +239,37 @@ public static class GameSettings
             PlayerPrefs.HasKey(key + 'Z');
     }
     #endregion
+    #region VECTOR3INT
+    public static Vector3Int SetVector3Int(string key, Vector3Int value)
+    {
+        key += "_VECTOR3INT_";
+        PlayerPrefs.SetInt(key + 'X', value.x);
+        PlayerPrefs.SetInt(key + 'Y', value.y);
+        PlayerPrefs.SetInt(key + 'Z', value.z);
+        return value;
+    }
+    public static Vector3Int GetVector3Int(string key, Vector3Int defaultValue) => SetVector3Int(key, new Vector3Int(
+        PlayerPrefs.GetInt(key + "_VECTOR3INT_X", defaultValue.x),
+        PlayerPrefs.GetInt(key + "_VECTOR3INT_Y", defaultValue.y),
+        PlayerPrefs.GetInt(key + "_VECTOR3INT_Z", defaultValue.z)));
+    public static Vector3Int GetVector3Int(string key) => GetVector3Int(key, Vector3Int.zero);
+    public static Vector3Int GetVector3Int(string key, ref Vector3Int value) => value = GetVector3Int(key, value);
+    public static void ResetVector3Int(string key)
+    {
+        key += "_VECTOR3INT_";
+        if (PlayerPrefs.HasKey(key + 'X')) PlayerPrefs.DeleteKey(key + 'X');
+        if (PlayerPrefs.HasKey(key + 'Y')) PlayerPrefs.DeleteKey(key + 'Y');
+        if (PlayerPrefs.HasKey(key + 'Z')) PlayerPrefs.DeleteKey(key + 'Z');
+    }
+    public static bool HasVector3Int(string key)
+    {
+        key += "_VECTOR3INT_";
+        return
+            PlayerPrefs.HasKey(key + 'X') &&
+            PlayerPrefs.HasKey(key + 'Y') &&
+            PlayerPrefs.HasKey(key + 'Z');
+    }
+    #endregion
     #region VECTOR2
     public static Vector2 SetVector2(string key, Vector2 value)
     {
@@ -265,6 +296,33 @@ public static class GameSettings
     public static bool HasVector2(string key)
     {
         key += "_VECTOR2_";
+        return
+            PlayerPrefs.HasKey(key + 'X') &&
+            PlayerPrefs.HasKey(key + 'Y');
+    }
+    #endregion
+    #region VECTOR2INT
+    public static Vector2Int SetVector2Int(string key, Vector2Int value)
+    {
+        key += "_VECTOR2INT_";
+        PlayerPrefs.SetInt(key + 'X', value.x);
+        PlayerPrefs.SetInt(key + 'Y', value.y);
+        return value;
+    }
+    public static Vector2Int GetVector2Int(string key, Vector2Int defaultValue) => SetVector2Int(key, new Vector2Int(
+        PlayerPrefs.GetInt(key + "_VECTOR2INT_X", defaultValue.x),
+        PlayerPrefs.GetInt(key + "_VECTOR2INT_Y", defaultValue.y)));
+    public static Vector2Int GetVector2Int(string key) => GetVector2Int(key, Vector2Int.zero);
+    public static Vector2Int GetVector2Int(string key, ref Vector2Int value) => value = GetVector2Int(key, value);
+    public static void ResetVector2Int(string key)
+    {
+        key += "_VECTOR2INT_";
+        if (PlayerPrefs.HasKey(key + 'X')) PlayerPrefs.DeleteKey(key + 'X');
+        if (PlayerPrefs.HasKey(key + 'Y')) PlayerPrefs.DeleteKey(key + 'Y');
+    }
+    public static bool HasVector2Int(string key)
+    {
+        key += "_VECTOR2INT_";
         return
             PlayerPrefs.HasKey(key + 'X') &&
             PlayerPrefs.HasKey(key + 'Y');
@@ -309,17 +367,5 @@ public static class GameSettings
             PlayerPrefs.HasKey(key + 'W');
     }
     #endregion
-    public static void Save()
-    {
-        if (m_dontSaveNewData)
-            PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-    }
-    public static void ResetAll(bool dontSaveNewData = true)
-    {
-        m_dontSaveNewData |= dontSaveNewData;
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-    }
-    private static bool m_dontSaveNewData = false;
+    public static void Save() => PlayerPrefs.Save();
 }
