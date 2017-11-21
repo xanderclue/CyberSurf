@@ -488,10 +488,6 @@
             euler = CleanVector(euler);
             clean = Quaternion.identity;
             clean = Quaternion.Euler(euler);
-            clean.x = CleanFloat(clean.x);
-            clean.y = CleanFloat(clean.y);
-            clean.z = CleanFloat(clean.z);
-            clean.w = CleanFloat(clean.w);
             return clean;
         }
         private static void CleanTransform(Transform transform)
