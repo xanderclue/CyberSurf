@@ -89,7 +89,7 @@
             public static uint Uint(this bool obj) => (obj ? 1u : 0u);
             public static long Long(this bool obj) => (obj ? 1L : 0L);
             public static ulong Ulong(this bool obj) => (obj ? 1ul : 0ul);
-            public static char Char(this bool obj) => (obj ? '\x01' : '\x00');
+            public static char Char(this bool obj) => (obj ? '\x0001' : '\0');
             public static decimal Decimal(this bool obj) => (obj ? 1.0m : 0.0m);
             public static float Float(this bool obj) => (obj ? 1.0f : 0.0f);
             public static double Double(this bool obj) => (obj ? 1.0 : 0.0);
@@ -103,7 +103,7 @@
             public static bool Bool(this uint obj) => (0u != obj);
             public static bool Bool(this long obj) => (0L != obj);
             public static bool Bool(this ulong obj) => (0ul != obj);
-            public static bool Bool(this char obj) => ('\x00' != obj);
+            public static bool Bool(this char obj) => ('\0' != obj);
             public static bool Bool(this decimal obj) => (0.0m != obj);
             public static bool Bool(this float obj) => (0.0f != obj);
             public static bool Bool(this double obj) => (0.0 != obj);
