@@ -63,4 +63,13 @@ public class GameManager : MonoBehaviour
         GetComponent<KeyInputManager>().SetupKeyInputManager(gameState);
     }
     private void OnDestroy() => GameSettings.Save();
+    private static bool deleteScores = false;
+    public static void DeleteScoresOnExit() => deleteScores = true;
+    public static bool DoNotSave => deleteScores;
+    private void OnApplicationQuit()
+    {
+        if (deleteScores)
+            try { System.IO.File.Delete(Application.persistentDataPath + "/scores.gd"); }
+            catch (System.Exception e) { Debug.LogWarning($"Failed to delete scores file: ({e.Message})"); }
+    }
 }

@@ -64,10 +64,11 @@ public static class SaveLoader
         public SerializedCursedScores[] cursedScores;
         public SerializedRaceScores[] raceScores;
         public SerializedContinuousScores[] continuousScores;
-        
+
     }
     public static void Save()
     {
+        if (GameManager.DoNotSave) return;
         CombinedScores convertedScores = new CombinedScores();
         int i, j, k;
         #region CurseScoresSaving
@@ -145,7 +146,7 @@ public static class SaveLoader
             }
         }
         #endregion
-      
+
         FileStream file = File.Create(Application.persistentDataPath + "/scores.gd");
         new BinaryFormatter().Serialize(file, convertedScores);
         file.Close();
