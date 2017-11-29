@@ -5139,14 +5139,14 @@ MeshCollider:
   m_Convex: 0
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 001ee9f1ba8dd454884138ad6426410a, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 343176b3d6e49724893c1ee7e5ab1b3c, type: 3}
 --- !u!33 &851756306
 MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 851756303}
-  m_Mesh: {fileID: 4300000, guid: 001ee9f1ba8dd454884138ad6426410a, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 343176b3d6e49724893c1ee7e5ab1b3c, type: 3}
 --- !u!4 &851756307
 Transform:
   m_ObjectHideFlags: 0
@@ -5154,8 +5154,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 851756303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 15, z: 0}
-  m_LocalScale: {x: 1098, y: 1098, z: 1098}
+  m_LocalPosition: {x: 121, y: 114, z: 98}
+  m_LocalScale: {x: 1661.0033, y: 472.9381, z: 2103.614}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
