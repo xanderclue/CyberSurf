@@ -89,6 +89,11 @@ public class ScoreManager : MonoBehaviour
     }
     public void LevelEnd()
     {
+        try { TryLevelEnd(); }
+        catch { Debug.Log("scores corrupt.. scores file will be reset on exit"); GameManager.DeleteScoresOnExit(); }
+    }
+    private void TryLevelEnd()
+    {
         positionRecorder recorder = GameManager.player.GetComponent<positionRecorder>();
         int level = SceneManager.GetActiveScene().buildIndex;
         ScoreData newLevelScore = new ScoreData();
