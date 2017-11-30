@@ -8,6 +8,7 @@ public abstract class SelectedObject : MonoBehaviour
     [SerializeField, Tooltip("\"Delay\": How long to stare at the button before it registers that you want to select it (measured in FixedUpdate ticks) [-1 sets it to default 20]")] private int delay = DEFAULT_DELAY;
     [SerializeField, Tooltip("\"Wait Time\": How long to wait before it can select again while staring at the button (measured in seconds)")] private float waitTime = 1.5f;
     private int timeWaited = 0, delayTime = 0;
+    private static AudioClip loadedSuccessSound = null, loadedSelectedSound = null;
     protected AudioClip successSound = null;
     protected AudioClip selectedSound = null;
     private const int DEFAULT_DELAY = 20;
@@ -101,8 +102,10 @@ public abstract class SelectedObject : MonoBehaviour
             Debug.LogWarning("A SelectedObject script is attached to an object that does not have a Collider component. (\"" + gameObject.HierarchyPath() + "\")" + this.Info(), this);
         if (!tooltipOnly)
         {
-            successSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess");
-            selectedSound = (AudioClip)Resources.Load("Sounds/Effects/Place_Holder_ButtonHit");
+            if (null == loadedSuccessSound) loadedSuccessSound = Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess") as AudioClip;
+            if (null == loadedSelectedSound) loadedSelectedSound = Resources.Load("Sounds/Effects/Place_Holder_ButtonHit") as AudioClip;
+            successSound = loadedSuccessSound;
+            selectedSound = loadedSelectedSound;
         }
     }
     protected void Update()
