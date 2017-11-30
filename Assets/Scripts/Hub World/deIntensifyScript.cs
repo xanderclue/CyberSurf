@@ -7,7 +7,7 @@ public class deIntensifyScript : MonoBehaviour
     private void Start()
     {
         betterLight = GetComponent<Renderer>().material;
-        bluLight = Resources.Load("lambert1") as Material;
+        bluLight = Resources.Load<Material>("lambert1");
     }
     private void Update()
     {
