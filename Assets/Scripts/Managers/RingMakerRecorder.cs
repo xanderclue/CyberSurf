@@ -53,22 +53,30 @@ public class RingMakerRecorder : MonoBehaviour
         public static implicit operator PositionRotation(Transform transform) => new PositionRotation(transform);
     }
     private List<PositionRotation> rings = null;
+    [SerializeField] private GameObject placeHolderPrefab = null;
     private void Awake()
     {
         rings = new List<PositionRotation>();
         SceneManager.sceneLoaded += SceneLoaded;
     }
-    private void SceneLoaded(Scene scene, LoadSceneMode mode) => enabled = scene.buildIndex >= LevelSelectOptions.LevelBuildOffset;
+    private void SceneLoaded(Scene scene, LoadSceneMode mode) => enabled =
+        GameModes.Free == GameManager.instance.gameMode.currentMode &&
+        scene.buildIndex >= LevelSelectOptions.LevelBuildOffset;
     private void OnEnable() => rings.Clear();
-    public void ResetRings() => rings.Clear();
     private void OnDisable() => SaveRings();
     private void OnDestroy() => SceneManager.sceneLoaded -= SceneLoaded;
-    public void AddRing() => rings.Add(GameManager.player.ConvertNull()?.transform);
+    private void AddRing()
+    {
+        PositionRotation temp = GameManager.player.ConvertNull()?.transform;
+        rings.Add(temp);
+        if (null != placeHolderPrefab)
+            Instantiate(placeHolderPrefab, temp.position, temp.rotation);
+    }
     private void SaveRings()
     {
         if (0 == rings.Count) return;
         PositionRotation[] theRings = rings.ToArray();
-        FileStream file = File.Create(Application.persistentDataPath + "/rings.dat");
+        FileStream file = File.Create(Application.persistentDataPath + $"/rings{SceneManager.GetActiveScene().buildIndex}.dat");
         new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter().Serialize(file, theRings);
         file.Close();
     }
@@ -77,7 +85,4 @@ public class RingMakerRecorder : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
             AddRing();
     }
-#if !UNITY_EDITOR
-    private void Start() => Destroy(this);
-#endif
 }

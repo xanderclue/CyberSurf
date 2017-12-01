@@ -14,17 +14,20 @@ public class RingMakerLoaderWizard : ScriptableWizard
     {
         isValid = false;
         errorString = "";
-        if (File.Exists(Application.persistentDataPath + "/rings.dat"))
+        if (File.Exists(Application.persistentDataPath +
+            $"/rings{UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex}.dat"))
         {
             if (null != ringPrefab)
                 isValid = true;
         }
         else
-            errorString = "File Not Found: " + Application.persistentDataPath + "/rings.dat";
+            errorString = "File Not Found: " + Application.persistentDataPath +
+                $"/rings{UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex}.dat";
     }
     private void OnWizardCreate()
     {
-        FileStream file = File.Open(Application.persistentDataPath + "/rings.dat", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath +
+            $"/rings{UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex}.dat", FileMode.Open);
         try { rings = (RingMakerRecorder.PositionRotation[])(new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter().Deserialize(file)); }
         catch { return; }
         finally { file.Close(); }
