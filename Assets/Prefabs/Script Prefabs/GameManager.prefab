@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114284126497002870}
   - component: {fileID: 114004138978651842}
   - component: {fileID: 114412701324416950}
+  - component: {fileID: 114523786900666618}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -145,6 +146,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flippedTimer: 2
   hubOnFlippedHMD: 1
+--- !u!114 &114523786900666618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056030855755648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19625105654b31f4995b578808401fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114714506037350866
 MonoBehaviour:
   m_ObjectHideFlags: 1

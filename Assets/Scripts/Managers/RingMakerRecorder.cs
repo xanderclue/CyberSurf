@@ -1,0 +1,83 @@
+﻿using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Xander.NullConversion;
+public class RingMakerRecorder : MonoBehaviour
+{
+    [System.Serializable]
+    public struct Vector3Serialized
+    {
+        public float x, y, z;
+        private Vector3Serialized(float _x, float _y, float _z)
+        {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
+        public static implicit operator Vector3(Vector3Serialized value) => new Vector3(value.x, value.y, value.z);
+        public static implicit operator Vector3Serialized(Vector3 value) => new Vector3Serialized(value.x, value.y, value.z);
+    }
+    [System.Serializable]
+    public struct QuaternionSerialized
+    {
+        public float x, y, z, w;
+        private QuaternionSerialized(float _x, float _y, float _z, float _w)
+        {
+            x = _x;
+            y = _y;
+            z = _z;
+            w = _w;
+        }
+        public static implicit operator Quaternion(QuaternionSerialized value) => new Quaternion(value.x, value.y, value.z, value.w);
+        public static implicit operator QuaternionSerialized(Quaternion value) => new QuaternionSerialized(value.x, value.y, value.z, value.w);
+    }
+    [System.Serializable]
+    public struct PositionRotation
+    {
+        public Vector3Serialized position;
+        public QuaternionSerialized rotation;
+        public PositionRotation(Transform transform)
+        {
+            if (null != transform)
+            {
+                position = transform.position;
+                rotation = transform.rotation;
+            }
+            else
+            {
+                position = Vector3.zero;
+                rotation = Quaternion.identity;
+            }
+        }
+        public static implicit operator PositionRotation(Transform transform) => new PositionRotation(transform);
+    }
+    private List<PositionRotation> rings = null;
+    private void Awake()
+    {
+        rings = new List<PositionRotation>();
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+    private void SceneLoaded(Scene scene, LoadSceneMode mode) => enabled = scene.buildIndex >= LevelSelectOptions.LevelBuildOffset;
+    private void OnEnable() => rings.Clear();
+    public void ResetRings() => rings.Clear();
+    private void OnDisable() => SaveRings();
+    private void OnDestroy() => SceneManager.sceneLoaded -= SceneLoaded;
+    public void AddRing() => rings.Add(GameManager.player.ConvertNull()?.transform);
+    private void SaveRings()
+    {
+        if (0 == rings.Count) return;
+        PositionRotation[] theRings = rings.ToArray();
+        FileStream file = File.Create(Application.persistentDataPath + "/rings.dat");
+        new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter().Serialize(file, theRings);
+        file.Close();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+            AddRing();
+    }
+#if !UNITY_EDITOR
+    private void Start() => Destroy(this);
+#endif
+}
