@@ -15,6 +15,7 @@ public class KeyInputManager : MonoBehaviour
     }
 #if UNITY_STANDALONE_OSX
     public const KeyCode XBOX_A = KeyCode.JoystickButton16;
+    public const KeyCode XBOX_B = KeyCode.JoystickButton17;
     public const KeyCode XBOX_X = KeyCode.JoystickButton18;
     public const KeyCode XBOX_Y = KeyCode.JoystickButton19;
     public const KeyCode XBOX_LB = KeyCode.JoystickButton13;
@@ -22,6 +23,7 @@ public class KeyInputManager : MonoBehaviour
     public const KeyCode XBOX_START = KeyCode.JoystickButton9;
 #else
     public const KeyCode XBOX_A = KeyCode.JoystickButton0;
+    public const KeyCode XBOX_B = KeyCode.JoystickButton1;
     public const KeyCode XBOX_X = KeyCode.JoystickButton2;
     public const KeyCode XBOX_Y = KeyCode.JoystickButton3;
     public const KeyCode XBOX_LB = KeyCode.JoystickButton4;

@@ -54,6 +54,7 @@ public class RingMakerRecorder : MonoBehaviour
     }
     private List<PositionRotation> rings = null;
     [SerializeField] private GameObject placeHolderPrefab = null;
+    private int sceneIndex = -1;
     private void Awake()
     {
         rings = new List<PositionRotation>();
@@ -71,18 +72,19 @@ public class RingMakerRecorder : MonoBehaviour
         rings.Add(temp);
         if (null != placeHolderPrefab)
             Instantiate(placeHolderPrefab, temp.position, temp.rotation);
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
     private void SaveRings()
     {
         if (0 == rings.Count) return;
         PositionRotation[] theRings = rings.ToArray();
-        FileStream file = File.Create(Application.persistentDataPath + $"/rings{SceneManager.GetActiveScene().buildIndex}.dat");
+        FileStream file = File.Create(Application.persistentDataPath + $"/rings{sceneIndex}.dat");
         new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter().Serialize(file, theRings);
         file.Close();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+        if ((Input.GetKeyDown(KeyCode.R) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) || Input.GetKeyDown(KeyInputManager.XBOX_B))
             AddRing();
     }
 }
