@@ -59,11 +59,13 @@ public class RingMakerRecorder : MonoBehaviour
     {
         rings = new List<PositionRotation>();
         SceneManager.sceneLoaded += SceneLoaded;
+        SceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
-    private void SceneLoaded(Scene scene, LoadSceneMode mode) => enabled =
-        GameModes.Free == GameManager.instance.gameMode.currentMode &&
-        scene.buildIndex >= LevelSelectOptions.LevelBuildOffset;
-    private void OnEnable() => rings.Clear();
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (enabled) SaveRings();
+        enabled = GameModes.Free == GameManager.instance.gameMode.currentMode && scene.buildIndex >= LevelSelectOptions.LevelBuildOffset;
+    }
     private void OnDisable() => SaveRings();
     private void OnDestroy() => SceneManager.sceneLoaded -= SceneLoaded;
     private void AddRing()
@@ -81,10 +83,14 @@ public class RingMakerRecorder : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + $"/rings{sceneIndex}.dat");
         new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter().Serialize(file, theRings);
         file.Close();
+        rings.Clear();
     }
     private void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.R) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) || Input.GetKeyDown(KeyInputManager.XBOX_B))
+        if ((Input.GetKeyDown(KeyCode.R) &&
+            (Input.GetKey(KeyCode.LeftShift) ||
+            Input.GetKey(KeyCode.RightShift))) ||
+            Input.GetKeyDown(KeyInputManager.XBOX_B))
             AddRing();
     }
 }
