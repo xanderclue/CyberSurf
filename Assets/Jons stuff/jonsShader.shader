@@ -1,24 +1,26 @@
 ﻿Shader "jonsShader" {
 	Properties
 	{
-		_MainTex("Albedo Texture", 2D) = "white" {}
+		_MainTex("Albedo Texture", 2D) = "black" {}
 	_TintColor("Tint Color", Color) = (1,1,1,1)
 		_Transparency("Transparency", Range(0.0, 0.5)) = 0.25
 	}
 
 		SubShader
 	{
-		Tags
-	{
-		"Queue" = "Transparent"
-		"RenderType" = "Transparent"
-}
+		Tags { "Queue" = "Transparent" "RenderType" = "Transparent"}
+		LOD 100
+
+		ZWrite Off
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		 Pass
 	{
 	CGPROGRAM
+#pragma vertex vert
 #pragma  fragment frag
 #include "UnityCG.cginc"
+
 
 	struct appdata
 	{
@@ -32,7 +34,7 @@
 		float4 vertex : SV_POSITION;
 };
 
-	Sampler2D _MainTex;
+	sampler2D _MainTex;
 	float4 _MainTex_ST;
 	float4 _TintColor;
 	float _Transparency;

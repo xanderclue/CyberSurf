@@ -43,14 +43,14 @@ public class BoardRollEffect : MonoBehaviour
             zRotation = Mathf.Lerp(zRotation, 0.0f, variables.rollDecreaseRate);
             if (zRotation < 0.1f && zRotation > -0.1f)
                 zRotation = 0.0f;
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, zRotation);
+            transform.rotation = Quaternion.Euler(-zRotation, transform.eulerAngles.y, transform.eulerAngles.z);
         }
     }
     private void PitchEffect()
     {
         if (currScene < LevelSelectOptions.LevelBuildOffset)
         {
-            forwardSpeed = transform.InverseTransformDirection(playerRB.velocity).z;
+            forwardSpeed = transform.InverseTransformDirection(playerRB.velocity).x;
             if (forwardSpeed >= 0.1f || forwardSpeed <= -0.1f)
             {
                 xRotation += forwardSpeed * variables.pitchIncreaseRate;
@@ -61,7 +61,7 @@ public class BoardRollEffect : MonoBehaviour
                 xRotation = Mathf.Lerp(xRotation, 0.0f, variables.pitchDecreaseRate);
                 if (xRotation < 0.1f && xRotation > -0.1f)
                     xRotation = 0.0f;
-                transform.rotation = Quaternion.Euler(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
+                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, -xRotation);
             }
         }
     }

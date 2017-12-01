@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114284126497002870}
   - component: {fileID: 114004138978651842}
   - component: {fileID: 114412701324416950}
+  - component: {fileID: 114523786900666618}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,12 +59,6 @@ MonoBehaviour:
   debugSpeedEnabled: 1
   gamepadEnabled: 0
   currentBoardSelection: 0
-  boardMaterials:
-  - {fileID: 2100000, guid: 0b6484a1e231baf40885e6bc2cba6af1, type: 2}
-  - {fileID: 2100000, guid: 522e1de74fc08ac4a9a9b0bfa81829a6, type: 2}
-  - {fileID: 2100000, guid: 86b06cd63724d35468491f0428e27a52, type: 2}
-  - {fileID: 2100000, guid: 14f8fabd5c1319245acd7d92336d3a0f, type: 2}
-  - {fileID: 2100000, guid: 03bb264aae7816a4ea7bf34bb50180df, type: 2}
   customGamepadMovementVariables:
     maxSpeed: 30
     restingSpeed: 25
@@ -151,6 +146,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flippedTimer: 2
   hubOnFlippedHMD: 1
+--- !u!114 &114523786900666618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056030855755648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19625105654b31f4995b578808401fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeHolderPrefab: {fileID: 1995531589141898, guid: 0adb28207d9f8534ea79d4034a21fa5f,
+    type: 2}
 --- !u!114 &114714506037350866
 MonoBehaviour:
   m_ObjectHideFlags: 1
