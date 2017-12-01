@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 public class BoardStandSelectBoard : SelectedObject
 {
-    [SerializeField] private Color emissionColor = Color.black;
     [SerializeField] private Transform boardCopy = null;
     private static Transform playerBoard = null;
     private BoardStandProperties selectionVariables = null;
-    private Material renderMat = null;
     private bool animationRunning = false;
     private float tVal = 0.0f, invAnimationTime = 1.0f;
     private Vector3 startPosition, startScale;
@@ -14,27 +12,11 @@ public class BoardStandSelectBoard : SelectedObject
     {
         base.Start();
         selectionVariables = GetComponentInParent<BoardStandProperties>();
-        renderMat = GetComponent<MeshRenderer>().material;
-        renderMat.SetColor("_EmissionColor", Color.black);
         ogLocalRot = boardCopy.localRotation;
         if (null == playerBoard)
-            playerBoard = GameManager.player.GetComponentsInChildren<BoardRollEffect>()[0].transform;
-    }
-    protected override void SelectedFunction()
-    {
-        base.SelectedFunction();
-        renderMat.SetColor("_EmissionColor", emissionColor);
-    }
-    protected override void DeselectedFunction()
-    {
-        base.DeselectedFunction();
-        renderMat.SetColor("_EmissionColor", Color.black);
+            playerBoard = GameManager.player.GetComponentInChildren<BoardSelector>(true).CurrentBoard.transform;
     }
     protected override void SuccessFunction()
-    {
-        StartAnimation();
-    }
-    private void StartAnimation()
     {
         boardCopy.localPosition = Vector3.zero;
         boardCopy.localRotation = ogLocalRot;
