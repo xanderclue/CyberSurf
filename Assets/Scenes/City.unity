@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -9815,6 +9815,7 @@ GameObject:
   - component: {fileID: 1162550334}
   - component: {fileID: 1162550333}
   - component: {fileID: 1162550332}
+  - component: {fileID: 1162550336}
   m_Layer: 0
   m_Name: TextMeshPro
   m_TagString: Untagged
@@ -9999,6 +10000,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1162550330}
   m_Mesh: {fileID: 0}
+--- !u!114 &1162550336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1162550330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dd45d8ed9de5f4bb2e5948a9125028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1165105767
 Prefab:
   m_ObjectHideFlags: 0
@@ -13116,6 +13128,7 @@ GameObject:
   - component: {fileID: 1672628762}
   - component: {fileID: 1672628761}
   - component: {fileID: 1672628760}
+  - component: {fileID: 1672628764}
   m_Layer: 0
   m_Name: TextMeshPro
   m_TagString: Untagged
@@ -13300,6 +13313,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1672628758}
   m_Mesh: {fileID: 0}
+--- !u!114 &1672628764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672628758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dd45d8ed9de5f4bb2e5948a9125028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1698712252
 Prefab:
   m_ObjectHideFlags: 0
@@ -13493,6 +13517,7 @@ GameObject:
   - component: {fileID: 1735355296}
   - component: {fileID: 1735355295}
   - component: {fileID: 1735355294}
+  - component: {fileID: 1735355298}
   m_Layer: 0
   m_Name: TextMeshPro
   m_TagString: Untagged
@@ -13677,6 +13702,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1735355292}
   m_Mesh: {fileID: 0}
+--- !u!114 &1735355298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1735355292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dd45d8ed9de5f4bb2e5948a9125028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1746211983
 Prefab:
   m_ObjectHideFlags: 0

@@ -1770,6 +1770,7 @@ GameObject:
   - component: {fileID: 275644649}
   - component: {fileID: 275644648}
   - component: {fileID: 275644647}
+  - component: {fileID: 275644651}
   m_Layer: 0
   m_Name: TextMeshPro
   m_TagString: Untagged
@@ -1954,6 +1955,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275644645}
   m_Mesh: {fileID: 0}
+--- !u!114 &275644651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 275644645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dd45d8ed9de5f4bb2e5948a9125028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &277831616
 Prefab:
   m_ObjectHideFlags: 0
@@ -6640,6 +6652,11 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198449631302190182, guid: 0810e12bd54c8bc4bbaf23429a79b643,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0810e12bd54c8bc4bbaf23429a79b643, type: 2}
   m_IsPrefabParent: 0
@@ -7334,6 +7351,7 @@ GameObject:
   - component: {fileID: 486072095}
   - component: {fileID: 486072094}
   - component: {fileID: 486072093}
+  - component: {fileID: 486072097}
   m_Layer: 0
   m_Name: TextMeshPro
   m_TagString: Untagged
@@ -7518,6 +7536,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 486072091}
   m_Mesh: {fileID: 0}
+--- !u!114 &486072097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 486072091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dd45d8ed9de5f4bb2e5948a9125028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &502072979
 Prefab:
   m_ObjectHideFlags: 0
@@ -16334,6 +16363,7 @@ GameObject:
   - component: {fileID: 1563032392}
   - component: {fileID: 1563032391}
   - component: {fileID: 1563032390}
+  - component: {fileID: 1563032394}
   m_Layer: 0
   m_Name: TextMeshPro
   m_TagString: Untagged
@@ -16518,6 +16548,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1563032388}
   m_Mesh: {fileID: 0}
+--- !u!114 &1563032394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1563032388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dd45d8ed9de5f4bb2e5948a9125028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1595715814
 Prefab:
   m_ObjectHideFlags: 0
