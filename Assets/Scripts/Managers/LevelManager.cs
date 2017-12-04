@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public enum Level { Canyon, MultiEnvironment, BackyardRacetrack, ComputerChip, City, Venice, NumLevels }
-    [HideInInspector] public ManagerClasses.GameState gameState;
+    [HideInInspector] public ManagerClasses.GameState gameState = null;
     private GameManager gameManager = null;
     private ScreenFade screenFade = null;
     private GameObject player = null;
@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
     public static bool mirrorMode = false;
     public static bool reverseMode = false;
     public static Level savedCurrentLevel = Level.Canyon;
+    [SerializeField] private Sprite[] levelPreviews = null;
+    public static Sprite GetLevelPreview(Level level) => GameManager.instance.levelScript.levelPreviews[(int)level];
     public void SetupLevelManager(ManagerClasses.GameState s, GameObject p, GameManager g)
     {
         player = p;
@@ -21,6 +23,8 @@ public class LevelManager : MonoBehaviour
         gameManager = g;
         menuController = p.GetComponent<PlayerMenuController>();
         screenFade = p.GetComponentInChildren<ScreenFade>();
+        UnityEngine.Assertions.Assert.AreEqual(SceneManager.sceneCountInBuildSettings, spawnPoints.Length, $"GameManager.instance.levelScript.spawnPoints.Length should be {SceneManager.sceneCountInBuildSettings}.. Actual value: {spawnPoints.Length}");
+        UnityEngine.Assertions.Assert.AreEqual(LevelSelectOptions.LevelCount, levelPreviews.Length, $"GameManager.instance.levelScript.levelPreviews.Length should be {LevelSelectOptions.LevelCount}.. Actual value: {levelPreviews.Length}");
     }
     private void DoSceneTransition(int sceneIndex)
     {

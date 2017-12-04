@@ -61,7 +61,6 @@ public class lastScoreDisplay : MonoBehaviour
                 }
                 break;
             case GameModes.Free:
-                Debug.Log("Free Mode shouldn't display anything" + this.Info(), this);
                 break;
             case GameModes.Race:
                 for (i = 0; i < scoreScript.topRaceScores.Length; ++i)

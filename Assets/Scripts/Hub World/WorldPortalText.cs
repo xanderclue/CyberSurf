@@ -4,7 +4,6 @@ public class WorldPortalText : MonoBehaviour
 {
     [SerializeField] private WorldPortalProperties properties = null;
     [SerializeField] private TextMeshPro theName = null;
-    [SerializeField] private Texture[] portalViews = null;
     [SerializeField] private Renderer portalRenderer = null;
     private void OnEnable()
     {
@@ -20,6 +19,6 @@ public class WorldPortalText : MonoBehaviour
     {
         string path = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(properties.SceneIndex);
         theName.SetText(path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1));
-        portalRenderer.material.mainTexture = portalViews[properties.SceneIndex - LevelSelectOptions.LevelBuildOffset];
+        portalRenderer.material.mainTexture = LevelManager.GetLevelPreview((LevelManager.Level)(properties.SceneIndex - LevelSelectOptions.LevelBuildOffset)).texture;
     }
 }

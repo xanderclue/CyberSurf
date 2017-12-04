@@ -8,13 +8,6 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField] private TextMeshPro levelNameText = null;
     [SerializeField] private Image levelImage = null;
-    [Space, Header("Level Images")] [SerializeField] private Sprite canyonImage = null;
-    [SerializeField] private Sprite multiEnrironmentImage = null;
-    [SerializeField] private Sprite backyardRacetrackImage = null;
-    [SerializeField] private Sprite computerChipImage = null;
-    [SerializeField] private Sprite cityImage = null;
-    [SerializeField] private Sprite veniceImage = null;
-
     [SerializeField] private LevelManager.Level defaultLevel = LevelManager.Level.Canyon;
     private LevelManager.Level tempLevel;
     [SerializeField] private WorldPortalProperties portal = null;
@@ -26,21 +19,8 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     public const int ReversedBuildOffset = LevelBuildOffset + ReversedOffset;
     public const int MirroredReversedOffset = ReversedOffset + LevelCount;
     public const int MirroredReversedBuildOffset = LevelBuildOffset + MirroredReversedOffset;
-    public static int GetLevelOffset
-    {
-        get
-        {
-            if (LevelManager.mirrorMode)
-                if (LevelManager.reverseMode)
-                    return MirroredReversedOffset;
-                else
-                    return MirroredOffset;
-            else if (LevelManager.reverseMode)
-                return ReversedOffset;
-            return 0;
-        }
-    }
-    public static int GetBuildOffset { get { return LevelBuildOffset + GetLevelOffset; } }
+    public static int GetLevelOffset => LevelManager.mirrorMode ? (LevelManager.reverseMode ? MirroredReversedOffset : MirroredOffset) : (LevelManager.reverseMode ? ReversedOffset : 0);
+    public static int GetBuildOffset => LevelBuildOffset + GetLevelOffset;
     new private void Start()
     {
         base.Start();
@@ -80,30 +60,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     private void UpdateDisplay()
     {
         levelNameText.SetText(tempLevel.ToString());
-        switch (tempLevel)
-        {
-            case LevelManager.Level.Canyon:
-                levelImage.sprite = canyonImage;
-                break;
-            case LevelManager.Level.MultiEnvironment:
-                levelImage.sprite = multiEnrironmentImage;
-                break;
-            case LevelManager.Level.BackyardRacetrack:
-                levelImage.sprite = backyardRacetrackImage;
-                break;
-            case LevelManager.Level.ComputerChip:
-                levelImage.sprite = computerChipImage;
-                break;
-            case LevelManager.Level.City:
-                levelImage.sprite = cityImage;
-                break;
-            case LevelManager.Level.Venice:
-                levelImage.sprite = veniceImage;
-                break;
-            default:
-                Debug.LogWarning("Switch statement on Level enum tempLevel in LevelSelectOptions.cs is missing case for Level." + tempLevel.ToString() + this.Info(), this);
-                break;
-        }
+        levelImage.sprite = LevelManager.GetLevelPreview(tempLevel);
     }
     public override void ConfirmOptions()
     {
