@@ -5,6 +5,7 @@ public class ringPathMaker : MonoBehaviour
     [SerializeField] private Stack<Vector3> controlPointsStack = new Stack<Vector3>();
     private bool drawLine = true;
     private CatmullRomSplineDrawn pathDrawer = new CatmullRomSplineDrawn();
+    private AI_Race_Mode_Script Race_AI;
     private void TogglePath(bool isOn)
     {
         drawLine = isOn;
@@ -12,6 +13,7 @@ public class ringPathMaker : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnSetRingPath += TogglePath;
+        Race_AI = GameObject.FindObjectOfType<AI_Race_Mode_Script>();
     }
     private void OnDisable()
     {
@@ -20,6 +22,7 @@ public class ringPathMaker : MonoBehaviour
     public void Init(Transform[] array)
     {
         LineRenderer myself = GetComponentInChildren<LineRenderer>();
+        
         if (drawLine)
         {
             controlPointsStack.Push(array[0].position);
@@ -59,6 +62,7 @@ public class ringPathMaker : MonoBehaviour
             }
             controlPointsStack.Push(array[lastRing].position);
             Vector3[] finalPoints = pathDrawer.MakePath(controlPointsStack.ToArray());
+            Race_AI.Ring_path = finalPoints;
             myself.positionCount = finalPoints.Length;
             myself.SetPositions(finalPoints);
         }
