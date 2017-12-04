@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     public Transform[] spawnPoints = null;
     public static bool mirrorMode = false;
     public static bool reverseMode = false;
+    public static Level savedCurrentLevel = Level.Canyon;
     public void SetupLevelManager(ManagerClasses.GameState s, GameObject p, GameManager g)
     {
         player = p;

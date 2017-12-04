@@ -22,9 +22,9 @@ public class AudioMenuTab : MenuTab
     }
     private void OnEnable()
     {
-        AudioLevels.Instance.OnBgmVolumeChange += SetBgmText;
-        AudioLevels.Instance.OnSfxVolumeChange += SetSfxText;
-        AudioLevels.Instance.OnEnvVolumeChange += SetEnvText;
+        AudioLevels.Instance.OnBgmVolumeChanged += SetBgmText;
+        AudioLevels.Instance.OnSfxVolumeChanged += SetSfxText;
+        AudioLevels.Instance.OnEnvVolumeChanged += SetEnvText;
         bgmUpButton.OnSelectSuccess += BgmUp;
         bgmDownButton.OnSelectSuccess += BgmDown;
         sfxUpButton.OnSelectSuccess += SfxUp;
@@ -39,9 +39,9 @@ public class AudioMenuTab : MenuTab
     {
         try
         {
-            AudioLevels.Instance.OnBgmVolumeChange -= SetBgmText;
-            AudioLevels.Instance.OnSfxVolumeChange -= SetSfxText;
-            AudioLevels.Instance.OnEnvVolumeChange -= SetEnvText;
+            AudioLevels.Instance.OnBgmVolumeChanged -= SetBgmText;
+            AudioLevels.Instance.OnSfxVolumeChanged -= SetSfxText;
+            AudioLevels.Instance.OnEnvVolumeChanged -= SetEnvText;
         }
         catch { }
         bgmUpButton.OnSelectSuccess -= BgmUp;

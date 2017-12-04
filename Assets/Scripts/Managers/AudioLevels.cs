@@ -12,8 +12,8 @@ public class AudioLevels : MonoBehaviour
             return instance;
         }
     }
-    public delegate void SettingChangedEvent();
-    public event SettingChangedEvent OnBgmVolumeChange, OnSfxVolumeChange, OnEnvVolumeChange;
+    public delegate void VolumeChangedEvent();
+    public event VolumeChangedEvent OnBgmVolumeChanged, OnSfxVolumeChanged, OnEnvVolumeChanged;
     private float bgmVolume = 1.0f, sfxVolume = 1.0f, envVolume = 1.0f;
     public float BgmVolume
     {
@@ -21,7 +21,7 @@ public class AudioLevels : MonoBehaviour
         set
         {
             bgmVolume = Mathf.Clamp01(value);
-            OnBgmVolumeChange?.Invoke();
+            OnBgmVolumeChanged?.Invoke();
         }
     }
     public float SfxVolume
@@ -30,7 +30,7 @@ public class AudioLevels : MonoBehaviour
         set
         {
             sfxVolume = Mathf.Clamp01(value);
-            OnSfxVolumeChange?.Invoke();
+            OnSfxVolumeChanged?.Invoke();
         }
     }
     public float EnvVolume
@@ -39,7 +39,7 @@ public class AudioLevels : MonoBehaviour
         set
         {
             envVolume = Mathf.Clamp01(value);
-            OnEnvVolumeChange?.Invoke();
+            OnEnvVolumeChanged?.Invoke();
         }
     }
     private void Awake()
@@ -57,9 +57,9 @@ public class AudioLevels : MonoBehaviour
         GameSettings.GetFloat("BgmVolume", ref bgmVolume);
         GameSettings.GetFloat("SfxVolume", ref sfxVolume);
         GameSettings.GetFloat("EnvVolume", ref envVolume);
-        OnBgmVolumeChange?.Invoke();
-        OnSfxVolumeChange?.Invoke();
-        OnEnvVolumeChange?.Invoke();
+        OnBgmVolumeChanged?.Invoke();
+        OnSfxVolumeChanged?.Invoke();
+        OnEnvVolumeChanged?.Invoke();
     }
     private void OnDisable()
     {

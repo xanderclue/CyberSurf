@@ -9,11 +9,12 @@ public class WorldPortalText : MonoBehaviour
     private void OnEnable()
     {
         properties.OnSceneIndexChanged += UpdateText;
-        UpdateText();
+        properties.SceneIndex = (int)GameSettings.GetEnum("CurrentLevel", ref LevelManager.savedCurrentLevel) + LevelSelectOptions.LevelBuildOffset;
     }
     private void OnDisable()
     {
         properties.OnSceneIndexChanged -= UpdateText;
+        LevelManager.savedCurrentLevel = GameSettings.SetEnum("CurrentLevel", (LevelManager.Level)(properties.SceneIndex - LevelSelectOptions.LevelBuildOffset));
     }
     private void UpdateText()
     {
