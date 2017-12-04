@@ -10,10 +10,7 @@ public class EyeRayCaster : MonoBehaviour
     private GameObject preObj = null, curObj = null;
     private reticle reticleScript = null;
     private RaycastHit hit;
-    private void Start()
-    {
-        reticleScript = GetComponent<reticle>();
-    }
+    private void Start() => reticleScript = GetComponent<reticle>();
     private void Update()
     {
         preObj = curObj;
@@ -38,12 +35,6 @@ public class EyeRayCaster : MonoBehaviour
         canSelect = !locked;
         curObj.ConvertNull()?.GetComponent<SelectedObject>().Deselected();
     }
-    private void OnEnable()
-    {
-        EventManager.OnSelectionLock += SetSelectionLock;
-    }
-    private void OnDisable()
-    {
-        EventManager.OnSelectionLock -= SetSelectionLock;
-    }
+    private void OnEnable() => EventManager.OnSelectionLock += SetSelectionLock;
+    private void OnDisable() => EventManager.OnSelectionLock -= SetSelectionLock;
 }

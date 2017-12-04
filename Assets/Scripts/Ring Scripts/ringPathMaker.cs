@@ -22,7 +22,7 @@ public class ringPathMaker : MonoBehaviour
     public void Init(Transform[] array)
     {
         LineRenderer myself = GetComponentInChildren<LineRenderer>();
-        
+
         if (drawLine)
         {
             controlPointsStack.Push(array[0].position);
@@ -62,7 +62,8 @@ public class ringPathMaker : MonoBehaviour
             }
             controlPointsStack.Push(array[lastRing].position);
             Vector3[] finalPoints = pathDrawer.MakePath(controlPointsStack.ToArray());
-            Race_AI.Ring_path = finalPoints;
+            if (null != Race_AI)
+                Race_AI.Ring_path = finalPoints;
             myself.positionCount = finalPoints.Length;
             myself.SetPositions(finalPoints);
         }

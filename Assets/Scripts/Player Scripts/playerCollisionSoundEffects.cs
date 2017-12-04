@@ -13,7 +13,7 @@ public class playerCollisionSoundEffects : MonoBehaviour
         source = GetComponent<AudioSource>();
         respawnScript = GetComponent<PlayerRespawn>();
         prevRingObject = null;
-        AudioLevels.Instance.OnSfxVolumeChange += UpdateVolume;
+        AudioLevels.Instance.OnSfxVolumeChanged += UpdateVolume;
         UpdateVolume();
         const_vol = source.volume;
     }
@@ -24,7 +24,7 @@ public class playerCollisionSoundEffects : MonoBehaviour
         else
             source.volume = const_vol = AudioLevels.Instance.SfxVolume;
     }
-    private void OnDestroy() { try { AudioLevels.Instance.OnSfxVolumeChange -= UpdateVolume; } catch { } }
+    private void OnDestroy() { try { AudioLevels.Instance.OnSfxVolumeChanged -= UpdateVolume; } catch { } }
     private void UpdateVolume() { source.volume = AudioLevels.Instance.SfxVolume; }
     private void OnCollisionEnter(Collision collision)
     {
