@@ -3656,15 +3656,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4824320659160450, guid: 0692a579e1742b543b4e28fd29fe1d21, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7.8
       objectReference: {fileID: 0}
     - target: {fileID: 4824320659160450, guid: 0692a579e1742b543b4e28fd29fe1d21, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 151
+      value: 204.4
       objectReference: {fileID: 0}
     - target: {fileID: 4824320659160450, guid: 0692a579e1742b543b4e28fd29fe1d21, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 57.4
+      value: 515
       objectReference: {fileID: 0}
     - target: {fileID: 4824320659160450, guid: 0692a579e1742b543b4e28fd29fe1d21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3685,6 +3685,11 @@ Prefab:
     - target: {fileID: 4824320659160450, guid: 0692a579e1742b543b4e28fd29fe1d21, type: 2}
       propertyPath: m_RootOrder
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114228937678654716, guid: 0692a579e1742b543b4e28fd29fe1d21,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0692a579e1742b543b4e28fd29fe1d21, type: 2}
@@ -10854,7 +10859,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ring_path: []
-  Joe: {fileID: 0}
+  Joe: {x: 0, y: 0, z: 0}
+  counter: 0
+  wait: 0
 --- !u!1001 &936883250
 Prefab:
   m_ObjectHideFlags: 0

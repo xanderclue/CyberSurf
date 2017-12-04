@@ -9,14 +9,20 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     public float wait = 0;
 	// Use this for initialization
 	void Start () {
-        Joe = this.transform.position;
+        if (GameModes.Race == GameManager.instance.gameMode.currentMode)
+        {
+            Joe = this.transform.position;
+        }
+        else
+        {
+            GameObject.Destroy(this.gameObject);
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
        
             Vector3 the_goal = Ring_path[counter];
-            //Joe = the_goal;
            Joe.x = Mathf.MoveTowards(Joe.x, the_goal.x, 0.5f);
             Joe.y = Mathf.MoveTowards(Joe.y, the_goal.y, 0.5f);
             Joe.z = Mathf.MoveTowards(Joe.z, the_goal.z, 0.5f);
