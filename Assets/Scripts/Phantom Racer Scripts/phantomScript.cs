@@ -41,7 +41,6 @@ public class phantomScript : MonoBehaviour
             case GameModes.Free:
                 break;
             case GameModes.Race:
-                Debug.Log("To add, Race Case PhantomScript");
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
