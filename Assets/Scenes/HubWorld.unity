@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 0
-    m_BakeBackend: 1
+    m_BakeBackend: 0
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
@@ -3486,42 +3486,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114203090424874670, guid: b7a329f699c25444e93a868a3764114c,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114203090424874670, guid: b7a329f699c25444e93a868a3764114c,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 33895052602568658, guid: b7a329f699c25444e93a868a3764114c,
+    - target: {fileID: 33295131364360306, guid: b7a329f699c25444e93a868a3764114c,
         type: 2}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114040410277710966, guid: b7a329f699c25444e93a868a3764114c,
+    - target: {fileID: 114478560954822196, guid: b7a329f699c25444e93a868a3764114c,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114040410277710966, guid: b7a329f699c25444e93a868a3764114c,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 33215575504708162, guid: b7a329f699c25444e93a868a3764114c,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114707559718951370, guid: b7a329f699c25444e93a868a3764114c,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114707559718951370, guid: b7a329f699c25444e93a868a3764114c,
+    - target: {fileID: 114478560954822196, guid: b7a329f699c25444e93a868a3764114c,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -3531,20 +3506,45 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 114478560954822196, guid: b7a329f699c25444e93a868a3764114c,
+    - target: {fileID: 114707559718951370, guid: b7a329f699c25444e93a868a3764114c,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114478560954822196, guid: b7a329f699c25444e93a868a3764114c,
+    - target: {fileID: 114707559718951370, guid: b7a329f699c25444e93a868a3764114c,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 33295131364360306, guid: b7a329f699c25444e93a868a3764114c,
+    - target: {fileID: 33215575504708162, guid: b7a329f699c25444e93a868a3764114c,
         type: 2}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114040410277710966, guid: b7a329f699c25444e93a868a3764114c,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114040410277710966, guid: b7a329f699c25444e93a868a3764114c,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 33895052602568658, guid: b7a329f699c25444e93a868a3764114c,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114203090424874670, guid: b7a329f699c25444e93a868a3764114c,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114203090424874670, guid: b7a329f699c25444e93a868a3764114c,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7a329f699c25444e93a868a3764114c, type: 2}
