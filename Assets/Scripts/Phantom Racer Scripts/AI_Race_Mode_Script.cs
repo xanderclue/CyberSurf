@@ -6,12 +6,15 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     [SerializeField] public Vector3[] Ring_path;
    [SerializeField] private Vector3 Joe;
     public int counter = 0;
-    public float wait = 0;
-	// Use this for initialization
-	void Start () {
+    public GameObject the_player;
+    // Use this for initialization
+    void Start () {
         if (GameModes.Race == GameManager.instance.gameMode.currentMode)
         {
             Joe = this.transform.position;
+            the_player = GameObject.FindGameObjectWithTag("Player");
+            Joe = the_player.transform.position;
+            this.gameObject.transform.rotation = the_player.transform.rotation;
         }
         else
         {
@@ -22,11 +25,11 @@ public class AI_Race_Mode_Script : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
        
-            Vector3 the_goal = Ring_path[counter];
-           Joe.x = Mathf.MoveTowards(Joe.x, the_goal.x, 0.5f);
-            Joe.y = Mathf.MoveTowards(Joe.y, the_goal.y, 0.5f);
-            Joe.z = Mathf.MoveTowards(Joe.z, the_goal.z, 0.5f);
-            this.transform.position = Joe;
+        Vector3 the_goal = Ring_path[counter];
+        Joe.x = Mathf.MoveTowards(Joe.x, the_goal.x, 0.2f);
+        Joe.y = Mathf.MoveTowards(Joe.y, the_goal.y, 0.2f);
+        Joe.z = Mathf.MoveTowards(Joe.z, the_goal.z, 0.2f);
+        this.transform.position = Joe;
         float checkx, checky, checkz;
         checkx = Joe.x - the_goal.x;
         checky = Joe.y - the_goal.y;
@@ -35,16 +38,11 @@ public class AI_Race_Mode_Script : MonoBehaviour {
         {
             {
                 counter++;
-                wait = 0;
                 if (counter >= Ring_path.Length)
                 {
                     counter = 0;
                 }
             }
-        }
-        else
-        {
-            wait += 0.1f;
         }
       }
 	}
