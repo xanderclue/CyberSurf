@@ -3,7 +3,8 @@
 	{
 		_MainTex("Albedo Texture", 2D) = "black" {}
 	_TintColor("Tint Color", Color) = (1,1,1,1)
-		_Transparency("Transparency", Range(0.0, 0.5)) = 0.25
+		_Transparency("Transparency", Range(0.0, 0.75)) = 0.25
+		_RotationSpeed("Rotation", float) = 2.0
 	}
 
 		SubShader
@@ -39,9 +40,17 @@
 	float4 _TintColor;
 	float _Transparency;
 
+	float2x2 rotationMatrix;
+	float sinTheta		   ;
+	float cosTheta		   ;
+	float _RotationSpeed;
 	v2f vert(appdata v)
 	{
 		v2f o;
+		 sinTheta = sin(_RotationSpeed * _Time);
+		 cosTheta = cos(_RotationSpeed * _Time);
+		  rotationMatrix = float2x2(cosTheta, -sinTheta, sinTheta, cosTheta);
+		v.uv = mul(v.uv, rotationMatrix);
 		o.vertex = UnityObjectToClipPos(v.vertex);
 		o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 		return o;

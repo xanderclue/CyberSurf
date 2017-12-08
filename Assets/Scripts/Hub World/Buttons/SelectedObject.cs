@@ -102,8 +102,8 @@ public abstract class SelectedObject : MonoBehaviour
             Debug.LogWarning("A SelectedObject script is attached to an object that does not have a Collider component. (\"" + gameObject.HierarchyPath() + "\")" + this.Info(), this);
         if (!tooltipOnly)
         {
-            if (null == loadedSuccessSound) loadedSuccessSound = Resources.Load("Sounds/Effects/Place_Holder_LoadSuccess") as AudioClip;
-            if (null == loadedSelectedSound) loadedSelectedSound = Resources.Load("Sounds/Effects/Place_Holder_ButtonHit") as AudioClip;
+            if (null == loadedSuccessSound) loadedSuccessSound = Resources.Load<AudioClip>("Sounds/ButtonSuccess");
+            if (null == loadedSelectedSound) loadedSelectedSound = Resources.Load<AudioClip>("Sounds/ButtonSelect");
             successSound = loadedSuccessSound;
             selectedSound = loadedSelectedSound;
         }
