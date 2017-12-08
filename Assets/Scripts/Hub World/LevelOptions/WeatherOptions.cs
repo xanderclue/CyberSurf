@@ -2,15 +2,10 @@
 using TMPro;
 public class WeatherOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton leftButton = null, rightButton = null;
-    [SerializeField]
-    private TextMeshPro weatherText = null;
-    public enum Weather { Sunny, Rainy, Snowy, NumWeathers }
-    [SerializeField]
-    private Weather defaultWeather = Weather.Sunny;
-    private Weather tempWeather;
-    public static Weather ActualWeather { get; set; } // replace with game's value
+    [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
+    [SerializeField] private TextMeshPro weatherText = null;
+    [SerializeField] private WeatherScript.Weather defaultWeather = WeatherScript.Weather.Sunny;
+    private WeatherScript.Weather tempWeather;
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;
@@ -36,7 +31,7 @@ public class WeatherOptions : LevelMenuObjectGroup
     private void ButtonLeftFunction()
     {
         if (0 == tempWeather)
-            tempWeather = Weather.NumWeathers - 1;
+            tempWeather = WeatherScript.Weather.NumWeathers - 1;
         else
             --tempWeather;
         UpdateDisplay();
@@ -44,7 +39,7 @@ public class WeatherOptions : LevelMenuObjectGroup
     private void ButtonRightFunction()
     {
         ++tempWeather;
-        if (Weather.NumWeathers == tempWeather)
+        if (WeatherScript.Weather.NumWeathers == tempWeather)
             tempWeather = 0;
         UpdateDisplay();
     }
@@ -55,7 +50,7 @@ public class WeatherOptions : LevelMenuObjectGroup
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        ActualWeather = tempWeather;
+        WeatherScript.currentWeather = tempWeather;
     }
     public override void DefaultOptions()
     {
@@ -66,7 +61,7 @@ public class WeatherOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempWeather = ActualWeather;
+        tempWeather = WeatherScript.currentWeather;
         UpdateDisplay();
     }
 }

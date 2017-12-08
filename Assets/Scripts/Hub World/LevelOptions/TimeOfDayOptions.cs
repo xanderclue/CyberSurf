@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using Xander.Debugging;
-using static DaylightScript;
+using static DayNightScript;
 public class TimeOfDayOptions : LevelMenuObjectGroup
 {
     [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;

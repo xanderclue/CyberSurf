@@ -12,7 +12,7 @@ public class EffectEditor : MaterialEditor
     }
     public override void OnInspectorGUI()
     {
-        if (!isVisible) { return; }
+        if (!isVisible) return;
         Material material = target as Material;
         MaterialProperty[] properties = GetMaterialProperties(targets);
         string[] keys = material.shaderKeywords;
@@ -42,7 +42,7 @@ public class EffectEditor : MaterialEditor
                 effectLayer1Enabled ? "EFFECTLAYER1ON" : "EFFECTLAYER1OFF",
                 effectLayer2Enabled ? "EFFECTLAYER2ON" : "EFFECTLAYER2OFF",
                 effectLayer3Enabled ? "EFFECTLAYER3ON" : "EFFECTLAYER3OFF",
-            }; ;
+            };
             EditorUtility.SetDirty(material);
         }
     }
@@ -101,9 +101,13 @@ public class EffectEditor : MaterialEditor
     }
     private static bool BoolProperty(MaterialProperty property, string name)
     {
-        bool toggle = EditorGUILayout.Toggle(name, 0.0f != property.floatValue);
-        property.floatValue = toggle ? 1.0f : 0.0f;
-        return toggle;
+        if (EditorGUILayout.Toggle(name, 0.0f != property.floatValue))
+        {
+            property.floatValue = 1.0f;
+            return true;
+        }
+        property.floatValue = 0.0f;
+        return false;
     }
     private static string EffectName(int layer, string property) => $"_EffectsLayer{layer}{property}";
 }

@@ -2569,11 +2569,11 @@ GameObject:
   - component: {fileID: 1168966314}
   - component: {fileID: 1168966313}
   m_Layer: 0
-  m_Name: weather
+  m_Name: Weather
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1168966313
 MonoBehaviour:
@@ -2586,6 +2586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912f461c03a15474f83dbd8740f82c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldSnow: {fileID: 0}
+  worldCloud: {fileID: 0}
 --- !u!4 &1168966314
 Transform:
   m_ObjectHideFlags: 0

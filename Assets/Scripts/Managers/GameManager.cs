@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
         GameSettings.GetBool("DebugSpeed", ref boardScript.debugSpeedEnabled);
         GameSettings.GetBool("MirrorMode", ref LevelManager.mirrorMode);
         GameSettings.GetBool("ReverseMode", ref LevelManager.reverseMode);
+        GameSettings.GetEnum("Weather", ref WeatherScript.currentWeather);
+        GameSettings.GetEnum("TimeOfDay", ref DayNightScript.currentTimeOfDay);
     }
     private void OnDisable()
     {
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
         GameSettings.SetBool("DebugSpeed", boardScript.debugSpeedEnabled);
         GameSettings.SetBool("MirrorMode", LevelManager.mirrorMode);
         GameSettings.SetBool("ReverseMode", LevelManager.reverseMode);
+        GameSettings.SetEnum("Weather", WeatherScript.currentWeather);
+        GameSettings.SetEnum("TimeOfDay", DayNightScript.currentTimeOfDay);
         GameSettings.SetEnum("GameDifficulty", gameDifficulty.currentDifficulty);
         GameSettings.SetEnum("GameMode", gameMode.currentMode);
     }
