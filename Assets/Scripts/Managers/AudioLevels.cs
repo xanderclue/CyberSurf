@@ -70,5 +70,5 @@ public class AudioLevels : MonoBehaviour
             GameSettings.SetFloat("EnvVolume", envVolume);
         }
     }
-    private void OnApplicationQuit() { applicationRunning = false; }
+    private void OnApplicationQuit() => applicationRunning = false;
 }
