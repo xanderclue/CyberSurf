@@ -83,15 +83,8 @@ public class RingSetupScript : MonoBehaviour
                 Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
-
-        if (mode == GameModes.Cursed || mode == GameModes.Race)
-        {
-            if (lapTrigger != null && rings[0].laptext.max_lap > 1)
-            {
-                GameObject go = Instantiate(lapTrigger, rings[0].GetComponent<Transform>().position, rings[0].GetComponent<Transform>().rotation);
-                go.GetComponent<PositionInOrderResetter>().Setup(rings[0].laptext.max_lap);
-            }
-        }
+        if (null != lapTrigger && (GameModes.Cursed == mode || GameModes.Race == mode) && rings[0].laptext.max_lap > 1)
+            Instantiate(lapTrigger, rings[0].GetComponent<Transform>().position, rings[0].GetComponent<Transform>().rotation).GetComponent<PositionInOrderResetter>().MaxLap = rings[0].laptext.max_lap;
     }
     private void InsertionSort(RingProperties[] rings)
     {

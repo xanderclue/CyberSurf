@@ -1,37 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class PositionInOrderResetter : MonoBehaviour
 {
-    [SerializeField] float timeToActivate = 15f;
-    float timer = 0f;
-    bool isActive = false;
-    int maxLap = 0, currLap = 1;
-
-    public void Setup(int maxLap)
+    [SerializeField] private float timeToActivate = 15.0f;
+    private float timer = 0.0f;
+    private bool isActive = false;
+    private int maxLap = 0, currLap = 1;
+    public int MaxLap { set { maxLap = value; } }
+    private void Update()
     {
-        this.maxLap = maxLap;
+        if (isActive)
+            return;
+        timer += Time.deltaTime;
+        if (timer > timeToActivate)
+            isActive = true;
     }
-
-    void Update()
-    {
-        if (!isActive)
-        {
-            timer += Time.deltaTime;
-
-            if (timer > timeToActivate)
-                isActive = true;
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (isActive && other.tag == "Player" && currLap < maxLap)
+        if (isActive && currLap < maxLap && "Player" == other.tag)
         {
-            RingScoreScript.PrevPositionInOrder = 0;
-
-            timer = 0f;
+            RingScoreScript.ResetPrevPositionInOrder();
+            timer = 0.0f;
             isActive = false;
             ++currLap;
         }

@@ -2,19 +2,19 @@
 public class FadeObjectScript : MonoBehaviour
 {
     private Color color, invis;
-    private const float howFarToFade = 15.0f;
-    private Renderer objectRenderer = null;
+    private Material objectMaterial = null;
     private void Start()
     {
-        objectRenderer = GetComponent<Renderer>();
-        color = objectRenderer.material.color;
+        objectMaterial = GetComponent<Renderer>().material;
+        color = objectMaterial.color;
         invis = color;
         invis.a = 0.0f;
     }
+    private float distance;
     private void Update()
     {
-        float distance = (Camera.main.transform.position - transform.position).magnitude;
-        if (distance < howFarToFade)
-            objectRenderer.material.color = Color.Lerp(color, invis, (howFarToFade * 0.5f) / distance);
+        distance = (Camera.main.transform.position - transform.position).magnitude;
+        if (distance < 15.0f)
+            objectMaterial.color = Color.Lerp(color, invis, 7.5f / distance);
     }
 }

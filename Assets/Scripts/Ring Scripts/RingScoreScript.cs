@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Xander.NullConversion;
 public class RingScoreScript : MonoBehaviour
 {
     [System.Serializable]
@@ -16,28 +17,23 @@ public class RingScoreScript : MonoBehaviour
     private bonusTimeTextUpdater bonusTimeText = null;
     private ParticleSystem hitEffect = null;
     private PlayerRespawn respawnScript = null;
-    public GameObject portaleffect;
-    public static int PrevPositionInOrder
-    {
-        set { prevPositionInOrder = value; }
-    }
+    [SerializeField] private GameObject portaleffect = null;
+    public static void ResetPrevPositionInOrder() => prevPositionInOrder = 0;
     private void Start()
     {
         scoreManager = GameManager.instance.scoreScript;
         pColSoundEffects = GameManager.player.GetComponent<playerCollisionSoundEffects>();
         pArrowHandler = GameManager.player.GetComponent<PlayerArrowHandler>();
         rp = GetComponent<RingProperties>();
-        bonusTimeText = GameManager.player.GetComponentsInChildren<bonusTimeTextUpdater>(true)[0];
+        bonusTimeText = GameManager.player.GetComponentInChildren<bonusTimeTextUpdater>(true);
         hitEffect = GetComponentInChildren<ParticleSystem>();
         respawnScript = GameManager.player.GetComponent<PlayerRespawn>();
         prevPositionInOrder = -1;
         consecutiveCount = 0;
         effectsStopped = true;
         originalCrInAmt = multipliers.consecutiveIncreaseAmount;
-        if ((GameModes.Race == GameManager.instance.gameMode.currentMode || GameModes.Cursed == GameManager.instance.gameMode.currentMode) && rp.lastRingInScene == true && rp.laptext.max_lap > 1)
-        {
+        if (rp.lastRingInScene && (GameModes.Race == GameManager.instance.gameMode.currentMode || GameModes.Cursed == GameManager.instance.gameMode.currentMode) && rp.laptext.max_lap > 1)
             portaleffect.SetActive(false);
-        }
     }
     private void IncreaseScore()
     {
@@ -92,11 +88,7 @@ public class RingScoreScript : MonoBehaviour
                 IncreaseScore();
                 UpdateRingEffects();
                 pColSoundEffects.PlayRingClip(gameObject);
-                if (null != hitEffect)
-                {
-                    hitEffect.Play();
-                    hitEffect.GetComponentInParent<MeshRenderer>().enabled = false;
-                }
+                hitEffect.ConvertNull()?.Play();
                 prevPositionInOrder = rp.positionInOrder;
             }
             if (rp.lastRingInScene)
@@ -110,27 +102,18 @@ public class RingScoreScript : MonoBehaviour
                     prevPositionInOrder = -1;
                     EventManager.OnTriggerTransition(rp.nextScene);
                 }
-                else
+                else if (rp.laptext.curr_lap == rp.laptext.max_lap)
                 {
-                    if (rp.laptext.curr_lap == rp.laptext.max_lap)
-                    {
-                        scoreManager.LevelEnd();
-                        scoreManager.prevRingBonusTime = 0.0f;
-                        scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
-                        scoreManager.ringHitCount = 0;
-                        prevPositionInOrder = -1;
-                        rp.laptext.curr_lap = 1;
-                        EventManager.OnTriggerTransition(rp.nextScene);
-                    }
-                    else
-                    {
-                        rp.laptext.curr_lap += 1;
-                        if (rp.laptext.curr_lap == rp.laptext.max_lap)
-                        {
-                            portaleffect.SetActive(true);
-                        }
-                    }
+                    scoreManager.LevelEnd();
+                    scoreManager.prevRingBonusTime = 0.0f;
+                    scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
+                    scoreManager.ringHitCount = 0;
+                    prevPositionInOrder = -1;
+                    rp.laptext.curr_lap = 1;
+                    EventManager.OnTriggerTransition(rp.nextScene);
                 }
+                else if ((++rp.laptext.curr_lap) == rp.laptext.max_lap)
+                    portaleffect.SetActive(true);
             }
         }
     }
