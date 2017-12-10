@@ -11,7 +11,6 @@ public class RingScoreScript : MonoBehaviour
     private static bool effectsStopped = true;
     private playerCollisionSoundEffects pColSoundEffects = null;
     private PlayerArrowHandler pArrowHandler = null;
-    private ScoreManager scoreManager = null;
     private RingProperties rp = null;
     private float originalCrInAmt = 0.25f;
     private bonusTimeTextUpdater bonusTimeText = null;
@@ -21,7 +20,6 @@ public class RingScoreScript : MonoBehaviour
     public static void ResetPrevPositionInOrder() => prevPositionInOrder = 0;
     private void Start()
     {
-        scoreManager = GameManager.instance.scoreScript;
         pColSoundEffects = GameManager.player.GetComponent<playerCollisionSoundEffects>();
         pArrowHandler = GameManager.player.GetComponent<PlayerArrowHandler>();
         rp = GetComponent<RingProperties>();
@@ -32,7 +30,7 @@ public class RingScoreScript : MonoBehaviour
         consecutiveCount = 0;
         effectsStopped = true;
         originalCrInAmt = multipliers.consecutiveIncreaseAmount;
-        if (rp.lastRingInScene && (GameModes.Race == GameManager.instance.gameMode.currentMode || GameModes.Cursed == GameManager.instance.gameMode.currentMode) && rp.laptext.max_lap > 1)
+        if (rp.lastRingInScene && (GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && rp.laptext.max_lap > 1)
             portaleffect.SetActive(false);
     }
     private void IncreaseScore()
@@ -54,8 +52,8 @@ public class RingScoreScript : MonoBehaviour
                 EventManager.StopRingPulse();
             }
         }
-        scoreManager.score += (int)(scoreManager.baseScorePerRing * totalMultiplier);
-        scoreManager.score_multiplier = totalMultiplier;
+        ScoreManager.score += (int)(ScoreManager.baseScorePerRing * totalMultiplier);
+        ScoreManager.score_multiplier = totalMultiplier;
     }
     private void UpdateRingEffects()
     {
@@ -77,12 +75,12 @@ public class RingScoreScript : MonoBehaviour
 
             if (rp.positionInOrder > prevPositionInOrder)
             {
-                scoreManager.prevRingBonusTime = rp.bonusTime;
-                scoreManager.prevRingTransform = rp.transform;
-                ++scoreManager.ringHitCount;
-                if (GameModes.Cursed == GameManager.instance.gameMode.currentMode)
+                ScoreManager.prevRingBonusTime = rp.bonusTime;
+                ScoreManager.prevRingTransform = rp.transform;
+                ++ScoreManager.ringHitCount;
+                if (GameMode.Cursed == GameManager.gameMode)
                 {
-                    GameManager.instance.roundTimer.IncreaseTimeLeft(rp.bonusTime);
+                    RoundTimer.IncreaseTimeLeft(rp.bonusTime);
                     bonusTimeText.play((rp.bonusTime).ToString("n2"));
                 }
                 IncreaseScore();
@@ -93,21 +91,21 @@ public class RingScoreScript : MonoBehaviour
             }
             if (rp.lastRingInScene)
             {
-                if (GameModes.Race != GameManager.instance.gameMode.currentMode && GameModes.Cursed != GameManager.instance.gameMode.currentMode)
+                if (GameMode.Race != GameManager.gameMode && GameMode.Cursed != GameManager.gameMode)
                 {
-                    scoreManager.LevelEnd();
-                    scoreManager.prevRingBonusTime = 0.0f;
-                    scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
-                    scoreManager.ringHitCount = 0;
+                    ScoreManager.LevelEnd();
+                    ScoreManager.prevRingBonusTime = 0.0f;
+                    ScoreManager.prevRingTransform = LevelManager.SpawnPoints[rp.nextScene];
+                    ScoreManager.ringHitCount = 0;
                     prevPositionInOrder = -1;
                     EventManager.OnTriggerTransition(rp.nextScene);
                 }
                 else if (rp.laptext.curr_lap == rp.laptext.max_lap)
                 {
-                    scoreManager.LevelEnd();
-                    scoreManager.prevRingBonusTime = 0.0f;
-                    scoreManager.prevRingTransform = GameManager.instance.levelScript.spawnPoints[rp.nextScene];
-                    scoreManager.ringHitCount = 0;
+                    ScoreManager.LevelEnd();
+                    ScoreManager.prevRingBonusTime = 0.0f;
+                    ScoreManager.prevRingTransform = LevelManager.SpawnPoints[rp.nextScene];
+                    ScoreManager.ringHitCount = 0;
                     prevPositionInOrder = -1;
                     rp.laptext.curr_lap = 1;
                     EventManager.OnTriggerTransition(rp.nextScene);

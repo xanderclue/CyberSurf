@@ -14,7 +14,7 @@ public class boardSelectedEffectController : MonoBehaviour
     private void SetActiveBoard()
     {
         for (int i = 0; i < effects.Length; ++i)
-            if (i == (int)GameManager.instance.boardScript.currentBoardSelection)
+            if (i == (int)BoardManager.currentBoardSelection)
                 effects[i].Play();
             else
                 effects[i].Stop();

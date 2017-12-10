@@ -2,15 +2,10 @@
 public class playerInsideBoundary : MonoBehaviour
 {
     private PlayerRespawn playerRespawnScript = null;
-    private ScoreManager scoreScript = null;
-    private void Start()
-    {
-        playerRespawnScript = GetComponent<PlayerRespawn>();
-        scoreScript = GameManager.instance.scoreScript;
-    }
+    private void Start() => playerRespawnScript = GetComponent<PlayerRespawn>();
     private void OnCollisionEnter(Collision collision)
     {
         if ("Boundary" == collision.gameObject.tag)
-            playerRespawnScript.RespawnPlayer(scoreScript.prevRingTransform, 5.0f + scoreScript.prevRingBonusTime);
+            playerRespawnScript.RespawnPlayer(ScoreManager.prevRingTransform, 5.0f + ScoreManager.prevRingBonusTime);
     }
 }

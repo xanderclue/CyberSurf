@@ -32,16 +32,14 @@ public class KeyInputManager : MonoBehaviour
 #endif
     [SerializeField] private float flippedTimer = 3.0f;
     [SerializeField] private bool hubOnFlippedHMD = false;
-    private ManagerClasses.GameState state = null;
-    private bool countingDown = false;
-    private float timeUpsideDown = 0.0f;
-    private ThirdPersonCamera thirdPersonCameraScript = null;
-    private Transform cameraContainer = null;
-    private Quaternion flippedQuaternion;
-    private Vector3 cameraContainerPositionDifference;
-    public void SetupKeyInputManager(ManagerClasses.GameState s)
+    private static bool countingDown = false;
+    private static float timeUpsideDown = 0.0f;
+    private static ThirdPersonCamera thirdPersonCameraScript = null;
+    private static Transform cameraContainer = null;
+    private static Quaternion flippedQuaternion;
+    private static Vector3 cameraContainerPositionDifference;
+    public void SetupKeyInputManager()
     {
-        state = s;
         thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
         cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().transform;
         cameraContainerPositionDifference = cameraContainer.position - GameManager.player.transform.position;
@@ -51,9 +49,9 @@ public class KeyInputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (state.currentState != GameStates.HubWorld)
+            if (GameState.HubWorld != GameManager.gameState)
             {
-                GameManager.instance.lastPortalBuildIndex = -1;
+                GameManager.lastPortalBuildIndex = -1;
                 EventManager.OnTriggerTransition(1);
             }
             else
@@ -67,14 +65,14 @@ public class KeyInputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(XBOX_BACK))
             StartCoroutine(CalibrationCoroutine());
-        if (state.currentState != GameStates.HubWorld && Input.GetKeyDown(XBOX_START))
+        if (GameState.HubWorld != GameManager.gameState && Input.GetKeyDown(XBOX_START))
         {
-            GameManager.instance.lastPortalBuildIndex = -1;
+            GameManager.lastPortalBuildIndex = -1;
             EventManager.OnTriggerTransition(1);
         }
         if (Input.GetKeyDown(XBOX_Y))
             thirdPersonCameraScript.UpdateThirdPersonCamera();
-        if (VRPresent && hubOnFlippedHMD && state.currentState != GameStates.HubWorld)
+        if (VRPresent && hubOnFlippedHMD && GameState.HubWorld != GameManager.gameState)
         {
             flippedQuaternion = GetHeadRotation();
             if (flippedQuaternion.eulerAngles.z > 150.0f && flippedQuaternion.eulerAngles.z < 210.0f && !countingDown)
@@ -96,7 +94,7 @@ public class KeyInputManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator CalibrationCoroutine()
+    private static IEnumerator CalibrationCoroutine()
     {
         if (!thirdPersonCameraScript.UpdatingCameraPosition)
         {

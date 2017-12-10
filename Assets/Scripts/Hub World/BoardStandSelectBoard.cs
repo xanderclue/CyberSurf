@@ -35,7 +35,7 @@ public class BoardStandSelectBoard : SelectedObject
         animationRunning = false;
         boardCopy.parent = transform;
         boardCopy.gameObject.SetActive(false);
-        GameManager.instance.boardScript.BoardSelect(selectionVariables.boardType);
+        BoardManager.BoardSelect(selectionVariables.boardType);
         EventManager.OnCallBoardMenuEffects();
     }
     new private void Update()

@@ -64,7 +64,7 @@ public class RingMakerRecorder : MonoBehaviour
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (enabled) SaveRings();
-        enabled = GameModes.Free == GameManager.instance.gameMode.currentMode && scene.buildIndex >= LevelSelectOptions.LevelBuildOffset;
+        enabled = GameMode.Free == GameManager.gameMode && scene.buildIndex >= LevelSelectOptions.LevelBuildOffset;
     }
     private void OnDisable() => SaveRings();
     private void OnDestroy() => SceneManager.sceneLoaded -= SceneLoaded;

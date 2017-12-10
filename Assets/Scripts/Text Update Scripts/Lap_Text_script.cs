@@ -17,7 +17,7 @@ private void Update()
         {
             element.SetText("Lap" + '\n' + curr_lap.ToString() + " / " + max_lap.ToString());
         }
-        if (GameManager.instance.lastPortalBuildIndex == -1)
+        if (GameManager.lastPortalBuildIndex == -1)
         {
             curr_lap = 1;
         }

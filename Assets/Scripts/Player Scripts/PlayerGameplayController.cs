@@ -7,10 +7,8 @@ public class PlayerGameplayController : MonoBehaviour
     private bool gamepadEnabled = false, playerMovementLocked = true;
     private SpatialData gyro = null;
     private Rigidbody playerRigidbody = null;
-    private ManagerClasses.RoundTimer roundTimer = null;
     private float pitch = 0.0f, yaw = 0.0f, gyroPrevPitch = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f, debugSpeedIncrease = 0.0f;
-    private BoardManager boardManager = null;
-    public ManagerClasses.PlayerMovementVariables movementVariables = null;
+    public PlayerMovementVariables movementVariables = null;
     public float DebugSpeedIncrease { get { return debugSpeedIncrease; } }
     public void StartDebugSpeedControls()
     {
@@ -18,11 +16,9 @@ public class PlayerGameplayController : MonoBehaviour
     }
     public void SetupGameplayControllerScript()
     {
-        boardManager = GameManager.instance.boardScript;
-        roundTimer = GameManager.instance.roundTimer;
-        gamepadEnabled = boardManager.gamepadEnabled;
+        gamepadEnabled = BoardManager.gamepadEnabled;
         playerRigidbody = GetComponent<Rigidbody>();
-        gyro = boardManager.gyro;
+        gyro = BoardManager.gyro;
         gyroPrevPitch = 0.0f;
         newAcceleration = currAcceleration = 0.0f;
     }
@@ -47,7 +43,7 @@ public class PlayerGameplayController : MonoBehaviour
     {
         gamepadEnabled = gEnabled;
         gyro = g;
-        boardManager.BoardSelect(boardManager.currentBoardSelection);
+        BoardManager.BoardSelect(BoardManager.currentBoardSelection);
         if (!playerMovementLocked)
         {
             StopAllCoroutines();
@@ -57,7 +53,7 @@ public class PlayerGameplayController : MonoBehaviour
                 StartCoroutine(GyroMovementCoroutine());
         }
     }
-    public void UpdatePlayerBoard(ManagerClasses.PlayerMovementVariables newVariables)
+    public void UpdatePlayerBoard(PlayerMovementVariables newVariables)
     {
         movementVariables = newVariables;
         playerRigidbody.mass = movementVariables.mass;
@@ -74,7 +70,7 @@ public class PlayerGameplayController : MonoBehaviour
         if (0.0f != debugChangeAmt)
             if (debugSpeedIncrease + debugChangeAmt > -50.0f && debugSpeedIncrease + debugChangeAmt < 101.0f)
                 debugSpeedIncrease += debugChangeAmt;
-        if (roundTimer.TimeInLevel < 1.0f)
+        if (RoundTimer.timeInLevel < 1.0f)
             currAcceleration = movementVariables.downwardAcceleration;
         else
             currAcceleration = Mathf.Lerp(currAcceleration, newAcceleration, movementVariables.momentum);

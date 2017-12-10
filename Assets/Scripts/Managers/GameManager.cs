@@ -1,38 +1,46 @@
 ﻿using UnityEngine;
 using UnityEngine.PostProcessing;
 using static KeyInputManager.VR;
+public enum GameState { HubWorld, GamePlay, SceneTransition };
+public enum GameMode { Continuous, Cursed, Free, Race, GameModesSize };
+public enum GameDifficulty { Easy, Normal, Hard, GameDifficultiesSize };
 public class GameManager : MonoBehaviour
 {
-    public ManagerClasses.GameState gameState = new ManagerClasses.GameState();
-    public ManagerClasses.GameMode gameMode = new ManagerClasses.GameMode();
-    public ManagerClasses.GameDifficulty gameDifficulty = new ManagerClasses.GameDifficulty();
-    public ManagerClasses.RoundTimer roundTimer = new ManagerClasses.RoundTimer();
-    [HideInInspector] public int lastPortalBuildIndex = 0;
-    [SerializeField] private GameObject playerPrefab = null;
-    public static GameManager instance = null;
+    public static GameState gameState = GameState.HubWorld;
+    public static GameMode gameMode = GameMode.Continuous;
+    public static GameDifficulty gameDifficulty = GameDifficulty.Normal;
+    public static int lastPortalBuildIndex = -1;
     public static GameObject player = null;
-    [HideInInspector] public ScoreManager scoreScript = null;
-    [HideInInspector] public LevelManager levelScript = null;
-    [HideInInspector] public BoardManager boardScript = null;
-    [SerializeField] private bool disableVignette = false;
+    private static GameManager instance = null;
+    [SerializeField] private GameObject playerPrefab = null;
     private void Awake()
     {
-        Application.runInBackground = true;
         if (null == instance)
             instance = this;
         if (this == instance)
         {
             DontDestroyOnLoad(gameObject);
-            InitGame();
+            DontDestroyOnLoad(player = Instantiate(playerPrefab));
+            if (VRPresent)
+            {
+                player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = true;
+                gameDifficulty = GameDifficulty.Easy;
+            }
+            GameSettings.GetEnum("GameDifficulty", ref gameDifficulty);
+            GameSettings.GetEnum("GameMode", ref gameMode);
+            GameSettings.GetBool("DebugSpeed", ref BoardManager.debugSpeedEnabled);
+            GetComponent<BoardManager>().SetupBoardManager();
+            GetComponent<LevelManager>().SetupLevelManager();
+            ScoreManager.SetupScoreManager();
+            GetComponent<KeyInputManager>().SetupKeyInputManager();
         }
         else
             Destroy(gameObject);
     }
     private void OnEnable()
     {
-        GameSettings.GetBool("RingPath", ref levelScript.RingPathIsOn);
-        GameSettings.GetBool("Respawn", ref scoreScript.respawnEnabled);
-        GameSettings.GetBool("DebugSpeed", ref boardScript.debugSpeedEnabled);
+        GameSettings.GetBool("RingPath", ref LevelManager.RingPathIsOn);
+        GameSettings.GetBool("Respawn", ref ScoreManager.respawnEnabled);
         GameSettings.GetBool("MirrorMode", ref LevelManager.mirrorMode);
         GameSettings.GetBool("ReverseMode", ref LevelManager.reverseMode);
         GameSettings.GetEnum("Weather", ref WeatherScript.currentWeather);
@@ -40,31 +48,15 @@ public class GameManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        GameSettings.SetBool("RingPath", levelScript.RingPathIsOn);
-        GameSettings.SetBool("Respawn", scoreScript.respawnEnabled);
-        GameSettings.SetBool("DebugSpeed", boardScript.debugSpeedEnabled);
+        GameSettings.SetBool("RingPath", LevelManager.RingPathIsOn);
+        GameSettings.SetBool("Respawn", ScoreManager.respawnEnabled);
+        GameSettings.SetBool("DebugSpeed", BoardManager.debugSpeedEnabled);
         GameSettings.SetBool("MirrorMode", LevelManager.mirrorMode);
         GameSettings.SetBool("ReverseMode", LevelManager.reverseMode);
         GameSettings.SetEnum("Weather", WeatherScript.currentWeather);
         GameSettings.SetEnum("TimeOfDay", DayNightScript.currentTimeOfDay);
-        GameSettings.SetEnum("GameDifficulty", gameDifficulty.currentDifficulty);
-        GameSettings.SetEnum("GameMode", gameMode.currentMode);
-    }
-    private void InitGame()
-    {
-        scoreScript = GetComponent<ScoreManager>();
-        levelScript = GetComponent<LevelManager>();
-        boardScript = GetComponent<BoardManager>();
-        DontDestroyOnLoad(player = Instantiate(playerPrefab));
-        player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = VRPresent && !disableVignette;
-        if (VRPresent)
-            gameDifficulty.currentDifficulty = GameDifficulties.Easy;
-        GameSettings.GetEnum("GameDifficulty", ref gameDifficulty.currentDifficulty);
-        GameSettings.GetEnum("GameMode", ref gameMode.currentMode);
-        boardScript.SetupBoardManager(player);
-        levelScript.SetupLevelManager(gameState, player, instance);
-        scoreScript.SetupScoreManager();
-        GetComponent<KeyInputManager>().SetupKeyInputManager(gameState);
+        GameSettings.SetEnum("GameDifficulty", gameDifficulty);
+        GameSettings.SetEnum("GameMode", gameMode);
     }
     private void OnDestroy() => GameSettings.Save();
     private static bool deleteScores = false;

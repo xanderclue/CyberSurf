@@ -285,7 +285,7 @@
         {
             RingSetupScript ringParent = FindRingSetupScript();
             if (null != ringParent)
-                for (GameDifficulties gameDifficulty = 0; GameDifficulties.GameDifficultiesSize != gameDifficulty; ++gameDifficulty)
+                for (GameDifficulty gameDifficulty = 0; GameDifficulty.GameDifficultiesSize != gameDifficulty; ++gameDifficulty)
                     ReverseRingPath(ringParent.GetRingDifficultyParent(gameDifficulty));
         }
     }

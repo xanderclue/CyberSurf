@@ -2,10 +2,10 @@
 {
     public static void InitDebugger()
     {
-        System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
 #if DEBUGGER
         if (!stcBoolDebuggerInited)
         {
+            System.Globalization.CultureInfo.CurrentCulture.ClearCachedData();
             if (null == stcStrlistLines)
                 stcStrlistLines = new System.Collections.Generic.List<string>();
             string lStrTimeStamp = Xander.Debugging.Helper.DozenalTimeStamp;

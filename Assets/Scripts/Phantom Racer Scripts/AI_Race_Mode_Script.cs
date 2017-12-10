@@ -9,7 +9,7 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     public float wait = 0;
 	// Use this for initialization
 	void Start () {
-        if (GameModes.Race == GameManager.instance.gameMode.currentMode)
+        if (GameMode.Race == GameManager.gameMode)
         {
             Joe = this.transform.position;
         }

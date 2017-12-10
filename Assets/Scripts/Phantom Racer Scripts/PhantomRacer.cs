@@ -7,27 +7,26 @@ public class PhantomRacer : MonoBehaviour
     private void Start()
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
-        GameManager gameManager = GameManager.instance;
         try
         {
-            switch (GameManager.instance.gameMode.currentMode)
+            switch (GameManager.gameMode)
             {
-                case GameModes.Continuous:
-                    ScoreManager.ContinuousScores[] continuousScores = gameManager.scoreScript.topContinuousScores;
+                case GameMode.Continuous:
+                    ScoreManager.ContinuousScores[] continuousScores = ScoreManager.topContinuousScores;
                     for (int i = 0; i < continuousScores.Length; ++i)
                     {
-                        if (continuousScores[i].difficulty == gameManager.gameDifficulty.currentDifficulty)
+                        if (continuousScores[i].difficulty == GameManager.gameDifficulty)
                         {
                             scoreInfo = continuousScores[i].levels[currentLevel];
                             break;
                         }
                     }
                     break;
-                case GameModes.Cursed:
-                    ScoreManager.ScoreData[] cursedScores = gameManager.scoreScript.topCursedScores[currentLevel].cursedScores;
+                case GameMode.Cursed:
+                    ScoreManager.ScoreData[] cursedScores = ScoreManager.topCursedScores[currentLevel].cursedScores;
                     for (int i = 0; i < cursedScores.Length; ++i)
                     {
-                        if (cursedScores[i].difficulty == gameManager.gameDifficulty.currentDifficulty)
+                        if (cursedScores[i].difficulty == GameManager.gameDifficulty)
                         {
                             scoreInfo = cursedScores[i];
                             break;

@@ -216,7 +216,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922368544337508}
-  m_LocalRotation: {x: -0, y: 0.91861844, z: -0, w: -0.3951459}
+  m_LocalRotation: {x: 0, y: 0.91861844, z: 0, w: -0.3951458}
   m_LocalPosition: {x: 19.98, y: 3.5900002, z: 11.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -862,13 +862,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   properties: {fileID: 114764822903876570}
   theName: {fileID: 114155614814761564}
-  portalViews:
-  - {fileID: 2800000, guid: e4e0206609d8f25478cda0e9f6a58574, type: 3}
-  - {fileID: 2800000, guid: 97576ed39a4b05d4388644f76bc1f8ec, type: 3}
-  - {fileID: 2800000, guid: e99b8e24d826297409af4af627ae78c5, type: 3}
-  - {fileID: 2800000, guid: 48f3078d09cd42b4887467e9ced11737, type: 3}
-  - {fileID: 2800000, guid: 3e89058453ab0e44b812b7bcba6d5e47, type: 3}
-  - {fileID: 2800000, guid: f26f0d1dd0575e24ea28a73316d26ae0, type: 3}
   portalRenderer: {fileID: 23295563603427516}
 --- !u!114 &114155614814761564
 MonoBehaviour:

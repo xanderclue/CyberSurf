@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using Xander.Debugging;
 public class ScoreManager : MonoBehaviour
 {
     public struct ScoreData
     {
         public Vector3[] positions;
         public Quaternion[] rotations;
-        public GameDifficulties difficulty;
+        public GameDifficulty difficulty;
         public string name;
         public float time;
         public int score, board;
@@ -18,7 +17,6 @@ public class ScoreManager : MonoBehaviour
         public ScoreData[] cursedScores;
         public int currentAmoutFilled;
     }
-
     public struct RaceScores
     {
         public ScoreData[] racescores;
@@ -27,26 +25,22 @@ public class ScoreManager : MonoBehaviour
     public struct ContinuousScores
     {
         public ScoreData[] levels;
-        public GameDifficulties difficulty;
+        public GameDifficulty difficulty;
         public string name;
         public bool isLastScoreInput;
     }
-    public CursedScores[] topCursedScores = null;
-    public ContinuousScores[] topContinuousScores = null;
-    public RaceScores[] topRaceScores = null;
-    [HideInInspector] public int curFilledCont = -1, ringHitCount = 0, score = 0;
-    [HideInInspector] public bool firstPortal = true, respawnEnabled = true;
-    [HideInInspector] public char[] currentName = new char[3];
-    public float baseScorePerRing = 100.0f;
-    private ManagerClasses.RoundTimer roundTimer = null;
-    private ManagerClasses.GameState gameState = null;
-    private PlayerRespawn playerRespawnScript = null;
-    private Transform[] spawnPoints = null;
-    private int respawnCount = 0;
+    public static CursedScores[] topCursedScores = null;
+    public static ContinuousScores[] topContinuousScores = null;
+    public static RaceScores[] topRaceScores = null;
+    public static int curFilledCont = -1, ringHitCount = 0, score = 0;
+    public static bool firstPortal = true, respawnEnabled = true;
+    public static float baseScorePerRing = 100.0f;
+    private static PlayerRespawn playerRespawnScript = null;
+    private static int respawnCount = 0;
     private const int maxRespawnCount = 3;
-    [HideInInspector] public float prevRingBonusTime = 0.0f, score_multiplier = 0.0f;
-    [HideInInspector] public Transform prevRingTransform = null;
-    private void InitScores()
+    public static float prevRingBonusTime = 0.0f, score_multiplier = 0.0f;
+    public static Transform prevRingTransform = null;
+    private static void InitScores()
     {
         int sceneCount = SceneManager.sceneCountInBuildSettings;
         topCursedScores = SaveLoader.LoadCurseScores();
@@ -78,60 +72,57 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
-    public void SetupScoreManager()
+    public static void SetupScoreManager()
     {
-        gameState = GameManager.instance.gameState;
-        spawnPoints = GameManager.instance.levelScript.spawnPoints;
         playerRespawnScript = GameManager.player.GetComponent<PlayerRespawn>();
-        roundTimer = GameManager.instance.roundTimer;
         score = respawnCount = 0;
         InitScores();
     }
-    public void LevelEnd()
+    public static void LevelEnd()
     {
         try { TryLevelEnd(); }
         catch { Debug.Log("scores corrupt.. scores file will be reset on exit"); GameManager.DeleteScoresOnExit(); }
     }
-    private void TryLevelEnd()
+    private static void TryLevelEnd()
     {
         positionRecorder recorder = GameManager.player.GetComponent<positionRecorder>();
         int level = SceneManager.GetActiveScene().buildIndex;
         ScoreData newLevelScore = new ScoreData();
-        switch (GameManager.instance.gameMode.currentMode)
+        switch (GameManager.gameMode)
         {
-            case GameModes.Continuous:
+            case GameMode.Continuous:
                 if (firstPortal)
                 {
                     ++curFilledCont;
                     firstPortal = false;
                 }
                 newLevelScore.score = score;
-                newLevelScore.time = roundTimer.TimeInLevel;
-                newLevelScore.board = (int)GameManager.instance.boardScript.currentBoardSelection;
+                newLevelScore.time = RoundTimer.timeInLevel;
+                newLevelScore.board = (int)BoardManager.currentBoardSelection;
                 newLevelScore.positions = recorder.positions.ToArray();
                 newLevelScore.rotations = recorder.rotations.ToArray();
                 if (curFilledCont < 10)
                 {
-                    topContinuousScores[curFilledCont].difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+                    topContinuousScores[curFilledCont].difficulty = GameManager.gameDifficulty;
                     topContinuousScores[curFilledCont].levels[level] = newLevelScore;
                     topContinuousScores[curFilledCont].isLastScoreInput = true;
                 }
                 else
                 {
-                    topContinuousScores[9].difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+                    topContinuousScores[9].difficulty = GameManager.gameDifficulty;
                     topContinuousScores[9].levels[level] = newLevelScore;
                     topContinuousScores[9].isLastScoreInput = true;
                 }
                 SortContinuousScores(topContinuousScores);
                 break;
-            case GameModes.Cursed:
+            case GameMode.Cursed:
                 newLevelScore.score = score;
-                newLevelScore.time = roundTimer.TimeLeft;
-                newLevelScore.board = (int)GameManager.instance.boardScript.currentBoardSelection;
+                newLevelScore.time = RoundTimer.timeLeft;
+                newLevelScore.board = (int)BoardManager.currentBoardSelection;
                 newLevelScore.positions = recorder.positions.ToArray();
                 newLevelScore.rotations = recorder.rotations.ToArray();
                 newLevelScore.isLastScoreInput = true;
-                newLevelScore.difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+                newLevelScore.difficulty = GameManager.gameDifficulty;
                 if (topCursedScores[level].currentAmoutFilled < 10)
                 {
                     topCursedScores[level].cursedScores[topCursedScores[level].currentAmoutFilled] = newLevelScore;
@@ -141,16 +132,14 @@ public class ScoreManager : MonoBehaviour
                     topCursedScores[level].cursedScores[9] = newLevelScore;
                 SortCurseScores(topCursedScores[level].cursedScores, topCursedScores[level].currentAmoutFilled);
                 break;
-            case GameModes.Free:
-                break;
-            case GameModes.Race:
+            case GameMode.Race:
                 newLevelScore.score = score;
-                newLevelScore.time = roundTimer.TimeLeft;
-                newLevelScore.board = (int)GameManager.instance.boardScript.currentBoardSelection;
+                newLevelScore.time = RoundTimer.timeLeft;
+                newLevelScore.board = (int)BoardManager.currentBoardSelection;
                 newLevelScore.positions = recorder.positions.ToArray();
                 newLevelScore.rotations = recorder.rotations.ToArray();
                 newLevelScore.isLastScoreInput = true;
-                newLevelScore.difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+                newLevelScore.difficulty = GameManager.gameDifficulty;
                 if (topRaceScores[level].currentAmoutFilled < 10)
                 {
                     topRaceScores[level].racescores[topRaceScores[level].currentAmoutFilled] = newLevelScore;
@@ -160,12 +149,9 @@ public class ScoreManager : MonoBehaviour
                     topRaceScores[level].racescores[9] = newLevelScore;
                 SortRaceScores(topRaceScores[level].racescores, topRaceScores[level].currentAmoutFilled);
                 break;
-            default:
-                Debug.LogWarning("Missing case: \"" + GameManager.instance.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
-                break;
         }
     }
-    private void SortCurseScores(ScoreData[] scores, int arrayLength)
+    private static void SortCurseScores(ScoreData[] scores, int arrayLength)
     {
         int curr = 1, comparer;
         ScoreData storedScore;
@@ -192,7 +178,7 @@ public class ScoreManager : MonoBehaviour
             ++curr;
         }
     }
-    private void SortContinuousScores(ContinuousScores[] array)
+    private static void SortContinuousScores(ContinuousScores[] array)
     {
         int i, j, k, keyScore, cumulativeScore;
         ContinuousScores key;
@@ -219,7 +205,7 @@ public class ScoreManager : MonoBehaviour
             array[j + 1] = key;
         }
     }
-    private void SortRaceScores(ScoreData[] scores, int arrayLength)
+    private static void SortRaceScores(ScoreData[] scores, int arrayLength)
     {
         int curr = 1, comparer;
         ScoreData storedScore;
@@ -246,20 +232,20 @@ public class ScoreManager : MonoBehaviour
             ++curr;
         }
     }
-    private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
+    private static void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        prevRingTransform = spawnPoints[SceneManager.GetActiveScene().buildIndex];
-        roundTimer.TimeInLevel = 0.0f;
+        prevRingTransform = LevelManager.SpawnPoints[SceneManager.GetActiveScene().buildIndex];
+        RoundTimer.timeInLevel = 0.0f;
         prevRingBonusTime = 0.0f;
         respawnCount = 0;
-        respawnEnabled = GameModes.Cursed == GameManager.instance.gameMode.currentMode;
+        respawnEnabled = GameMode.Cursed == GameManager.gameMode;
     }
     private void Update()
     {
-        if (GameStates.GamePlay == gameState.currentState)
+        if (GameState.GamePlay == GameManager.gameState)
         {
-            roundTimer.UpdateTimers();
-            if (respawnEnabled && roundTimer.TimeLeft <= 0.0 && !playerRespawnScript.IsRespawning)
+            RoundTimer.UpdateTimers();
+            if (respawnEnabled && RoundTimer.timeLeft <= 0.0 && !playerRespawnScript.IsRespawning)
             {
                 if (respawnCount < maxRespawnCount)
                     playerRespawnScript.RespawnPlayer(prevRingTransform, 5.0f + prevRingBonusTime);

@@ -18,9 +18,9 @@ public class GameplayMenuTab : MenuTab
     }
     private void ConfirmOptions()
     {
-        GameManager.instance.boardScript.UpdateControlsType(controller.CurrentValue);
-        GameManager.instance.scoreScript.respawnEnabled = respawn.CurrentValue;
-        GameManager.instance.levelScript.RingPathIsOn = ringPath.CurrentValue;
+        BoardManager.UpdateControlsType(controller.CurrentValue);
+        ScoreManager.respawnEnabled = respawn.CurrentValue;
+        LevelManager.RingPathIsOn = ringPath.CurrentValue;
         trailStripCreator.inst.PredictivePathEnabled = predictiveTrail.CurrentValue;
     }
     private void DefaultOptions()
@@ -32,9 +32,9 @@ public class GameplayMenuTab : MenuTab
     }
     private void RevertOptions()
     {
-        controller.CurrentValue = GameManager.instance.boardScript.gamepadEnabled;
-        respawn.CurrentValue = GameManager.instance.scoreScript.respawnEnabled;
-        ringPath.CurrentValue = GameManager.instance.levelScript.RingPathIsOn;
+        controller.CurrentValue = BoardManager.gamepadEnabled;
+        respawn.CurrentValue = ScoreManager.respawnEnabled;
+        ringPath.CurrentValue = LevelManager.RingPathIsOn;
         predictiveTrail.CurrentValue = trailStripCreator.inst.PredictivePathEnabled;
     }
 }
