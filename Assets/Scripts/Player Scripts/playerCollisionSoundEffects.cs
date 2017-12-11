@@ -13,7 +13,7 @@ public class playerCollisionSoundEffects : MonoBehaviour
         source = GetComponent<AudioSource>();
         respawnScript = GetComponent<PlayerRespawn>();
         prevRingObject = null;
-        AudioLevels.Instance.OnSfxVolumeChanged += UpdateVolume;
+        AudioManager.OnSfxVolumeChanged += UpdateVolume;
         UpdateVolume();
         const_vol = source.volume;
     }
@@ -22,10 +22,10 @@ public class playerCollisionSoundEffects : MonoBehaviour
         if (source.isPlaying && "HitThud" != source.clip.name)
             source.volume = const_vol * (1.0f - Mathf.Abs(source.clip.length * 0.5f - source.time));
         else
-            source.volume = const_vol = AudioLevels.Instance.SfxVolume;
+            source.volume = const_vol = AudioManager.SfxVolume;
     }
-    private void OnDestroy() { try { AudioLevels.Instance.OnSfxVolumeChanged -= UpdateVolume; } catch { } }
-    private void UpdateVolume() { source.volume = AudioLevels.Instance.SfxVolume; }
+    private void OnDestroy() => AudioManager.OnSfxVolumeChanged -= UpdateVolume;
+    private void UpdateVolume() => source.volume = AudioManager.SfxVolume;
     private void OnCollisionEnter(Collision collision)
     {
         source.clip = wallCollision;
