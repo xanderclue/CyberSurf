@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
         menuController = GameManager.player.GetComponent<PlayerMenuController>();
         screenFade = GameManager.player.GetComponentInChildren<ScreenFade>();
         UnityEngine.Assertions.Assert.AreEqual(SceneManager.sceneCountInBuildSettings, spawnPoints.Length, $"GameManager.instance.levelScript.spawnPoints.Length should be {SceneManager.sceneCountInBuildSettings}.. Actual value: {spawnPoints.Length}");
-        UnityEngine.Assertions.Assert.AreEqual(LevelSelectOptions.LevelCount, levelPreviews.Length, $"GameManager.instance.levelScript.levelPreviews.Length should be {LevelSelectOptions.LevelCount}.. Actual value: {levelPreviews.Length}");
+        UnityEngine.Assertions.Assert.AreEqual(LevelCount, levelPreviews.Length, $"GameManager.instance.levelScript.levelPreviews.Length should be {LevelCount}.. Actual value: {levelPreviews.Length}");
     }
     private static void DoSceneTransition(int sceneIndex)
     {
@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
     }
     private void UndoSceneTransitionLocks(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex >= LevelSelectOptions.LevelBuildOffset)
+        if (scene.buildIndex >= LevelBuildOffset)
         {
             EventManager.OnSetHudOnOff(true);
             ApplyGamemodeChanges();
@@ -73,4 +73,15 @@ public class LevelManager : MonoBehaviour
         EventManager.OnTransition -= DoSceneTransition;
         SceneManager.sceneLoaded -= UndoSceneTransitionLocks;
     }
+    public const int HubWorldBuildIndex = 1;
+    public const int LevelBuildOffset = HubWorldBuildIndex + 1;
+    public const int LevelCount = (int)(Level.NumLevels);
+    public const int MirroredOffset = LevelCount;
+    public const int MirroredBuildOffset = LevelBuildOffset + MirroredOffset;
+    public const int ReversedOffset = MirroredOffset + LevelCount;
+    public const int ReversedBuildOffset = LevelBuildOffset + ReversedOffset;
+    public const int MirroredReversedOffset = ReversedOffset + LevelCount;
+    public const int MirroredReversedBuildOffset = LevelBuildOffset + MirroredReversedOffset;
+    public static int GetLevelOffset => mirrorMode ? (reverseMode ? MirroredReversedOffset : MirroredOffset) : (reverseMode ? ReversedOffset : 0);
+    public static int GetBuildOffset => LevelBuildOffset + GetLevelOffset;
 }

@@ -77,8 +77,8 @@ public class RingSetupScript : MonoBehaviour
                 arrowScript.currentlyLookingAt = 1;
                 break;
         }
-        if (null != lapTrigger && (GameMode.Cursed == mode || GameMode.Race == mode) && rings[0].laptext.max_lap > 1)
-            Instantiate(lapTrigger, rings[0].GetComponent<Transform>().position, rings[0].GetComponent<Transform>().rotation).GetComponent<PositionInOrderResetter>().MaxLap = rings[0].laptext.max_lap;
+        if (null != lapTrigger && (GameMode.Cursed == mode || GameMode.Race == mode) && RingProperties.laptext.max_lap > 1)
+            Instantiate(lapTrigger, rings[0].GetComponent<Transform>().position, rings[0].GetComponent<Transform>().rotation).GetComponent<PositionInOrderResetter>().MaxLap = RingProperties.laptext.max_lap;
     }
     private void InsertionSort(RingProperties[] rings)
     {

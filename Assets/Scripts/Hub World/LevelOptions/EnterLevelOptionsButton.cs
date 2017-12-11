@@ -22,18 +22,7 @@ public class EnterLevelOptionsButton : SelectedObject
         base.Update();
         transform.Rotate(0.0f, Time.deltaTime * rotationSpeed, 0.0f);
     }
-    protected override void SelectedFunction()
-    {
-        base.SelectedFunction();
-        meshRenderer.material = hoverMat;
-    }
-    protected override void DeselectedFunction()
-    {
-        base.DeselectedFunction();
-        meshRenderer.material = noHoverMat;
-    }
-    protected override void SuccessFunction()
-    {
-        levelMenuScript.EnterMenu();
-    }
+    protected override void SelectedFunction() => meshRenderer.material = hoverMat;
+    protected override void DeselectedFunction() => meshRenderer.material = noHoverMat;
+    protected override void SuccessFunction() => levelMenuScript.EnterMenu();
 }

@@ -2,11 +2,9 @@
 using Xander.NullConversion;
 public class RingScoreScript : MonoBehaviour
 {
-    [System.Serializable]
-    private class ScoreMultipliers
-    { public float speedMultiplier = 1.5f, consecutiveMultiplier = 1.0f, consecutiveIncreaseAmount = 0.25f; }
+    private float consecutiveMultiplier = 1.0f;
+    private const float consecutiveIncreaseAmount = 0.25f;
     private static readonly System.Type capsuleType = typeof(CapsuleCollider);
-    private static ScoreMultipliers multipliers = new ScoreMultipliers();
     private static int prevPositionInOrder = -1, prevConsecutiveCount = 0, consecutiveCount = 0;
     private static bool effectsStopped = true;
     private playerCollisionSoundEffects pColSoundEffects = null;
@@ -29,8 +27,8 @@ public class RingScoreScript : MonoBehaviour
         prevPositionInOrder = -1;
         consecutiveCount = 0;
         effectsStopped = true;
-        originalCrInAmt = multipliers.consecutiveIncreaseAmount;
-        if (rp.lastRingInScene && (GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && rp.laptext.max_lap > 1)
+        originalCrInAmt = consecutiveIncreaseAmount;
+        if (rp.LastRingInScene && (GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && RingProperties.laptext.max_lap > 1)
             portaleffect.SetActive(false);
     }
     private void IncreaseScore()
@@ -38,13 +36,13 @@ public class RingScoreScript : MonoBehaviour
         float totalMultiplier = 1.0f;
         if (prevPositionInOrder + 1 == rp.positionInOrder)
         {
-            totalMultiplier += multipliers.consecutiveMultiplier;
-            multipliers.consecutiveMultiplier += multipliers.consecutiveIncreaseAmount;
+            totalMultiplier += consecutiveMultiplier;
+            consecutiveMultiplier += consecutiveIncreaseAmount;
             ++consecutiveCount;
         }
         else
         {
-            multipliers.consecutiveMultiplier = originalCrInAmt;
+            consecutiveMultiplier = originalCrInAmt;
             consecutiveCount = prevConsecutiveCount = 0;
             if (!effectsStopped)
             {
@@ -89,7 +87,7 @@ public class RingScoreScript : MonoBehaviour
                 hitEffect.ConvertNull()?.Play();
                 prevPositionInOrder = rp.positionInOrder;
             }
-            if (rp.lastRingInScene)
+            if (rp.LastRingInScene)
             {
                 if (GameMode.Race != GameManager.gameMode && GameMode.Cursed != GameManager.gameMode)
                 {
@@ -100,17 +98,17 @@ public class RingScoreScript : MonoBehaviour
                     prevPositionInOrder = -1;
                     EventManager.OnTriggerTransition(rp.nextScene);
                 }
-                else if (rp.laptext.curr_lap == rp.laptext.max_lap)
+                else if (RingProperties.laptext.curr_lap == RingProperties.laptext.max_lap)
                 {
                     ScoreManager.LevelEnd();
                     ScoreManager.prevRingBonusTime = 0.0f;
                     ScoreManager.prevRingTransform = LevelManager.SpawnPoints[rp.nextScene];
                     ScoreManager.ringHitCount = 0;
                     prevPositionInOrder = -1;
-                    rp.laptext.curr_lap = 1;
+                    RingProperties.laptext.curr_lap = 1;
                     EventManager.OnTriggerTransition(rp.nextScene);
                 }
-                else if ((++rp.laptext.curr_lap) == rp.laptext.max_lap)
+                else if ((++RingProperties.laptext.curr_lap) == RingProperties.laptext.max_lap)
                     portaleffect.SetActive(true);
             }
         }

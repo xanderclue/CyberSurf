@@ -54,7 +54,7 @@ public class PlayerMenuController : MonoBehaviour
     {
         if (null == playerRB)
             playerRB = GameManager.player.GetComponent<Rigidbody>();
-        if (scene.buildIndex < LevelSelectOptions.LevelBuildOffset)
+        if (scene.buildIndex < LevelManager.LevelBuildOffset)
         {
             coroutinesStopped = false;
             inAMenu = true;

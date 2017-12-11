@@ -7,24 +7,15 @@ public class AudioMenuTab : MenuTab
     [SerializeField, LabelOverride("SFX Volume Text")] private TextMeshPro sfxVolume = null;
     [SerializeField, LabelOverride("ENV Volume Text")] private TextMeshPro envVolume = null;
     [SerializeField] private EventSelectedObject bgmUpButton = null, bgmDownButton = null, sfxUpButton = null, sfxDownButton = null, envUpButton = null, envDownButton = null;
-    private float VolumeIncrement { get { return 1.0f / maxNumber; } }
-    private void SetBgmText()
-    {
-        bgmVolume.SetText(Mathf.RoundToInt(AudioLevels.Instance.BgmVolume * maxNumber).ToString());
-    }
-    private void SetSfxText()
-    {
-        sfxVolume.SetText(Mathf.RoundToInt(AudioLevels.Instance.SfxVolume * maxNumber).ToString());
-    }
-    private void SetEnvText()
-    {
-        envVolume.SetText(Mathf.RoundToInt(AudioLevels.Instance.EnvVolume * maxNumber).ToString());
-    }
+    private float VolumeIncrement => 1.0f / maxNumber;
+    private void SetBgmText() => bgmVolume.SetText(Mathf.RoundToInt(AudioManager.BgmVolume * maxNumber).ToString());
+    private void SetSfxText() => sfxVolume.SetText(Mathf.RoundToInt(AudioManager.SfxVolume * maxNumber).ToString());
+    private void SetEnvText() => envVolume.SetText(Mathf.RoundToInt(AudioManager.EnvVolume * maxNumber).ToString());
     private void OnEnable()
     {
-        AudioLevels.Instance.OnBgmVolumeChanged += SetBgmText;
-        AudioLevels.Instance.OnSfxVolumeChanged += SetSfxText;
-        AudioLevels.Instance.OnEnvVolumeChanged += SetEnvText;
+        AudioManager.OnBgmVolumeChanged += SetBgmText;
+        AudioManager.OnSfxVolumeChanged += SetSfxText;
+        AudioManager.OnEnvVolumeChanged += SetEnvText;
         bgmUpButton.OnSelectSuccess += BgmUp;
         bgmDownButton.OnSelectSuccess += BgmDown;
         sfxUpButton.OnSelectSuccess += SfxUp;
@@ -37,13 +28,9 @@ public class AudioMenuTab : MenuTab
     }
     private void OnDisable()
     {
-        try
-        {
-            AudioLevels.Instance.OnBgmVolumeChanged -= SetBgmText;
-            AudioLevels.Instance.OnSfxVolumeChanged -= SetSfxText;
-            AudioLevels.Instance.OnEnvVolumeChanged -= SetEnvText;
-        }
-        catch { }
+        AudioManager.OnBgmVolumeChanged -= SetBgmText;
+        AudioManager.OnSfxVolumeChanged -= SetSfxText;
+        AudioManager.OnEnvVolumeChanged -= SetEnvText;
         bgmUpButton.OnSelectSuccess -= BgmUp;
         bgmDownButton.OnSelectSuccess -= BgmDown;
         sfxUpButton.OnSelectSuccess -= SfxUp;
@@ -51,28 +38,10 @@ public class AudioMenuTab : MenuTab
         envUpButton.OnSelectSuccess -= EnvUp;
         envDownButton.OnSelectSuccess -= EnvDown;
     }
-    private void BgmUp()
-    {
-        AudioLevels.Instance.BgmVolume += VolumeIncrement;
-    }
-    private void BgmDown()
-    {
-        AudioLevels.Instance.BgmVolume -= VolumeIncrement;
-    }
-    private void SfxUp()
-    {
-        AudioLevels.Instance.SfxVolume += VolumeIncrement;
-    }
-    private void SfxDown()
-    {
-        AudioLevels.Instance.SfxVolume -= VolumeIncrement;
-    }
-    private void EnvUp()
-    {
-        AudioLevels.Instance.EnvVolume += VolumeIncrement;
-    }
-    private void EnvDown()
-    {
-        AudioLevels.Instance.EnvVolume -= VolumeIncrement;
-    }
+    private void BgmUp() => AudioManager.BgmVolume += VolumeIncrement;
+    private void BgmDown() => AudioManager.BgmVolume -= VolumeIncrement;
+    private void SfxUp() => AudioManager.SfxVolume += VolumeIncrement;
+    private void SfxDown() => AudioManager.SfxVolume -= VolumeIncrement;
+    private void EnvUp() => AudioManager.EnvVolume += VolumeIncrement;
+    private void EnvDown() => AudioManager.EnvVolume -= VolumeIncrement;
 }

@@ -8,17 +8,17 @@ public class WorldPortalText : MonoBehaviour
     private void OnEnable()
     {
         properties.OnSceneIndexChanged += UpdateText;
-        properties.SceneIndex = (int)GameSettings.GetEnum("CurrentLevel", ref LevelManager.savedCurrentLevel) + LevelSelectOptions.LevelBuildOffset;
+        properties.SceneIndex = (int)GameSettings.GetEnum("CurrentLevel", ref LevelManager.savedCurrentLevel) + LevelManager.LevelBuildOffset;
     }
     private void OnDisable()
     {
         properties.OnSceneIndexChanged -= UpdateText;
-        LevelManager.savedCurrentLevel = GameSettings.SetEnum("CurrentLevel", (LevelManager.Level)(properties.SceneIndex - LevelSelectOptions.LevelBuildOffset));
+        LevelManager.savedCurrentLevel = GameSettings.SetEnum("CurrentLevel", (LevelManager.Level)(properties.SceneIndex - LevelManager.LevelBuildOffset));
     }
     private void UpdateText()
     {
         string path = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(properties.SceneIndex);
         theName.SetText(path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1));
-        portalRenderer.material.mainTexture = LevelManager.GetLevelPreview((LevelManager.Level)(properties.SceneIndex - LevelSelectOptions.LevelBuildOffset)).texture;
+        portalRenderer.material.mainTexture = LevelManager.GetLevelPreview((LevelManager.Level)(properties.SceneIndex - LevelManager.LevelBuildOffset)).texture;
     }
 }

@@ -37,7 +37,7 @@ public class closeScoreSplashScreen : SelectedObject
                         break;
                     }
                 }
-                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     string name = nameDisplay.NameString;
                     ScoreManager.topContinuousScores[lastScoreLocation].name = name;
@@ -59,7 +59,7 @@ public class closeScoreSplashScreen : SelectedObject
                     if (j < ScoreManager.topCursedScores[i].cursedScores.Length - 1)
                         break;
                 }
-                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     string name = nameDisplay.NameString;
                     ScoreManager.topCursedScores[GameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].name = name;
@@ -81,7 +81,7 @@ public class closeScoreSplashScreen : SelectedObject
                     if (j < ScoreManager.topRaceScores[i].racescores.Length - 1)
                         break;
                 }
-                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     string name = nameDisplay.NameString;
                     ScoreManager.topRaceScores[GameManager.lastPortalBuildIndex].racescores[lastScoreLocation].name = name;

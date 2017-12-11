@@ -4,13 +4,13 @@ public class RingProperties : MonoBehaviour
     [SerializeField] private bool duplicatePosition = false;
     public int positionInOrder = 0;
     public float bonusTime = 0.0f;
-    public bool lastRingInScene = false;
-    public int nextScene = 1;
-    public Lap_Text_script laptext = null;
-    public bool DuplicatePosition { get { return duplicatePosition; } }
+    public bool LastRingInScene => nextScene >= 0;
+    public int nextScene = -1;
+    public static Lap_Text_script laptext = null;
+    public bool DuplicatePosition => duplicatePosition;
     private void Awake()
     {
-        laptext = GameObject.FindObjectOfType<Lap_Text_script>();
+        if (null == laptext) laptext = FindObjectOfType<Lap_Text_script>();
         if (duplicatePosition)
         {
             RingProperties[] rps = GetComponentsInChildren<RingProperties>();
@@ -19,7 +19,6 @@ public class RingProperties : MonoBehaviour
                 rp.duplicatePosition = duplicatePosition;
                 rp.positionInOrder = positionInOrder;
                 rp.bonusTime = bonusTime;
-                rp.lastRingInScene = lastRingInScene;
                 rp.nextScene = nextScene;
             }
         }

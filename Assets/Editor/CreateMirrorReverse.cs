@@ -146,9 +146,7 @@
                     theRings.Add(ringProperty);
         }
         private class RingPropertiesPositionInOrderComparer : IComparer<RingProperties>
-        {
-            public int Compare(RingProperties x, RingProperties y) => x.positionInOrder - y.positionInOrder;
-        }
+        { public int Compare(RingProperties x, RingProperties y) => x.positionInOrder - y.positionInOrder; }
         private void GetSortedRings()
         {
             sortedRings = theRings.ToArray();
@@ -209,9 +207,9 @@
             raiseExceptions = true;
             try
             {
-                nextRing.lastRingInScene.AssertTrue();
-                exitRing.lastRingInScene.AssertTrue();
-                startRing.lastRingInScene.AssertFalse();
+                nextRing.LastRingInScene.AssertTrue();
+                exitRing.LastRingInScene.AssertTrue();
+                startRing.LastRingInScene.AssertFalse();
                 exitRing.nextScene.AssertEqual(1);
                 nextRing.nextScene.AssertNotEqual(1);
             }
@@ -444,8 +442,8 @@
             EditorSceneManager.MarkAllScenesDirty();
             EditorSceneManager.SaveOpenScenes();
             int i, j;
-            int startLoop = original ? 0 : LevelSelectOptions.MirroredBuildOffset;
-            int endLoop = original ? LevelSelectOptions.MirroredBuildOffset : buildScenes.Length;
+            int startLoop = original ? 0 : LevelManager.MirroredBuildOffset;
+            int endLoop = original ? LevelManager.MirroredBuildOffset : buildScenes.Length;
             for (i = startLoop; i < endLoop; ++i)
             {
                 EditorSceneManager.OpenScene(buildScenes[i].path, OpenSceneMode.Single);

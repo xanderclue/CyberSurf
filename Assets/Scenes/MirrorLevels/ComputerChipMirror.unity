@@ -296,7 +296,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 5.130537
+      value: 3.9845102
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -309,6 +309,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -759,7 +764,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 4.469638
+      value: 4.476278
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -947,6 +957,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -0.77166295
       objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: m_Size.x
@@ -1107,7 +1122,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.8961062
+      value: 4.8884134
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1124,6 +1139,11 @@ Prefab:
     - target: {fileID: 1995531589141898, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_Name
       value: Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -1336,7 +1356,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 3.4844809
+      value: 3.43047
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1349,6 +1369,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -1489,6 +1514,11 @@ Prefab:
       propertyPath: bonusTime
       value: 2.069299
       objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
   m_IsPrefabParent: 0
@@ -1567,11 +1597,16 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 3.7449963
+      value: 9.140391
       objectReference: {fileID: 0}
     - target: {fileID: 4223804784761788, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -126.394005
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -1735,6 +1770,11 @@ Prefab:
         type: 2}
       propertyPath: bonusTime
       value: 6.1642838
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -1960,7 +2000,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.349475
+      value: 4.8510995
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1973,6 +2013,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -2071,6 +2116,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -2435,7 +2485,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 6.904086
+      value: 4.2817035
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2448,6 +2498,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -2538,6 +2593,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -3032,6 +3092,11 @@ Prefab:
       propertyPath: bonusTime
       value: 4.551593
       objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
   m_IsPrefabParent: 0
@@ -3124,6 +3189,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -3502,6 +3572,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -0.77166295
       objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: m_Size.x
@@ -3628,7 +3703,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.0113287
+      value: 3.4345212
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3641,6 +3716,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -3774,7 +3854,7 @@ Prefab:
     - target: {fileID: 114165219284145858, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
         type: 2}
       propertyPath: bonusTime
-      value: 3.4941
+      value: 3.7084715
       objectReference: {fileID: 0}
     - target: {fileID: 4581463513437418, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
       propertyPath: m_RootOrder
@@ -3878,7 +3958,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 4.469638
+      value: 4.476278
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -4367,6 +4452,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -0.77166295
       objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: m_Size.x
@@ -4443,7 +4533,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 3.7536857
+      value: 3.8682542
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4456,6 +4546,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -4648,6 +4743,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -0.77166295
       objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: m_Size.x
@@ -4730,7 +4830,7 @@ Prefab:
     - target: {fileID: 114165219284145858, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
         type: 2}
       propertyPath: bonusTime
-      value: 3.4941
+      value: 3.7084715
       objectReference: {fileID: 0}
     - target: {fileID: 4581463513437418, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
       propertyPath: m_RootOrder
@@ -4840,7 +4940,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 6.0797553
+      value: 6.202856
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -4926,6 +5031,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -5019,7 +5129,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 4.169309
+      value: 4.20085
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -5199,6 +5314,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -5383,6 +5503,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -0.77166295
       objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: m_Size.x
@@ -5560,7 +5685,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 6.904086
+      value: 4.2817035
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5573,6 +5698,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -5672,7 +5802,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 6.8579507
+      value: 6.8571343
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -5742,11 +5877,16 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 5.0975704
+      value: 5.305628
       objectReference: {fileID: 0}
     - target: {fileID: 4223804784761788, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 76.26501
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -5881,7 +6021,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.470381
+      value: 4.152715
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5898,6 +6038,11 @@ Prefab:
     - target: {fileID: 1995531589141898, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_Name
       value: Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -5975,7 +6120,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 3.2685351
+      value: 3.1983778
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5988,6 +6133,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -6065,7 +6215,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.550406
+      value: 5.8461385
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6078,6 +6228,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -6172,7 +6327,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 7.421153
+      value: 6.250957
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -6253,7 +6413,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 2.65597
+      value: 2.0504353
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6266,6 +6426,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -6351,7 +6516,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 6.2982802
+      value: 5.6446533
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6364,6 +6529,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -6935,11 +7105,16 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 5.4013724
+      value: 5.7858887
       objectReference: {fileID: 0}
     - target: {fileID: 4223804784761788, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -88.11301
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -7106,7 +7281,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 3.3290458
+      value: 3.4394543
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -7186,7 +7366,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 6.0797553
+      value: 6.202856
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -7462,7 +7647,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 7.421153
+      value: 6.250957
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -7543,7 +7733,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.349475
+      value: 4.8510995
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7556,6 +7746,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -7777,7 +7972,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 3.2685351
+      value: 3.1983778
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7790,6 +7985,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -8164,7 +8364,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 5.309874
+      value: 5.2740197
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8177,6 +8377,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -8355,7 +8560,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.7063093
+      value: 5.02005
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8368,6 +8573,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -8580,7 +8790,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.6169257
+      value: 2.540765
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8593,6 +8803,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -9076,7 +9291,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.8669095
+      value: 3.7417893
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9089,6 +9304,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -9360,7 +9580,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.8669095
+      value: 3.7417893
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9378,6 +9598,11 @@ Prefab:
         type: 2}
       propertyPath: m_Range
       value: 3.6947632
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -9718,7 +9943,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4810886142740776, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.05859884
+      value: 0.058598846
       objectReference: {fileID: 0}
     - target: {fileID: 4810886142740776, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.z
@@ -9756,7 +9981,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 5.003245
+      value: 5.4908094
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9769,6 +9994,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -9939,7 +10169,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 5.15504
+      value: 7.1141586
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9952,6 +10182,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -10037,7 +10272,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.831334
+      value: 4.749406
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10050,6 +10285,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -10140,6 +10380,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -10447,6 +10692,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -0.77166295
       objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: m_Size.x
@@ -10527,7 +10777,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 5.761398
+      value: 5.7583675
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -10601,7 +10856,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 3.3290458
+      value: 3.4394543
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -10717,7 +10977,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.470381
+      value: 4.152715
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10734,6 +10994,11 @@ Prefab:
     - target: {fileID: 1995531589141898, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_Name
       value: Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -11185,7 +11450,7 @@ Prefab:
     - target: {fileID: 114165219284145858, guid: 5dc62ae48caa60c4fa070e0c93ea2c49,
         type: 2}
       propertyPath: bonusTime
-      value: 3.4941
+      value: 3.7084715
       objectReference: {fileID: 0}
     - target: {fileID: 4581463513437418, guid: 5dc62ae48caa60c4fa070e0c93ea2c49, type: 2}
       propertyPath: m_RootOrder
@@ -11300,7 +11565,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 4.169309
+      value: 4.20085
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -11477,6 +11747,11 @@ Prefab:
       propertyPath: bonusTime
       value: 3.9716027
       objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
   m_IsPrefabParent: 0
@@ -11569,6 +11844,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -11854,6 +12134,11 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -0.77166295
       objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: m_Size.x
@@ -11930,7 +12215,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 4.4533014
+      value: 6.211191
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11943,6 +12228,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -12020,7 +12310,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 3.7536857
+      value: 3.8682542
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -12033,6 +12323,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -12389,7 +12684,12 @@ Prefab:
     - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
         type: 2}
       propertyPath: bonusTime
-      value: 6.8579507
+      value: 6.8571343
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736041690766026, guid: 9adbc287463e99f4299ef1f0fc6032d6,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9adbc287463e99f4299ef1f0fc6032d6, type: 2}
@@ -12483,6 +12783,11 @@ Prefab:
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.w
       value: -0.77166295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
@@ -12615,7 +12920,7 @@ Prefab:
     - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}
       propertyPath: bonusTime
-      value: 3.9693744
+      value: 3.5042024
       objectReference: {fileID: 0}
     - target: {fileID: 4204250326827704, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -12632,6 +12937,11 @@ Prefab:
     - target: {fileID: 1995531589141898, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_Name
       value: Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 114258633658491928, guid: f9618c21302b20d47b791363cc3f2e21,
+        type: 2}
+      propertyPath: nextScene
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 65110473649434812, guid: f9618c21302b20d47b791363cc3f2e21,
         type: 2}

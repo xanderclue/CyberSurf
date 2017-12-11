@@ -36,7 +36,7 @@ public class BoardRollEffect : MonoBehaviour
     }
     private void PitchEffect()
     {
-        if (currScene < LevelSelectOptions.LevelBuildOffset)
+        if (currScene < LevelManager.LevelBuildOffset)
         {
             forwardSpeed = transform.InverseTransformDirection(playerRB.velocity).z;
             if (forwardSpeed <= -0.1f || 0.1f <= forwardSpeed)

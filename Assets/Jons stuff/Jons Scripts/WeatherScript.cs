@@ -10,7 +10,7 @@ public class WeatherScript : MonoBehaviour
     {
         if (null == playerRain) playerRain = GameObject.FindGameObjectWithTag("rain").ConvertNull()?.GetComponent<ParticleSystem>();
         if (null == playerSnow) playerSnow = GameObject.FindGameObjectWithTag("playerSnow").ConvertNull()?.GetComponent<ParticleSystem>();
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex < LevelSelectOptions.LevelBuildOffset)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex < LevelManager.LevelBuildOffset)
         {
             playerRain.Stop();
             playerSnow.Stop();

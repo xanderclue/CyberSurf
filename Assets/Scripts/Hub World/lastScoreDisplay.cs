@@ -18,7 +18,7 @@ public class lastScoreDisplay : MonoBehaviour
                         break;
                     }
                 }
-                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     for (i = 0; i < ScoreManager.topContinuousScores[lastScoreLocation].levels.Length; ++i)
                     {
@@ -46,7 +46,7 @@ public class lastScoreDisplay : MonoBehaviour
                     if (j < ScoreManager.topCursedScores[i].cursedScores.Length - 1)
                         break;
                 }
-                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     lastScore = ScoreManager.topCursedScores[GameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].score;
                     lastTime = ScoreManager.topCursedScores[GameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].time;
@@ -73,7 +73,7 @@ public class lastScoreDisplay : MonoBehaviour
                     if (j < ScoreManager.topRaceScores[i].racescores.Length - 1)
                         break;
                 }
-                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     lastScore = ScoreManager.topRaceScores[GameManager.lastPortalBuildIndex].racescores[lastScoreLocation].score;
                     lastTime = ScoreManager.topRaceScores[GameManager.lastPortalBuildIndex].racescores[lastScoreLocation].time;

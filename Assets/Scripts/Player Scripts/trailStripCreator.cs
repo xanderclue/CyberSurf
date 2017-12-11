@@ -62,7 +62,7 @@ public class trailStripCreator : MonoBehaviour
     }
     private void UpdateCookieDisplay()
     {
-        if (predictiveTrailEnabled && currentSceneIndex >= LevelSelectOptions.LevelBuildOffset)
+        if (predictiveTrailEnabled && currentSceneIndex >= LevelManager.LevelBuildOffset)
         {
             if (cookiesDisabled)
             {

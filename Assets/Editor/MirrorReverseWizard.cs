@@ -15,7 +15,7 @@ public class MirrorReverseWizard : ScriptableWizard
         EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
         scenes = new string[(int)Level.NumLevels];
         for (Level i = 0; Level.NumLevels != i; ++i)
-            scenes[(int)i] = buildScenes[(int)i + LevelSelectOptions.LevelBuildOffset].path.GetSceneName();
+            scenes[(int)i] = buildScenes[(int)i + LevelManager.LevelBuildOffset].path.GetSceneName();
         OnWizardUpdate();
     }
     private void OnWizardCreate()

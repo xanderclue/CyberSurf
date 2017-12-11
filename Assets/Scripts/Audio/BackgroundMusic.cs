@@ -19,16 +19,13 @@ public class BackgroundMusic : MonoBehaviour
     }
     private void OnEnable()
     {
-        AudioLevels.Instance.OnBgmVolumeChanged += UpdateVolume;
+        AudioManager.OnBgmVolumeChanged += UpdateVolume;
         UpdateVolume();
     }
-    private void OnDisable()
-    {
-        try { AudioLevels.Instance.OnBgmVolumeChanged -= UpdateVolume; } catch { }
-    }
+    private void OnDisable() => AudioManager.OnBgmVolumeChanged -= UpdateVolume;
     private void UpdateVolume()
     {
         if (null != audioSource)
-            audioSource.volume = AudioLevels.Instance.BgmVolume;
+            audioSource.volume = AudioManager.BgmVolume;
     }
 }

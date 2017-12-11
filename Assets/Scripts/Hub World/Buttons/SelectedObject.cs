@@ -18,7 +18,7 @@ public abstract class SelectedObject : MonoBehaviour
     public bool tooltipOnly = false;
     public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.UpdateReticleFill(0.0f); } }
     protected float WaitTime { get { return waitTime; } }
-    private reticle theReticle = null;
+    private ReticleScript theReticle = null;
     public const string LAYERNAME = "Selectable";
     public static int Selectable_Layer { get { return LayerMask.NameToLayer(LAYERNAME); } }
     protected virtual void SelectedFunction() { }
@@ -31,7 +31,7 @@ public abstract class SelectedObject : MonoBehaviour
         else if (delay < 0)
             delay = DEFAULT_DELAY;
     }
-    public void Selected(reticle grabbedReticle)
+    public void Selected(ReticleScript grabbedReticle)
     {
         if (enabled && CanSelect && !isDisabled)
         {
@@ -77,13 +77,13 @@ public abstract class SelectedObject : MonoBehaviour
                 theReticle.UpdateReticleFill(0.0f);
                 timeWaited = 0;
                 if (isActiveAndEnabled && null != successSound)
-                    AudioSource.PlayClipAtPoint(successSound, transform.position, AudioLevels.Instance.SfxVolume);
+                    AudioSource.PlayClipAtPoint(successSound, transform.position, AudioManager.SfxVolume);
             }
             theReticle.UpdateReticleFill((float)timeWaited / timeToWait);
             if (!selectsoundplayed && timeWaited >= 2)
             {
                 if (null != selectedSound)
-                    AudioSource.PlayClipAtPoint(selectedSound, transform.position, AudioLevels.Instance.SfxVolume);
+                    AudioSource.PlayClipAtPoint(selectedSound, transform.position, AudioManager.SfxVolume);
                 selectsoundplayed = true;
             }
         }

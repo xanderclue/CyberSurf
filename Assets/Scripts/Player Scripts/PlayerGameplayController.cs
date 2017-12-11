@@ -140,7 +140,7 @@ public class PlayerGameplayController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset)
+        if (SceneManager.GetActiveScene().buildIndex >= LevelManager.LevelBuildOffset)
             playerRigidbody.AddForce(collision.impulse * movementVariables.bounceModifier, ForceMode.Impulse);
     }
     void OnEnable() { EventManager.OnToggleMovement += SetPlayerMovementLock; }
