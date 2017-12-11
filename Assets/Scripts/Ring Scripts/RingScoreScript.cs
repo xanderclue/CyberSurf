@@ -28,7 +28,7 @@ public class RingScoreScript : MonoBehaviour
         consecutiveCount = 0;
         effectsStopped = true;
         originalCrInAmt = consecutiveIncreaseAmount;
-        if (rp.lastRingInScene && (GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && RingProperties.laptext.max_lap > 1)
+        if (rp.LastRingInScene && (GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && RingProperties.laptext.max_lap > 1)
             portaleffect.SetActive(false);
     }
     private void IncreaseScore()
@@ -87,7 +87,7 @@ public class RingScoreScript : MonoBehaviour
                 hitEffect.ConvertNull()?.Play();
                 prevPositionInOrder = rp.positionInOrder;
             }
-            if (rp.lastRingInScene)
+            if (rp.LastRingInScene)
             {
                 if (GameMode.Race != GameManager.gameMode && GameMode.Cursed != GameManager.gameMode)
                 {

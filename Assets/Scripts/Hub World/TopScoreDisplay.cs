@@ -3,7 +3,7 @@ using TMPro;
 using Xander.Dozenal;
 public class TopScoreDisplay : MonoBehaviour
 {
-    private int currentLevel = LevelSelectOptions.LevelBuildOffset;
+    private int currentLevel = LevelManager.LevelBuildOffset;
     [Header("Sink Effect"), SerializeField] private BackBoardSinkEffect sinkEffect = null;
     [SerializeField] private Transform scoreBackBoard = null;
     private bool updateScore = false;
@@ -13,7 +13,7 @@ public class TopScoreDisplay : MonoBehaviour
     private string[] names = new string[10];
     private void Start()
     {
-        if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+        if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
             currentLevel = GameManager.lastPortalBuildIndex;
         UpdateScoreDisplay();
     }

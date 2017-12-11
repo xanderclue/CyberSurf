@@ -30,7 +30,7 @@ public class PlayerArrowHandler : MonoBehaviour
             if (-1 != arrowScript.currentlyLookingAt)
             {
                 rp = arrowScript.sortedRings[arrowScript.currentlyLookingAt];
-                if (!rp.lastRingInScene && rp.positionInOrder <= theRing.positionInOrder)
+                if (!rp.LastRingInScene && rp.positionInOrder <= theRing.positionInOrder)
                 {
                     ++arrowScript.currentlyLookingAt;
                     if (arrowScript.currentlyLookingAt >= arrowScript.sortedRings.Length)
@@ -55,7 +55,7 @@ public class PlayerArrowHandler : MonoBehaviour
                 HandleRegularRing(ringArrLength);
             prevPositionInOrder = theRing.positionInOrder;
         }
-        if (theRing.lastRingInScene)
+        if (theRing.LastRingInScene)
         {
             if (null != arrowScript)
                 arrowScript.currentlyLookingAt = -1;

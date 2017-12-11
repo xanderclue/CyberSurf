@@ -18,7 +18,7 @@ public abstract class SelectedObject : MonoBehaviour
     public bool tooltipOnly = false;
     public bool IsDisabled { set { isDisabled = value; if (isDisabled && null != theReticle) theReticle.UpdateReticleFill(0.0f); } }
     protected float WaitTime { get { return waitTime; } }
-    private reticle theReticle = null;
+    private ReticleScript theReticle = null;
     public const string LAYERNAME = "Selectable";
     public static int Selectable_Layer { get { return LayerMask.NameToLayer(LAYERNAME); } }
     protected virtual void SelectedFunction() { }
@@ -31,7 +31,7 @@ public abstract class SelectedObject : MonoBehaviour
         else if (delay < 0)
             delay = DEFAULT_DELAY;
     }
-    public void Selected(reticle grabbedReticle)
+    public void Selected(ReticleScript grabbedReticle)
     {
         if (enabled && CanSelect && !isDisabled)
         {

@@ -21,7 +21,7 @@ public class ScreenFade : MonoBehaviour
             yield return null;
         bool countdownStarted = false, usingCountdown;
         timeIntoFade = 0.0f;
-        usingCountdown = ((SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset) ? (LevelSelectOptions.HubWorldBuildIndex == lastBuildIndex) : false);
+        usingCountdown = ((SceneManager.GetActiveScene().buildIndex >= LevelManager.LevelBuildOffset) ? (LevelManager.HubWorldBuildIndex == lastBuildIndex) : false);
         while (timeIntoFade < fadeTime)
         {
             timeIntoFade += Time.deltaTime;
@@ -35,7 +35,7 @@ public class ScreenFade : MonoBehaviour
         }
         if (usingCountdown && countDownTime - timeIntoFade > 0.0f)
             yield return new WaitForSeconds(countDownTime - timeIntoFade);
-        if (SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset)
+        if (SceneManager.GetActiveScene().buildIndex >= LevelManager.LevelBuildOffset)
             EventManager.OnSetGameplayMovementLock(false);
         RoundTimer.timersPaused = false;
     }
@@ -52,8 +52,8 @@ public class ScreenFade : MonoBehaviour
         }
         lastBuildIndex = SceneManager.GetActiveScene().buildIndex;
         int nextScene = LevelManager.nextScene;
-        if (nextScene >= LevelSelectOptions.LevelBuildOffset)
-            nextScene += LevelSelectOptions.GetLevelOffset;
+        if (nextScene >= LevelManager.LevelBuildOffset)
+            nextScene += LevelManager.GetLevelOffset;
         asyncOp = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
         asyncOp.allowSceneActivation = true;
     }
