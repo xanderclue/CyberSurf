@@ -6,7 +6,7 @@ public class AudioMenuTab : MenuTab
     [Space, SerializeField, LabelOverride("BGM Volume Text")] private TextMeshPro bgmVolume = null;
     [SerializeField, LabelOverride("SFX Volume Text")] private TextMeshPro sfxVolume = null;
     [SerializeField, LabelOverride("ENV Volume Text")] private TextMeshPro envVolume = null;
-    [Space, SerializeField] private EventSelectedObject bgmUpButton = null, bgmDownButton = null, sfxUpButton = null, sfxDownButton = null, envUpButton = null, envDownButton = null;
+    [SerializeField] private EventSelectedObject bgmUpButton = null, bgmDownButton = null, sfxUpButton = null, sfxDownButton = null, envUpButton = null, envDownButton = null;
     private float VolumeIncrement { get { return 1.0f / maxNumber; } }
     private void SetBgmText()
     {
