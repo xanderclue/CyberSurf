@@ -13489,7 +13489,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4810886142740776, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.067030154
+      value: -0.06703016
       objectReference: {fileID: 0}
     - target: {fileID: 4810886142740776, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.y
@@ -13684,7 +13684,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4810886142740776, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.067030154
+      value: -0.06703016
       objectReference: {fileID: 0}
     - target: {fileID: 4810886142740776, guid: f9618c21302b20d47b791363cc3f2e21, type: 2}
       propertyPath: m_LocalRotation.y
@@ -13980,7 +13980,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4630090139765520, guid: ce64efd7929f5a34687d5db17e1f5e36, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.0010316138
+      value: 0.001031614
       objectReference: {fileID: 0}
     - target: {fileID: 4630090139765520, guid: ce64efd7929f5a34687d5db17e1f5e36, type: 2}
       propertyPath: m_LocalRotation.y
@@ -14014,7 +14014,7 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 65758369342217524, guid: ce64efd7929f5a34687d5db17e1f5e36,
+    - target: {fileID: 65602770078315460, guid: ce64efd7929f5a34687d5db17e1f5e36,
         type: 2}
       propertyPath: m_Size.x
       value: -0.7935608
@@ -14024,15 +14024,19 @@ Prefab:
       propertyPath: m_Size.x
       value: -0.6748041
       objectReference: {fileID: 0}
+    - target: {fileID: 65758369342217524, guid: ce64efd7929f5a34687d5db17e1f5e36,
+        type: 2}
+      propertyPath: m_Size.x
+      value: -0.7935608
+      objectReference: {fileID: 0}
     - target: {fileID: 65790796622382628, guid: ce64efd7929f5a34687d5db17e1f5e36,
         type: 2}
       propertyPath: m_Size.x
       value: -0.7188361
       objectReference: {fileID: 0}
-    - target: {fileID: 65602770078315460, guid: ce64efd7929f5a34687d5db17e1f5e36,
-        type: 2}
-      propertyPath: m_Size.x
-      value: -0.7935608
+    - target: {fileID: 4630090139765520, guid: ce64efd7929f5a34687d5db17e1f5e36, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.0022492285
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce64efd7929f5a34687d5db17e1f5e36, type: 2}
