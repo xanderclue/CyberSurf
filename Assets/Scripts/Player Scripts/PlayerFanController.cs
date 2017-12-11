@@ -4,7 +4,7 @@ public class PlayerFanController : MonoBehaviour
 {
     private MotorData motor = null;
     private Rigidbody playerRB = null;
-    private ManagerClasses.PlayerMovementVariables pmv = null;
+    private PlayerMovementVariables pmv = null;
     private int motorCount = 0;
     private float motorPercentage = 0.0f, invertedMaxSpeed100x = 0.0f;
     public void SetupFanControllerScript()

@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using TMPro;
-using Xander.Debugging;
 public class RaceModeOptions : LevelMenuObjectGroup
 {
     [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField] private TextMeshPro raceModeText = null;
-    [SerializeField] private GameModes defaultMode = GameModes.Continuous;
-    private GameModes tempMode = GameModes.Continuous;
+    [SerializeField] private GameMode defaultMode = GameMode.Continuous;
+    private GameMode tempMode = GameMode.Continuous;
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;
@@ -20,14 +19,14 @@ public class RaceModeOptions : LevelMenuObjectGroup
     private void ButtonLeftFunction()
     {
         if (tempMode - 1 < 0)
-            tempMode = GameModes.GameModesSize - 1;
+            tempMode = GameMode.GameModesSize - 1;
         else
             --tempMode;
         UpdateDisplay();
     }
     private void ButtonRightFunction()
     {
-        if (tempMode + 1 >= GameModes.GameModesSize)
+        if (tempMode + 1 >= GameMode.GameModesSize)
             tempMode = 0;
         else
             ++tempMode;
@@ -42,12 +41,12 @@ public class RaceModeOptions : LevelMenuObjectGroup
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        GameManager.instance.gameMode.currentMode = tempMode;
+        GameManager.gameMode = tempMode;
     }
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempMode = GameManager.instance.gameMode.currentMode;
+        tempMode = GameManager.gameMode;
         UpdateDisplay();
     }
     private void UpdateDisplay()
@@ -55,28 +54,25 @@ public class RaceModeOptions : LevelMenuObjectGroup
         raceModeText.SetText(tempMode.ToString());
         switch (tempMode)
         {
-            case GameModes.Continuous:
+            case GameMode.Continuous:
                 LevelMenuScript.lapsOptions.DisableGroup();
                 LevelMenuScript.aiOptions.EnableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
                 break;
-            case GameModes.Cursed:
+            case GameMode.Cursed:
                 LevelMenuScript.lapsOptions.EnableGroup();
                 LevelMenuScript.aiOptions.DisableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
                 break;
-            case GameModes.Free:
+            case GameMode.Free:
                 LevelMenuScript.lapsOptions.DisableGroup();
                 LevelMenuScript.aiOptions.DisableGroup();
                 LevelMenuScript.difficultyOptions.DisableGroup();
                 break;
-            case GameModes.Race:
+            case GameMode.Race:
                 LevelMenuScript.lapsOptions.EnableGroup();
                 LevelMenuScript.aiOptions.EnableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
-                break;
-            default:
-                Debug.LogWarning("Switch statement on GameModes enum tempMode in RaceModeOptions.cs is missing case for GameModes." + tempMode.ToString() + this.Info(), this);
                 break;
         }
     }

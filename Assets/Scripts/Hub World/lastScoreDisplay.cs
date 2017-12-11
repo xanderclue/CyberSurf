@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using Xander.Debugging;
 public class lastScoreDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshPro scoreDisplay = null, timeDisplay = null;
@@ -8,25 +7,23 @@ public class lastScoreDisplay : MonoBehaviour
     {
         int lastScore = 0, lastScoreLocation = 0, i = 0, j = 0;
         float lastTime = 0.0f;
-        GameManager gameManager = GameManager.instance;
-        ScoreManager scoreScript = gameManager.scoreScript;
-        switch (gameManager.gameMode.currentMode)
+        switch (GameManager.gameMode)
         {
-            case GameModes.Continuous:
-                for (i = 0; i < scoreScript.topContinuousScores.Length; ++i)
+            case GameMode.Continuous:
+                for (i = 0; i < ScoreManager.topContinuousScores.Length; ++i)
                 {
-                    if (scoreScript.topContinuousScores[i].isLastScoreInput)
+                    if (ScoreManager.topContinuousScores[i].isLastScoreInput)
                     {
                         lastScoreLocation = i;
                         break;
                     }
                 }
-                if (gameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
                 {
-                    for (i = 0; i < scoreScript.topContinuousScores[lastScoreLocation].levels.Length; ++i)
+                    for (i = 0; i < ScoreManager.topContinuousScores[lastScoreLocation].levels.Length; ++i)
                     {
-                        lastScore += scoreScript.topContinuousScores[lastScoreLocation].levels[i].score;
-                        lastTime += scoreScript.topContinuousScores[lastScoreLocation].levels[i].time;
+                        lastScore += ScoreManager.topContinuousScores[lastScoreLocation].levels[i].score;
+                        lastTime += ScoreManager.topContinuousScores[lastScoreLocation].levels[i].time;
                     }
                 }
                 else
@@ -35,24 +32,24 @@ public class lastScoreDisplay : MonoBehaviour
                     lastTime = 0.0f;
                 }
                 break;
-            case GameModes.Cursed:
-                for (i = 0; i < scoreScript.topCursedScores.Length; ++i)
+            case GameMode.Cursed:
+                for (i = 0; i < ScoreManager.topCursedScores.Length; ++i)
                 {
-                    for (j = 0; j < scoreScript.topCursedScores[i].cursedScores.Length; ++j)
+                    for (j = 0; j < ScoreManager.topCursedScores[i].cursedScores.Length; ++j)
                     {
-                        if (scoreScript.topCursedScores[i].cursedScores[j].isLastScoreInput)
+                        if (ScoreManager.topCursedScores[i].cursedScores[j].isLastScoreInput)
                         {
                             lastScoreLocation = j;
                             break;
                         }
                     }
-                    if (j < scoreScript.topCursedScores[i].cursedScores.Length - 1)
+                    if (j < ScoreManager.topCursedScores[i].cursedScores.Length - 1)
                         break;
                 }
-                if (gameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
                 {
-                    lastScore = scoreScript.topCursedScores[gameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].score;
-                    lastTime = scoreScript.topCursedScores[gameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].time;
+                    lastScore = ScoreManager.topCursedScores[GameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].score;
+                    lastTime = ScoreManager.topCursedScores[GameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].time;
                 }
                 else
                 {
@@ -60,35 +57,32 @@ public class lastScoreDisplay : MonoBehaviour
                     lastTime = 0.0f;
                 }
                 break;
-            case GameModes.Free:
+            case GameMode.Free:
                 break;
-            case GameModes.Race:
-                for (i = 0; i < scoreScript.topRaceScores.Length; ++i)
+            case GameMode.Race:
+                for (i = 0; i < ScoreManager.topRaceScores.Length; ++i)
                 {
-                    for (j = 0; j < scoreScript.topRaceScores[i].racescores.Length; ++j)
+                    for (j = 0; j < ScoreManager.topRaceScores[i].racescores.Length; ++j)
                     {
-                        if (scoreScript.topRaceScores[i].racescores[j].isLastScoreInput)
+                        if (ScoreManager.topRaceScores[i].racescores[j].isLastScoreInput)
                         {
                             lastScoreLocation = j;
                             break;
                         }
                     }
-                    if (j < scoreScript.topRaceScores[i].racescores.Length - 1)
+                    if (j < ScoreManager.topRaceScores[i].racescores.Length - 1)
                         break;
                 }
-                if (gameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
+                if (GameManager.lastPortalBuildIndex >= LevelSelectOptions.LevelBuildOffset)
                 {
-                    lastScore = scoreScript.topRaceScores[gameManager.lastPortalBuildIndex].racescores[lastScoreLocation].score;
-                    lastTime = scoreScript.topRaceScores[gameManager.lastPortalBuildIndex].racescores[lastScoreLocation].time;
+                    lastScore = ScoreManager.topRaceScores[GameManager.lastPortalBuildIndex].racescores[lastScoreLocation].score;
+                    lastTime = ScoreManager.topRaceScores[GameManager.lastPortalBuildIndex].racescores[lastScoreLocation].time;
                 }
                 else
                 {
                     lastScore = 0;
                     lastTime = 0.0f;
                 }
-                break;
-            default:
-                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
         scoreDisplay.SetText("Score: " + lastScore);

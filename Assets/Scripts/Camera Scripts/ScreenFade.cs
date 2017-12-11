@@ -9,23 +9,19 @@ public class ScreenFade : MonoBehaviour
     private int lastBuildIndex = -1;
     private AsyncOperation asyncOp = null;
     private CameraSplashScreen countdown = null;
-    private ManagerClasses.RoundTimer roundTimer = null;
-    private ManagerClasses.GameState gameState = null;
     private void Awake()
     {
-        gameState = GameManager.instance.gameState;
-        roundTimer = GameManager.instance.roundTimer;
         countdown = GetComponentInChildren<CameraSplashScreen>();
     }
     private IEnumerator FadeIn()
     {
         GameManager.player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        roundTimer.PauseTimer(true);
+        RoundTimer.PauseTimer(true);
         while (null != asyncOp && !asyncOp.isDone)
             yield return null;
         bool countdownStarted = false, usingCountdown;
         timeIntoFade = 0.0f;
-        usingCountdown = ((SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset) ? (1 == lastBuildIndex) : false);
+        usingCountdown = ((SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset) ? (LevelSelectOptions.HubWorldBuildIndex == lastBuildIndex) : false);
         while (timeIntoFade < fadeTime)
         {
             timeIntoFade += Time.deltaTime;
@@ -41,13 +37,13 @@ public class ScreenFade : MonoBehaviour
             yield return new WaitForSeconds(countDownTime - timeIntoFade);
         if (SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset)
             EventManager.OnSetGameplayMovementLock(false);
-        roundTimer.PauseTimer(false);
+        RoundTimer.PauseTimer(false);
     }
     private IEnumerator FadeOut()
     {
         timeIntoFade = 0.0f;
         EventManager.OnSetGameplayMovementLock(true);
-        gameState.currentState = GameStates.SceneTransition;
+        GameManager.gameState = GameState.SceneTransition;
         while (timeIntoFade < fadeTime)
         {
             timeIntoFade += Time.deltaTime;
@@ -55,7 +51,7 @@ public class ScreenFade : MonoBehaviour
             yield return null;
         }
         lastBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextScene = GameManager.instance.levelScript.nextScene;
+        int nextScene = LevelManager.nextScene;
         if (nextScene >= LevelSelectOptions.LevelBuildOffset)
             nextScene += LevelSelectOptions.GetLevelOffset;
         asyncOp = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
@@ -75,18 +71,12 @@ public class ScreenFade : MonoBehaviour
     }
     public void StartTransitionFade()
     {
-        if (GameStates.SceneTransition != gameState.currentState)
+        if (GameState.SceneTransition != GameManager.gameState)
         {
             StopAllCoroutines();
             StartCoroutine(FadeOut());
         }
     }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnLevelFinished;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnLevelFinished;
-    }
+    private void OnEnable() => SceneManager.sceneLoaded += OnLevelFinished;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnLevelFinished;
 }

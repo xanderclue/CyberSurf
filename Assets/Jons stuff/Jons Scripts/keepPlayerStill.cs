@@ -12,7 +12,6 @@ public class keepPlayerStill : MonoBehaviour
     {
         if (!tutorialOn)
         {
-        
             GameManager.player.GetComponent<PlayerMenuController>().UnlockPlayerPosition();
             Destroy(this);
         }

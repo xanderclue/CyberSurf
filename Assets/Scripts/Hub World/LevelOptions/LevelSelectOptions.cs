@@ -12,6 +12,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     private LevelManager.Level tempLevel;
     [SerializeField] private WorldPortalProperties portal = null;
     public const int LevelBuildOffset = 2;
+    public const int HubWorldBuildIndex = LevelBuildOffset - 1;
     public const int LevelCount = (int)(LevelManager.Level.NumLevels);
     public const int MirroredOffset = LevelCount;
     public const int MirroredBuildOffset = LevelBuildOffset + MirroredOffset;

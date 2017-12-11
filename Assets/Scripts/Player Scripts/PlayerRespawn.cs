@@ -8,32 +8,28 @@ public class PlayerRespawn : MonoBehaviour
     private Transform respawnPoint = null;
     private float countDownTime = 3.25f, timeIntoFade = 0.0f, timeInPitchBlack = 0.1f, roundTimerStartTime = 5.0f;
     private CameraSplashScreen countdown = null;
-    private ManagerClasses.RoundTimer roundTimer = null;
-    private ManagerClasses.GameState gameState = null;
     private bool isRespawning = false;
     public bool IsRespawning { get { return isRespawning; } }
     private void Start()
     {
         countdown = GetComponentInChildren<CameraSplashScreen>();
         playerRB = GameManager.player.GetComponent<Rigidbody>();
-        roundTimer = GameManager.instance.roundTimer;
-        gameState = GameManager.instance.gameState;
     }
     private void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
         if (isRespawning)
         {
             StopAllCoroutines();
-            roundTimer.PauseTimer(false);
+            RoundTimer.PauseTimer(false);
             isRespawning = false;
             respawnPoint = null;
         }
     }
     public void RespawnPlayer(Transform rsPoint, float startTime, float countDownFrom = 3.25f)
     {
-        if (!isRespawning && gameState.currentState == GameStates.GamePlay)
+        if (!isRespawning && GameState.GamePlay == GameManager.gameState)
         {
-            roundTimer.TimeLeft = 0.0f;
+            RoundTimer.timeLeft = 0.0f;
             respawnPoint = rsPoint;
             roundTimerStartTime = startTime;
             countDownTime = countDownFrom;
@@ -63,16 +59,16 @@ public class PlayerRespawn : MonoBehaviour
             playerRB.MovePosition(respawnPoint.position + respawnPoint.forward * 2.0f);
             playerRB.MoveRotation(Quaternion.Euler(respawnPoint.eulerAngles.x, respawnPoint.eulerAngles.y, 0.0f));
         }
-        if (GameStates.GamePlay == gameState.currentState)
+        if (GameState.GamePlay == GameManager.gameState)
             StartCoroutine(FadeIn());
     }
     private IEnumerator FadeIn()
     {
         timeIntoFade = 0.0f;
-        roundTimer.TimeLeft = roundTimerStartTime;
-        roundTimer.PauseTimer(true);
+        RoundTimer.timeLeft = roundTimerStartTime;
+        RoundTimer.PauseTimer(true);
         bool countdownStarted = false;
-        while (timeIntoFade < 1.0f && GameStates.GamePlay == gameState.currentState)
+        while (timeIntoFade < 1.0f && GameState.GamePlay == GameManager.gameState)
         {
             UpdateAlpha(false);
             if (!countdownStarted && timeIntoFade > 0.25f)
@@ -83,18 +79,18 @@ public class PlayerRespawn : MonoBehaviour
             timeIntoFade += Time.deltaTime;
             yield return null;
         }
-        if (GameStates.GamePlay == gameState.currentState)
+        if (GameState.GamePlay == GameManager.gameState)
         {
             if (countDownTime - timeIntoFade > 0.0f)
                 yield return new WaitForSeconds(countDownTime - timeIntoFade);
             yield return null;
-            if (GameStates.GamePlay == gameState.currentState)
+            if (GameState.GamePlay == GameManager.gameState)
                 EventManager.OnSetGameplayMovementLock(false);
         }
-        roundTimer.PauseTimer(false);
+        RoundTimer.PauseTimer(false);
         isRespawning = false;
         respawnPoint = null;
     }
-    private void OnEnable() { SceneManager.sceneLoaded += OnLevelLoaded; }
-    private void OnDisable() { SceneManager.sceneLoaded -= OnLevelLoaded; }
+    private void OnEnable() => SceneManager.sceneLoaded += OnLevelLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnLevelLoaded;
 }

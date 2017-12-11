@@ -19,12 +19,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4050790521785492}
-  - component: {fileID: 114714506037350866}
-  - component: {fileID: 114829543247464576}
-  - component: {fileID: 114284126497002870}
-  - component: {fileID: 114004138978651842}
-  - component: {fileID: 114412701324416950}
-  - component: {fileID: 114523786900666618}
+  - component: {fileID: 114953312785379808}
+  - component: {fileID: 114535046795245872}
+  - component: {fileID: 114762837953622554}
+  - component: {fileID: 114390532881504112}
+  - component: {fileID: 114036039350914302}
+  - component: {fileID: 114292945434999928}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,7 +45,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114004138978651842
+--- !u!114 &114036039350914302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056030855755648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ee9a31585c6eb4893e95289a251b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flippedTimer: 2
+  hubOnFlippedHMD: 1
+--- !u!114 &114292945434999928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056030855755648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19625105654b31f4995b578808401fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeHolderPrefab: {fileID: 1995531589141898, guid: 0adb28207d9f8534ea79d4034a21fa5f,
+    type: 2}
+--- !u!114 &114390532881504112
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -56,44 +82,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4852b9c83fbbf4491f63e7e864433f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugSpeedEnabled: 1
-  gamepadEnabled: 0
-  currentBoardSelection: 0
-  customGamepadMovementVariables:
-    maxSpeed: 30
-    restingSpeed: 25
-    minSpeed: 22
-    downwardAcceleration: 30
-    restingAcceleration: 30
-    upwardAcceleration: 30
-    momentum: 20
-    pitchSensitivity: 3
-    yawSensitivity: 3
-    maxDescendAngle: 30
-    restingThreshold: 10
-    maxAscendAngle: 30
-    bounceModifier: 1
-    mass: 1
-    drag: 1
-    angularDrag: 5
-  customGyroMovementVariables:
-    maxSpeed: 25
-    restingSpeed: 22
-    minSpeed: 20
-    downwardAcceleration: 30
-    restingAcceleration: 30
-    upwardAcceleration: 30
-    momentum: 20
-    pitchSensitivity: 5
-    yawSensitivity: 5
-    maxDescendAngle: 45
-    restingThreshold: 10
-    maxAscendAngle: 45
-    bounceModifier: 1
-    mass: 1
-    drag: 1
-    angularDrag: 5
---- !u!114 &114284126497002870
+--- !u!114 &114535046795245872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056030855755648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5201112f6780804bbeba36f352542c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114762837953622554
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -104,8 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033db46f54691b547a04696811377a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 0
-  RingPathIsOn: 1
   spawnPoints:
   - {fileID: 4881730755261842, guid: 78108ad417a03bf4b9700cbcc7a91532, type: 2}
   - {fileID: 4462082338848660, guid: 1e84304eaf6b50a42bc47a643971793f, type: 2}
@@ -140,33 +138,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 48f3078d09cd42b4887467e9ced11737, type: 3}
   - {fileID: 21300000, guid: 3e89058453ab0e44b812b7bcba6d5e47, type: 3}
   - {fileID: 21300000, guid: f26f0d1dd0575e24ea28a73316d26ae0, type: 3}
---- !u!114 &114412701324416950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056030855755648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00ee9a31585c6eb4893e95289a251b28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flippedTimer: 2
-  hubOnFlippedHMD: 1
---- !u!114 &114523786900666618
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056030855755648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19625105654b31f4995b578808401fca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placeHolderPrefab: {fileID: 1995531589141898, guid: 0adb28207d9f8534ea79d4034a21fa5f,
-    type: 2}
---- !u!114 &114714506037350866
+--- !u!114 &114953312785379808
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -177,31 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a384b4ce3f8e70f4c9c5fe944c6fc666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastPortalBuildIndex: 0
   playerPrefab: {fileID: 1888161922960542, guid: cd6996909900ff44cac341d9483ba297,
     type: 2}
-  scoreScript: {fileID: 0}
-  levelScript: {fileID: 0}
-  boardScript: {fileID: 0}
-  disableVignette: 0
---- !u!114 &114829543247464576
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056030855755648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5201112f6780804bbeba36f352542c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curFilledCont: -1
-  ringHitCount: 0
-  score: 0
-  firstPortal: 1
-  respawnEnabled: 0
-  currentName: 000000000000
-  baseScorePerRing: 100
-  prevRingBonusTime: 0
-  score_multiplier: 0
-  prevRingTransform: {fileID: 0}

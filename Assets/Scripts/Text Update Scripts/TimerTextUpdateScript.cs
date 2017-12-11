@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
 using TMPro;
-using Xander.Debugging;
 public class TimerTextUpdateScript : MonoBehaviour
 {
-    private ManagerClasses.RoundTimer roundTimer = null;
     private TextMeshProUGUI element = null;
     private bool textIsRed = false;
     private float timeToTurnTextRed = 2.0f;
     private Color originalTextColor;
-    private GameManager gameManager = null;
     private string textToWrite = "TIMER BROKE";
     private void Start()
     {
-        gameManager = GameManager.instance;
-        roundTimer = gameManager.roundTimer;
         element = GetComponent<TextMeshProUGUI>();
         textIsRed = false;
         timeToTurnTextRed = 2.0f;
@@ -21,33 +16,29 @@ public class TimerTextUpdateScript : MonoBehaviour
     }
     private void Update()
     {
-        switch (gameManager.gameMode.currentMode)
+        switch (GameManager.gameMode)
         {
-            case GameModes.Continuous:
-                textToWrite = " " + roundTimer.TimeInLevel.ToString("n2") + " ";
+            case GameMode.Continuous:
+                textToWrite = " " + RoundTimer.timeInLevel.ToString("n2") + " ";
                 break;
-            case GameModes.Cursed:
-                if (!textIsRed && roundTimer.TimeLeft < timeToTurnTextRed)
+            case GameMode.Cursed:
+                if (!textIsRed && RoundTimer.timeLeft < timeToTurnTextRed)
                 {
                     element.color = Color.red;
                     textIsRed = true;
                 }
-                else if (textIsRed && roundTimer.TimeLeft > timeToTurnTextRed)
+                else if (textIsRed && RoundTimer.timeLeft > timeToTurnTextRed)
                 {
                     element.color = originalTextColor;
                     textIsRed = false;
                 }
-                textToWrite = " " + roundTimer.TimeLeft.ToString("n2") + " ";
+                textToWrite = " " + RoundTimer.timeLeft.ToString("n2") + " ";
                 break;
-            case GameModes.Free:
-                textToWrite = " " + roundTimer.TimeInLevel.ToString("n2") + " ";
+            case GameMode.Free:
+                textToWrite = " " + RoundTimer.timeInLevel.ToString("n2") + " ";
                 break;
-            case GameModes.Race:
-                textToWrite = " " + roundTimer.TimeInLevel.ToString("n2") + " ";
-                break;
-            default:
-                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
-                textToWrite = "TIMER BROKE";
+            case GameMode.Race:
+                textToWrite = " " + RoundTimer.timeInLevel.ToString("n2") + " ";
                 break;
         }
         element.SetText(textToWrite);

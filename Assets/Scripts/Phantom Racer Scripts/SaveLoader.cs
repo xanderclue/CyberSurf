@@ -72,7 +72,7 @@ public static class SaveLoader
         CombinedScores convertedScores = new CombinedScores();
         int i, j, k;
         #region CurseScoresSaving
-        ScoreManager.CursedScores[] unconvertedCursedScores = GameManager.instance.scoreScript.topCursedScores;
+        ScoreManager.CursedScores[] unconvertedCursedScores = ScoreManager.topCursedScores;
         convertedScores.cursedScores = new SerializedCursedScores[unconvertedCursedScores.Length];
         for (i = 0; i < unconvertedCursedScores.Length; ++i)
         {
@@ -97,7 +97,7 @@ public static class SaveLoader
         }
         #endregion
         #region RaceScoresSaving
-        ScoreManager.RaceScores[] unconvertedRaceScores = GameManager.instance.scoreScript.topRaceScores;
+        ScoreManager.RaceScores[] unconvertedRaceScores = ScoreManager.topRaceScores;
         convertedScores.raceScores = new SerializedRaceScores[unconvertedRaceScores.Length];
         for (i = 0; i < unconvertedRaceScores.Length; ++i)
         {
@@ -122,7 +122,7 @@ public static class SaveLoader
         }
         #endregion
         #region ContinuousScoresSaving
-        ScoreManager.ContinuousScores[] unconvertedContScores = GameManager.instance.scoreScript.topContinuousScores;
+        ScoreManager.ContinuousScores[] unconvertedContScores = ScoreManager.topContinuousScores;
         convertedScores.continuousScores = new SerializedContinuousScores[unconvertedContScores.Length];
         for (i = 0; i < unconvertedContScores.Length; ++i)
         {
@@ -173,7 +173,7 @@ public static class SaveLoader
                         convertedScores[i].cursedScores[j].name = unconvertedScores[i].cursedScores[j].name;
                         convertedScores[i].cursedScores[j].score = unconvertedScores[i].cursedScores[j].score;
                         convertedScores[i].cursedScores[j].time = unconvertedScores[i].cursedScores[j].time;
-                        convertedScores[i].cursedScores[j].difficulty = (GameDifficulties)unconvertedScores[i].cursedScores[j].difficulty;
+                        convertedScores[i].cursedScores[j].difficulty = (GameDifficulty)unconvertedScores[i].cursedScores[j].difficulty;
                         if (0 != convertedScores[i].cursedScores[j].score)
                             ++convertedScores[i].currentAmoutFilled;
                         if (null != unconvertedScores[i].cursedScores[j].positions)
@@ -213,9 +213,9 @@ public static class SaveLoader
                 {
                     convertedScores[i].levels = new ScoreManager.ScoreData[unConvertedScores[i].levels.Length];
                     convertedScores[i].name = unConvertedScores[i].name;
-                    convertedScores[i].difficulty = (GameDifficulties)unConvertedScores[i].difficulty;
+                    convertedScores[i].difficulty = (GameDifficulty)unConvertedScores[i].difficulty;
                     if ("" != convertedScores[i].name)
-                        ++GameManager.instance.scoreScript.curFilledCont;
+                        ++ScoreManager.curFilledCont;
                     for (j = 0; j < unConvertedScores[i].levels.Length; ++j)
                     {
                         convertedScores[i].levels[j].board = unConvertedScores[i].levels[j].board;
@@ -265,7 +265,7 @@ public static class SaveLoader
                         convertedScores[i].racescores[j].name = unconvertedScores[i].raceScores[j].name;
                         convertedScores[i].racescores[j].score = unconvertedScores[i].raceScores[j].score;
                         convertedScores[i].racescores[j].time = unconvertedScores[i].raceScores[j].time;
-                        convertedScores[i].racescores[j].difficulty = (GameDifficulties)unconvertedScores[i].raceScores[j].difficulty;
+                        convertedScores[i].racescores[j].difficulty = (GameDifficulty)unconvertedScores[i].raceScores[j].difficulty;
                         if (0 != convertedScores[i].racescores[j].score)
                             ++convertedScores[i].currentAmoutFilled;
                         if (null != unconvertedScores[i].raceScores[j].positions)

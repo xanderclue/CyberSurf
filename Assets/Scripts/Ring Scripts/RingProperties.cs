@@ -26,13 +26,12 @@ public class RingProperties : MonoBehaviour
     }
     private void Start()
     {
-        if (GameModes.Cursed == GameManager.instance.gameMode.currentMode)
+        if (GameMode.Cursed == GameManager.gameMode)
         {
-            BoardManager boardManager = GameManager.instance.boardScript;
-            ManagerClasses.PlayerMovementVariables
+            PlayerMovementVariables
                 currPMV = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables,
-                basePMV = boardManager.GamepadBoardSelect(BoardType.MachII);
-            if (BoardType.MachII != boardManager.currentBoardSelection)
+                basePMV = BoardManager.GamepadBoardSelect(BoardType.MachII);
+            if (BoardType.MachII != BoardManager.currentBoardSelection)
                 bonusTime *= (basePMV.minSpeed + basePMV.restingAcceleration + basePMV.maxSpeed) / (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed);
         }
     }

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
-using Xander.Debugging;
-using static DaylightScript;
+using static DayNightScript;
 public class TimeOfDayOptions : LevelMenuObjectGroup
 {
     [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
@@ -42,9 +41,6 @@ public class TimeOfDayOptions : LevelMenuObjectGroup
                 break;
             case TimeOfDay.Night:
                 timeOfDayText.SetText("Night");
-                break;
-            default:
-                Debug.LogWarning("Switch statement on TimeOfDay enum tempTimeOfDay in TimeOfDayOptions.cs is missing case for TimeOfDay." + tempTimeOfDay.ToString() + this.Info(), this);
                 break;
         }
     }
