@@ -14,7 +14,7 @@ public class BoardStandSelectBoard : SelectedObject
         selectionVariables = GetComponentInParent<BoardStandProperties>();
         ogLocalRot = boardCopy.localRotation;
         if (null == playerBoard)
-            playerBoard = GameManager.player.GetComponentInChildren<BoardSelector>(true).CurrentBoard.transform;
+            playerBoard = GameManager.player.GetComponentInChildren<BoardSelector>(true).CurrentBoard;
     }
     protected override void SuccessFunction()
     {

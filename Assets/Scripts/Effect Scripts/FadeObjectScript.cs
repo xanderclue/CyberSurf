@@ -3,6 +3,7 @@ public class FadeObjectScript : MonoBehaviour
 {
     private Color color, invis;
     private Material objectMaterial = null;
+    private float distance;
     private void Start()
     {
         objectMaterial = GetComponent<Renderer>().material;
@@ -10,7 +11,6 @@ public class FadeObjectScript : MonoBehaviour
         invis = color;
         invis.a = 0.0f;
     }
-    private float distance;
     private void Update()
     {
         distance = (Camera.main.transform.position - transform.position).magnitude;

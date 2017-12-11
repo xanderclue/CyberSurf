@@ -42,17 +42,17 @@ public class PhantomRacer : MonoBehaviour
             GameManager.DeleteScoresOnExit();
         }
         if (null == scoreInfo.positions)
-            Destroy(this);
+            Destroy(gameObject);
     }
     private void FixedUpdate()
     {
-        if (currentPos >= scoreInfo.positions.Length)
+        if (currentPos < scoreInfo.positions.Length)
         {
-            Destroy(gameObject);
-            return;
+            transform.position = scoreInfo.positions[currentPos];
+            transform.rotation = scoreInfo.rotations[currentPos];
+            ++currentPos;
         }
-        transform.position = scoreInfo.positions[currentPos];
-        transform.rotation = scoreInfo.rotations[currentPos];
-        ++currentPos;
+        else
+            Destroy(gameObject);
     }
 }

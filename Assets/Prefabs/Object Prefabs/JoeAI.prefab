@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4824320659160450}
   - component: {fileID: 33232412878418126}
   - component: {fileID: 23294456915799932}
-  - component: {fileID: 114890055030948932}
   - component: {fileID: 114365362705934196}
   m_Layer: 0
   m_Name: JoeAI
@@ -169,6 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ring_path: []
+  Joe: {x: 0, y: 0, z: 0}
+  counter: 0
+  wait: 0
 --- !u!114 &114699355841418648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,21 +182,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6231c84729b2d4897aab01dcc5a256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114890055030948932
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1106100401269316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ad79533b3844240b7a588c30053486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variables:
-    rollIncreaseRate: 1.2
-    rollDecreaseRate: 0.1
-    maxRollDegree: 25
-    pitchIncreaseRate: 1
-    pitchDecreaseRate: 0.5
-    maxPitchDegree: 20

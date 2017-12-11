@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 public class BoardSelector : MonoBehaviour
 {
-    [SerializeField] GameObject[] boards = null;
+    [SerializeField] private MeshRenderer[] boards = null;
     public void SelectBoard(BoardType board)
     {
         for (int i = 0; i < boards.Length; ++i)
-            boards[i].SetActive(i == (int)board);
+            boards[i].enabled = i == (int)board;
     }
-    public GameObject CurrentBoard
+    public Transform CurrentBoard
     {
         get
         {
-            foreach (GameObject board in boards)
-                if (board.activeSelf)
-                    return board;
-            return null;
+            foreach (MeshRenderer board in boards)
+                if (board.enabled)
+                    return board.transform;
+            return transform;
         }
     }
 }
