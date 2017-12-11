@@ -16,7 +16,7 @@ public class ScreenFade : MonoBehaviour
     private IEnumerator FadeIn()
     {
         GameManager.player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        RoundTimer.PauseTimer(true);
+        RoundTimer.timersPaused = true;
         while (null != asyncOp && !asyncOp.isDone)
             yield return null;
         bool countdownStarted = false, usingCountdown;
@@ -37,7 +37,7 @@ public class ScreenFade : MonoBehaviour
             yield return new WaitForSeconds(countDownTime - timeIntoFade);
         if (SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset)
             EventManager.OnSetGameplayMovementLock(false);
-        RoundTimer.PauseTimer(false);
+        RoundTimer.timersPaused = false;
     }
     private IEnumerator FadeOut()
     {

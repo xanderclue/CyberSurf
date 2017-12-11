@@ -20,7 +20,7 @@ public class PlayerRespawn : MonoBehaviour
         if (isRespawning)
         {
             StopAllCoroutines();
-            RoundTimer.PauseTimer(false);
+            RoundTimer.timersPaused = false;
             isRespawning = false;
             respawnPoint = null;
         }
@@ -66,7 +66,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         timeIntoFade = 0.0f;
         RoundTimer.timeLeft = roundTimerStartTime;
-        RoundTimer.PauseTimer(true);
+        RoundTimer.timersPaused = true;
         bool countdownStarted = false;
         while (timeIntoFade < 1.0f && GameState.GamePlay == GameManager.gameState)
         {
@@ -87,7 +87,7 @@ public class PlayerRespawn : MonoBehaviour
             if (GameState.GamePlay == GameManager.gameState)
                 EventManager.OnSetGameplayMovementLock(false);
         }
-        RoundTimer.PauseTimer(false);
+        RoundTimer.timersPaused = false;
         isRespawning = false;
         respawnPoint = null;
     }

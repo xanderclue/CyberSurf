@@ -3,7 +3,6 @@ public static class RoundTimer
 {
     public static float timeLeft = 5.0f, timeInLevel = 0.0f;
     public static bool timersPaused = false;
-    public static void PauseTimer(bool paused) => timersPaused = paused;
     public static void IncreaseTimeLeft(float iTime) { if (!timersPaused) timeLeft += iTime; }
     public static void UpdateTimers()
     {
