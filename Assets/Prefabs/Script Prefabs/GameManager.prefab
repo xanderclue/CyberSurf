@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114284126497002870}
   - component: {fileID: 114004138978651842}
   - component: {fileID: 114412701324416950}
+  - component: {fileID: 114523786900666618}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,12 +59,6 @@ MonoBehaviour:
   debugSpeedEnabled: 1
   gamepadEnabled: 0
   currentBoardSelection: 0
-  boardMaterials:
-  - {fileID: 2100000, guid: 0b6484a1e231baf40885e6bc2cba6af1, type: 2}
-  - {fileID: 2100000, guid: 522e1de74fc08ac4a9a9b0bfa81829a6, type: 2}
-  - {fileID: 2100000, guid: 86b06cd63724d35468491f0428e27a52, type: 2}
-  - {fileID: 2100000, guid: 14f8fabd5c1319245acd7d92336d3a0f, type: 2}
-  - {fileID: 2100000, guid: 03bb264aae7816a4ea7bf34bb50180df, type: 2}
   customGamepadMovementVariables:
     maxSpeed: 30
     restingSpeed: 25
@@ -117,15 +112,34 @@ MonoBehaviour:
   - {fileID: 4923439312365110, guid: 9c474a05a00b572428207505219c88fc, type: 2}
   - {fileID: 4149465853147846, guid: be26e2ad07343a64b813e1142cac51b0, type: 2}
   - {fileID: 4676205217432368, guid: 2fe5e1c891ffae74785867e35ccfab3f, type: 2}
+  - {fileID: 4149465853147846, guid: a2273096fd660ae44b1fe7acaca510e0, type: 2}
+  - {fileID: 4881730755261842, guid: dff802851b3952c41bd0edc543272cf4, type: 2}
+  - {fileID: 4149465853147846, guid: e312e2535824308448861478ca12869b, type: 2}
   - {fileID: 4923439312365110, guid: a65b9dbf071be3c4aa6be9e7f07faa54, type: 2}
   - {fileID: 4149465853147846, guid: 2ca1433722cefa04785dbbec63f8c0ec, type: 2}
   - {fileID: 4676205217432368, guid: b7f0ad8fdd712194a9b2ce22305d00db, type: 2}
+  - {fileID: 4149465853147846, guid: 579c8c6e9268a1a4ba5721b01fe3099f, type: 2}
+  - {fileID: 4881730755261842, guid: 707c9feaf045e9049a97687e9049189e, type: 2}
+  - {fileID: 4149465853147846, guid: e928d24320ecdc6479896c9d56979636, type: 2}
   - {fileID: 4923439312365110, guid: 5e6f4dc6f225fad43a7916d33e721ad8, type: 2}
   - {fileID: 4149465853147846, guid: 5e230903e6e412d4790a2036991b1f5a, type: 2}
   - {fileID: 4676205217432368, guid: d6d6896fc89ab744fafef1cb8c5e7466, type: 2}
+  - {fileID: 4149465853147846, guid: d416d07e79024974aae7e86954d2eb90, type: 2}
+  - {fileID: 4881730755261842, guid: c111c11a3d4b80e4491489f35470d51e, type: 2}
+  - {fileID: 4149465853147846, guid: ce96f04f29bcc0e40aeae56595a50560, type: 2}
   - {fileID: 4923439312365110, guid: 7dd7fd6bdff33e543ab22c70aca0ae8d, type: 2}
   - {fileID: 4149465853147846, guid: 009159edc9d31c044a86d705eff642a7, type: 2}
   - {fileID: 4676205217432368, guid: 6c55c8b89c6694d4ba8aa13750b9283d, type: 2}
+  - {fileID: 4149465853147846, guid: 00e8ecd5d9f7695458140194080654cc, type: 2}
+  - {fileID: 4881730755261842, guid: 3bc4d1e6cfaf12e4db7d275f40b166e2, type: 2}
+  - {fileID: 4149465853147846, guid: 4f923413b597d3c4d9697919f27e1b57, type: 2}
+  levelPreviews:
+  - {fileID: 21300000, guid: e4e0206609d8f25478cda0e9f6a58574, type: 3}
+  - {fileID: 21300000, guid: 97576ed39a4b05d4388644f76bc1f8ec, type: 3}
+  - {fileID: 21300000, guid: e99b8e24d826297409af4af627ae78c5, type: 3}
+  - {fileID: 21300000, guid: 48f3078d09cd42b4887467e9ced11737, type: 3}
+  - {fileID: 21300000, guid: 3e89058453ab0e44b812b7bcba6d5e47, type: 3}
+  - {fileID: 21300000, guid: f26f0d1dd0575e24ea28a73316d26ae0, type: 3}
 --- !u!114 &114412701324416950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,6 +153,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flippedTimer: 2
   hubOnFlippedHMD: 1
+--- !u!114 &114523786900666618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056030855755648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19625105654b31f4995b578808401fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeHolderPrefab: {fileID: 1995531589141898, guid: 0adb28207d9f8534ea79d4034a21fa5f,
+    type: 2}
 --- !u!114 &114714506037350866
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -95,7 +95,7 @@ public class TextElementControllerScript : MonoBehaviour
         lap_text.GetComponent<TextMeshProUGUI>().color = HUD_Color;
         speedText.GetComponent<TextMeshProUGUI>().color = HUD_Color;
         speedBar.GetComponent<Image>().color = HUD_Color;
-        Compass_Display.GetComponent<TextMeshPro>().color = HUD_Color;
+        Compass_Display.GetComponentInChildren<TextMeshPro>(true).color = HUD_Color;
         Compass_Display.GetComponentsInParent<Image>(true)[0].color = HUD_Color;
 
         timerText.SetActive(hudElementsControl.timerBool);

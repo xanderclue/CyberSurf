@@ -5,9 +5,9 @@ public class Portal_Audio : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        AudioLevels.Instance.OnEnvVolumeChange += UpdateVolume;
+        AudioLevels.Instance.OnEnvVolumeChanged += UpdateVolume;
         UpdateVolume();
     }
-    private void OnDestroy() { try { AudioLevels.Instance.OnEnvVolumeChange -= UpdateVolume; } catch { } }
+    private void OnDestroy() { try { AudioLevels.Instance.OnEnvVolumeChanged -= UpdateVolume; } catch { } }
     private void UpdateVolume() { audioSource.volume = AudioLevels.Instance.EnvVolume; }
 }

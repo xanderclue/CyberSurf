@@ -14,6 +14,7 @@ public class RingScoreScript : MonoBehaviour
     private RingProperties rp = null;
     private float originalCrInAmt = 0.25f;
     private bonusTimeTextUpdater bonusTimeText = null;
+    //change this to public or serialized to pass prefab into editor
     private ParticleSystem hitEffect = null;
     private PlayerRespawn respawnScript = null;
     public GameObject portaleffect;
@@ -94,6 +95,8 @@ public class RingScoreScript : MonoBehaviour
                 pColSoundEffects.PlayRingClip(gameObject);
                 if (null != hitEffect)
                 {
+                    
+                   // Instantiate(hitEffect, this.gameObject.transform.position, Quaternion.identity);
                     hitEffect.Play();
                     hitEffect.GetComponentInParent<MeshRenderer>().enabled = false;
                 }

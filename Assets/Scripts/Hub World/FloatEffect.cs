@@ -11,7 +11,7 @@ public class FloatEffect : MonoBehaviour
     {
         originalHeight = objectTransform.position.y;
         if (randomizeStartHeight)
-            objectTransform.Translate(0.0f, Random.Range(-floatDistance, floatDistance), 0.0f);
+            objectTransform.Translate(0.0f, Random.Range(-floatDistance, floatDistance), 0.0f, Space.World);
         if (startDirection != StartDirection.Up)
             direction = -1.0f;
     }
@@ -24,6 +24,6 @@ public class FloatEffect : MonoBehaviour
         }
         else if (!(objectTransform.position.y > originalHeight - floatDistance))
             direction = -direction;
-        objectTransform.Translate(0.0f, Time.deltaTime * floatRate * direction, 0.0f);
+        objectTransform.Translate(0.0f, Time.deltaTime * floatRate * direction, 0.0f, Space.World);
     }
 }

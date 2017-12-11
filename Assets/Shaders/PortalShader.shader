@@ -21,11 +21,12 @@
 					"RenderType" = "Transparent"
 					"PreviewType" = "Plane"}
 			LOD 200
+
 			ZWrite Off
 
 			Pass
 		{
-
+			
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag

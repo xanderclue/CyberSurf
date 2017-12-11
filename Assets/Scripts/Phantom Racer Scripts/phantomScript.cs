@@ -7,6 +7,11 @@ public class phantomScript : MonoBehaviour
     private int currentPos = 0;
     private void Start()
     {
+        try { TryStart(); }
+        catch { Debug.Log("scores corrupt.. scores file will be reset on exit"); GameManager.DeleteScoresOnExit(); }
+    }
+    private void TryStart()
+    {
         int level = SceneManager.GetActiveScene().buildIndex;
         GameManager gameManager = GameManager.instance;
         switch (GameManager.instance.gameMode.currentMode)
@@ -36,7 +41,6 @@ public class phantomScript : MonoBehaviour
             case GameModes.Free:
                 break;
             case GameModes.Race:
-                Debug.Log("To add, Race Case PhantomScript");
                 break;
             default:
                 Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);

@@ -8,20 +8,19 @@ public class BoardManager : MonoBehaviour
     private PlayerGameplayController pgc = null;
     private PlayerMenuController pmc = null;
     private PlayerFanController pfc = null;
-    private MeshRenderer boardMR = null;
     public bool debugSpeedEnabled = false;
     [HideInInspector] public bool gamepadEnabled = false;
     public BoardType currentBoardSelection = BoardType.Original;
-    [SerializeField] private Material[] boardMaterials = null;
     [Space] public ManagerClasses.PlayerMovementVariables customGamepadMovementVariables = new ManagerClasses.PlayerMovementVariables();
     public ManagerClasses.PlayerMovementVariables customGyroMovementVariables = new ManagerClasses.PlayerMovementVariables();
+    private BoardSelector boardSelector = null;
     public void SetupBoardManager(GameObject p)
     {
         StartCoroutine(DetectGyroCoroutine());
         pgc = p.GetComponent<PlayerGameplayController>();
         pmc = p.GetComponent<PlayerMenuController>();
         pfc = p.GetComponent<PlayerFanController>();
-        boardMR = p.GetComponentInChildren<BoardRollEffect>().GetComponent<MeshRenderer>();
+        boardSelector = p.GetComponentInChildren<BoardSelector>(true);
         pgc.SetupGameplayControllerScript();
         pmc.SetupMenuControllerScript();
         pfc.SetupFanControllerScript();
@@ -55,7 +54,7 @@ public class BoardManager : MonoBehaviour
     public void BoardSelect(BoardType bSelect)
     {
         currentBoardSelection = bSelect;
-        boardMR.material = boardMaterials[(int)currentBoardSelection];
+        boardSelector.SelectBoard(bSelect);
         pgc.UpdatePlayerBoard(gamepadEnabled ? GamepadBoardSelect(currentBoardSelection) : GyroBoardSelect());
         pfc.UpdateFanPercentage();
     }

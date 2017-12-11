@@ -6,7 +6,7 @@ using static UnityEngine.SceneManagement.SceneManager;
 using static LevelManager;
 public class MirrorReverseWizard : ScriptableWizard
 {
-    public string[] scenes = null;
+    private string[] scenes = null;
     [MenuItem("Cybersurf Tools/Create Mirror and Reverse Levels...")]
     private static void InitMirrorReverseWizard() =>
         DisplayWizard<MirrorReverseWizard>("Create Mirrored and Reversed Levels", "Create Levels").SetupList();
@@ -20,11 +20,12 @@ public class MirrorReverseWizard : ScriptableWizard
     }
     private void OnWizardCreate()
     {
+        TransformCleaner.CleanTransforms(true);
         string originalScene = GetActiveScene().path;
         foreach (string scene in scenes)
             new CreateMirrorReverse(scene).CreateScenes();
         EditorSceneManager.OpenScene(originalScene, OpenSceneMode.Single);
-        TransformCleaner.CleanTransforms();
+        TransformCleaner.CleanTransforms(false);
     }
     private void OnWizardUpdate()
     {
