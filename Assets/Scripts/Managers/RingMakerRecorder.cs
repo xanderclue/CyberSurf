@@ -85,12 +85,5 @@ public class RingMakerRecorder : MonoBehaviour
         file.Close();
         rings.Clear();
     }
-    private void Update()
-    {
-        if ((Input.GetKeyDown(KeyCode.R) &&
-            (Input.GetKey(KeyCode.LeftShift) ||
-            Input.GetKey(KeyCode.RightShift))) ||
-            Input.GetKeyDown(KeyInputManager.XBOX_B))
-            AddRing();
-    }
+    private void Update() { if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyInputManager.XBOX_RB)) AddRing(); }
 }

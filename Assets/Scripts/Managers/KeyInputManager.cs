@@ -5,28 +5,23 @@ public class KeyInputManager : MonoBehaviour
 {
     public static class VR
     {
-#if UNITY_2017_2_OR_NEWER
         public static bool VRPresent => UnityEngine.XR.XRDevice.isPresent;
         public static Quaternion GetHeadRotation() => UnityEngine.XR.InputTracking.GetLocalRotation(UnityEngine.XR.XRNode.Head);
-#else
-        public static bool VRPresent => UnityEngine.VR.VRDevice.isPresent;
-        public static Quaternion GetHeadRotation() => UnityEngine.VR.InputTracking.GetLocalRotation(UnityEngine.VR.VRNode.Head);
-#endif
     }
 #if UNITY_STANDALONE_OSX
     public const KeyCode XBOX_A = KeyCode.JoystickButton16;
-    public const KeyCode XBOX_B = KeyCode.JoystickButton17;
     public const KeyCode XBOX_X = KeyCode.JoystickButton18;
     public const KeyCode XBOX_Y = KeyCode.JoystickButton19;
     public const KeyCode XBOX_LB = KeyCode.JoystickButton13;
+    public const KeyCode XBOX_RB = KeyCode.JoystickButton14;
     public const KeyCode XBOX_BACK = KeyCode.JoystickButton10;
     public const KeyCode XBOX_START = KeyCode.JoystickButton9;
 #else
     public const KeyCode XBOX_A = KeyCode.JoystickButton0;
-    public const KeyCode XBOX_B = KeyCode.JoystickButton1;
     public const KeyCode XBOX_X = KeyCode.JoystickButton2;
     public const KeyCode XBOX_Y = KeyCode.JoystickButton3;
     public const KeyCode XBOX_LB = KeyCode.JoystickButton4;
+    public const KeyCode XBOX_RB = KeyCode.JoystickButton5;
     public const KeyCode XBOX_BACK = KeyCode.JoystickButton6;
     public const KeyCode XBOX_START = KeyCode.JoystickButton7;
 #endif

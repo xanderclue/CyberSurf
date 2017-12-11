@@ -2,94 +2,93 @@
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
+using System.Collections.Generic;
 public class RingProcessorWizard : ScriptableWizard
 {
-    [Header("Bonus Time and Queue Order Settings"), Range(10.0f, 50.0f)] public float targetVelocity = 30.0f;
-    [Range(-1.0f, 1.0f), Tooltip("Increase or decrease the target bonus time based off of this percentage of the calculated bonus time.")] public float timePercentModifier = 0.0f;
+    [Header("Bonus Time and Queue Order Settings")]
+    [Range(10.0f, 50.0f)]
+    public float targetVelocity = 30.0f;
+    [Range(-1.0f, 1.0f), Tooltip("Increase or decrease the target bonus time based off of this percentage of the calculated bonus time.")]
+    public float timePercentModifier = 0.0f;
     public int startPositionInOrder = 1;
-    [Header("Last Ring Settings")] public bool setAsLastInScene = true;
+
+    [Header("Last Ring Settings")]
     public int nextSceneIndex = 1;
-    [Header("Drag Rings and Mutators In Desired Order Here")] public Object[] ringsToProcess = null;
+
+    [Header("Drag Rings and Mutators In Desired Order Here")]
+    public RingSetupScript ringsParent = null;
+    private RingProperties[] ringsToProcess = null;
     private Vector3 prevPosition, currPosition;
     private int currQueuePosition = 0;
-    private GameObject previousGameObject = null, currentGameObject = null;
+    private RingProperties previousRing = null, currentRing = null;
+
     [MenuItem("Cybersurf Tools/Ring Processor Wizard")]
-    private static void ProcessRings()
-    {
-        DisplayWizard<RingProcessorWizard>("Ring Processor Wizard", "Update And Close", "Update");
-    }
+    private static void ProcessRings() => DisplayWizard<RingProcessorWizard>("Ring Processor Wizard", "Update");
     private bool Init()
     {
-        if (null == ringsToProcess || ringsToProcess.Length < 2)
+        if (null == ringsToProcess || ringsToProcess.Length < 4)
             return false;
         currPosition = prevPosition = Vector3.zero;
         currQueuePosition = startPositionInOrder;
         for (int i = 0; i < ringsToProcess.Length; ++i)
         {
-            previousGameObject = (GameObject)ringsToProcess[i];
-            if (null != previousGameObject.GetComponent<RingProperties>())
+            previousRing = ringsToProcess[i];
+            if (null != previousRing)
             {
-                prevPosition = previousGameObject.GetComponent<RingProperties>().transform.position;
+                prevPosition = previousRing.transform.position;
                 break;
             }
         }
-        return null != previousGameObject;
-    }
-    private float CalculateBonusTime()
-    {
-        return Vector3.Distance(prevPosition, currPosition) * (timePercentModifier + 1.0f) / targetVelocity;
+        return null != previousRing;
     }
     private void SetProperties()
     {
-        RingProperties rp;
         for (int i = 1; i < ringsToProcess.Length; ++i)
         {
-            currentGameObject = (GameObject)ringsToProcess[i];
-            if (null != currentGameObject.GetComponent<RingProperties>())
-            {
-                currPosition = currentGameObject.transform.position;
-                rp = previousGameObject.GetComponent<RingProperties>();
-                rp.bonusTime = CalculateBonusTime();
-                rp.positionInOrder = currQueuePosition;
-                UnityEditorInternal.ComponentUtility.CopyComponent(rp);
-                UnityEditorInternal.ComponentUtility.PasteComponentValues(rp);
-            }
+            currentRing = ringsToProcess[i];
+            currPosition = currentRing.transform.position;
+            previousRing.bonusTime = Vector3.Distance(prevPosition, currPosition) * (timePercentModifier + 1.0f) / targetVelocity;
+            previousRing.positionInOrder = currQueuePosition;
+            previousRing.nextScene = -1;
+            previousRing.lastRingInScene = false;
+            UnityEditorInternal.ComponentUtility.CopyComponent(previousRing);
+            UnityEditorInternal.ComponentUtility.PasteComponentValues(previousRing);
             ++currQueuePosition;
-            previousGameObject = currentGameObject;
+            previousRing = currentRing;
             prevPosition = currPosition;
         }
-        rp = currentGameObject.GetComponent<RingProperties>();
-        if (null != rp)
-        {
-            if (setAsLastInScene)
-            {
-                rp.lastRingInScene = true;
-                rp.nextScene = nextSceneIndex;
-            }
-            GameObject firstGameObject = (GameObject)ringsToProcess[0];
-            rp.bonusTime = Vector3.Distance(firstGameObject.transform.position, currentGameObject.transform.position) * (timePercentModifier + 1.0f) / targetVelocity;
-            rp.positionInOrder = currQueuePosition;
-            UnityEditorInternal.ComponentUtility.CopyComponent(rp);
-            UnityEditorInternal.ComponentUtility.PasteComponentValues(rp);
-        }
+        previousRing = ringsToProcess[ringsToProcess.Length - 2];
+        previousRing.lastRingInScene = true;
+        previousRing.nextScene = nextSceneIndex;
+        UnityEditorInternal.ComponentUtility.CopyComponent(previousRing);
+        UnityEditorInternal.ComponentUtility.PasteComponentValues(previousRing);
+        currentRing.lastRingInScene = true;
+        currentRing.nextScene = LevelSelectOptions.HubWorldBuildIndex;
+        currentRing.bonusTime = Vector3.Distance(ringsToProcess[0].transform.position, currentRing.transform.position) * (timePercentModifier + 1.0f) / targetVelocity;
+        currentRing.positionInOrder = currQueuePosition;
+        UnityEditorInternal.ComponentUtility.CopyComponent(currentRing);
+        UnityEditorInternal.ComponentUtility.PasteComponentValues(currentRing);
     }
     private void OnWizardCreate()
     {
-        if (Init())
+        if (null == ringsParent) return;
+        for (int i = 0; i < (int)GameDifficulty.GameDifficultiesSize; ++i)
         {
-            SetProperties();
-            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            ringsToProcess = GetRings(ringsParent.GetRingDifficultyParent((GameDifficulty)i).transform);
+            if (Init())
+                SetProperties();
         }
+        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
-    private void OnWizardOtherButton()
+    private class RingPropertiesSiblingIndexComparer : IComparer<RingProperties>
+    { public int Compare(RingProperties x, RingProperties y) => x.transform.GetSiblingIndex() - y.transform.GetSiblingIndex(); }
+    private static RingProperties[] GetRings(Transform parent)
     {
-        if (Init())
-        {
-            helpString = "Rings Processed!";
-            SetProperties();
-            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-        }
-        else
-            helpString = "Not enough items in the Rings To Process array!";
+        List<RingProperties> rings = new List<RingProperties>();
+        int childCount = parent.childCount;
+        for (int i = 0; i < parent.childCount; ++i)
+            rings.Add(parent.GetChild(i).GetComponent<RingProperties>());
+        rings.Sort(new RingPropertiesSiblingIndexComparer());
+        return rings.ToArray();
     }
 }

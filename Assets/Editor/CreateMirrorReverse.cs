@@ -146,9 +146,7 @@
                     theRings.Add(ringProperty);
         }
         private class RingPropertiesPositionInOrderComparer : IComparer<RingProperties>
-        {
-            public int Compare(RingProperties x, RingProperties y) => x.positionInOrder - y.positionInOrder;
-        }
+        { public int Compare(RingProperties x, RingProperties y) => x.positionInOrder - y.positionInOrder; }
         private void GetSortedRings()
         {
             sortedRings = theRings.ToArray();
