@@ -15,7 +15,7 @@ public class Race_Lap_Ring_Text_Script : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (GameModes.Race == GameManager.instance.gameMode.currentMode && laptext.curr_lap != laptext.max_lap)
+        if (GameMode.Race == GameManager.gameMode && laptext.curr_lap != laptext.max_lap)
         {
             element.SetText("Checkpoint");
         }

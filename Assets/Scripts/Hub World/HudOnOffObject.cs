@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Xander.Debugging;
 public class HudOnOffObject : MonoBehaviour
 {
     public HudMenuTab.HudMenuOption menuOption = HudMenuTab.HudMenuOption.OverallHud;
@@ -85,8 +84,6 @@ public class HudOnOffObject : MonoBehaviour
                 textElementController = GameManager.player.GetComponentInChildren<TextElementControllerScript>();
             switch (menuOption)
             {
-                case HudMenuTab.HudMenuOption.OverallHud:
-                    return false;
                 case HudMenuTab.HudMenuOption.Speed:
                     return textElementController.hudElementsControl.speedBool;
                 case HudMenuTab.HudMenuOption.Timer:
@@ -105,10 +102,8 @@ public class HudOnOffObject : MonoBehaviour
                     return textElementController.hudElementsControl.reticleBool;
                 case HudMenuTab.HudMenuOption.Compass:
                     return textElementController.hudElementsControl.compassBool;
-                default:
-                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"" + this.Info(), this);
-                    return defaultOnOffValue;
             }
+            return false;
         }
         set
         {
@@ -151,9 +146,6 @@ public class HudOnOffObject : MonoBehaviour
                     break;
                 case HudMenuTab.HudMenuOption.Compass:
                     textElementController.setCompass(value);
-                    break;
-                default:
-                    Debug.LogWarning("Missing case: \"" + menuOption.ToString("F") + "\"" + this.Info(), this);
                     break;
             }
         }

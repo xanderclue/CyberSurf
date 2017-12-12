@@ -22,8 +22,8 @@ public class PlayerMenuController : MonoBehaviour
     private Quaternion startMotionRot, endMotionRot;
     public void SetupMenuControllerScript()
     {
-        gyro = GameManager.instance.boardScript.gyro;
-        gamepadEnabled = GameManager.instance.boardScript.gamepadEnabled;
+        gyro = BoardManager.gyro;
+        gamepadEnabled = BoardManager.gamepadEnabled;
         coroutinesStopped = false;
         menuMovementIsLocked = false;
     }
@@ -54,7 +54,7 @@ public class PlayerMenuController : MonoBehaviour
     {
         if (null == playerRB)
             playerRB = GameManager.player.GetComponent<Rigidbody>();
-        if (scene.buildIndex < LevelSelectOptions.LevelBuildOffset)
+        if (scene.buildIndex < LevelManager.LevelBuildOffset)
         {
             coroutinesStopped = false;
             inAMenu = true;

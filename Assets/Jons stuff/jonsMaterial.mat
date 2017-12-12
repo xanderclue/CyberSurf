@@ -54,6 +54,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2:
+        m_Texture: {fileID: 2800000, guid: 576f3804346573a46a8c08c0f704b910, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _anothaOne:
         m_Texture: {fileID: 2800000, guid: 951aab9a19f551f4385d0ceafdaf19b4, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -80,6 +88,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
+    - _Movement: 0.209
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RotationSpeed: 2

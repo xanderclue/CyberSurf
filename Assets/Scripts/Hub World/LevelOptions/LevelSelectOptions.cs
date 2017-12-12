@@ -11,16 +11,6 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     [SerializeField] private LevelManager.Level defaultLevel = LevelManager.Level.Canyon;
     private LevelManager.Level tempLevel;
     [SerializeField] private WorldPortalProperties portal = null;
-    public const int LevelBuildOffset = 2;
-    public const int LevelCount = (int)(LevelManager.Level.NumLevels);
-    public const int MirroredOffset = LevelCount;
-    public const int MirroredBuildOffset = LevelBuildOffset + MirroredOffset;
-    public const int ReversedOffset = MirroredOffset + LevelCount;
-    public const int ReversedBuildOffset = LevelBuildOffset + ReversedOffset;
-    public const int MirroredReversedOffset = ReversedOffset + LevelCount;
-    public const int MirroredReversedBuildOffset = LevelBuildOffset + MirroredReversedOffset;
-    public static int GetLevelOffset => LevelManager.mirrorMode ? (LevelManager.reverseMode ? MirroredReversedOffset : MirroredOffset) : (LevelManager.reverseMode ? ReversedOffset : 0);
-    public static int GetBuildOffset => LevelBuildOffset + GetLevelOffset;
     new private void Start()
     {
         base.Start();
@@ -65,7 +55,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        portal.SceneIndex = (int)tempLevel + LevelBuildOffset;
+        portal.SceneIndex = (int)tempLevel + LevelManager.LevelBuildOffset;
     }
     public override void DefaultOptions()
     {
@@ -76,7 +66,7 @@ public class LevelSelectOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempLevel = (LevelManager.Level)(portal.SceneIndex - LevelBuildOffset);
+        tempLevel = (LevelManager.Level)(portal.SceneIndex - LevelManager.LevelBuildOffset);
         UpdateDisplay();
     }
 }

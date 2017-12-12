@@ -1,26 +1,23 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Xander.Debugging;
-public enum BoardType { Original, MachI, MachII, MachIII, Custom }
+public enum BoardType { Original, MachI, MachII, MachIII }
 public class BoardManager : MonoBehaviour
 {
-    [HideInInspector] public SpatialData gyro = null;
-    private PlayerGameplayController pgc = null;
-    private PlayerMenuController pmc = null;
-    private PlayerFanController pfc = null;
-    public bool debugSpeedEnabled = false;
-    [HideInInspector] public bool gamepadEnabled = false;
-    public BoardType currentBoardSelection = BoardType.Original;
-    [Space] public ManagerClasses.PlayerMovementVariables customGamepadMovementVariables = new ManagerClasses.PlayerMovementVariables();
-    public ManagerClasses.PlayerMovementVariables customGyroMovementVariables = new ManagerClasses.PlayerMovementVariables();
-    private BoardSelector boardSelector = null;
-    public void SetupBoardManager(GameObject p)
+    public static SpatialData gyro = null;
+    public static bool debugSpeedEnabled = false;
+    public static bool gamepadEnabled = false;
+    public static BoardType currentBoardSelection = BoardType.Original;
+    private static BoardSelector boardSelector = null;
+    private static PlayerGameplayController pgc = null;
+    private static PlayerMenuController pmc = null;
+    private static PlayerFanController pfc = null;
+    public void SetupBoardManager()
     {
         StartCoroutine(DetectGyroCoroutine());
-        pgc = p.GetComponent<PlayerGameplayController>();
-        pmc = p.GetComponent<PlayerMenuController>();
-        pfc = p.GetComponent<PlayerFanController>();
-        boardSelector = p.GetComponentInChildren<BoardSelector>(true);
+        pgc = GameManager.player.GetComponent<PlayerGameplayController>();
+        pmc = GameManager.player.GetComponent<PlayerMenuController>();
+        pfc = GameManager.player.GetComponent<PlayerFanController>();
+        boardSelector = GameManager.player.GetComponentInChildren<BoardSelector>(true);
         pgc.SetupGameplayControllerScript();
         pmc.SetupMenuControllerScript();
         pfc.SetupFanControllerScript();
@@ -28,7 +25,7 @@ public class BoardManager : MonoBehaviour
         if (debugSpeedEnabled)
             pgc.StartDebugSpeedControls();
     }
-    private IEnumerator DetectGyroCoroutine()
+    private static IEnumerator DetectGyroCoroutine()
     {
         gyro = new SpatialData();
         yield return new WaitForSeconds(SpatialData.WaitForAttach);
@@ -40,7 +37,7 @@ public class BoardManager : MonoBehaviour
         }
         UpdateControlsType(gamepadEnabled);
     }
-    public void UpdateControlsType(bool gPadEnabled)
+    public static void UpdateControlsType(bool gPadEnabled)
     {
         gamepadEnabled = gPadEnabled;
         gyro?.Close();
@@ -51,16 +48,16 @@ public class BoardManager : MonoBehaviour
         pgc.UpdateGameplayControlsType(gPadEnabled, gyro);
         pmc.UpdateMenuControlsType(gPadEnabled, gyro);
     }
-    public void BoardSelect(BoardType bSelect)
+    public static void BoardSelect(BoardType bSelect)
     {
         currentBoardSelection = bSelect;
         boardSelector.SelectBoard(bSelect);
         pgc.UpdatePlayerBoard(gamepadEnabled ? GamepadBoardSelect(currentBoardSelection) : GyroBoardSelect());
         pfc.UpdateFanPercentage();
     }
-    public ManagerClasses.PlayerMovementVariables GamepadBoardSelect(BoardType boardType)
+    public static PlayerMovementVariables GamepadBoardSelect(BoardType boardType)
     {
-        ManagerClasses.PlayerMovementVariables pmv = new ManagerClasses.PlayerMovementVariables();
+        PlayerMovementVariables pmv = new PlayerMovementVariables();
         switch (boardType)
         {
             case BoardType.Original:
@@ -135,19 +132,14 @@ public class BoardManager : MonoBehaviour
                 pmv.drag = 1.0f;
                 pmv.angularDrag = 5.0f;
                 break;
-            case BoardType.Custom:
-                pmv = customGamepadMovementVariables;
-                break;
             default:
-                Debug.LogWarning("Missing case: \"" + boardType.ToString("F") + "\"" + this.Info(), this);
-                pmv = customGamepadMovementVariables;
                 break;
         }
         return pmv;
     }
-    private ManagerClasses.PlayerMovementVariables GyroBoardSelect()
+    private static PlayerMovementVariables GyroBoardSelect()
     {
-        ManagerClasses.PlayerMovementVariables pmv = new ManagerClasses.PlayerMovementVariables();
+        PlayerMovementVariables pmv = new PlayerMovementVariables();
         switch (currentBoardSelection)
         {
             case BoardType.Original:
@@ -222,15 +214,10 @@ public class BoardManager : MonoBehaviour
                 pmv.drag = 1.0f;
                 pmv.angularDrag = 5.0f;
                 break;
-            case BoardType.Custom:
-                pmv = customGyroMovementVariables;
-                break;
             default:
-                Debug.LogWarning("Missing case: \"" + currentBoardSelection.ToString("F") + "\"" + this.Info(), this);
-                pmv = customGyroMovementVariables;
                 break;
         }
         return pmv;
     }
-    private void OnDisable() { gyro?.Close(); }
+    private void OnDisable() => gyro?.Close();
 }

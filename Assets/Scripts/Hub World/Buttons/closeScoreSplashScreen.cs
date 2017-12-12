@@ -1,32 +1,23 @@
 ﻿using UnityEngine;
-using Xander.Debugging;
 public class closeScoreSplashScreen : SelectedObject
 {
+    private static char[] currentName = new char[3];
     [SerializeField] private Name nameDisplay = null;
     [SerializeField] private GameObject panel = null;
     [SerializeField] private TopScoreDisplay topScoreDisplay = null;
-    private ScoreManager scoreScript = null;
-    private GameManager gameManager = null;
     private int lastScoreLocation = 0;
     new private void Start()
     {
         base.Start();
-        gameManager = GameManager.instance;
-        scoreScript = gameManager.scoreScript;
-        if (-1 == gameManager.lastPortalBuildIndex)
+        if (-1 == GameManager.lastPortalBuildIndex)
         {
             gameObject.SetActive(false);
             panel.SetActive(false);
             if (!keepPlayerStill.tutorialOn)
                 GameManager.player.GetComponent<PlayerMenuController>().ToggleMenuMovement(false);
         }
-        else if (0 == gameManager.lastPortalBuildIndex)
-        {
-            gameObject.SetActive(false);
-            panel.SetActive(false);
-        }
-        if (0 != scoreScript.currentName[0])
-            nameDisplay.NameString = new string(scoreScript.currentName);
+        if (0 != currentName[0])
+            nameDisplay.NameString = new string(currentName);
     }
     protected override void SuccessFunction()
     {
@@ -34,76 +25,70 @@ public class closeScoreSplashScreen : SelectedObject
         gameObject.SetActive(false);
         panel.SetActive(false);
         int i, j;
-        switch (gameManager.gameMode.currentMode)
+        switch (GameManager.gameMode)
         {
-            case GameModes.Continuous:
-                for (i = 0; i < scoreScript.topContinuousScores.Length; ++i)
+            case GameMode.Continuous:
+                for (i = 0; i < ScoreManager.topContinuousScores.Length; ++i)
                 {
-                    if (scoreScript.topContinuousScores[i].isLastScoreInput)
+                    if (ScoreManager.topContinuousScores[i].isLastScoreInput)
                     {
                         lastScoreLocation = i;
-                        scoreScript.topContinuousScores[i].isLastScoreInput = false;
+                        ScoreManager.topContinuousScores[i].isLastScoreInput = false;
                         break;
                     }
                 }
-                if (gameManager.lastPortalBuildIndex > 1)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     string name = nameDisplay.NameString;
-                    scoreScript.topContinuousScores[lastScoreLocation].name = name;
-                    scoreScript.currentName[0] = name[0];
-                    scoreScript.currentName[1] = name[1];
-                    scoreScript.currentName[2] = name[2];
+                    ScoreManager.topContinuousScores[lastScoreLocation].name = name;
+                    currentName[0] = name[0];
+                    currentName[1] = name[1];
+                    currentName[2] = name[2];
                 }
                 break;
-            case GameModes.Cursed:
-                for (i = 0; i < scoreScript.topCursedScores.Length; ++i)
+            case GameMode.Cursed:
+                for (i = 0; i < ScoreManager.topCursedScores.Length; ++i)
                 {
-                    for (j = 0; j < scoreScript.topCursedScores[i].cursedScores.Length; ++j)
-                        if (scoreScript.topCursedScores[i].cursedScores[j].isLastScoreInput)
+                    for (j = 0; j < ScoreManager.topCursedScores[i].cursedScores.Length; ++j)
+                        if (ScoreManager.topCursedScores[i].cursedScores[j].isLastScoreInput)
                         {
                             lastScoreLocation = j;
-                            scoreScript.topCursedScores[i].cursedScores[j].isLastScoreInput = false;
+                            ScoreManager.topCursedScores[i].cursedScores[j].isLastScoreInput = false;
                             break;
                         }
-                    if (j < scoreScript.topCursedScores[i].cursedScores.Length - 1)
+                    if (j < ScoreManager.topCursedScores[i].cursedScores.Length - 1)
                         break;
                 }
-                if (gameManager.lastPortalBuildIndex > 1)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     string name = nameDisplay.NameString;
-                    scoreScript.topCursedScores[gameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].name = name;
-                    scoreScript.currentName[0] = name[0];
-                    scoreScript.currentName[1] = name[1];
-                    scoreScript.currentName[2] = name[2];
+                    ScoreManager.topCursedScores[GameManager.lastPortalBuildIndex].cursedScores[lastScoreLocation].name = name;
+                    currentName[0] = name[0];
+                    currentName[1] = name[1];
+                    currentName[2] = name[2];
                 }
                 break;
-            case GameModes.Free:
-                Debug.Log("Free Mode shouldn't display anything" + this.Info(), this);
-                break;
-            case GameModes.Race:
-                for (i = 0; i < scoreScript.topRaceScores.Length; ++i)
+            case GameMode.Race:
+                for (i = 0; i < ScoreManager.topRaceScores.Length; ++i)
                 {
-                    for (j = 0; j < scoreScript.topRaceScores[i].racescores.Length; ++j)
-                        if (scoreScript.topRaceScores[i].racescores[j].isLastScoreInput)
+                    for (j = 0; j < ScoreManager.topRaceScores[i].racescores.Length; ++j)
+                        if (ScoreManager.topRaceScores[i].racescores[j].isLastScoreInput)
                         {
                             lastScoreLocation = j;
-                            scoreScript.topRaceScores[i].racescores[j].isLastScoreInput = false;
+                            ScoreManager.topRaceScores[i].racescores[j].isLastScoreInput = false;
                             break;
                         }
-                    if (j < scoreScript.topRaceScores[i].racescores.Length - 1)
+                    if (j < ScoreManager.topRaceScores[i].racescores.Length - 1)
                         break;
                 }
-                if (gameManager.lastPortalBuildIndex > 1)
+                if (GameManager.lastPortalBuildIndex >= LevelManager.LevelBuildOffset)
                 {
                     string name = nameDisplay.NameString;
-                    scoreScript.topRaceScores[gameManager.lastPortalBuildIndex].racescores[lastScoreLocation].name = name;
-                    scoreScript.currentName[0] = name[0];
-                    scoreScript.currentName[1] = name[1];
-                    scoreScript.currentName[2] = name[2];
+                    ScoreManager.topRaceScores[GameManager.lastPortalBuildIndex].racescores[lastScoreLocation].name = name;
+                    currentName[0] = name[0];
+                    currentName[1] = name[1];
+                    currentName[2] = name[2];
                 }
-                break;
-            default:
-                Debug.LogWarning("Missing case: \"" + gameManager.gameMode.currentMode.ToString("F") + "\"" + this.Info(), this);
                 break;
         }
         topScoreDisplay.StartScoreUpdate();

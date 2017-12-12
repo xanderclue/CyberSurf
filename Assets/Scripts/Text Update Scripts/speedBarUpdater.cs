@@ -4,7 +4,7 @@ public class speedBarUpdater : MonoBehaviour
 {
     [SerializeField] private float currentValue = 0.0f, maxValue = 0.0f, minValue = 0.0f;
     private Image fillUpBar;
-    private ManagerClasses.PlayerMovementVariables moveVars = null;
+    private PlayerMovementVariables moveVars = null;
     private Rigidbody player = null;
     private float prevValue = 0.0f;
     private void Start()

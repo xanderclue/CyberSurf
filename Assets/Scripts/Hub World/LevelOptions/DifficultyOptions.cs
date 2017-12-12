@@ -4,8 +4,8 @@ public class DifficultyOptions : LevelMenuObjectGroup
 {
     [SerializeField] private LevelMenuButton leftButton = null, rightButton = null;
     [SerializeField] private TextMeshPro difficultyText = null;
-    [SerializeField] private GameDifficulties defaultDifficulty = GameDifficulties.Normal;
-    private GameDifficulties tempDifficulty;
+    [SerializeField] private GameDifficulty defaultDifficulty = GameDifficulty.Normal;
+    private GameDifficulty tempDifficulty;
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;
@@ -31,14 +31,14 @@ public class DifficultyOptions : LevelMenuObjectGroup
     private void ButtonLeftFunction()
     {
         if (tempDifficulty - 1 < 0)
-            tempDifficulty = GameDifficulties.GameDifficultiesSize - 1;
+            tempDifficulty = GameDifficulty.GameDifficultiesSize - 1;
         else
             --tempDifficulty;
         UpdateDisplay();
     }
     private void ButtonRightFunction()
     {
-        if (tempDifficulty + 1 >= GameDifficulties.GameDifficultiesSize)
+        if (tempDifficulty + 1 >= GameDifficulty.GameDifficultiesSize)
             tempDifficulty = 0;
         else
             ++tempDifficulty;
@@ -47,13 +47,13 @@ public class DifficultyOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempDifficulty = GameManager.instance.gameDifficulty.currentDifficulty;
+        tempDifficulty = GameManager.gameDifficulty;
         UpdateDisplay();
     }
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        GameManager.instance.gameDifficulty.currentDifficulty = tempDifficulty;
+        GameManager.gameDifficulty = tempDifficulty;
     }
     public override void DefaultOptions()
     {

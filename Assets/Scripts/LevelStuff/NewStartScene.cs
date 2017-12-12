@@ -5,6 +5,6 @@ public class NewStartScene : MonoBehaviour
     private void Awake()
     {
         BuildDebugger.InitDebugger();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(LevelManager.HubWorldBuildIndex);
     }
 }

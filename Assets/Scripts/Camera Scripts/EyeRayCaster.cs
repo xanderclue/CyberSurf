@@ -8,9 +8,9 @@ public class EyeRayCaster : MonoBehaviour
     public float rayCheckLength = 12.0f;
     [SerializeField] private LayerMask layerMask;
     private GameObject preObj = null, curObj = null;
-    private reticle reticleScript = null;
+    private ReticleScript reticleScript = null;
     private RaycastHit hit;
-    private void Start() => reticleScript = GetComponent<reticle>();
+    private void Start() => reticleScript = GetComponent<ReticleScript>();
     private void Update()
     {
         preObj = curObj;

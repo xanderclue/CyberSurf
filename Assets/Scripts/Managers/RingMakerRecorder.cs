@@ -64,7 +64,7 @@ public class RingMakerRecorder : MonoBehaviour
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (enabled) SaveRings();
-        enabled = GameModes.Free == GameManager.instance.gameMode.currentMode && scene.buildIndex >= LevelSelectOptions.LevelBuildOffset;
+        enabled = GameMode.Free == GameManager.gameMode && scene.buildIndex >= LevelManager.LevelBuildOffset;
     }
     private void OnDisable() => SaveRings();
     private void OnDestroy() => SceneManager.sceneLoaded -= SceneLoaded;
@@ -85,12 +85,5 @@ public class RingMakerRecorder : MonoBehaviour
         file.Close();
         rings.Clear();
     }
-    private void Update()
-    {
-        if ((Input.GetKeyDown(KeyCode.R) &&
-            (Input.GetKey(KeyCode.LeftShift) ||
-            Input.GetKey(KeyCode.RightShift))) ||
-            Input.GetKeyDown(KeyInputManager.XBOX_B))
-            AddRing();
-    }
+    private void Update() { if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyInputManager.XBOX_RB)) AddRing(); }
 }

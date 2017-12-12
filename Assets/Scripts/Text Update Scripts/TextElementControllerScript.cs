@@ -80,7 +80,7 @@ public class TextElementControllerScript : MonoBehaviour
     }
     private void GameStart()
     {
-        GameModes currentMode = GameManager.instance.gameMode.currentMode;
+        GameMode currentMode = GameManager.gameMode;
 
         timerText.GetComponent<TextMeshProUGUI>().color = HUD_Color;
         bonusTimeText.GetComponent<TextMeshProUGUI>().color = HUD_Color;
@@ -99,18 +99,18 @@ public class TextElementControllerScript : MonoBehaviour
         Compass_Display.GetComponentsInParent<Image>(true)[0].color = HUD_Color;
 
         timerText.SetActive(hudElementsControl.timerBool);
-        bonusTimeText.SetActive(hudElementsControl.timerBool && GameModes.Cursed == currentMode);
+        bonusTimeText.SetActive(hudElementsControl.timerBool && GameMode.Cursed == currentMode);
         scoreText.SetActive(hudElementsControl.scoreBool);
         scoreMulti.SetActive(hudElementsControl.scoremultiBool);
         for (int i = 0; i < arrow.Length; ++i)
             arrow[i].SetActive(hudElementsControl.arrowBool);
-        bestlap_time.SetActive(hudElementsControl.bestlapBool && GameModes.Race == currentMode);
+        bestlap_time.SetActive(hudElementsControl.bestlapBool && GameMode.Race == currentMode);
         checkpoint_time.SetActive(hudElementsControl.checkpoint_timeBool);
         time_difference.SetActive(hudElementsControl.time_differenceBool);
-        player_list.SetActive(hudElementsControl.player_listBool && GameModes.Race == currentMode);
-        current_lap_time.SetActive(hudElementsControl.current_lap_timeBool && GameModes.Race == currentMode);
-        position_text.SetActive(hudElementsControl.positionBool && GameModes.Race == currentMode);
-        lap_text.GetComponent<TextMeshProUGUI>().enabled = hudElementsControl.lapBool && GameModes.Race == currentMode;
+        player_list.SetActive(hudElementsControl.player_listBool && GameMode.Race == currentMode);
+        current_lap_time.SetActive(hudElementsControl.current_lap_timeBool && GameMode.Race == currentMode);
+        position_text.SetActive(hudElementsControl.positionBool && GameMode.Race == currentMode);
+        lap_text.GetComponent<TextMeshProUGUI>().enabled = hudElementsControl.lapBool && GameMode.Race == currentMode;
         speedText.SetActive(hudElementsControl.speedBool);
         speedBar.SetActive(hudElementsControl.speedBarBool);
         Compass_Display.SetActive(hudElementsControl.compassBool);

@@ -13,14 +13,8 @@ public class TooltipTextScript : MonoBehaviour
         textMesh.SetText("");
         textMesh.enabled = false;
     }
-    private void OnEnable()
-    {
-        OnUpdateTooltip += UpdateTooltip;
-    }
-    private void OnDisable()
-    {
-        OnUpdateTooltip -= UpdateTooltip;
-    }
+    private void OnEnable() => OnUpdateTooltip += UpdateTooltip;
+    private void OnDisable() => OnUpdateTooltip -= UpdateTooltip;
     private void UpdateTooltip(string str)
     {
         if (null != textMesh)
@@ -39,8 +33,5 @@ public class TooltipTextScript : MonoBehaviour
             }
         }
     }
-    private void Update()
-    {
-        bugFixTimer -= Time.deltaTime;
-    }
+    private void Update() => bugFixTimer -= Time.deltaTime;
 }

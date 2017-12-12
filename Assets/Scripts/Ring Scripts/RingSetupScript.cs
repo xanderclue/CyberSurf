@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Xander.Debugging;
 using Xander.NullConversion;
 public class RingSetupScript : MonoBehaviour
 {
@@ -9,16 +8,14 @@ public class RingSetupScript : MonoBehaviour
     private Transform[] ringTransforms = null;
     private arrowPointAtUpdater arrowScript = null;
     private RingProperties[] sortedRings = null;
-    private GameModes mode;
-    private GameDifficulties difficulty;
-    private ManagerClasses.RoundTimer roundTimer = null;
-    public GameObject GetRingDifficultyParent(GameDifficulties gameDifficulty) => ringDifficultyParents[(int)gameDifficulty];
+    private GameMode mode;
+    private GameDifficulty difficulty;
+    public GameObject GetRingDifficultyParent(GameDifficulty gameDifficulty) => ringDifficultyParents[(int)gameDifficulty];
     private void Start()
     {
         arrowScript = GameManager.player.GetComponentInChildren<arrowPointAtUpdater>();
-        mode = GameManager.instance.gameMode.currentMode;
-        difficulty = GameManager.instance.gameDifficulty.currentDifficulty;
-        roundTimer = GameManager.instance.roundTimer;
+        mode = GameManager.gameMode;
+        difficulty = GameManager.gameDifficulty;
         foreach (GameObject item in ringDifficultyParents)
             item.ConvertNull()?.SetActive(false);
         ringDifficultyParents[(int)difficulty].SetActive(true);
@@ -32,7 +29,7 @@ public class RingSetupScript : MonoBehaviour
         for (int i = 0; i < ringList.Count; ++i)
             ringTransforms[i] = ringList[i].transform;
         sortedRings = rings;
-        if (GameModes.Cursed == mode)
+        if (GameMode.Cursed == mode)
             SetupStartBonusTime();
         if (null != arrowScript)
         {
@@ -63,35 +60,25 @@ public class RingSetupScript : MonoBehaviour
     {
         switch (mode)
         {
-            case GameModes.Continuous:
+            case GameMode.Continuous:
                 arrowScript.currentlyLookingAt = 1;
                 break;
-            case GameModes.Cursed:
+            case GameMode.Cursed:
                 RemoveNEXTRing(rings);
                 arrowScript.currentlyLookingAt = 1;
                 break;
-            case GameModes.Free:
+            case GameMode.Free:
                 for (int i = 0; i < rings.Count - 2; ++i)
                     rings[i].gameObject.SetActive(false);
                 arrowScript.currentlyLookingAt = rings.Count - 1;
                 break;
-            case GameModes.Race:
+            case GameMode.Race:
                 RemoveNEXTRing(rings);
                 arrowScript.currentlyLookingAt = 1;
                 break;
-            default:
-                Debug.LogWarning("Missing case: \"" + mode.ToString("F") + "\"" + this.Info(), this);
-                break;
         }
-
-        if (mode == GameModes.Cursed || mode == GameModes.Race)
-        {
-            if (lapTrigger != null && rings[0].laptext.max_lap > 1)
-            {
-                GameObject go = Instantiate(lapTrigger, rings[0].GetComponent<Transform>().position, rings[0].GetComponent<Transform>().rotation);
-                go.GetComponent<PositionInOrderResetter>().Setup(rings[0].laptext.max_lap);
-            }
-        }
+        if (null != lapTrigger && (GameMode.Cursed == mode || GameMode.Race == mode) && RingProperties.laptext.max_lap > 1)
+            Instantiate(lapTrigger, rings[0].GetComponent<Transform>().position, rings[0].GetComponent<Transform>().rotation).GetComponent<PositionInOrderResetter>().MaxLap = RingProperties.laptext.max_lap;
     }
     private void InsertionSort(RingProperties[] rings)
     {
@@ -111,8 +98,8 @@ public class RingSetupScript : MonoBehaviour
     }
     private void SetupStartBonusTime()
     {
-        ManagerClasses.PlayerMovementVariables currPMV = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
-        roundTimer.TimeLeft = (3.0f * Vector3.Distance(GameManager.player.transform.position, sortedRings[0].transform.position) / (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed)) + 5.0f;
+        PlayerMovementVariables currPMV = GameManager.player.GetComponent<PlayerGameplayController>().movementVariables;
+        RoundTimer.timeLeft = (3.0f * Vector3.Distance(GameManager.player.transform.position, sortedRings[0].transform.position) / (currPMV.minSpeed + currPMV.restingSpeed + currPMV.maxSpeed)) + 5.0f;
     }
     private void OnDisable()
     {

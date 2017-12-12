@@ -13,7 +13,7 @@ public class effectController : MonoBehaviour
     private void Start() => disableAllEffects();
     private void dustFieldActivation(Scene scene, LoadSceneMode loadMode)
     {
-        if (SceneManager.GetActiveScene().buildIndex >= LevelSelectOptions.LevelBuildOffset)
+        if (SceneManager.GetActiveScene().buildIndex >= LevelManager.LevelBuildOffset)
             dustField.Play();
         else
             dustField.Stop();
