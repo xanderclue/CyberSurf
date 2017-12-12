@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour
     private static PlayerRespawn playerRespawnScript = null;
     private static int respawnCount = 0;
     private const int maxRespawnCount = 3;
-    public static float prevRingBonusTime = 0.0f, score_multiplier = 0.0f;
+    public static float prevRingBonusTime = 0.0f, score_multiplier = 1.0f;
     public static Transform prevRingTransform = null;
     private static void InitScores()
     {

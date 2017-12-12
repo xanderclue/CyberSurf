@@ -2,7 +2,7 @@
 using Xander.NullConversion;
 public class RingScoreScript : MonoBehaviour
 {
-    private float consecutiveMultiplier = 1.0f;
+    private float consecutiveMultiplier = 0.25f;
     private const float consecutiveIncreaseAmount = 0.25f;
     private static readonly System.Type capsuleType = typeof(CapsuleCollider);
     private static int prevPositionInOrder = -1, prevConsecutiveCount = 0, consecutiveCount = 0;
@@ -33,15 +33,18 @@ public class RingScoreScript : MonoBehaviour
     }
     private void IncreaseScore()
     {
-        float totalMultiplier = 1.0f;
+        float totalMultiplier = ScoreManager.score_multiplier;
         if (prevPositionInOrder + 1 == rp.positionInOrder)
         {
+            Debug.Log("increase");
             totalMultiplier += consecutiveMultiplier;
             consecutiveMultiplier += consecutiveIncreaseAmount;
             ++consecutiveCount;
         }
         else
         {
+            Debug.Log("decrease");
+            totalMultiplier = 1;
             consecutiveMultiplier = originalCrInAmt;
             consecutiveCount = prevConsecutiveCount = 0;
             if (!effectsStopped)
