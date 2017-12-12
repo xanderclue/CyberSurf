@@ -38,7 +38,7 @@ public class AI_Race_Mode_Script : MonoBehaviour {
             checkx = Joe.x - the_goal.x;
             checky = Joe.y - the_goal.y;
             checkz = Joe.z - the_goal.z;
-            if (checkx < 5 && checkx > -5 && checky < 5 && checky > -5 && checkz < 5 && checkz > -5)
+            if (checkx < 8 && checkx > -8 && checky < 8 && checky > -8 && checkz < 8 && checkz > -8)
             {
                 {
                     counter++;
