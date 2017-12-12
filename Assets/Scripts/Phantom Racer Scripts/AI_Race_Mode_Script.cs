@@ -5,34 +5,34 @@ using UnityEngine;
 public class AI_Race_Mode_Script : MonoBehaviour {
     [SerializeField] public Vector3[] Ring_path;
    [SerializeField] private Vector3 Joe;
+    private float pitch = 0.0f, yaw = 0.0f, gyroPrevPitch = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f, debugSpeedIncrease = 0.0f;
+    public PlayerMovementVariables movementVariables = null;
+    private Rigidbody AI_body;
     public int counter = 0;
     public GameObject the_player;
     // Use this for initialization
     void Start () {
-       /* if (GameModes.Race == GameManager.instance.gameMode.currentMode)
+        AI_body = GetComponent<Rigidbody>();
+       if (GameMode.Race == GameManager.gameMode)
         {
             Joe = this.transform.position;
             the_player = GameObject.FindGameObjectWithTag("Player");
-            Joe = the_player.transform.position;
+            transform.position = the_player.transform.position;
             this.gameObject.transform.rotation = the_player.transform.rotation;
+            
         }
         else
         {
             GameObject.Destroy(this.gameObject);
-        }*/
-        GameObject.Destroy(this.gameObject);
+        }
     }
-	
-	// Update is called once per frame
-	void Update () {
-       
-       /* Vector3 the_goal = Ring_path[counter];
-        Joe.x = Mathf.MoveTowards(Joe.x, the_goal.x, 0.15f);
-        Joe.y = Mathf.MoveTowards(Joe.y, the_goal.y, 0.05f);
-        Joe.z = Mathf.MoveTowards(Joe.z, the_goal.z, 0.15f);
+    void FixedUpdate()
+    {
+        Vector3 the_goal = Ring_path[counter];
+        Joe = transform.position;
         //this.transform.position = Joe;
         Turn_Proper(the_goal);
-        
+        ApplyForce();
         float checkx, checky, checkz;
         checkx = Joe.x - the_goal.x;
         checky = Joe.y - the_goal.y;
@@ -41,30 +41,6 @@ public class AI_Race_Mode_Script : MonoBehaviour {
         {
             {
                 counter ++;
-                if (counter >= Ring_path.Length)
-                {
-                    counter = 0;
-                }
-            }
-        }*/
-      }
-    void FixedUpdate()
-    {
-        Vector3 the_goal = Ring_path[counter];
-        Joe.x = Mathf.MoveTowards(Joe.x, the_goal.x, 0.3f);
-        Joe.y = Mathf.MoveTowards(Joe.y, the_goal.y, 0.05f);
-        Joe.z = Mathf.MoveTowards(Joe.z, the_goal.z, 0.3f);
-        this.transform.position = Joe;
-        Turn_Proper(the_goal);
-
-        float checkx, checky, checkz;
-        checkx = Joe.x - the_goal.x;
-        checky = Joe.y - the_goal.y;
-        checkz = Joe.z - the_goal.z;
-        if (checkx < 5 && checkx > -5 && checky < 5 && checky > -5 && checkz < 5 && checkz > -5)
-        {
-            {
-                counter += 5;
                 if (counter >= Ring_path.Length)
                 {
                     counter = 0;
@@ -80,6 +56,42 @@ public class AI_Race_Mode_Script : MonoBehaviour {
         Vector3 newDir = Vector3.RotateTowards(this.transform.forward, targetDir, step, 0.0F);
         Debug.DrawRay(this.transform.position, newDir, Color.red);
         transform.rotation = Quaternion.LookRotation(newDir);
+    }
+
+    private void ApplyForce()
+    {
+        float playerSpeed = AI_body.velocity.magnitude;
+        if (RoundTimer.timeInLevel < 1.0f)
+            currAcceleration = movementVariables.downwardAcceleration;
+        else
+        {
+            currAcceleration = Mathf.Lerp(currAcceleration, newAcceleration, movementVariables.momentum);
+        }
+            if (pitch > 360.0f - movementVariables.restingThreshold || pitch < movementVariables.restingThreshold)
+            {
+            newAcceleration = movementVariables.restingAcceleration;
+            if (playerSpeed < movementVariables.restingSpeed)
+                    AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
+                else
+                    AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
+            }
+            else if (pitch < 180.0f)
+            {
+            newAcceleration = movementVariables.downwardAcceleration;
+                if (playerSpeed < movementVariables.maxSpeed + debugSpeedIncrease)
+                    AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
+                else
+                    AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
+            }
+            else
+            {
+            newAcceleration = movementVariables.upwardAcceleration;
+                if (playerSpeed < movementVariables.minSpeed + debugSpeedIncrease)
+                    AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
+                else
+                    AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
+            }
+        
     }
 }
 
