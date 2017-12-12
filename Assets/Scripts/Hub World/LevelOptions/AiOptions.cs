@@ -44,6 +44,7 @@ public class AiOptions : LevelMenuObjectGroup
     {
         base.ConfirmOptions();
         ActualValue = tempValue;
+        GameManager.AI_Number = ActualValue;
     }
     public override void DefaultOptions()
     {
