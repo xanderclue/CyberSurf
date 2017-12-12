@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameState gameState = GameState.HubWorld;
     public static GameMode gameMode = GameMode.Continuous;
     public static GameDifficulty gameDifficulty = GameDifficulty.Normal;
+    public static int AI_Number = 0;
     public static int lastPortalBuildIndex = -1;
     public static GameObject player = null;
     private static GameManager instance = null;
