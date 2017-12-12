@@ -5,21 +5,21 @@ using UnityEngine;
 public class AI_Race_Mode_Script : MonoBehaviour {
     [SerializeField] public Vector3[] Ring_path;
    [SerializeField] private Vector3 Joe;
-    private float pitch = 0.0f, yaw = 0.0f, gyroPrevPitch = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f, debugSpeedIncrease = 0.0f;
+    private float pitch = 0.0f, yaw = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f, debugSpeedIncrease = 0.0f, countdown = 3.0f;
+
     public PlayerMovementVariables movementVariables = null;
     private Rigidbody AI_body;
-    public int counter = 0;
+    public int counter = 0; 
     public GameObject the_player;
     // Use this for initialization
     void Start () {
         AI_body = GetComponent<Rigidbody>();
-       if (GameMode.Race == GameManager.gameMode)
+       if (GameMode.Race == GameManager.gameMode && GameManager.AI_Number > 0)
         {
             Joe = this.transform.position;
             the_player = GameObject.FindGameObjectWithTag("Player");
             transform.position = the_player.transform.position;
             this.gameObject.transform.rotation = the_player.transform.rotation;
-            
         }
         else
         {
@@ -28,24 +28,30 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     }
     void FixedUpdate()
     {
-        Vector3 the_goal = Ring_path[counter];
-        Joe = transform.position;
-        //this.transform.position = Joe;
-        Turn_Proper(the_goal);
-        ApplyForce();
-        float checkx, checky, checkz;
-        checkx = Joe.x - the_goal.x;
-        checky = Joe.y - the_goal.y;
-        checkz = Joe.z - the_goal.z;
-        if (checkx < 5 && checkx > -5 && checky < 5 && checky > -5 && checkz < 5 && checkz > -5)
+        if (countdown < 0)
         {
+            Vector3 the_goal = Ring_path[counter];
+            Joe = transform.position;
+            Turn_Proper(the_goal);
+            ApplyForce();
+            float checkx, checky, checkz;
+            checkx = Joe.x - the_goal.x;
+            checky = Joe.y - the_goal.y;
+            checkz = Joe.z - the_goal.z;
+            if (checkx < 5 && checkx > -5 && checky < 5 && checky > -5 && checkz < 5 && checkz > -5)
             {
-                counter ++;
-                if (counter >= Ring_path.Length)
                 {
-                    counter = 0;
+                    counter++;
+                    if (counter >= Ring_path.Length)
+                    {
+                        counter = 0;
+                    }
                 }
             }
+        }
+        else
+        {
+            countdown -= 1 * Time.deltaTime;
         }
     }
 
