@@ -11,7 +11,7 @@ public class DayNightScript : MonoBehaviour
         //particleArray[0].startSize = 2.0f;
         //
         //
-        //ParticleSystem.MainModule starsMain = stars.main;
+        ParticleSystem.MainModule starsMain = stars.main;
         //stars.GetParticles(particleArray);
         //
         //stars.SetParticles(particleArray, particleArray.Length);
@@ -21,7 +21,6 @@ public class DayNightScript : MonoBehaviour
             case TimeOfDay.Day:
                 sun.transform.localRotation = Quaternion.Euler(73.0f, 0.0f, 0.0f);
                 sun.enabled = true;
-                stars.maxParticles = 1;
                 starsMain.maxParticles = 1;
                 RenderSettings.ambientLight = Color.black;
                 RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1.0f);
