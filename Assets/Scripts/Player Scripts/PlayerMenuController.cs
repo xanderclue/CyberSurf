@@ -139,6 +139,7 @@ public class PlayerMenuController : MonoBehaviour
         yield return new WaitForFixedUpdate();
         ClampRotation();
         ApplyHoverForce();
+        while (null == gyro) yield return null;
         pitch = (float)gyro.rollAngle * Mathf.Rad2Deg;
         yaw = (float)gyro.pitchAngle * -Mathf.Rad2Deg;
         GyroApplyDeadZone();
@@ -151,9 +152,9 @@ public class PlayerMenuController : MonoBehaviour
         }
         StartCoroutine(GyroCoroutine());
     }
-    private void OnEnable() { SceneManager.sceneLoaded += OnLevelLoaded; }
+    private void OnEnable() => SceneManager.sceneLoaded += OnLevelLoaded;
 
-    private void OnDisable() { SceneManager.sceneLoaded -= OnLevelLoaded; }
+    private void OnDisable() => SceneManager.sceneLoaded -= OnLevelLoaded;
     private void Update()
     {
         if (lockingMotion)

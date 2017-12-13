@@ -23,17 +23,14 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             DontDestroyOnLoad(player = Instantiate(playerPrefab));
             if (VRPresent)
-            {
                 player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = true;
-                gameDifficulty = GameDifficulty.Easy;
-            }
             GameSettings.GetEnum("GameDifficulty", ref gameDifficulty);
             GameSettings.GetEnum("GameMode", ref gameMode);
             GameSettings.GetBool("DebugSpeed", ref BoardManager.debugSpeedEnabled);
             GetComponent<BoardManager>().SetupBoardManager();
-            GetComponent<LevelManager>().SetupLevelManager();
+            LevelManager.SetupLevelManager();
             ScoreManager.SetupScoreManager();
-            GetComponent<KeyInputManager>().SetupKeyInputManager();
+            KeyInputManager.SetupKeyInputManager();
         }
         else
             Destroy(gameObject);
@@ -44,6 +41,7 @@ public class GameManager : MonoBehaviour
         GameSettings.GetBool("Respawn", ref ScoreManager.respawnEnabled);
         GameSettings.GetBool("MirrorMode", ref LevelManager.mirrorMode);
         GameSettings.GetBool("ReverseMode", ref LevelManager.reverseMode);
+        GameSettings.GetInt("NumAI", ref AI_Number);
         GameSettings.GetEnum("Weather", ref WeatherScript.currentWeather);
         GameSettings.GetEnum("TimeOfDay", ref DayNightScript.currentTimeOfDay);
     }
@@ -54,6 +52,7 @@ public class GameManager : MonoBehaviour
         GameSettings.SetBool("DebugSpeed", BoardManager.debugSpeedEnabled);
         GameSettings.SetBool("MirrorMode", LevelManager.mirrorMode);
         GameSettings.SetBool("ReverseMode", LevelManager.reverseMode);
+        GameSettings.SetInt("NumAI", AI_Number);
         GameSettings.SetEnum("Weather", WeatherScript.currentWeather);
         GameSettings.SetEnum("TimeOfDay", DayNightScript.currentTimeOfDay);
         GameSettings.SetEnum("GameDifficulty", gameDifficulty);
