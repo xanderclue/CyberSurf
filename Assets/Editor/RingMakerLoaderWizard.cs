@@ -47,7 +47,7 @@ public class RingMakerLoaderWizard : ScriptableWizard
         {
             newRing = (PrefabUtility.InstantiatePrefab(ringPrefab) as GameObject).transform;
             newRing.position = ring.position;
-            newRing.rotation = ring.rotation;
+            newRing.rotation = Quaternion.Euler(0.0f, ((Quaternion)ring.rotation).eulerAngles.y, 0.0f);
             newRing.parent = theParent;
             newRing.name = "Ring";
         }
