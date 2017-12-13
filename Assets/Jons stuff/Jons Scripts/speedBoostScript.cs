@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class speedBoostScript : MonoBehaviour {
+public class SpeedBoostScript : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
@@ -20,6 +20,8 @@ public class speedBoostScript : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision)
     {
+            Debug.Log("hit the collider test");
+
         if(collision.transform.tag == "Player")
         {
             collision.transform.GetComponent<PlayerMovementVariables>().downwardAcceleration += 15;
