@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour
                 player.GetComponentInChildren<PostProcessingBehaviour>().profile.vignette.enabled = true;
             GameSettings.GetEnum("GameDifficulty", ref gameDifficulty);
             GameSettings.GetEnum("GameMode", ref gameMode);
+#if DEBUGGER
             GameSettings.GetBool("DebugSpeed", ref BoardManager.debugSpeedEnabled);
+#endif
             GetComponent<BoardManager>().SetupBoardManager();
             LevelManager.SetupLevelManager();
             ScoreManager.SetupScoreManager();
@@ -49,7 +51,9 @@ public class GameManager : MonoBehaviour
     {
         GameSettings.SetBool("RingPath", LevelManager.RingPathIsOn);
         GameSettings.SetBool("Respawn", ScoreManager.respawnEnabled);
+#if DEBUGGER
         GameSettings.SetBool("DebugSpeed", BoardManager.debugSpeedEnabled);
+#endif
         GameSettings.SetBool("MirrorMode", LevelManager.mirrorMode);
         GameSettings.SetBool("ReverseMode", LevelManager.reverseMode);
         GameSettings.SetInt("NumAI", AI_Number);
