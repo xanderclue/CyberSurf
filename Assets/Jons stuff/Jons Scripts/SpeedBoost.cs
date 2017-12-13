@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedBoostScript : MonoBehaviour {
+public class SpeedBoost : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
