@@ -7383,7 +7383,7 @@ Prefab:
         type: 2}
       propertyPath: sun
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 957086529}
     - target: {fileID: 198699035836430276, guid: b55217996f22e5344a835666b19faf10,
         type: 2}
       propertyPath: playOnAwake
@@ -7397,6 +7397,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b55217996f22e5344a835666b19faf10, type: 2}
   m_IsPrefabParent: 0
+--- !u!108 &957086529 stripped
+Light:
+  m_PrefabParentObject: {fileID: 108057085103713904, guid: b55217996f22e5344a835666b19faf10,
+    type: 2}
+  m_PrefabInternal: {fileID: 957086528}
 --- !u!1001 &997388092
 Prefab:
   m_ObjectHideFlags: 0
