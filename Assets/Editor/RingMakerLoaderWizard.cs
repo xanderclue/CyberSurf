@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 using System.IO;
 public class RingMakerLoaderWizard : ScriptableWizard
 {
@@ -25,7 +27,7 @@ public class RingMakerLoaderWizard : ScriptableWizard
     {
         isValid = false;
         errorString = "";
-        sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        sceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (File.Exists(Application.persistentDataPath + $"/rings{sceneIndex}.dat"))
         {
             if (null != ringPrefab)
@@ -40,9 +42,16 @@ public class RingMakerLoaderWizard : ScriptableWizard
         try { rings = (RingMakerRecorder.PositionRotation[])(new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter().Deserialize(file)); }
         catch { return; }
         finally { file.Close(); }
-        Transform theParent = new GameObject("Imported Rings").transform;
+        Transform theParent = new GameObject("Imported Rings").transform, newRing;
         foreach (RingMakerRecorder.PositionRotation ring in rings)
-            Instantiate(ringPrefab, ring.position, ring.rotation, theParent);
+        {
+            newRing = (PrefabUtility.InstantiatePrefab(ringPrefab) as GameObject).transform;
+            newRing.position = ring.position;
+            newRing.rotation = ring.rotation;
+            newRing.parent = theParent;
+            newRing.name = "Ring";
+        }
         theRingPrefab = ringPrefab;
+        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
     }
 }
