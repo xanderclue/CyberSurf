@@ -15,7 +15,7 @@ public class DayNightScript : MonoBehaviour
                 sun.transform.localRotation = Quaternion.Euler(73.0f, 0.0f, 0.0f);
                 sun.enabled = true;
                 starsMain.maxParticles = 1;
-                RenderSettings.ambientLight = Color.black;
+                RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.25f);
                 RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1.0f);
                 break;
             case TimeOfDay.Night:
