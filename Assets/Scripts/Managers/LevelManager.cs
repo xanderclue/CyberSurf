@@ -16,12 +16,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints = null;
     [SerializeField] private Sprite[] levelPreviews = null;
     public static Sprite GetLevelPreview(Level level) => stcLevelPreviews[(int)level];
-    public void SetupLevelManager()
+    public static void SetupLevelManager()
+    {
+        menuController = GameManager.player.GetComponent<PlayerMenuController>();
+        screenFade = GameManager.player.GetComponentInChildren<ScreenFade>();
+    }
+    private void Awake()
     {
         stcLevelPreviews = levelPreviews;
         stcSpawnPoints = spawnPoints;
-        menuController = GameManager.player.GetComponent<PlayerMenuController>();
-        screenFade = GameManager.player.GetComponentInChildren<ScreenFade>();
         UnityEngine.Assertions.Assert.AreEqual(SceneManager.sceneCountInBuildSettings, spawnPoints.Length, $"GameManager.instance.levelScript.spawnPoints.Length should be {SceneManager.sceneCountInBuildSettings}.. Actual value: {spawnPoints.Length}");
         UnityEngine.Assertions.Assert.AreEqual(LevelCount, levelPreviews.Length, $"GameManager.instance.levelScript.levelPreviews.Length should be {LevelCount}.. Actual value: {levelPreviews.Length}");
     }

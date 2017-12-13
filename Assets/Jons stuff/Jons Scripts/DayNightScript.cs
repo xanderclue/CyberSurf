@@ -7,14 +7,7 @@ public class DayNightScript : MonoBehaviour
     [SerializeField] private ParticleSystem stars = null;
     private void Start()
     {
-        //ParticleSystem.Particle[] particleArray = new ParticleSystem.Particle[GetComponent<ParticleSystem>().particleCount];
-        //particleArray[0].startSize = 2.0f;
-        //
-        //
         ParticleSystem.MainModule starsMain = stars.main;
-        //stars.GetParticles(particleArray);
-        //
-        //stars.SetParticles(particleArray, particleArray.Length);
         RenderSettings.sun = sun;
         switch (currentTimeOfDay)
         {
@@ -22,7 +15,7 @@ public class DayNightScript : MonoBehaviour
                 sun.transform.localRotation = Quaternion.Euler(73.0f, 0.0f, 0.0f);
                 sun.enabled = true;
                 starsMain.maxParticles = 1;
-                RenderSettings.ambientLight = Color.black;
+                RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.25f);
                 RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1.0f);
                 break;
             case TimeOfDay.Night:
