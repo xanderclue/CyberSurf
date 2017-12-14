@@ -2,24 +2,10 @@
 using TMPro;
 public class LapsOptions : LevelMenuObjectGroup
 {
-    [SerializeField]
-    private LevelMenuButton plusButton = null, minusButton = null;
-    [SerializeField]
-    private TextMeshPro lapsText = null;
-    [SerializeField]
-    private int defaultValue = 1;
+    [SerializeField] private LevelMenuButton plusButton = null, minusButton = null;
+    [SerializeField] private TextMeshPro lapsText = null;
+    [SerializeField] private int defaultValue = 1;
     private int tempValue;
-    private static int ActualValue { get; set; } // replace with game's value
-    new private void Start()
-    {
-        base.Start();
-        if (GameObject.FindObjectOfType<Lap_Text_script>().max_lap == 0)
-        {
-            GameObject.FindObjectOfType<Lap_Text_script>().max_lap = defaultValue;
-        }
-        if (ActualValue < 1)
-            ActualValue = 1;
-    }
     private void OnEnable()
     {
         plusButton.OnButtonPressed += ButtonPlusFunction;
@@ -56,7 +42,7 @@ public class LapsOptions : LevelMenuObjectGroup
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        ActualValue = tempValue;
+        GameManager.MaxLap = tempValue;
     }
     public override void DefaultOptions()
     {
@@ -67,12 +53,11 @@ public class LapsOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempValue = ActualValue;
+        tempValue = GameManager.MaxLap;
         UpdateDisplay();
     }
     private void UpdateDisplay()
     {
         lapsText.SetText(tempValue.ToString());
-        GameObject.FindObjectOfType<Lap_Text_script>().max_lap = tempValue;
     }
 }

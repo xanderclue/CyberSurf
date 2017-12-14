@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameMode gameMode = GameMode.Continuous;
     public static GameDifficulty gameDifficulty = GameDifficulty.Normal;
     public static int AI_Number = 0;
+    public static int MaxLap = 1;
     public static int lastPortalBuildIndex = -1;
     public static GameObject player = null;
     private static GameManager instance = null;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         GameSettings.GetBool("MirrorMode", ref LevelManager.mirrorMode);
         GameSettings.GetBool("ReverseMode", ref LevelManager.reverseMode);
         GameSettings.GetInt("NumAI", ref AI_Number);
+        GameSettings.GetInt("NumLaps", ref MaxLap);
         GameSettings.GetEnum("Weather", ref WeatherScript.currentWeather);
         GameSettings.GetEnum("TimeOfDay", ref DayNightScript.currentTimeOfDay);
     }
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
         GameSettings.SetBool("MirrorMode", LevelManager.mirrorMode);
         GameSettings.SetBool("ReverseMode", LevelManager.reverseMode);
         GameSettings.SetInt("NumAI", AI_Number);
+        GameSettings.SetInt("NumLaps", MaxLap);
         GameSettings.SetEnum("Weather", WeatherScript.currentWeather);
         GameSettings.SetEnum("TimeOfDay", DayNightScript.currentTimeOfDay);
         GameSettings.SetEnum("GameDifficulty", gameDifficulty);

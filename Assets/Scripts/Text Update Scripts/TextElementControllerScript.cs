@@ -110,7 +110,7 @@ public class TextElementControllerScript : MonoBehaviour
         player_list.SetActive(hudElementsControl.player_listBool && GameMode.Race == currentMode);
         current_lap_time.SetActive(hudElementsControl.current_lap_timeBool && GameMode.Race == currentMode);
         position_text.SetActive(hudElementsControl.positionBool && GameMode.Race == currentMode);
-        lap_text.GetComponent<TextMeshProUGUI>().enabled = hudElementsControl.lapBool && GameMode.Race == currentMode;
+        lap_text.GetComponent<TextMeshProUGUI>().enabled = hudElementsControl.lapBool && (GameMode.Race == currentMode || GameMode.Cursed == currentMode);
         speedText.SetActive(hudElementsControl.speedBool);
         speedBar.SetActive(hudElementsControl.speedBarBool);
         Compass_Display.SetActive(hudElementsControl.compassBool);

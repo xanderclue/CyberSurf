@@ -1,25 +1,20 @@
 ﻿using UnityEngine;
 using TMPro;
 public class Lap_Text_script : MonoBehaviour
-{ 
-
-private TextMeshProUGUI element = null;
-    public int curr_lap, max_lap;
-private void Start()
 {
-    element = GetComponent<TextMeshProUGUI>();
-        curr_lap = 1;
-        max_lap = 0;
-}
-private void Update()
-{
-        if (element.enabled)
-        {
-            element.SetText("Lap" + '\n' + curr_lap.ToString() + " / " + max_lap.ToString());
-        }
-        if (GameManager.lastPortalBuildIndex == -1)
-        {
-            curr_lap = 1;
-        }
-}
+    public delegate void CurrLapChangedEvent();
+    public event CurrLapChangedEvent OnCurrLapChanged;
+    private TextMeshProUGUI element = null;
+    private int currLap;
+    public int CurrLap { get { return currLap; } set { currLap = value; OnCurrLapChanged?.Invoke(); } }
+    private void Awake() => element = GetComponent<TextMeshProUGUI>();
+    private void Start() => CurrLap = 1;
+    private void OnEnable() => OnCurrLapChanged += CurrLapChanged;
+    private void OnDisable() => OnCurrLapChanged -= CurrLapChanged;
+    private void CurrLapChanged() => element.SetText($"Lap\n{currLap} / {GameManager.MaxLap}");
+    private void Update()
+    {
+        if (-1 == GameManager.lastPortalBuildIndex)
+            CurrLap = 1;
+    }
 }

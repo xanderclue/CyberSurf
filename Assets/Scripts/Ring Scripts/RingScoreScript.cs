@@ -28,7 +28,7 @@ public class RingScoreScript : MonoBehaviour
         consecutiveCount = 0;
         effectsStopped = true;
         originalCrInAmt = consecutiveIncreaseAmount;
-        if (rp.LastRingInScene && (GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && RingProperties.laptext.max_lap > 1)
+        if (rp.LastRingInScene && (GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && GameManager.MaxLap > 1)
             portaleffect.SetActive(false);
     }
     private void IncreaseScore()
@@ -101,17 +101,17 @@ public class RingScoreScript : MonoBehaviour
                     prevPositionInOrder = -1;
                     EventManager.OnTriggerTransition(rp.nextScene);
                 }
-                else if (RingProperties.laptext.curr_lap == RingProperties.laptext.max_lap)
+                else if (RingProperties.laptext.CurrLap == GameManager.MaxLap)
                 {
                     ScoreManager.LevelEnd();
                     ScoreManager.prevRingBonusTime = 0.0f;
                     ScoreManager.prevRingTransform = LevelManager.SpawnPoints[rp.nextScene];
                     ScoreManager.ringHitCount = 0;
                     prevPositionInOrder = -1;
-                    RingProperties.laptext.curr_lap = 1;
+                    RingProperties.laptext.CurrLap = 1;
                     EventManager.OnTriggerTransition(rp.nextScene);
                 }
-                else if ((++RingProperties.laptext.curr_lap) == RingProperties.laptext.max_lap)
+                else if ((++RingProperties.laptext.CurrLap) == GameManager.MaxLap)
                     portaleffect.SetActive(true);
             }
         }
