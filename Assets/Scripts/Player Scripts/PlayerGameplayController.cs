@@ -7,6 +7,7 @@ public class PlayerGameplayController : MonoBehaviour
     private bool gamepadEnabled = false, playerMovementLocked = true;
     private SpatialData gyro = null;
     private Rigidbody playerRigidbody = null;
+    
     private float pitch = 0.0f, yaw = 0.0f, gyroPrevPitch = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f;
     public PlayerMovementVariables movementVariables = null;
 #if DEBUGGER
