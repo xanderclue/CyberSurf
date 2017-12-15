@@ -7,13 +7,15 @@ public class PlayerGameplayController : MonoBehaviour
     private bool gamepadEnabled = false, playerMovementLocked = true;
     private SpatialData gyro = null;
     private Rigidbody playerRigidbody = null;
-    private float pitch = 0.0f, yaw = 0.0f, gyroPrevPitch = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f, debugSpeedIncrease = 0.0f;
+    private float pitch = 0.0f, yaw = 0.0f, gyroPrevPitch = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f;
     public PlayerMovementVariables movementVariables = null;
+#if DEBUGGER
+    private float debugSpeedIncrease = 0.0f;
     public float DebugSpeedIncrease { get { return debugSpeedIncrease; } }
-    public void StartDebugSpeedControls()
-    {
-        debugSpeedIncrease = 0.0f;
-    }
+    public void StartDebugSpeedControls() => debugSpeedIncrease = 0.0f;
+#else
+    private const float debugSpeedIncrease = 0.0f;
+#endif
     public void SetupGameplayControllerScript()
     {
         gamepadEnabled = BoardManager.gamepadEnabled;
@@ -30,7 +32,9 @@ public class PlayerGameplayController : MonoBehaviour
             if (locked)
             {
                 playerRigidbody.velocity = Vector3.zero;
+#if DEBUGGER
                 debugSpeedIncrease = 0.0f;
+#endif
             }
             else if (gamepadEnabled)
                 StartCoroutine(GamepadMovementCoroutine());
@@ -66,16 +70,19 @@ public class PlayerGameplayController : MonoBehaviour
     }
     private void ApplyForce()
     {
-        float debugChangeAmt = Input.GetAxis("DebugAccelerateDecelerate"), playerSpeed = playerRigidbody.velocity.magnitude;
+#if DEBUGGER
+        float debugChangeAmt = Input.GetAxis("DebugAccelerateDecelerate");
         if (0.0f != debugChangeAmt)
             if (debugSpeedIncrease + debugChangeAmt > -50.0f && debugSpeedIncrease + debugChangeAmt < 101.0f)
                 debugSpeedIncrease += debugChangeAmt;
+#endif
         if (RoundTimer.timeInLevel < 1.0f)
             currAcceleration = movementVariables.downwardAcceleration;
         else
             currAcceleration = Mathf.Lerp(currAcceleration, newAcceleration, movementVariables.momentum);
         if (!playerMovementLocked)
         {
+            float playerSpeed = playerRigidbody.velocity.magnitude;
             if (pitch > 360.0f - movementVariables.restingThreshold || pitch < movementVariables.restingThreshold)
             {
                 newAcceleration = movementVariables.restingAcceleration + debugSpeedIncrease;

@@ -4,7 +4,9 @@ public enum BoardType { Original, MachI, MachII, MachIII }
 public class BoardManager : MonoBehaviour
 {
     public static SpatialData gyro = null;
+#if DEBUGGER
     public static bool debugSpeedEnabled = false;
+#endif
     public static bool gamepadEnabled = false;
     public static BoardType currentBoardSelection = BoardType.Original;
     private static BoardSelector boardSelector = null;
@@ -22,8 +24,10 @@ public class BoardManager : MonoBehaviour
         pmc.SetupMenuControllerScript();
         pfc.SetupFanControllerScript();
         BoardSelect(currentBoardSelection);
+#if DEBUGGER
         if (debugSpeedEnabled)
             pgc.StartDebugSpeedControls();
+#endif
     }
     private static IEnumerator DetectGyroCoroutine()
     {

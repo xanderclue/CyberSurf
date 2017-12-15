@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using static KeyInputManager.VR;
+using static Xander.Debugging.Helper;
 public class KeyInputManager : MonoBehaviour
 {
     public static class VR
@@ -88,6 +89,8 @@ public class KeyInputManager : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+            ScreenCapture.CaptureScreenshot(Application.persistentDataPath + $"/Cybersurf_{DozenalTimeStamp}.png");
     }
     private static IEnumerator CalibrationCoroutine()
     {

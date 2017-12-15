@@ -142,12 +142,8 @@
             }
         }
     }
-#endif
     private void Update()
     {
-        if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.F2))
-            UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.persistentDataPath + $"/Cybersurf_{Xander.Debugging.Helper.DozenalTimeStamp}.png");
-#if DEBUGGER
         if (null != stcImageWarningIcon)
         {
             UnityEngine.Color lColorTmp = stcImageWarningIcon.color;
@@ -173,6 +169,8 @@
             (UnityEngine.Input.GetKey(UnityEngine.KeyCode.LeftShift) ||
             UnityEngine.Input.GetKey(UnityEngine.KeyCode.RightShift))))
             UnityEngine.Debug.Log("FPS: " + (1.0f / UnityEngine.Time.deltaTime));
-#endif
     }
+#else
+    private void Awake() => Destroy(gameObject);
+#endif
 }

@@ -2,18 +2,25 @@
 using TMPro;
 public class SpeedModifierUpdater : MonoBehaviour
 {
+#if DEBUGGER
     private PlayerGameplayController pgc = null;
     private TextMeshProUGUI element = null;
-    private int display = 0;
+#endif
     private void Start()
     {
+#if DEBUGGER
         pgc = GetComponentInParent<PlayerGameplayController>();
         element = GetComponent<TextMeshProUGUI>();
         element.color = Color.magenta;
+#else
+        Destroy(GetComponent<TextMeshProUGUI>());
+        Destroy(this);
+#endif
     }
+#if DEBUGGER
     private void Update()
     {
-        display = (int)pgc.DebugSpeedIncrease;
+        int display = (int)pgc.DebugSpeedIncrease;
         if (0 != display)
         {
             if (!element.IsActive())
@@ -29,4 +36,5 @@ public class SpeedModifierUpdater : MonoBehaviour
             }
         }
     }
+#endif
 }
