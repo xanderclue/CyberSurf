@@ -6,10 +6,10 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     [SerializeField] public Vector3[] Ring_path;
    [SerializeField] private Vector3 Joe;
     private float pitch = 0.0f, yaw = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f, debugSpeedIncrease = 0.0f, countdown = 3.0f;
-
+    
     public PlayerMovementVariables movementVariables = null;
     private Rigidbody AI_body;
-    public int counter = 0; 
+    public int counter = 0, laps = 1; 
     public GameObject the_player;
     // Use this for initialization
     void Start () {
@@ -45,6 +45,7 @@ public class AI_Race_Mode_Script : MonoBehaviour {
                     if (counter >= Ring_path.Length)
                     {
                         counter = 0;
+                        laps++;
                     }
                 }
             }
