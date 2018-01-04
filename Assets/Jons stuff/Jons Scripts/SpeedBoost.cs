@@ -4,48 +4,33 @@ using UnityEngine;
 
 public class SpeedBoost : MonoBehaviour {
     
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(2.0f);
+        Debug.Log(Time.time);
+
+        Debug.Log("I am inside the Wait coroutine");
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log(Time.time);
+
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit the collider test");
 
-        if (other.transform.tag == "Player")
+        if (other.tag == "Player")
         {
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.upwardAcceleration +=   25.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.downwardAcceleration += 25.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.restingAcceleration +=  25.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.momentum += 25.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.minSpeed += 150.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.restingSpeed += 25.0f;
+        Debug.Log("hit the collider test");
+           //Vector3 newSpeed = other.GetComponent<PlayerGameplayController>().playerRigidbody.velocity *= 2.0f;
+            
+            other.GetComponent<PlayerGameplayController>().playerRigidbody.velocity *= 1.22f;
+             
+          //  Mathf.Lerp(other.GetComponent<PlayerGameplayController>().playerRigidbody.AddRelativeForce(0.0f, 0.0f, other.GetComponent<PlayerGameplayController>().currAcceleration * 1.5f, ForceMode.Acceleration))
 
-            Debug.Log(Time.time);
-            // other.transform.GetComponent<PlayerMovementVariables>().downwardAcceleration += 15;
-            // other.transform.GetComponent<PlayerMovementVariables>().restingAcceleration += 15;
-            // other.transform.GetComponent<PlayerMovementVariables>().upwardAcceleration += 15;
-            StartCoroutine(Wait());
-            Debug.Log(Time.time);
-            // other.transform.GetComponent<PlayerMovementVariables>().downwardAcceleration -= 15;
-            // other.transform.GetComponent<PlayerMovementVariables>().restingAcceleration -= 15;
-            // other.transform.GetComponent<PlayerMovementVariables>().upwardAcceleration -= 15;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.upwardAcceleration   -= 25.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.downwardAcceleration -= 25.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.restingAcceleration  -= 25.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.momentum             -= 25.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.minSpeed             -= 150.0f;
-            other.transform.GetComponent<PlayerGameplayController>().movementVariables.restingSpeed         -= 25.0f;
+          //  other.GetComponent<PlayerGameplayController>().playerRigidbody.AddRelativeForce(0.0f, 0.0f, Mathf.Lerp(other.GetComponent<PlayerGameplayController>().currAcceleration, other.GetComponent<PlayerGameplayController>().currAcceleration * 1.5f, 1.0f), ForceMode.Acceleration);
+ 
+
+             StartCoroutine(Wait());
+            other.GetComponent<PlayerGameplayController>().playerRigidbody.velocity *= 0.75f;
 
         }
     }

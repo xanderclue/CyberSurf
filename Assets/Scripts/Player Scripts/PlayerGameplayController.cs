@@ -6,9 +6,10 @@ public class PlayerGameplayController : MonoBehaviour
     [SerializeField, Range(0.01f, 1.0f)] private float gryoPitchInterpolation = 0.075f;
     private bool gamepadEnabled = false, playerMovementLocked = true;
     private SpatialData gyro = null;
-    private Rigidbody playerRigidbody = null;
-    
-    private float pitch = 0.0f, yaw = 0.0f, gyroPrevPitch = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f;
+    public Rigidbody playerRigidbody = null;
+
+    private float pitch = 0.0f, yaw = 0.0f, gyroPrevPitch = 0.0f, newAcceleration = 0.0f;
+    public float  currAcceleration = 0.0f;
     public PlayerMovementVariables movementVariables = null;
 #if DEBUGGER
     private float debugSpeedIncrease = 0.0f;
@@ -58,6 +59,7 @@ public class PlayerGameplayController : MonoBehaviour
                 StartCoroutine(GyroMovementCoroutine());
         }
     }
+
     public void UpdatePlayerBoard(PlayerMovementVariables newVariables)
     {
         movementVariables = newVariables;
@@ -69,7 +71,7 @@ public class PlayerGameplayController : MonoBehaviour
         if (!gamepadEnabled)
             movementVariables.yawSensitivity *= Mathf.Rad2Deg * -0.05f;
     }
-    private void ApplyForce()
+    public void ApplyForce()
     {
 #if DEBUGGER
         float debugChangeAmt = Input.GetAxis("DebugAccelerateDecelerate");

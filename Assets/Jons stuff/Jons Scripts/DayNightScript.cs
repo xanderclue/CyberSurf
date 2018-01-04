@@ -5,6 +5,8 @@ public class DayNightScript : MonoBehaviour
     public static TimeOfDay currentTimeOfDay = TimeOfDay.Day;
     [SerializeField] private Light sun = null;
     [SerializeField] private ParticleSystem stars = null;
+    [SerializeField] private Material daySky = null;
+    [SerializeField] private Material nightSky = null;
     private void Start()
     {
         ParticleSystem.MainModule starsMain = stars.main;
@@ -17,12 +19,13 @@ public class DayNightScript : MonoBehaviour
                 starsMain.maxParticles = 1;
                 RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.25f);
                 RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1.0f);
+                RenderSettings.skybox = daySky;
                 break;
             case TimeOfDay.Night:
                 sun.enabled = false;
                 starsMain.maxParticles = 2000;
-                RenderSettings.ambientLight = new Color(0.5f, 0.5f, 0.65f);
-                RenderSettings.skybox = null;
+                RenderSettings.ambientLight = new Color(0.3698f, 0.5353f, 0.6985f);
+                RenderSettings.skybox = nightSky;
                 break;
         }
         Destroy(this);

@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114929052377632056}
   m_Layer: 0
   m_Name: RingMutator
-  m_TagString: Untagged
+  m_TagString: Ring
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,9 +123,7 @@ MonoBehaviour:
   duplicatePosition: 1
   positionInOrder: 0
   bonusTime: 0
-  lastRingInScene: 0
   nextScene: 0
-  laptext: {fileID: 0}
 --- !u!114 &114929052377632056
 MonoBehaviour:
   m_ObjectHideFlags: 1
