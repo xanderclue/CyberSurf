@@ -1,27 +1,16 @@
-﻿using UnityEngine;
-using TMPro;
-
-public class Race_Lap_Ring_Text_Script : MonoBehaviour {
-
-
+﻿using TMPro;
+public class Race_Lap_Ring_Text_Script : UnityEngine.MonoBehaviour
+{
     private TextMeshPro element = null;
-    private Lap_Text_script laptext = null;
-    private void Start()
+    private void Awake() => element = GetComponent<TextMeshPro>();
+    private void Start() => CurrLapChanged();
+    private void OnEnable() => RingProperties.laptext.OnCurrLapChanged += CurrLapChanged;
+    private void OnDisable() => RingProperties.laptext.OnCurrLapChanged -= CurrLapChanged;
+    private void CurrLapChanged()
     {
-        element = GetComponent<TextMeshPro>();
-        laptext = GameObject.FindObjectOfType<Lap_Text_script>();
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-        if (GameMode.Race == GameManager.gameMode && laptext.curr_lap != laptext.max_lap)
-        {
+        if ((GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && RingProperties.laptext.CurrLap != GameManager.MaxLap)
             element.SetText("Checkpoint");
-        }
         else
-        {
             element.SetText("Exit");
-        }
-	}
+    }
 }

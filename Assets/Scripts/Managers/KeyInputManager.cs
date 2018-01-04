@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using static KeyInputManager.VR;
+using static Xander.Debugging.Helper;
 public class KeyInputManager : MonoBehaviour
 {
     public static class VR
@@ -33,13 +34,13 @@ public class KeyInputManager : MonoBehaviour
     private static Transform cameraContainer = null;
     private static Quaternion flippedQuaternion;
     private static Vector3 cameraContainerPositionDifference;
-    public void SetupKeyInputManager()
+    public static void SetupKeyInputManager()
     {
         thirdPersonCameraScript = GameManager.player.GetComponentInChildren<ThirdPersonCamera>();
         cameraContainer = GameManager.player.GetComponentInChildren<CameraCounterRotate>().transform;
         cameraContainerPositionDifference = cameraContainer.position - GameManager.player.transform.position;
-        StartCoroutine(CalibrationCoroutine());
     }
+    private void Awake() => StartCoroutine(CalibrationCoroutine());
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -88,6 +89,8 @@ public class KeyInputManager : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+            ScreenCapture.CaptureScreenshot(Application.persistentDataPath + $"/Cybersurf_{DozenalTimeStamp}.png");
     }
     private static IEnumerator CalibrationCoroutine()
     {

@@ -6,7 +6,6 @@ public class AiOptions : LevelMenuObjectGroup
     [SerializeField] private TextMeshPro aiText = null;
     [SerializeField] private int defaultValue = 0;
     private int tempValue;
-    private static int ActualValue { get; set; } = 0;
     private void OnEnable()
     {
         plusButton.OnButtonPressed += ButtonPlusFunction;
@@ -43,8 +42,7 @@ public class AiOptions : LevelMenuObjectGroup
     public override void ConfirmOptions()
     {
         base.ConfirmOptions();
-        ActualValue = tempValue;
-        GameManager.AI_Number = ActualValue;
+        GameManager.AI_Number = tempValue;
     }
     public override void DefaultOptions()
     {
@@ -55,7 +53,7 @@ public class AiOptions : LevelMenuObjectGroup
     public override void ResetOptions()
     {
         base.ResetOptions();
-        tempValue = ActualValue;
+        tempValue = GameManager.AI_Number;
         UpdateDisplay();
     }
     private void UpdateDisplay()

@@ -52,8 +52,9 @@ public class RingMakerRecorder : MonoBehaviour
         }
         public static implicit operator PositionRotation(Transform transform) => new PositionRotation(transform);
     }
-    private List<PositionRotation> rings = null;
+#if DEBUGGER
     [SerializeField] private GameObject placeHolderPrefab = null;
+    private List<PositionRotation> rings = null;
     private int sceneIndex = -1;
     private void Awake()
     {
@@ -86,4 +87,8 @@ public class RingMakerRecorder : MonoBehaviour
         rings.Clear();
     }
     private void Update() { if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyInputManager.XBOX_RB)) AddRing(); }
+#else
+    public GameObject placeHolderPrefab = null;
+    private void Awake() => Destroy(this);
+#endif
 }
