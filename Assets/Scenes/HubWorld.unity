@@ -579,6 +579,18 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114359652775577818, guid: bea3ec5aff31c984bbfa755278aa0767,
+        type: 2}
+      propertyPath: m_text
+      value: "ARTISTS\nSean Penton: ninjadragon8821@gmail.com\nKris Ducote: kducote@fullsail.com\nAristides
+        Alvarez: aristotle746@gmail.com\n\nMUSIC\nDaniel Morin: danielmorinmusic@gmail.com\nhttp://nbafanster.wixsite.com/danmorin\n\"Kick
+        Shock\" Kevin MacLeod (incompetech.com)\r\nLicensed under Creative Commons:
+        By Attribution 3.0 License\r\nhttp://creativecommons.org/licenses/by/3.0/"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332695530816682, guid: bea3ec5aff31c984bbfa755278aa0767, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bea3ec5aff31c984bbfa755278aa0767, type: 2}
   m_IsPrefabParent: 0
