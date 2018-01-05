@@ -90,6 +90,7 @@ public class RingScoreScript : MonoBehaviour
             }
             if (rp.LastRingInScene)
             {
+                prevPositionInOrder = -1;
                 if (GameMode.Race != GameManager.gameMode && GameMode.Cursed != GameManager.gameMode)
                 {
                     ScoreManager.LevelEnd();
