@@ -14,7 +14,7 @@ public class DayNightScript : MonoBehaviour
         switch (currentTimeOfDay)
         {
             case TimeOfDay.Day:
-                sun.transform.localRotation = Quaternion.Euler(73.0f, 0.0f, 0.0f);
+               // sun.transform.localRotation = Quaternion.Euler(73.0f, 0.0f, 0.0f);
                 sun.enabled = true;
                 starsMain.maxParticles = 1;
                 RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.25f);
