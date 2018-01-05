@@ -1381,8 +1381,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888161922960542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.99800336, z: -0, w: -0.06316175}
+  m_LocalPosition: {x: -173.49063, y: 402.6387, z: 154.50443}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4115835518933538}
@@ -1393,7 +1393,7 @@ Transform:
   - {fileID: 4019853073490066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -187.243, z: 0}
 --- !u!4 &4571765070206516
 Transform:
   m_ObjectHideFlags: 1
@@ -3022,8 +3022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1242e74adecec4142a705c1bd1c2613b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curr_lap: 0
-  max_lap: 0
 --- !u!114 &114112308778424982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3148,6 +3146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gryoPitchInterpolation: 0.075
+  playerRigidbody: {fileID: 0}
+  currAcceleration: 0
   movementVariables:
     maxSpeed: 40
     restingSpeed: 35
