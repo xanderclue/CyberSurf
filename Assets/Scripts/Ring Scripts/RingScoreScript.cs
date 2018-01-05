@@ -36,14 +36,12 @@ public class RingScoreScript : MonoBehaviour
         float totalMultiplier = ScoreManager.score_multiplier;
         if (prevPositionInOrder + 1 == rp.positionInOrder)
         {
-            Debug.Log("increase");
             totalMultiplier += consecutiveMultiplier;
             consecutiveMultiplier += consecutiveIncreaseAmount;
             ++consecutiveCount;
         }
         else
         {
-            Debug.Log("decrease");
             totalMultiplier = 1;
             consecutiveMultiplier = originalCrInAmt;
             consecutiveCount = prevConsecutiveCount = 0;
@@ -92,6 +90,7 @@ public class RingScoreScript : MonoBehaviour
             }
             if (rp.LastRingInScene)
             {
+                prevPositionInOrder = -1;
                 if (GameMode.Race != GameManager.gameMode && GameMode.Cursed != GameManager.gameMode)
                 {
                     ScoreManager.LevelEnd();
