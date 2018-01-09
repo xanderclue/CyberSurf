@@ -8270,6 +8270,26 @@ Prefab:
       propertyPath: daySky
       value: 
       objectReference: {fileID: 2100000, guid: f236475acab534d43b5a1dcb8f78ee5d, type: 2}
+    - target: {fileID: 114606710977276364, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198104044316822394, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198104044316822394, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: randomSeed
+      value: 2138781849
+      objectReference: {fileID: 0}
+    - target: {fileID: 114606710977276364, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: nightSky
+      value: 
+      objectReference: {fileID: 2100000, guid: e0cdc361231821a4689156042503986a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b55217996f22e5344a835666b19faf10, type: 2}
   m_IsPrefabParent: 0

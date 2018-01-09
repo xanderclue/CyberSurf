@@ -14751,7 +14751,7 @@ Transform:
   m_LocalScale: {x: 2081.0623, y: 385.86438, z: 2604.268}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &858233679 stripped
 GameObject:
@@ -24268,6 +24268,16 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.8038568
       objectReference: {fileID: 0}
+    - target: {fileID: 114606710977276364, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114606710977276364, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: nightSky
+      value: 
+      objectReference: {fileID: 2100000, guid: 71b634fec31b38b46a30f6185273a772, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b55217996f22e5344a835666b19faf10, type: 2}
   m_IsPrefabParent: 0

@@ -7403,6 +7403,11 @@ Prefab:
       propertyPath: nightSky
       value: 
       objectReference: {fileID: 2100000, guid: 71b634fec31b38b46a30f6185273a772, type: 2}
+    - target: {fileID: 114606710977276364, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b55217996f22e5344a835666b19faf10, type: 2}
   m_IsPrefabParent: 0
