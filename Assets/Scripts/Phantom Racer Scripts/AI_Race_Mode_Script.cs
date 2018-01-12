@@ -13,13 +13,14 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     public GameObject the_player;
     void Start () {
         AI_body = GetComponent<Rigidbody>();
+        Debug.Log(Ring_path.Length);
        if (GameMode.Race == GameManager.gameMode && GameManager.AI_Number > 0)
         {
             Joe = this.transform.position;
             the_player = GameObject.FindGameObjectWithTag("Player");
             transform.position = the_player.transform.position;
             this.gameObject.transform.rotation = the_player.transform.rotation;
-            laps = 2;
+            laps = 1;
         }
         else
         {
