@@ -120,10 +120,10 @@ public class HudOnOffObject : MonoBehaviour
                     break;
                 case HudMenuTab.HudMenuOption.Timer:
                     textElementController.setTimer(value);
-                    textElementController.setCheckpoint_time(value);
+                    //textElementController.setCheckpoint_time(value);
                     textElementController.setCurrentLapTime(value);
                     textElementController.setBestLap(value);
-                    textElementController.setTimeDifference(value);
+                    //textElementController.setTimeDifference(value);
                     break;
                 case HudMenuTab.HudMenuOption.ScoreDisplay:
                     textElementController.setScore(value);
@@ -139,7 +139,7 @@ public class HudOnOffObject : MonoBehaviour
                     textElementController.setLapText(value);
                     break;
                 case HudMenuTab.HudMenuOption.Position:
-                    textElementController.setPositionText(value);
+                   // textElementController.setPositionText(value);
                     break;
                 case HudMenuTab.HudMenuOption.Reticle:
                     textElementController.setReticle(value);
