@@ -99,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1051982801840160
 GameObject:
   m_ObjectHideFlags: 1
@@ -969,7 +969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1844379599030258
 GameObject:
   m_ObjectHideFlags: 1
@@ -1169,7 +1169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4003302365546912
 Transform:
   m_ObjectHideFlags: 1
@@ -1381,8 +1381,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888161922960542}
-  m_LocalRotation: {x: -0, y: -0.99800336, z: -0, w: -0.06316175}
-  m_LocalPosition: {x: -173.49063, y: 402.6387, z: 154.50443}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4115835518933538}
@@ -4873,6 +4873,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15892c955d3cc394384d13da5706a14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ring_path: []
+  checkpoint: 0
 --- !u!114 &114617571259287960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4938,6 +4940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thingsToLookAt: []
   sortedRings: []
+  the_camera: {fileID: 20244596029355362}
   angle: 0
   pointPosition: 0.5
   currentlyLookingAt: -1
@@ -5347,6 +5350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a852c8dac2f81ba4e8b57dc6ff980116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ring_path: []
+  checkpoint: 0
 --- !u!114 &114874775745534176
 MonoBehaviour:
   m_ObjectHideFlags: 1
