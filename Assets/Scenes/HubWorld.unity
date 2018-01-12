@@ -591,6 +591,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114260514733840670, guid: bea3ec5aff31c984bbfa755278aa0767,
+        type: 2}
+      propertyPath: m_tooltipText
+      value: Enable/Disable Controller
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bea3ec5aff31c984bbfa755278aa0767, type: 2}
   m_IsPrefabParent: 0
