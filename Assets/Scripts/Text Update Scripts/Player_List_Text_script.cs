@@ -28,7 +28,7 @@ public class Player_List_Text_script : MonoBehaviour {
         }
         if (laptext.CurrLap < racers[0].laps)
         {
-            element.SetText("2nd");
+            element.SetText("AI" + '\n' + "Player");
         }
         else if (laptext.CurrLap == racers[0].laps)
         {
@@ -47,19 +47,19 @@ public class Player_List_Text_script : MonoBehaviour {
             }
             if (recent_position < racers[0].counter)
             {
-                element.SetText("2nd");
+                element.SetText("AI" + '\n' + "Player");
                 checkpoint = 0;
             }
 
             else
             {
-                element.SetText("1st");
+                element.SetText("Player" + '\n' + "AI");
                 checkpoint = 0;
             }
         }
         else
         {
-            element.SetText("1st");
+            element.SetText("Player" + '\n' + "AI");
             checkpoint = 0;
         }
     }
