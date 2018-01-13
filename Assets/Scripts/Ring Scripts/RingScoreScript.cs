@@ -3,6 +3,7 @@ using Xander.NullConversion;
 public class RingScoreScript : MonoBehaviour
 {
     private float consecutiveMultiplier = 0.25f;
+    private Position_Text_script Player_position = null;
     private const float consecutiveIncreaseAmount = 0.25f;
     private static readonly System.Type capsuleType = typeof(CapsuleCollider);
     private static int prevPositionInOrder = -1, prevConsecutiveCount = 0, consecutiveCount = 0;
@@ -26,6 +27,7 @@ public class RingScoreScript : MonoBehaviour
         respawnScript = GameManager.player.GetComponent<PlayerRespawn>();
         prevPositionInOrder = -1;
         consecutiveCount = 0;
+        Player_position = FindObjectOfType<Position_Text_script>();
         effectsStopped = true;
         originalCrInAmt = consecutiveIncreaseAmount;
         if (rp.LastRingInScene && (GameMode.Race == GameManager.gameMode || GameMode.Cursed == GameManager.gameMode) && GameManager.MaxLap > 1)
