@@ -3687,6 +3687,38 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1224654353057666, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919851006805738, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180783978853330, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674789587620732, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229714747101940, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202605663547208, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.12999992
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123344230759158, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220147648074278, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7547ed20fae2c9442bfcdb47008eb161, type: 2}
   m_IsPrefabParent: 0
@@ -4489,6 +4521,10 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1216433351247950, guid: 3ca0ff4c71fab2042b50e1fb5a11aeef, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ca0ff4c71fab2042b50e1fb5a11aeef, type: 2}
   m_IsPrefabParent: 0
@@ -4704,6 +4740,21 @@ Prefab:
     - target: {fileID: 4237461601024256, guid: b7a329f699c25444e93a868a3764114c, type: 2}
       propertyPath: m_LocalPosition.y
       value: 4.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 114646461124320084, guid: b7a329f699c25444e93a868a3764114c,
+        type: 2}
+      propertyPath: tooltipText
+      value: "A good starter board, faster than \nThe Original\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114153189126699736, guid: b7a329f699c25444e93a868a3764114c,
+        type: 2}
+      propertyPath: tooltipText
+      value: This is a fast board, but still not the fastest
+      objectReference: {fileID: 0}
+    - target: {fileID: 114383755924143908, guid: b7a329f699c25444e93a868a3764114c,
+        type: 2}
+      propertyPath: tooltipText
+      value: The fastest board. Get ready for a wild ride
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7a329f699c25444e93a868a3764114c, type: 2}
