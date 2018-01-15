@@ -9,17 +9,18 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     
     public PlayerMovementVariables movementVariables = null;
     private Rigidbody AI_body;
-    public int counter = 0, laps = 1; 
+    public int counter = 0, laps;
     public GameObject the_player;
-    // Use this for initialization
     void Start () {
         AI_body = GetComponent<Rigidbody>();
+        Debug.Log(Ring_path.Length);
        if (GameMode.Race == GameManager.gameMode && GameManager.AI_Number > 0)
         {
             Joe = this.transform.position;
             the_player = GameObject.FindGameObjectWithTag("Player");
             transform.position = the_player.transform.position;
             this.gameObject.transform.rotation = the_player.transform.rotation;
+            laps = 1;
         }
         else
         {
@@ -28,8 +29,6 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     }
     void FixedUpdate()
     {
-        if (countdown < 0)
-        {
             Vector3 the_goal = Ring_path[counter];
             Joe = transform.position;
             Turn_Proper(the_goal);
@@ -50,16 +49,11 @@ public class AI_Race_Mode_Script : MonoBehaviour {
                 }
             }
         }
-        else
-        {
-            countdown -= 1 * Time.deltaTime;
-        }
-    }
 
     private void Turn_Proper(Vector3 Target)
     {
         Vector3 targetDir = Target - this.transform.position;
-        float step = 1.0f * Time.deltaTime;
+        float step = 0.8f * Time.deltaTime;
         Vector3 newDir = Vector3.RotateTowards(this.transform.forward, targetDir, step, 0.0F);
         Debug.DrawRay(this.transform.position, newDir, Color.red);
         transform.rotation = Quaternion.LookRotation(newDir);
