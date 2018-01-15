@@ -4313,6 +4313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4ee023d0c743c45a1fb822578b3abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  times: []
 --- !u!114 &114465482634765374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4447,13 +4448,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Best Lap
 
-    88:88:88
-
-    88:88:88
-
-    88:88:88
-
-    --:--:--'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e61cd3b9db0ee4347aec56ca76b34bd2, type: 2}
   m_sharedMaterial: {fileID: 21416287050741526, guid: e61cd3b9db0ee4347aec56ca76b34bd2,
@@ -4499,7 +4494,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 9
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -4521,12 +4516,12 @@ MonoBehaviour:
   m_margin: {x: -72.1344, y: 0, z: 37.542732, w: 0}
   m_textInfo:
     textComponent: {fileID: 114522504882129884}
-    characterCount: 44
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 14
+    spaceCount: 2
+    wordCount: 2
     linkCount: 0
-    lineCount: 5
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
