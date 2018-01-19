@@ -1933,7 +1933,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 4716782068194904, guid: 1077365eb4976ba4a913c4e0980e4abb, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1077365eb4976ba4a913c4e0980e4abb, type: 2}
   m_IsPrefabParent: 0
@@ -2742,7 +2746,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4765929486165674, guid: 11be8c3c884743b40af47e4b19f1b2ff, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4120649088556116, guid: 11be8c3c884743b40af47e4b19f1b2ff, type: 2}
       propertyPath: m_LocalRotation.x
@@ -14811,7 +14815,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 851756303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.999798, y: 91.999794, z: 4.9999647}
+  m_LocalPosition: {x: -27.999798, y: 90, z: 4.9999647}
   m_LocalScale: {x: 2081.0623, y: 385.86438, z: 2604.268}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16743,7 +16747,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4610081349594782, guid: ea64fe59565fd864c8573b41adc2089a, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4100084032511876, guid: ea64fe59565fd864c8573b41adc2089a, type: 2}
       propertyPath: m_RootOrder
@@ -24436,6 +24440,16 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.8038568
       objectReference: {fileID: 0}
+    - target: {fileID: 114606710977276364, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114606710977276364, guid: b55217996f22e5344a835666b19faf10,
+        type: 2}
+      propertyPath: nightSky
+      value: 
+      objectReference: {fileID: 2100000, guid: 71b634fec31b38b46a30f6185273a772, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b55217996f22e5344a835666b19faf10, type: 2}
   m_IsPrefabParent: 0
