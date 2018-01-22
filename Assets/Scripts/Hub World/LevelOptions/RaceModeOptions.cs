@@ -6,6 +6,13 @@ public class RaceModeOptions : LevelMenuObjectGroup
     [SerializeField] private TextMeshPro raceModeText = null;
     [SerializeField] private GameMode defaultMode = GameMode.Continuous;
     private GameMode tempMode = GameMode.Continuous;
+    //[SerializeField] private TooltipObject tooltipDescription;
+    //SelectedObject selectObject;
+    private void Awake()
+    {
+    // selectObject = GetComponent<SelectedObject>();
+
+    }
     private void OnEnable()
     {
         leftButton.OnButtonPressed += ButtonLeftFunction;
@@ -55,21 +62,29 @@ public class RaceModeOptions : LevelMenuObjectGroup
         switch (tempMode)
         {
             case GameMode.Continuous:
+                //   selectObject.tooltipText = "Continuously race through each level as you complete a track.";
+
                 LevelMenuScript.lapsOptions.DisableGroup();
                 LevelMenuScript.aiOptions.EnableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
                 break;
             case GameMode.Cursed:
+                //  selectObject.tooltipText = "Race the clock to get the high score. Rings add time and score.";
+
                 LevelMenuScript.lapsOptions.EnableGroup();
                 LevelMenuScript.aiOptions.DisableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
                 break;
             case GameMode.Free:
+                //  selectObject.tooltipText = "Take to the skies and explore the environments at your leisure.";
+
                 LevelMenuScript.lapsOptions.DisableGroup();
                 LevelMenuScript.aiOptions.DisableGroup();
                 LevelMenuScript.difficultyOptions.DisableGroup();
                 break;
             case GameMode.Race:
+                //     selectObject.tooltipText = "Race for position against AI opponents for multiple laps.";
+
                 LevelMenuScript.lapsOptions.EnableGroup();
                 LevelMenuScript.aiOptions.EnableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
