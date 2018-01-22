@@ -29,6 +29,8 @@ public class AI_Race_Mode_Script : MonoBehaviour {
     }
     void FixedUpdate()
     {
+        if (countdown <= 0)
+        {
             Vector3 the_goal = Ring_path[counter];
             Joe = transform.position;
             Turn_Proper(the_goal);
@@ -49,6 +51,13 @@ public class AI_Race_Mode_Script : MonoBehaviour {
                 }
             }
         }
+        else
+        {
+            countdown -= 1.0f * Time.deltaTime;
+        }
+    }
+
+            
 
     private void Turn_Proper(Vector3 Target)
     {
