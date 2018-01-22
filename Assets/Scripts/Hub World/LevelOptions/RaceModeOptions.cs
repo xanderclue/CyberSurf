@@ -65,7 +65,7 @@ public class RaceModeOptions : LevelMenuObjectGroup
                 //   selectObject.tooltipText = "Continuously race through each level as you complete a track.";
 
                 LevelMenuScript.lapsOptions.DisableGroup();
-                LevelMenuScript.aiOptions.EnableGroup();
+                LevelMenuScript.aiOptions.DisableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
                 break;
             case GameMode.Cursed:
