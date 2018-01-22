@@ -56,7 +56,7 @@ public class RaceModeOptions : LevelMenuObjectGroup
         {
             case GameMode.Continuous:
                 LevelMenuScript.lapsOptions.DisableGroup();
-                LevelMenuScript.aiOptions.EnableGroup();
+                LevelMenuScript.aiOptions.DisableGroup();
                 LevelMenuScript.difficultyOptions.EnableGroup();
                 break;
             case GameMode.Cursed:
