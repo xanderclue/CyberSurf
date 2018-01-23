@@ -90,7 +90,10 @@ public class KeyInputManager : MonoBehaviour
             }
         }
         if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Debug.Log("Screenshot Saved to " + Application.persistentDataPath);
             ScreenCapture.CaptureScreenshot(Application.persistentDataPath + $"/Cybersurf_{DozenalTimeStamp}.png");
+        }
     }
     private static IEnumerator CalibrationCoroutine()
     {
