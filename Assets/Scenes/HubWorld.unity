@@ -2900,6 +2900,38 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114155614814761564, guid: 51c33a511c610114f8a899e7ee6a6014,
+        type: 2}
+      propertyPath: m_text
+      value: 'terrainCanyon
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114155614814761564, guid: 51c33a511c610114f8a899e7ee6a6014,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114155614814761564, guid: 51c33a511c610114f8a899e7ee6a6014,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114155614814761564, guid: 51c33a511c610114f8a899e7ee6a6014,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114155614814761564, guid: 51c33a511c610114f8a899e7ee6a6014,
+        type: 2}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114155614814761564, guid: 51c33a511c610114f8a899e7ee6a6014,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51c33a511c610114f8a899e7ee6a6014, type: 2}
   m_IsPrefabParent: 0
@@ -3442,7 +3474,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 512271273}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.9021187, y: 2.8367727, z: -4.1851473}
+  m_LocalPosition: {x: -1.9021187, y: 2.836773, z: -4.01}
   m_LocalScale: {x: 1.0514592, y: 2.1243536, z: 0.9766681}
   m_Children:
   - {fileID: 998278623}
@@ -3451,7 +3483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9021186, y: 2.8367727}
+  m_AnchoredPosition: {x: -1.9021186, y: 2.836773}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &512271275
