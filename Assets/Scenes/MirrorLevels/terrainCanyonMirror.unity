@@ -3908,11 +3908,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 390087666}
@@ -5909,7 +5909,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1283962703918082, guid: 89a48c380674bd04d80e0a45bc7a5f4c, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4865676046358304, guid: 89a48c380674bd04d80e0a45bc7a5f4c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5942,6 +5942,46 @@ Prefab:
     - target: {fileID: 4865676046358304, guid: 89a48c380674bd04d80e0a45bc7a5f4c, type: 2}
       propertyPath: m_LocalScale.z
       value: 1.0000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 198408509495987336, guid: 89a48c380674bd04d80e0a45bc7a5f4c,
+        type: 2}
+      propertyPath: ShapeModule.m_Position.z
+      value: -1961.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 198408509495987336, guid: 89a48c380674bd04d80e0a45bc7a5f4c,
+        type: 2}
+      propertyPath: randomSeed
+      value: -556893497
+      objectReference: {fileID: 0}
+    - target: {fileID: 198408509495987336, guid: 89a48c380674bd04d80e0a45bc7a5f4c,
+        type: 2}
+      propertyPath: ShapeModule.m_Position.x
+      value: 4145
+      objectReference: {fileID: 0}
+    - target: {fileID: 198412380453672172, guid: 89a48c380674bd04d80e0a45bc7a5f4c,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1022492397
+      objectReference: {fileID: 0}
+    - target: {fileID: 198412380453672172, guid: 89a48c380674bd04d80e0a45bc7a5f4c,
+        type: 2}
+      propertyPath: ShapeModule.m_Position.x
+      value: 3999
+      objectReference: {fileID: 0}
+    - target: {fileID: 198412380453672172, guid: 89a48c380674bd04d80e0a45bc7a5f4c,
+        type: 2}
+      propertyPath: ShapeModule.m_Position.y
+      value: -2227.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198412380453672172, guid: 89a48c380674bd04d80e0a45bc7a5f4c,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 2696
+      objectReference: {fileID: 0}
+    - target: {fileID: 198412380453672172, guid: 89a48c380674bd04d80e0a45bc7a5f4c,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 2262
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89a48c380674bd04d80e0a45bc7a5f4c, type: 2}
@@ -6767,11 +6807,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 781342139}
@@ -8221,11 +8261,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 995636390}
@@ -8789,11 +8829,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1041515935}
@@ -11268,11 +11308,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1400146655}
@@ -14996,11 +15036,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1870088939}
