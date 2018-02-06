@@ -7,8 +7,9 @@ public class WorldPortalScript : MonoBehaviour
     private void Start() => pmc = GameManager.player.GetComponent<PlayerMenuController>();
     private void OnTriggerEnter(Collider other)
     {
-        if (boxCollider == other.GetType() && "Board" == other.gameObject.tag)
+        if (boxCollider == other.GetType() && "Board" == other.gameObject.tag && GetComponent<Renderer>().isVisible)
         {
+            
             if (isDemoMode)
                 GameManager.gameMode = GameMode.Continuous;
             int level = GetComponentInParent<WorldPortalProperties>().SceneIndex;
@@ -16,5 +17,6 @@ public class WorldPortalScript : MonoBehaviour
             EventManager.OnTriggerTransition(level);
             pmc.ToggleMenuMovement(true);
         }
+        
     }
 }
