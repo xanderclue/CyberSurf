@@ -41,7 +41,7 @@ public class PlayerRespawn : MonoBehaviour
         float alpha = timeIntoFade;
         if (!fadingOut)
             alpha = 1.0f - alpha;
-        theFadeObj.GetComponent<Renderer>().material.SetFloat("_AlphaValue", Mathf.Clamp01(alpha));
+        theFadeObj.GetComponent<Renderer>().material.SetFloat("_AlphaValue", Mathf.Clamp01(alpha - 0.01f));
     }
     private IEnumerator FadeOut()
     {
