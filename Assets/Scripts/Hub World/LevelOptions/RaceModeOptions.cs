@@ -10,7 +10,7 @@ public class RaceModeOptions : LevelMenuObjectGroup
     //SelectedObject selectObject;
     private void Awake()
     {
-    // selectObject = GetComponent<SelectedObject>();
+        // selectObject = GetComponent<SelectedObject>();
 
     }
     private void OnEnable()

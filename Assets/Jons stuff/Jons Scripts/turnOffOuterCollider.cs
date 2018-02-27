@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class turnOffOuterCollider : MonoBehaviour {
+public class turnOffOuterCollider : MonoBehaviour
+{
     GameObject outerCollider;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         outerCollider = GameObject.FindGameObjectWithTag("invisibleWalls");
-	}
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +21,7 @@ public class turnOffOuterCollider : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Board")
+        if (other.gameObject.tag == "Board")
         {
             outerCollider.gameObject.SetActive(true);
         }

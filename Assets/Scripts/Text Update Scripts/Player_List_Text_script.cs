@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
-public class Player_List_Text_script : MonoBehaviour { 
+public class Player_List_Text_script : MonoBehaviour
+{
 
 
 

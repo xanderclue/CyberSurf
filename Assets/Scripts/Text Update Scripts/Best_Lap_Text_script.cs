@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
-public class Best_Lap_Text_script : MonoBehaviour {
+public class Best_Lap_Text_script : MonoBehaviour
+{
 
     public float[] times;
     private int curr_lap;

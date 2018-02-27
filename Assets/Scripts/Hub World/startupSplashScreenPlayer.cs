@@ -67,7 +67,7 @@ public class startupSplashScreenPlayer : MonoBehaviour
         }
         else if (currentScreen < splashScreens.Length)
         {
-           
+
             ConfirmButton.gameObject.SetActive(false);
             NextButton.gameObject.SetActive(true);
             SkipButton.gameObject.SetActive(true);

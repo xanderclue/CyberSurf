@@ -6,13 +6,14 @@ public class AudioMenuTab : MenuTab
     [Space, SerializeField, LabelOverride("BGM Volume Text")] private TextMeshPro bgmVolume = null;
     [SerializeField, LabelOverride("SFX Volume Text")] private TextMeshPro sfxVolume = null;
     [SerializeField, LabelOverride("ENV Volume Text")] private TextMeshPro envVolume = null;
-    [SerializeField] private EventSelectedObject bgmUpButton = null, bgmDownButton = null,
+    [SerializeField]
+    private EventSelectedObject bgmUpButton = null, bgmDownButton = null,
         sfxUpButton = null, sfxDownButton = null, envUpButton = null, envDownButton = null,
         confirmButton = null, defaultButton = null, revertButton = null;
     float originalBgmVol;
     float originalEnvVol;
     float originalSfxVol;
-    
+
     private float VolumeIncrement => 1.0f / maxNumber;
     private void SetBgmText() => bgmVolume.SetText(Mathf.RoundToInt(AudioManager.BgmVolume * maxNumber).ToString());
     private void SetSfxText() => sfxVolume.SetText(Mathf.RoundToInt(AudioManager.SfxVolume * maxNumber).ToString());
@@ -22,9 +23,9 @@ public class AudioMenuTab : MenuTab
         AudioManager.OnBgmVolumeChanged += SetBgmText;
         AudioManager.OnSfxVolumeChanged += SetSfxText;
         AudioManager.OnEnvVolumeChanged += SetEnvText;
-      //  confirmButton.OnSelectSuccess += confirmOptions;
+        //  confirmButton.OnSelectSuccess += confirmOptions;
         defaultButton.OnSelectSuccess += defaultOptions;
-        revertButton.OnSelectSuccess += revertOptions; 
+        revertButton.OnSelectSuccess += revertOptions;
         bgmUpButton.OnSelectSuccess += BgmUp;
         bgmDownButton.OnSelectSuccess += BgmDown;
         sfxUpButton.OnSelectSuccess += SfxUp;
@@ -34,16 +35,16 @@ public class AudioMenuTab : MenuTab
         SetBgmText();
         SetSfxText();
         SetEnvText();
-         originalBgmVol = AudioManager.BgmVolume;
-         originalEnvVol = AudioManager.EnvVolume;
-         originalSfxVol = AudioManager.SfxVolume;
+        originalBgmVol = AudioManager.BgmVolume;
+        originalEnvVol = AudioManager.EnvVolume;
+        originalSfxVol = AudioManager.SfxVolume;
     }
     private void OnDisable()
     {
         AudioManager.OnBgmVolumeChanged -= SetBgmText;
         AudioManager.OnSfxVolumeChanged -= SetSfxText;
         AudioManager.OnEnvVolumeChanged -= SetEnvText;
-      //  confirmButton.OnSelectSuccess -= confirmOptions;
+        //  confirmButton.OnSelectSuccess -= confirmOptions;
         defaultButton.OnSelectSuccess -= defaultOptions;
         revertButton.OnSelectSuccess -= revertOptions;
         bgmUpButton.OnSelectSuccess -= BgmUp;
@@ -53,10 +54,10 @@ public class AudioMenuTab : MenuTab
         envUpButton.OnSelectSuccess -= EnvUp;
         envDownButton.OnSelectSuccess -= EnvDown;
     }
-   // private void confirmOptions()
-   // {
-   //     
-   // }
+    // private void confirmOptions()
+    // {
+    //     
+    // }
     private void defaultOptions()
     {
         AudioManager.SfxVolume = 2.0f;

@@ -30,8 +30,8 @@ public class AiOptions : LevelMenuObjectGroup
     }
     private void ButtonPlusFunction()
     {
-       if (tempValue < 1)
-        ++tempValue;
+        if (tempValue < 1)
+            ++tempValue;
         UpdateDisplay();
     }
     private void ButtonMinusFunction()

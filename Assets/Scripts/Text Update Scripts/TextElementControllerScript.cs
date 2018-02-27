@@ -14,8 +14,8 @@ public class TextElementControllerScript : MonoBehaviour
     private GameObject speedText;
     private GameObject speedBar;
     private GameObject bestlap_time;
-   /* private GameObject checkpoint_time;
-    private GameObject time_difference;*/
+    /* private GameObject checkpoint_time;
+     private GameObject time_difference;*/
     private GameObject player_list;
     private GameObject current_lap_time;
     //private GameObject position_text;
@@ -52,7 +52,7 @@ public class TextElementControllerScript : MonoBehaviour
     public void setSpeedBar(bool isOn) => hudElementsControl.speedBarBool = GameSettings.SetBool("HudSpeedBar", isOn);
     public void setBestLap(bool isOn) => hudElementsControl.bestlapBool = GameSettings.SetBool("HudBestLap", isOn);
     //public void setCheckpoint_time(bool isOn) => hudElementsControl.checkpoint_timeBool = GameSettings.SetBool("HudCheckpointTime", isOn);
-   // public void setTimeDifference(bool isOn) => hudElementsControl.time_differenceBool = GameSettings.SetBool("HudTimeDifference", isOn);
+    // public void setTimeDifference(bool isOn) => hudElementsControl.time_differenceBool = GameSettings.SetBool("HudTimeDifference", isOn);
     public void setPlayerList(bool isOn) => hudElementsControl.player_listBool = GameSettings.SetBool("HudPlayerList", isOn);
     public void setCurrentLapTime(bool isOn) => hudElementsControl.current_lap_timeBool = GameSettings.SetBool("HudCurrentLapTime", isOn);
     //public void setPositionText(bool isOn) => hudElementsControl.positionBool = GameSettings.SetBool("HudPosition", isOn);
@@ -67,7 +67,7 @@ public class TextElementControllerScript : MonoBehaviour
         setArrow(isOn);
         setSpeed(isOn);
         setBestLap(isOn);
-       // setCheckpoint_time(isOn);
+        // setCheckpoint_time(isOn);
         //setTimeDifference(isOn);
         setPlayerList(isOn);
         setCurrentLapTime(isOn);
@@ -173,7 +173,7 @@ public class TextElementControllerScript : MonoBehaviour
         hudElementsControl.speedBool = GameSettings.GetBool("HudSpeed", true);
         hudElementsControl.speedBarBool = GameSettings.GetBool("HudSpeedBar", true);
         hudElementsControl.bestlapBool = GameSettings.GetBool("HudBestLap", true);
-       // hudElementsControl.time_differenceBool = GameSettings.GetBool("HudTimeDifference", true);
+        // hudElementsControl.time_differenceBool = GameSettings.GetBool("HudTimeDifference", true);
         hudElementsControl.player_listBool = GameSettings.GetBool("HudPlayerList", true);
         hudElementsControl.current_lap_timeBool = GameSettings.GetBool("HudCurrentLapTime", true);
         //hudElementsControl.positionBool = GameSettings.GetBool("HudPosition", true);

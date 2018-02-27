@@ -139,7 +139,7 @@ public class HudOnOffObject : MonoBehaviour
                     textElementController.setLapText(value);
                     break;
                 case HudMenuTab.HudMenuOption.Position:
-                   // textElementController.setPositionText(value);
+                    // textElementController.setPositionText(value);
                     break;
                 case HudMenuTab.HudMenuOption.Reticle:
                     textElementController.setReticle(value);

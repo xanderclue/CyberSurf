@@ -10,7 +10,7 @@ public class Compass_rotate : MonoBehaviour
     private float angle = 0.0f, pointPosition = 0.5f;
     private void Start()
     {
-       // player = GameManager.player.transform;
+        // player = GameManager.player.transform;
         myself = GetComponent<Slider>();
     }
     private void Update()

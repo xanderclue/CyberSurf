@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
-public class Current_Lap_Time_Text : MonoBehaviour {
+public class Current_Lap_Time_Text : MonoBehaviour
+{
 
     private float Time_passed, Current;
     private int curr_lap;

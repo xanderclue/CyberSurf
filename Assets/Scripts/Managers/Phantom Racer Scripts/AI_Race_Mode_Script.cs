@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_Race_Mode_Script : MonoBehaviour {
+public class AI_Race_Mode_Script : MonoBehaviour
+{
     [SerializeField] public Vector3[] Ring_path;
-   [SerializeField] private Vector3 Joe;
+    [SerializeField] private Vector3 Joe;
     private float pitch = 0.0f, yaw = 0.0f, newAcceleration = 0.0f, currAcceleration = 0.0f, debugSpeedIncrease = 0.0f, countdown = 3.0f;
-    
+
     public PlayerMovementVariables movementVariables = null;
     private Rigidbody AI_body;
     public int counter = 0, laps;
     public GameObject the_player;
-    void Start () {
+    void Start()
+    {
         AI_body = GetComponent<Rigidbody>();
         Debug.Log(Ring_path.Length);
-       if (GameMode.Race == GameManager.gameMode && GameManager.AI_Number > 0)
+        if (GameMode.Race == GameManager.gameMode && GameManager.AI_Number > 0)
         {
             Joe = this.transform.position;
             the_player = GameObject.FindGameObjectWithTag("Player");
@@ -57,7 +59,7 @@ public class AI_Race_Mode_Script : MonoBehaviour {
         }
     }
 
-            
+
 
     private void Turn_Proper(Vector3 Target)
     {
@@ -77,31 +79,31 @@ public class AI_Race_Mode_Script : MonoBehaviour {
         {
             currAcceleration = Mathf.Lerp(currAcceleration, newAcceleration, movementVariables.momentum);
         }
-            if (pitch > 360.0f - movementVariables.restingThreshold || pitch < movementVariables.restingThreshold)
-            {
+        if (pitch > 360.0f - movementVariables.restingThreshold || pitch < movementVariables.restingThreshold)
+        {
             newAcceleration = movementVariables.restingAcceleration;
             if (playerSpeed < movementVariables.restingSpeed)
-                    AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
-                else
-                    AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
-            }
-            else if (pitch < 180.0f)
-            {
-            newAcceleration = movementVariables.downwardAcceleration;
-                if (playerSpeed < movementVariables.maxSpeed + debugSpeedIncrease)
-                    AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
-                else
-                    AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
-            }
+                AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
             else
-            {
+                AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
+        }
+        else if (pitch < 180.0f)
+        {
+            newAcceleration = movementVariables.downwardAcceleration;
+            if (playerSpeed < movementVariables.maxSpeed + debugSpeedIncrease)
+                AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
+            else
+                AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
+        }
+        else
+        {
             newAcceleration = movementVariables.upwardAcceleration;
-                if (playerSpeed < movementVariables.minSpeed + debugSpeedIncrease)
-                    AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
-                else
-                    AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
-            }
-        
+            if (playerSpeed < movementVariables.minSpeed + debugSpeedIncrease)
+                AI_body.AddRelativeForce(0.0f, 0.0f, currAcceleration + debugSpeedIncrease, ForceMode.Acceleration);
+            else
+                AI_body.AddRelativeForce(0.0f, 0.0f, playerSpeed, ForceMode.Acceleration);
+        }
+
     }
 }
 

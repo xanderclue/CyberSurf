@@ -30,7 +30,7 @@ public class arrowPointAtUpdater : MonoBehaviour
         {
             Vector3 direction = thingsToLookAt[currentlyLookingAt].position - the_camera.transform.position;
 
-            
+
             angle = Vector3.SignedAngle(the_camera.transform.forward, direction, Vector3.up);
 
             if (angle < 90 && angle > 0)

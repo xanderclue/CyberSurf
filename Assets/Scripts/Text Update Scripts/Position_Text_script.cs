@@ -32,8 +32,8 @@ public class Position_Text_script : MonoBehaviour
             int temp = 0;
             while (checkpoint == 0 && temp != Ring_path.Length)
             {
-               float checkx = the_player.transform.position.x - Ring_path[temp].x;
-               float  checky = the_player.transform.position.y - Ring_path[temp].y;
+                float checkx = the_player.transform.position.x - Ring_path[temp].x;
+                float checky = the_player.transform.position.y - Ring_path[temp].y;
                 float checkz = the_player.transform.position.z - Ring_path[temp].z;
                 if (checkx < 8 && checkx > -8 && checky < 8 && checky > -8 && checkz < 8 && checkz > -8)
                 {

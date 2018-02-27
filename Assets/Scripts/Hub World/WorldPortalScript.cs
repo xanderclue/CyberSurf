@@ -9,7 +9,7 @@ public class WorldPortalScript : MonoBehaviour
     {
         if (boxCollider == other.GetType() && "Board" == other.gameObject.tag && GetComponent<Renderer>().isVisible)
         {
-            
+
             if (isDemoMode)
                 GameManager.gameMode = GameMode.Continuous;
             int level = GetComponentInParent<WorldPortalProperties>().SceneIndex;
@@ -17,6 +17,6 @@ public class WorldPortalScript : MonoBehaviour
             EventManager.OnTriggerTransition(level);
             pmc.ToggleMenuMovement(true);
         }
-        
+
     }
 }
