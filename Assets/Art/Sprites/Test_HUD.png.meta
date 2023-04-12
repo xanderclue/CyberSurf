@@ -1,128 +1,363 @@
 fileFormatVersion: 2
 guid: 633222a3acd11304e91b415743f7dd5b
-timeCreated: 1506973544
-licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Test_HUD_0
-    21300002: Test_HUD_1
-    21300004: Test_HUD_2
-    21300006: Test_HUD_3
-    21300008: Test_HUD_4
-    21300010: Test_HUD_5
-    21300012: Test_HUD_6
-    21300014: Test_HUD_7
-    21300016: Test_HUD_8
-    21300018: Test_HUD_9
-    21300020: Test_HUD_10
-    21300022: Test_HUD_11
-    21300024: Test_HUD_12
-    21300026: Test_HUD_13
-    21300028: Test_HUD_14
-    21300030: Test_HUD_15
-    21300032: Test_HUD_16
-    21300034: Test_HUD_17
-    21300036: Test_HUD_18
-    21300038: Test_HUD_19
-    21300040: Test_HUD_20
-    21300042: Test_HUD_21
-    21300044: Test_HUD_22
-    21300046: Test_HUD_23
-    21300048: Test_HUD_24
-    21300050: Test_HUD_25
-    21300052: Test_HUD_26
-    21300054: Test_HUD_27
-    21300056: Test_HUD_28
-    21300058: Test_HUD_29
-    21300060: Test_HUD_30
-    21300062: Test_HUD_31
-    21300064: Test_HUD_32
-    21300066: Test_HUD_33
-    21300068: Test_HUD_34
-    21300070: Test_HUD_35
-    21300072: Test_HUD_36
-    21300074: Test_HUD_37
-    21300076: Test_HUD_38
-    21300078: Test_HUD_39
-    21300080: Test_HUD_40
-    21300082: Test_HUD_41
-    21300084: Test_HUD_42
-    21300086: Test_HUD_43
-    21300088: Test_HUD_44
-    21300090: Test_HUD_45
-    21300092: Test_HUD_46
-    21300094: Test_HUD_47
-    21300096: Test_HUD_48
-    21300098: Test_HUD_49
-    21300100: Test_HUD_50
-    21300102: Test_HUD_51
-    21300104: Test_HUD_52
-    21300106: Test_HUD_53
-    21300108: Test_HUD_54
-    21300110: Test_HUD_55
-    21300112: Test_HUD_56
-    21300114: Test_HUD_57
-    21300116: Test_HUD_58
-    21300118: Test_HUD_59
-    21300120: Test_HUD_60
-    21300122: Test_HUD_61
-    21300124: Test_HUD_62
-    21300126: Test_HUD_63
-    21300128: Test_HUD_64
-    21300130: Test_HUD_65
-    21300132: Test_HUD_66
-    21300134: Test_HUD_67
-    21300136: Test_HUD_68
-    21300138: Test_HUD_69
-    21300140: Test_HUD_70
-    21300142: Test_HUD_71
-    21300144: Test_HUD_72
-    21300146: Test_HUD_73
-    21300148: Test_HUD_74
-    21300150: Test_HUD_75
-    21300152: Test_HUD_76
-    21300154: Test_HUD_77
-    21300156: Test_HUD_78
-    21300158: Test_HUD_79
-    21300160: Test_HUD_80
-    21300162: Test_HUD_81
-    21300164: Test_HUD_82
-    21300166: Test_HUD_83
-    21300168: Test_HUD_84
-    21300170: Test_HUD_85
-    21300172: Test_HUD_86
-    21300174: Test_HUD_87
-    21300176: Test_HUD_88
-    21300178: Test_HUD_89
-    21300180: Test_HUD_90
-    21300182: Test_HUD_91
-    21300184: Test_HUD_92
-    21300186: Test_HUD_93
-    21300188: Test_HUD_94
-    21300190: Test_HUD_95
-    21300192: Test_HUD_96
-    21300194: Test_HUD_97
-    21300196: Test_HUD_98
-    21300198: Test_HUD_99
-    21300200: Test_HUD_100
-    21300202: Test_HUD_101
-    21300204: Test_HUD_102
-    21300206: Test_HUD_103
-    21300208: Test_HUD_104
-    21300210: Test_HUD_105
-    21300212: Test_HUD_106
-    21300214: Test_HUD_107
-    21300216: Test_HUD_108
-    21300218: Test_HUD_109
-    21300220: Test_HUD_110
-    21300222: Test_HUD_111
-    21300224: Test_HUD_112
-    21300226: Test_HUD_113
-    21300228: Test_HUD_114
-    21300230: Test_HUD_115
-    21300232: Test_HUD_116
-    21300234: Test_HUD_117
-  serializedVersion: 4
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Test_HUD_0
+  - first:
+      213: 21300002
+    second: Test_HUD_1
+  - first:
+      213: 21300004
+    second: Test_HUD_2
+  - first:
+      213: 21300006
+    second: Test_HUD_3
+  - first:
+      213: 21300008
+    second: Test_HUD_4
+  - first:
+      213: 21300010
+    second: Test_HUD_5
+  - first:
+      213: 21300012
+    second: Test_HUD_6
+  - first:
+      213: 21300014
+    second: Test_HUD_7
+  - first:
+      213: 21300016
+    second: Test_HUD_8
+  - first:
+      213: 21300018
+    second: Test_HUD_9
+  - first:
+      213: 21300020
+    second: Test_HUD_10
+  - first:
+      213: 21300022
+    second: Test_HUD_11
+  - first:
+      213: 21300024
+    second: Test_HUD_12
+  - first:
+      213: 21300026
+    second: Test_HUD_13
+  - first:
+      213: 21300028
+    second: Test_HUD_14
+  - first:
+      213: 21300030
+    second: Test_HUD_15
+  - first:
+      213: 21300032
+    second: Test_HUD_16
+  - first:
+      213: 21300034
+    second: Test_HUD_17
+  - first:
+      213: 21300036
+    second: Test_HUD_18
+  - first:
+      213: 21300038
+    second: Test_HUD_19
+  - first:
+      213: 21300040
+    second: Test_HUD_20
+  - first:
+      213: 21300042
+    second: Test_HUD_21
+  - first:
+      213: 21300044
+    second: Test_HUD_22
+  - first:
+      213: 21300046
+    second: Test_HUD_23
+  - first:
+      213: 21300048
+    second: Test_HUD_24
+  - first:
+      213: 21300050
+    second: Test_HUD_25
+  - first:
+      213: 21300052
+    second: Test_HUD_26
+  - first:
+      213: 21300054
+    second: Test_HUD_27
+  - first:
+      213: 21300056
+    second: Test_HUD_28
+  - first:
+      213: 21300058
+    second: Test_HUD_29
+  - first:
+      213: 21300060
+    second: Test_HUD_30
+  - first:
+      213: 21300062
+    second: Test_HUD_31
+  - first:
+      213: 21300064
+    second: Test_HUD_32
+  - first:
+      213: 21300066
+    second: Test_HUD_33
+  - first:
+      213: 21300068
+    second: Test_HUD_34
+  - first:
+      213: 21300070
+    second: Test_HUD_35
+  - first:
+      213: 21300072
+    second: Test_HUD_36
+  - first:
+      213: 21300074
+    second: Test_HUD_37
+  - first:
+      213: 21300076
+    second: Test_HUD_38
+  - first:
+      213: 21300078
+    second: Test_HUD_39
+  - first:
+      213: 21300080
+    second: Test_HUD_40
+  - first:
+      213: 21300082
+    second: Test_HUD_41
+  - first:
+      213: 21300084
+    second: Test_HUD_42
+  - first:
+      213: 21300086
+    second: Test_HUD_43
+  - first:
+      213: 21300088
+    second: Test_HUD_44
+  - first:
+      213: 21300090
+    second: Test_HUD_45
+  - first:
+      213: 21300092
+    second: Test_HUD_46
+  - first:
+      213: 21300094
+    second: Test_HUD_47
+  - first:
+      213: 21300096
+    second: Test_HUD_48
+  - first:
+      213: 21300098
+    second: Test_HUD_49
+  - first:
+      213: 21300100
+    second: Test_HUD_50
+  - first:
+      213: 21300102
+    second: Test_HUD_51
+  - first:
+      213: 21300104
+    second: Test_HUD_52
+  - first:
+      213: 21300106
+    second: Test_HUD_53
+  - first:
+      213: 21300108
+    second: Test_HUD_54
+  - first:
+      213: 21300110
+    second: Test_HUD_55
+  - first:
+      213: 21300112
+    second: Test_HUD_56
+  - first:
+      213: 21300114
+    second: Test_HUD_57
+  - first:
+      213: 21300116
+    second: Test_HUD_58
+  - first:
+      213: 21300118
+    second: Test_HUD_59
+  - first:
+      213: 21300120
+    second: Test_HUD_60
+  - first:
+      213: 21300122
+    second: Test_HUD_61
+  - first:
+      213: 21300124
+    second: Test_HUD_62
+  - first:
+      213: 21300126
+    second: Test_HUD_63
+  - first:
+      213: 21300128
+    second: Test_HUD_64
+  - first:
+      213: 21300130
+    second: Test_HUD_65
+  - first:
+      213: 21300132
+    second: Test_HUD_66
+  - first:
+      213: 21300134
+    second: Test_HUD_67
+  - first:
+      213: 21300136
+    second: Test_HUD_68
+  - first:
+      213: 21300138
+    second: Test_HUD_69
+  - first:
+      213: 21300140
+    second: Test_HUD_70
+  - first:
+      213: 21300142
+    second: Test_HUD_71
+  - first:
+      213: 21300144
+    second: Test_HUD_72
+  - first:
+      213: 21300146
+    second: Test_HUD_73
+  - first:
+      213: 21300148
+    second: Test_HUD_74
+  - first:
+      213: 21300150
+    second: Test_HUD_75
+  - first:
+      213: 21300152
+    second: Test_HUD_76
+  - first:
+      213: 21300154
+    second: Test_HUD_77
+  - first:
+      213: 21300156
+    second: Test_HUD_78
+  - first:
+      213: 21300158
+    second: Test_HUD_79
+  - first:
+      213: 21300160
+    second: Test_HUD_80
+  - first:
+      213: 21300162
+    second: Test_HUD_81
+  - first:
+      213: 21300164
+    second: Test_HUD_82
+  - first:
+      213: 21300166
+    second: Test_HUD_83
+  - first:
+      213: 21300168
+    second: Test_HUD_84
+  - first:
+      213: 21300170
+    second: Test_HUD_85
+  - first:
+      213: 21300172
+    second: Test_HUD_86
+  - first:
+      213: 21300174
+    second: Test_HUD_87
+  - first:
+      213: 21300176
+    second: Test_HUD_88
+  - first:
+      213: 21300178
+    second: Test_HUD_89
+  - first:
+      213: 21300180
+    second: Test_HUD_90
+  - first:
+      213: 21300182
+    second: Test_HUD_91
+  - first:
+      213: 21300184
+    second: Test_HUD_92
+  - first:
+      213: 21300186
+    second: Test_HUD_93
+  - first:
+      213: 21300188
+    second: Test_HUD_94
+  - first:
+      213: 21300190
+    second: Test_HUD_95
+  - first:
+      213: 21300192
+    second: Test_HUD_96
+  - first:
+      213: 21300194
+    second: Test_HUD_97
+  - first:
+      213: 21300196
+    second: Test_HUD_98
+  - first:
+      213: 21300198
+    second: Test_HUD_99
+  - first:
+      213: 21300200
+    second: Test_HUD_100
+  - first:
+      213: 21300202
+    second: Test_HUD_101
+  - first:
+      213: 21300204
+    second: Test_HUD_102
+  - first:
+      213: 21300206
+    second: Test_HUD_103
+  - first:
+      213: 21300208
+    second: Test_HUD_104
+  - first:
+      213: 21300210
+    second: Test_HUD_105
+  - first:
+      213: 21300212
+    second: Test_HUD_106
+  - first:
+      213: 21300214
+    second: Test_HUD_107
+  - first:
+      213: 21300216
+    second: Test_HUD_108
+  - first:
+      213: 21300218
+    second: Test_HUD_109
+  - first:
+      213: 21300220
+    second: Test_HUD_110
+  - first:
+      213: 21300222
+    second: Test_HUD_111
+  - first:
+      213: 21300224
+    second: Test_HUD_112
+  - first:
+      213: 21300226
+    second: Test_HUD_113
+  - first:
+      213: 21300228
+    second: Test_HUD_114
+  - first:
+      213: 21300230
+    second: Test_HUD_115
+  - first:
+      213: 21300232
+    second: Test_HUD_116
+  - first:
+      213: 21300234
+    second: Test_HUD_117
+  externalObjects: {}
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -140,6 +375,10 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -148,12 +387,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -1
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
-    wrapV: -1
-    wrapW: -1
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -162,33 +401,60 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 9
   spritePivot: {x: 0.23121452, y: 0.36872098}
-  spriteBorder: {x: 137, y: 145, z: 513, w: 283}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 137, y: 145, z: 513, w: 283}
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
-  - buildTarget: DefaultTexturePlatform
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -206,6 +472,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_1
       rect:
@@ -220,6 +493,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_2
       rect:
@@ -234,6 +514,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_3
       rect:
@@ -248,6 +535,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_4
       rect:
@@ -262,6 +556,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_5
       rect:
@@ -276,6 +577,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_6
       rect:
@@ -290,6 +598,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_7
       rect:
@@ -304,6 +619,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_8
       rect:
@@ -318,6 +640,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_9
       rect:
@@ -332,6 +661,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_10
       rect:
@@ -346,6 +682,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_11
       rect:
@@ -360,6 +703,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_12
       rect:
@@ -374,6 +724,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_13
       rect:
@@ -388,6 +745,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_14
       rect:
@@ -402,6 +766,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_15
       rect:
@@ -416,6 +787,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_16
       rect:
@@ -430,6 +808,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_17
       rect:
@@ -444,6 +829,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_18
       rect:
@@ -458,6 +850,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_19
       rect:
@@ -472,6 +871,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_20
       rect:
@@ -486,6 +892,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 84305410000000000800000000000000
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_21
       rect:
@@ -500,6 +913,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a4305410000000000800000000000000
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_22
       rect:
@@ -514,6 +934,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c4305410000000000800000000000000
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_23
       rect:
@@ -528,6 +955,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e4305410000000000800000000000000
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_24
       rect:
@@ -542,6 +976,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 05305410000000000800000000000000
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_25
       rect:
@@ -556,6 +997,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_26
       rect:
@@ -570,6 +1018,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_27
       rect:
@@ -584,6 +1039,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_28
       rect:
@@ -598,6 +1060,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_29
       rect:
@@ -612,6 +1081,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_30
       rect:
@@ -626,6 +1102,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_31
       rect:
@@ -640,6 +1123,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_32
       rect:
@@ -654,6 +1144,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_33
       rect:
@@ -668,6 +1165,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_34
       rect:
@@ -682,6 +1186,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_35
       rect:
@@ -696,6 +1207,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_36
       rect:
@@ -710,6 +1228,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_37
       rect:
@@ -724,6 +1249,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_38
       rect:
@@ -738,6 +1270,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_39
       rect:
@@ -752,6 +1291,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_40
       rect:
@@ -766,6 +1312,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_41
       rect:
@@ -780,6 +1333,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_42
       rect:
@@ -794,6 +1354,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_43
       rect:
@@ -808,6 +1375,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_44
       rect:
@@ -822,6 +1396,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_45
       rect:
@@ -836,6 +1417,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_46
       rect:
@@ -850,6 +1438,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_47
       rect:
@@ -864,6 +1459,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_48
       rect:
@@ -878,6 +1480,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_49
       rect:
@@ -892,6 +1501,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_50
       rect:
@@ -906,6 +1522,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 48305410000000000800000000000000
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_51
       rect:
@@ -920,6 +1543,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 68305410000000000800000000000000
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_52
       rect:
@@ -934,6 +1564,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 88305410000000000800000000000000
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_53
       rect:
@@ -948,6 +1585,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a8305410000000000800000000000000
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_54
       rect:
@@ -962,6 +1606,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c8305410000000000800000000000000
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_55
       rect:
@@ -976,6 +1627,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e8305410000000000800000000000000
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_56
       rect:
@@ -990,6 +1648,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 09305410000000000800000000000000
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_57
       rect:
@@ -1004,6 +1669,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 29305410000000000800000000000000
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_58
       rect:
@@ -1018,6 +1690,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 49305410000000000800000000000000
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_59
       rect:
@@ -1032,6 +1711,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 69305410000000000800000000000000
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_60
       rect:
@@ -1046,6 +1732,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 89305410000000000800000000000000
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_61
       rect:
@@ -1060,6 +1753,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a9305410000000000800000000000000
+      internalID: 21300122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_62
       rect:
@@ -1074,6 +1774,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c9305410000000000800000000000000
+      internalID: 21300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_63
       rect:
@@ -1088,6 +1795,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e9305410000000000800000000000000
+      internalID: 21300126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_64
       rect:
@@ -1102,6 +1816,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0a305410000000000800000000000000
+      internalID: 21300128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_65
       rect:
@@ -1116,6 +1837,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2a305410000000000800000000000000
+      internalID: 21300130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_66
       rect:
@@ -1130,6 +1858,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4a305410000000000800000000000000
+      internalID: 21300132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_67
       rect:
@@ -1144,6 +1879,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6a305410000000000800000000000000
+      internalID: 21300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_68
       rect:
@@ -1158,6 +1900,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8a305410000000000800000000000000
+      internalID: 21300136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_69
       rect:
@@ -1172,6 +1921,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: aa305410000000000800000000000000
+      internalID: 21300138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_70
       rect:
@@ -1186,6 +1942,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ca305410000000000800000000000000
+      internalID: 21300140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_71
       rect:
@@ -1200,6 +1963,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ea305410000000000800000000000000
+      internalID: 21300142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_72
       rect:
@@ -1214,6 +1984,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0b305410000000000800000000000000
+      internalID: 21300144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_73
       rect:
@@ -1228,6 +2005,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2b305410000000000800000000000000
+      internalID: 21300146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_74
       rect:
@@ -1242,6 +2026,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4b305410000000000800000000000000
+      internalID: 21300148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_75
       rect:
@@ -1256,6 +2047,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6b305410000000000800000000000000
+      internalID: 21300150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_76
       rect:
@@ -1270,6 +2068,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8b305410000000000800000000000000
+      internalID: 21300152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_77
       rect:
@@ -1284,6 +2089,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ab305410000000000800000000000000
+      internalID: 21300154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_78
       rect:
@@ -1298,6 +2110,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: cb305410000000000800000000000000
+      internalID: 21300156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_79
       rect:
@@ -1312,6 +2131,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: eb305410000000000800000000000000
+      internalID: 21300158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_80
       rect:
@@ -1326,6 +2152,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0c305410000000000800000000000000
+      internalID: 21300160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_81
       rect:
@@ -1340,6 +2173,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2c305410000000000800000000000000
+      internalID: 21300162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_82
       rect:
@@ -1354,6 +2194,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4c305410000000000800000000000000
+      internalID: 21300164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_83
       rect:
@@ -1368,6 +2215,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6c305410000000000800000000000000
+      internalID: 21300166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_84
       rect:
@@ -1382,6 +2236,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8c305410000000000800000000000000
+      internalID: 21300168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_85
       rect:
@@ -1396,6 +2257,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ac305410000000000800000000000000
+      internalID: 21300170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_86
       rect:
@@ -1410,6 +2278,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: cc305410000000000800000000000000
+      internalID: 21300172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_87
       rect:
@@ -1424,6 +2299,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ec305410000000000800000000000000
+      internalID: 21300174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_88
       rect:
@@ -1438,6 +2320,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0d305410000000000800000000000000
+      internalID: 21300176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_89
       rect:
@@ -1452,6 +2341,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2d305410000000000800000000000000
+      internalID: 21300178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_90
       rect:
@@ -1466,6 +2362,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4d305410000000000800000000000000
+      internalID: 21300180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_91
       rect:
@@ -1480,6 +2383,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6d305410000000000800000000000000
+      internalID: 21300182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_92
       rect:
@@ -1494,6 +2404,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8d305410000000000800000000000000
+      internalID: 21300184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_93
       rect:
@@ -1508,6 +2425,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ad305410000000000800000000000000
+      internalID: 21300186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_94
       rect:
@@ -1522,6 +2446,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: cd305410000000000800000000000000
+      internalID: 21300188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_95
       rect:
@@ -1536,6 +2467,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ed305410000000000800000000000000
+      internalID: 21300190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_96
       rect:
@@ -1550,6 +2488,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0e305410000000000800000000000000
+      internalID: 21300192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_97
       rect:
@@ -1564,6 +2509,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2e305410000000000800000000000000
+      internalID: 21300194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_98
       rect:
@@ -1578,6 +2530,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4e305410000000000800000000000000
+      internalID: 21300196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_99
       rect:
@@ -1592,6 +2551,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6e305410000000000800000000000000
+      internalID: 21300198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_100
       rect:
@@ -1606,6 +2572,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8e305410000000000800000000000000
+      internalID: 21300200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_101
       rect:
@@ -1620,6 +2593,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ae305410000000000800000000000000
+      internalID: 21300202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_102
       rect:
@@ -1634,6 +2614,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ce305410000000000800000000000000
+      internalID: 21300204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_103
       rect:
@@ -1648,6 +2635,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ee305410000000000800000000000000
+      internalID: 21300206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_104
       rect:
@@ -1662,6 +2656,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 0f305410000000000800000000000000
+      internalID: 21300208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_105
       rect:
@@ -1676,6 +2677,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 2f305410000000000800000000000000
+      internalID: 21300210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_106
       rect:
@@ -1690,6 +2698,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 4f305410000000000800000000000000
+      internalID: 21300212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_107
       rect:
@@ -1704,6 +2719,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 6f305410000000000800000000000000
+      internalID: 21300214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_108
       rect:
@@ -1718,6 +2740,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 8f305410000000000800000000000000
+      internalID: 21300216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_109
       rect:
@@ -1732,6 +2761,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: af305410000000000800000000000000
+      internalID: 21300218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_110
       rect:
@@ -1746,6 +2782,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: cf305410000000000800000000000000
+      internalID: 21300220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_111
       rect:
@@ -1760,6 +2803,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: ef305410000000000800000000000000
+      internalID: 21300222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_112
       rect:
@@ -1774,6 +2824,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 00405410000000000800000000000000
+      internalID: 21300224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_113
       rect:
@@ -1788,6 +2845,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 20405410000000000800000000000000
+      internalID: 21300226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_114
       rect:
@@ -1802,6 +2866,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 40405410000000000800000000000000
+      internalID: 21300228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_115
       rect:
@@ -1816,6 +2887,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 60405410000000000800000000000000
+      internalID: 21300230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_116
       rect:
@@ -1830,6 +2908,13 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 80405410000000000800000000000000
+      internalID: 21300232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Test_HUD_117
       rect:
@@ -1844,9 +2929,145 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a0405410000000000800000000000000
+      internalID: 21300234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Test_HUD_0: 21300000
+      Test_HUD_1: 21300002
+      Test_HUD_10: 21300020
+      Test_HUD_100: 21300200
+      Test_HUD_101: 21300202
+      Test_HUD_102: 21300204
+      Test_HUD_103: 21300206
+      Test_HUD_104: 21300208
+      Test_HUD_105: 21300210
+      Test_HUD_106: 21300212
+      Test_HUD_107: 21300214
+      Test_HUD_108: 21300216
+      Test_HUD_109: 21300218
+      Test_HUD_11: 21300022
+      Test_HUD_110: 21300220
+      Test_HUD_111: 21300222
+      Test_HUD_112: 21300224
+      Test_HUD_113: 21300226
+      Test_HUD_114: 21300228
+      Test_HUD_115: 21300230
+      Test_HUD_116: 21300232
+      Test_HUD_117: 21300234
+      Test_HUD_12: 21300024
+      Test_HUD_13: 21300026
+      Test_HUD_14: 21300028
+      Test_HUD_15: 21300030
+      Test_HUD_16: 21300032
+      Test_HUD_17: 21300034
+      Test_HUD_18: 21300036
+      Test_HUD_19: 21300038
+      Test_HUD_2: 21300004
+      Test_HUD_20: 21300040
+      Test_HUD_21: 21300042
+      Test_HUD_22: 21300044
+      Test_HUD_23: 21300046
+      Test_HUD_24: 21300048
+      Test_HUD_25: 21300050
+      Test_HUD_26: 21300052
+      Test_HUD_27: 21300054
+      Test_HUD_28: 21300056
+      Test_HUD_29: 21300058
+      Test_HUD_3: 21300006
+      Test_HUD_30: 21300060
+      Test_HUD_31: 21300062
+      Test_HUD_32: 21300064
+      Test_HUD_33: 21300066
+      Test_HUD_34: 21300068
+      Test_HUD_35: 21300070
+      Test_HUD_36: 21300072
+      Test_HUD_37: 21300074
+      Test_HUD_38: 21300076
+      Test_HUD_39: 21300078
+      Test_HUD_4: 21300008
+      Test_HUD_40: 21300080
+      Test_HUD_41: 21300082
+      Test_HUD_42: 21300084
+      Test_HUD_43: 21300086
+      Test_HUD_44: 21300088
+      Test_HUD_45: 21300090
+      Test_HUD_46: 21300092
+      Test_HUD_47: 21300094
+      Test_HUD_48: 21300096
+      Test_HUD_49: 21300098
+      Test_HUD_5: 21300010
+      Test_HUD_50: 21300100
+      Test_HUD_51: 21300102
+      Test_HUD_52: 21300104
+      Test_HUD_53: 21300106
+      Test_HUD_54: 21300108
+      Test_HUD_55: 21300110
+      Test_HUD_56: 21300112
+      Test_HUD_57: 21300114
+      Test_HUD_58: 21300116
+      Test_HUD_59: 21300118
+      Test_HUD_6: 21300012
+      Test_HUD_60: 21300120
+      Test_HUD_61: 21300122
+      Test_HUD_62: 21300124
+      Test_HUD_63: 21300126
+      Test_HUD_64: 21300128
+      Test_HUD_65: 21300130
+      Test_HUD_66: 21300132
+      Test_HUD_67: 21300134
+      Test_HUD_68: 21300136
+      Test_HUD_69: 21300138
+      Test_HUD_7: 21300014
+      Test_HUD_70: 21300140
+      Test_HUD_71: 21300142
+      Test_HUD_72: 21300144
+      Test_HUD_73: 21300146
+      Test_HUD_74: 21300148
+      Test_HUD_75: 21300150
+      Test_HUD_76: 21300152
+      Test_HUD_77: 21300154
+      Test_HUD_78: 21300156
+      Test_HUD_79: 21300158
+      Test_HUD_8: 21300016
+      Test_HUD_80: 21300160
+      Test_HUD_81: 21300162
+      Test_HUD_82: 21300164
+      Test_HUD_83: 21300166
+      Test_HUD_84: 21300168
+      Test_HUD_85: 21300170
+      Test_HUD_86: 21300172
+      Test_HUD_87: 21300174
+      Test_HUD_88: 21300176
+      Test_HUD_89: 21300178
+      Test_HUD_9: 21300018
+      Test_HUD_90: 21300180
+      Test_HUD_91: 21300182
+      Test_HUD_92: 21300184
+      Test_HUD_93: 21300186
+      Test_HUD_94: 21300188
+      Test_HUD_95: 21300190
+      Test_HUD_96: 21300192
+      Test_HUD_97: 21300194
+      Test_HUD_98: 21300196
+      Test_HUD_99: 21300198
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -1,12 +1,30 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 using static KeyInputManager.VR;
 using static Xander.Debugging.Helper;
 public class KeyInputManager : MonoBehaviour
 {
     public static class VR
     {
-        public static bool VRPresent => UnityEngine.XR.XRDevice.isPresent;
+        public static bool VRPresent
+        {
+            get
+            {
+                List<XRDisplaySubsystem> xrDisplaySubsystems = new();
+                SubsystemManager.GetInstances(xrDisplaySubsystems);
+                foreach (XRDisplaySubsystem xrDisplay in xrDisplaySubsystems)
+                {
+                    if (xrDisplay.running)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+                // return UnityEngine.XR.XRDevice.isPresent;
+            }
+        }
         public static Quaternion GetHeadRotation() => UnityEngine.XR.InputTracking.GetLocalRotation(UnityEngine.XR.XRNode.Head);
     }
 #if UNITY_STANDALONE_OSX
